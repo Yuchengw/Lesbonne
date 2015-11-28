@@ -5,8 +5,8 @@
 *.jar
 *.war
 *.ear
-*.classpath
-*.project
+.classpath
+.project
 
 # eclipse settings
 .settings/

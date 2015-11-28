@@ -9,4 +9,8 @@
 .project
 
 # eclipse settings
-.settings/
+*/.settings/
+
+# local bin or target
+*/bin/
+*/target/

@@ -9,4 +9,4 @@
 *.project
 
 # eclipse settings
-*.settings/
+.settings/

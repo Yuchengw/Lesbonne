@@ -2,25 +2,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>yummet.app</groupId>
 	<artifactId>appserver</artifactId>
 	<packaging>war</packaging>
-	<version>1.0.SNAPSHOT</version>
 	<name>${project.artifactId}</name>
-	<description>Appserver POM for Yummet, Author:Yucheng</description>
+	<description>Appserver POM for Lesbonne, Author:Yucheng</description>
 
 	<parent>
-		<groupId>yummet</groupId>
+		<groupId>Lesbonne</groupId>
 		<artifactId>core</artifactId>
-		<version>1.0.SNAPSHOT</version>
-		<relativePath>../yummet</relativePath>
+		<version>1.0.1</version>
+		<relativePath>../../Lesbonne</relativePath>
 	</parent>
 
 	<!-- Pom properties -->
 	<properties>
 		<jackson.databind-version>2.2.3</jackson.databind-version>
 		<maven.compiler.plugin.version>3.2</maven.compiler.plugin.version>
-	    <jetty.port>8080</jetty.port>
+	    <jetty.port>8090</jetty.port>
 	</properties>
 
 	<!-- dependencies Start -->
@@ -34,7 +32,7 @@
 		<dependency>
 			<groupId>yummet.platform</groupId>
 			<artifactId>platform</artifactId>
-			<version>1.0.SNAPSHOT</version>
+			<version>1.0.1</version>
 		</dependency>
 		<!-- Jackson convert jpo to json format -->
 		<dependency>

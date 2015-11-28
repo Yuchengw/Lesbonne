@@ -1,0 +1,10 @@
+# I highly recommend we use the same gitignore files.
+
+# java generated files
+*.class
+*.jar
+*.war
+*.ear
+*.classpath
+*.project
+

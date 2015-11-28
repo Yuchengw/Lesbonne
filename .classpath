@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="core/appserver/src/main/java"/>
+	<classpathentry kind="src" path="core/appserver/src/test/java"/>
+	<classpathentry kind="src" path="core/platformserver/src/main/java"/>
+	<classpathentry kind="src" path="core/platformserver/src/test/java"/>
+	<classpathentry kind="src" path="core/src/main/java"/>
+	<classpathentry kind="src" path="core/src/test/java"/>
+	<classpathentry excluding="core/appserver/src/main/java/|core/appserver/src/test/java/|core/platformserver/src/main/java/|core/platformserver/src/test/java/|core/src/main/java/|core/src/test/java/" kind="src" path=""/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -8,3 +8,5 @@
 *.classpath
 *.project
 
+# eclipse settings
+*.settings/

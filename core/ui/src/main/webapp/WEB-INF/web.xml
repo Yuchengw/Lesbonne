@@ -18,11 +18,13 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	
-	<listener>
-		<listener-class>net.bull.javamelody.SessionListener</listener-class>
-	</listener>
 
+	<!-- The context params that read by ContextLoaderListener -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>WEB-INF/spring-security.xml</param-value>
+	</context-param>
+	
 	<servlet>
 		<servlet-name>LesbonneDispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -31,20 +33,8 @@
 	<!-- servlet mapping -->
 	<servlet-mapping>
 		<servlet-name>LesbonneDispatcher</servlet-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
 	<!-- =========== Error Page ========== -->
-	<servlet>
-        <servlet-name>error</servlet-name>
-        <jsp-file>/error.html</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>error</servlet-name>
-        <url-pattern>/error</url-pattern>
-    </servlet-mapping>
-    <error-page>
-        <error-code>*</error-code>
-        <location>/error</location>
-    </error-page>
 </web-app>

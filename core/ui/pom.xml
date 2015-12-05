@@ -34,14 +34,14 @@
       <finalName>ui</finalName>
       <plugins>
     		 <plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven.compiler.plugin.version}</version>
-				<configuration>
-					<target>1.7</target>
-					<source>1.7</source>
-				</configuration>
-			</plugin>
+			   <groupId>org.apache.maven.plugins</groupId>
+			   <artifactId>maven-compiler-plugin</artifactId>
+			   <version>${maven.compiler.plugin.version}</version>
+			   <configuration>
+				    <target>1.7</target>
+				    <source>1.7</source>
+			   </configuration>
+		  </plugin>
           <plugin>
 		      <groupId>org.mortbay.jetty</groupId>
 			  <artifactId>jetty-maven-plugin</artifactId>

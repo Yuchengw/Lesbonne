@@ -1,0 +1,16 @@
+# I highly recommend we use the same gitignore files.
+
+# java generated files
+*.class
+*.jar
+*.war
+*.ear
+.classpath
+.project
+
+# eclipse settings
+**/.settings
+
+# local bin or target
+**/bin
+**/target

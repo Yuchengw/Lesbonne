@@ -1,4 +1,4 @@
-package com.yummet.enums;
+package com.lesbonne.enums;
 
 public enum TimeUnit {
 		MINUTES("minute", "m"), 

@@ -1,4 +1,4 @@
-package com.yummet.utilities;
+package com.lesbonne.utilities;
 
 /**
  * The util class for all  String 

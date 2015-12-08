@@ -1,4 +1,4 @@
-package com.yummet.enums;
+package com.lesbonne.enums;
 
 /**
  * Represents the order status for all the orders:

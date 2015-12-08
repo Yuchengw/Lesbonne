@@ -8,8 +8,8 @@
           http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	version="3.0">
 
-	<!-- Spring MVC set up, @author Yucheng Wang @author Jassica -->
-	<display-name>This is Yummet Platform. It is a web service.</display-name>
+	<!-- Spring MVC set up, @author Yucheng Wang -->
+	<display-name>This is Lesbonne Platform. It is a web service.</display-name>
 
 	<!-- This is the basic home page, show the world, deprecate it now since 
 		we are depending on Spring -->
@@ -34,15 +34,6 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-
-	<filter>
-		<filter-name>javamelody</filter-name>
-		<filter-class>net.bull.javamelody.MonitoringFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>javamelody</filter-name>
-		<url-pattern>/monitoring</url-pattern>
-	</filter-mapping>
 
 	<listener>
 		<listener-class>net.bull.javamelody.SessionListener</listener-class>

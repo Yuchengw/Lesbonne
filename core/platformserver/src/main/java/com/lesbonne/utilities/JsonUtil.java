@@ -1,4 +1,4 @@
-package com.yummet.utilities;
+package com.lesbonne.utilities;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -12,7 +12,7 @@ import org.json.JSONObject;
 import com.fatboyindustrial.gsonjodatime.Converters;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.yummet.enums.PostVisibilityEnum;
+import com.lesbonne.enums.PostVisibilityEnum;
 
 /**
  * The Util class to convert between json string and the object

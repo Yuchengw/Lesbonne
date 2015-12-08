@@ -1,4 +1,4 @@
-package com.yummet.enums;
+package com.lesbonne.enums;
 
 /**
  * Represent the DB events:

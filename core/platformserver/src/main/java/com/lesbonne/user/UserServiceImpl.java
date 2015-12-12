@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author yucheng
  * @since 1
  * */
-@Service("userService")
+@Service("UserService")
 public class UserServiceImpl implements UserService{
 	
 	@Autowired

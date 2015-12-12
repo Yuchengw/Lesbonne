@@ -1,4 +1,4 @@
-package com.lesbonne.mongodb;
+package com.lesbonne.mysqldb;
  
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;

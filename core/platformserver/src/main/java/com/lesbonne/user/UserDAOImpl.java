@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
  * @author yucheng
  * @since 1
  * */
-@Repository("userDAO")
+@Repository("UserDAO")
 public class UserDAOImpl implements UserDAO{
 
 	@Autowired
@@ -28,8 +28,7 @@ public class UserDAOImpl implements UserDAO{
 	@Override
 	public User updateUser(User user) {
 		sessionFactory.getCurrentSession().update(user);
-		User updatedUser = getUserByEmail(user.getUserEmail());
-		return updatedUser;
+		return user;
 	}
 
 	@Override

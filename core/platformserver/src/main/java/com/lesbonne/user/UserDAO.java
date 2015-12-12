@@ -1,6 +1,5 @@
 package com.lesbonne.user;
 
-
 /**
  * @author yucheng
  * @since 1

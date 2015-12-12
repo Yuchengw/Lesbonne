@@ -26,13 +26,13 @@
 	</context-param>
 	
 	<servlet>
-		<servlet-name>LesbonneDispatcher</servlet-name>
+		<servlet-name>LesbonneUiDispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 	</servlet>
 
 	<!-- servlet mapping -->
 	<servlet-mapping>
-		<servlet-name>LesbonneDispatcher</servlet-name>
+		<servlet-name>LesbonneUiDispatcher</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 

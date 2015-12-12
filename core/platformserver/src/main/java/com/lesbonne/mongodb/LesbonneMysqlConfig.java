@@ -15,10 +15,10 @@ package com.lesbonne.mongodb;
  * @since 1
  * */
 //@Configuration
-public class YummetMongoConfig {
+public class LesbonneMysqlConfig {
  
-	private static final String MONGODB_NAME = "iamhere";
-	private static final String MONGODB_ADDRESS = "127.0.0.1";
+	private static final String MYSQL_NAME = "iamhere";
+	private static final String MYSQL_ADDRESS = "127.0.0.1";
 	
 //	public @Bean MongoDbFactory mongoDbFactory() throws Exception {
 //		return new SimpleMongoDbFactory(new MongoClient(MONGODB_ADDRESS), MONGODB_NAME);

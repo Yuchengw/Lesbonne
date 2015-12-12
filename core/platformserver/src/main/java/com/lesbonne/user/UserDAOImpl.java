@@ -21,9 +21,8 @@ public class UserDAOImpl implements UserDAO{
 
 	@Override
 	public User getUserByEmail(String email) {
-		User user = (User)sessionFactory.getCurrentSession().
+		return (User)sessionFactory.getCurrentSession().
 				get(User.class, email);
-		return user;
 	}
 
 	@Override

@@ -16,7 +16,7 @@ public class User {
 	 * PLEASE Use Mysql statements Define DDL.
 	 * */
 	@Id
-	@Column(name = "USERID", columnDefinition = "VARCHAR(18) NOT NULL")
+	@Column(name = "USERID", columnDefinition = "VARCHAR(18) NOT NULL PRIMARY KEY")
 	private String userId;
 
 	@Column(name = "USERTYPE", columnDefinition = "TINYINT NOT NULL")

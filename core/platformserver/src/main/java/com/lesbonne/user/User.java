@@ -16,7 +16,7 @@ public class User {
 	 * PLEASE Use Mysql statements Define DDL.
 	 * */
 	@Id
-	@Column(name = "USERID", columnDefinition = "VARCHAR(18) NOT NULL PRIMARY KEY")
+	@Column(name = "USERID", columnDefinition = "VARCHAR(18) NOT NULL")
 	private String userId;
 
 	@Column(name = "USERTYPE", columnDefinition = "TINYINT NOT NULL")
@@ -106,10 +106,6 @@ public class User {
 
 	public String getCreatedTime() {
 		return createdTime;
-	}
-
-	public void setCreatedTime(String createdTime) {
-		this.createdTime = createdTime;
 	}
 
 	public String getLastModifiedTime() {

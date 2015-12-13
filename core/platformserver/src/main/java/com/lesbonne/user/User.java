@@ -1,11 +1,19 @@
 package com.lesbonne.user;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.lesbonne.askingpost.AskingPost;
+import com.lesbonne.order.Order;
+import com.lesbonne.partner.Partner;
+import com.lesbonne.postcomment.PostComment;
+import com.lesbonne.sharingpost.SharingPost;
 
 /**
  * @author yucheng
@@ -49,11 +57,24 @@ public class User implements Serializable {
 	
 	@Column(name = "LASTMODIFIEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
 	private String lastModifiedTime;
-	
+
 	/*========== Foreign Key Starts From Here. ==========*/
 	@Column(name = "USERPAYMENTID", columnDefinition="VARCHAR(18)")
 	private String userPaymentId;
 	
+	
+	@OneToMany(mappedBy = "owner")
+	private List<AskingPost> askingPosts;
+
+	@OneToMany(mappedBy = "owner")
+	private List<SharingPost> sharingPosts;
+	
+	@OneToMany(mappedBy = "owner")
+	private List<Order> orders;
+	
+	@OneToMany(mappedBy = "userPartner1")
+	private List<Partner> partners;
+
 	/*========== Getters and Setters. ==========*/
 	public String getUserId() {
 		return userId;
@@ -129,6 +150,30 @@ public class User implements Serializable {
 
 	public void setUserPaymentId(String userPaymentId) {
 		this.userPaymentId = userPaymentId;
+	}
+	
+	public List<AskingPost> getAskingPosts() {
+		return askingPosts;
+	}
+
+	public void setAskingPosts(List<AskingPost> askingPosts) {
+		this.askingPosts = askingPosts;
+	}
+	
+	public List<SharingPost> getSharingPosts() {
+		return sharingPosts;
+	}
+
+	public void setSharingPosts(List<SharingPost> sharingPosts) {
+		this.sharingPosts = sharingPosts;
+	}
+	
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}
 }
 

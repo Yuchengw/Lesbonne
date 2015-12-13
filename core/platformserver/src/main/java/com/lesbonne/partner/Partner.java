@@ -1,9 +1,16 @@
 package com.lesbonne.partner;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.lesbonne.user.User;
 
 /**
  * @author yucheng
@@ -11,18 +18,38 @@ import javax.persistence.Table;
  * */
 @Entity
 @Table(name = "PARTNER")
-public class Partner {	
+public class Partner implements Serializable {	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5749398012040736607L;
+
 	@Id
 	@Column(name="PARTNERID", columnDefinition="VARCHAR(18) NOT NULL")
 	private String partnerId;
 	
-	@Column(name="ID1", columnDefinition="VARCHAR(18)")
-	/**
-	 * This is the master id.
-	 * */
-	private String id1;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="USERID1", referencedColumnName = "USERID", insertable=false, updatable=false)
+	private User userPartner1;
 	
-	@Column(name="ID2", columnDefinition="VARCHAR(18)")
-	private String id2;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="USERI2", referencedColumnName = "USERID", insertable=false, updatable=false)
+	private User userPartner2;
+	
+	public User getUserPartner1() {
+		return userPartner1;
+	}
+	
+	public void setUserPartner1(User userPartner1) {
+		this.userPartner1 = userPartner1;
+	}
+	
+	public User getUserPartner2() {
+		return userPartner2;
+	}
+	
+	public void setUserPartner2(User userPartner2) {
+		this.userPartner2 = userPartner2;
+	}
 }

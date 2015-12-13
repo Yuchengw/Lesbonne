@@ -1,14 +1,19 @@
 package com.lesbonne.askingpost;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.lesbonne.postcomment.PostComment;
+import com.lesbonne.user.User;
 
 /**
  * @author yucheng
@@ -16,14 +21,20 @@ import com.lesbonne.postcomment.PostComment;
  * */
 @Entity
 @Table(name = "ASKINGPOST")
-public class AskingPost {
+public class AskingPost implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7116449282620644263L;
+
 	@Id
 	@Column(name="ASKINGPOSTID", columnDefinition="VARCHAR(18) NOT NULL")
 	private String askingPostId;
 	
-	@Column(name="OWNERID", columnDefinition="VARHCHAR(18) NOT NULL")
-	private String ownerId;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="USERID", referencedColumnName = "USERID", insertable=false, updatable=false)
+	private User owner;
 	
 	@Column(name="ASKINGPOSTSUBJECT", columnDefinition="VARCHAR(255) NOT NULL")
 	private String askingPostSubject;
@@ -50,12 +61,12 @@ public class AskingPost {
 		return askingPostId;
 	}
 
-	public String getOwnerId() {
-		return ownerId;
+	public User getOwner() {
+		return owner;
 	}
 
-	public void setOwnerId(String ownerId) {
-		this.ownerId = ownerId;
+	public void setOwner(User owner) {
+		this.owner = owner;
 	}
 
 	public String getAskingPostSubject() {

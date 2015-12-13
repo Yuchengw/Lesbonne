@@ -1,30 +1,37 @@
 package com.lesbonne.userrelation;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.lesbonne.user.User;
 
 /**
  * @author yucheng
  * @since 1
  * */
 @Entity
-@Table(name = "USERRELATION")
-public class UserRelation {
-	
-	@Id @GeneratedValue 
+@Table(name="USERRELATION")
+public class UserRelation implements Serializable {
 	/**
-	 * Primary Key
-	 * */
+	 * 
+	 */
+	private static final long serialVersionUID = 6113029977740096433L;
+
+	@Id 
+	@Column(name="PARTNERID", columnDefinition="VARCHAR(18) NOT NULL")
 	private long userRelationId;	
 	
-	@Column(name = "ID1", columnDefinition="VARCHAR(18) NOT NULL")
-	/**
-	 * This the UserId.
-	 * */
-	private String id1; 
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="USERID", referencedColumnName = "USERID", insertable=false, updatable=false)
+	private User userRelation1;
 	
 	@Column(name = "ID2", columnDefinition="VARCHAR(18) NOT NULL")
 	/**
@@ -42,12 +49,12 @@ public class UserRelation {
 		return userRelationId;
 	}
 	
-	public String getId1() {
-		return id1;
+	public User getUserRelation1() {
+		return userRelation1;
 	}
 	
-	public void setid1(String id1) {
-		this.id1 = id1;
+	public void setUserRelation1(User userRelation1) {
+		this.userRelation1 = userRelation1;
 	}
 	
 	public String getId2() {

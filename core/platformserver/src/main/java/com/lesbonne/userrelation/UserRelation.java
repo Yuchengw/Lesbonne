@@ -20,14 +20,17 @@ public class UserRelation {
 	 * */
 	private long userRelationId;	
 	
-	@Column(name = "USERID1", columnDefinition="VARCHAR(18) NOT NULL")
+	@Column(name = "ID1", columnDefinition="VARCHAR(18) NOT NULL")
 	/**
-	 * This could be the followee in the follow context.,etc
+	 * This the UserId.
 	 * */
-	private String userId1; 
+	private String id1; 
 	
-	@Column(name = "USERID2", columnDefinition="VARCHAR(18) NOT NULL")
-	private String userId2;
+	@Column(name = "ID2", columnDefinition="VARCHAR(18) NOT NULL")
+	/**
+	 * User could follow User/Post/...
+	 * */
+	private String id2;
 	
 	@Column(name = "CREATEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP", updatable = false)
 	private String createdTime;
@@ -39,20 +42,20 @@ public class UserRelation {
 		return userRelationId;
 	}
 	
-	public String getUserId1() {
-		return userId1;
+	public String getId1() {
+		return id1;
 	}
 	
-	public void setUserId1(String userId1) {
-		this.userId1 = userId1;
+	public void setid1(String id1) {
+		this.id1 = id1;
 	}
 	
-	public String getUserId2() {
-		return userId2;
+	public String getId2() {
+		return id2;
 	}
 	
-	public void setUserId2(String userId2) {
-		this.userId2 = userId2;
+	public void setUserId2(String id2) {
+		this.id2 = id2;
 	}
 	
 	public String getCreatedTime() {

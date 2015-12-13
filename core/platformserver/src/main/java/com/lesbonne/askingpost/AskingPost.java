@@ -1,4 +1,4 @@
-package com.lesbonne.sharingpost;
+package com.lesbonne.askingpost;
 
 import java.util.List;
 
@@ -15,39 +15,39 @@ import com.lesbonne.postcomment.PostComment;
  * @since 1
  * */
 @Entity
-@Table(name = "SHARINGPOST")
-public class SharingPost {
+@Table(name = "ASKINGPOST")
+public class AskingPost {
 	
 	@Id
-	@Column(name="SHARINGPOSTID", columnDefinition="VARCHAR(18) NOT NULL")
-	private String sharingPostId;
+	@Column(name="ASKINGPOSTID", columnDefinition="VARCHAR(18) NOT NULL")
+	private String askingPostId;
 	
-	@Column(name="OWNERID", columnDefinition="VARCHAR(18) NOT NULL")
+	@Column(name="OWNERID", columnDefinition="VARHCHAR(18) NOT NULL")
 	private String ownerId;
 	
-	@Column(name="SHARINGPOSTSUBJECT", columnDefinition="VARCHAR(255) NOT NULL")
-	private String sharingPostSubject;
+	@Column(name="ASKINGPOSTSUBJECT", columnDefinition="VARCHAR(255) NOT NULL")
+	private String askingPostSubject;
 	
 	@Column(name="CATEGORY", columnDefinition="VARCHAR(255) NOT NULL")
 	private String category;
 	
-	@OneToMany(mappedBy = "sharingPost")
+	@OneToMany(mappedBy = "askingPost")
 	private List<PostComment> postComments;
-	
+		
 	@Column(name="PARTNERID", columnDefinition="VARCHAR(18)")
 	private String partnerId;
 	
 	@Column(name="EXPIREDAT", columnDefinition="DATETIME NOT NULL")
 	private String expiredAt;
 	
-	@Column(name="CREATEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP", updatable = false)
+	@Column(name = "CREATEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP", updatable = false)
 	private String createdTime;
 	
-	@Column(name="LASTMODIFIEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+	@Column(name = "LASTMODIFIEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
 	private String lastModifiedTime;
 	
-	public String getSharingPostId() {
-		return sharingPostId;
+	public String getAskingPostId() {
+		return askingPostId;
 	}
 
 	public String getOwnerId() {
@@ -58,12 +58,12 @@ public class SharingPost {
 		this.ownerId = ownerId;
 	}
 
-	public String getSharingPostSubject() {
-		return sharingPostSubject;
+	public String getAskingPostSubject() {
+		return askingPostSubject;
 	}
 
-	public void setSharingPostSubject(String sharingPostSubject) {
-		this.sharingPostSubject = sharingPostSubject;
+	public void setAskingPostSubject(String askingPostSubject) {
+		this.askingPostSubject = askingPostSubject;
 	}
 
 	public String getCategory() {
@@ -98,8 +98,8 @@ public class SharingPost {
 		this.expiredAt = expiredAt;
 	}
 
-	public void setCreatedTime(String createdTime) {
-		this.createdTime = createdTime;
+	public String getCreatedTime() {
+		return createdTime;
 	}
 
 	public String getLastModifiedTime() {

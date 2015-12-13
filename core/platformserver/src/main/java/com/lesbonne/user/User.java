@@ -1,5 +1,7 @@
 package com.lesbonne.user;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,7 +13,12 @@ import javax.persistence.Table;
  * */
 @Entity
 @Table(name = "USER")
-public class User {
+public class User implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * PLEASE Use Mysql statements Define DDL.
 	 * */

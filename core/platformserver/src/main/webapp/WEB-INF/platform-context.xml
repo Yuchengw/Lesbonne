@@ -32,6 +32,11 @@
     		<list>
     			<value>com.lesbonne.user.User</value>
     			<value>com.lesbonne.userrelation.UserRelation</value>
+    			<value>com.lesbonne.sharingpost.SharingPost</value>
+    			<value>com.lesbonne.askingpost.AskingPost</value>
+    			<value>com.lesbonne.postcomment.PostComment</value>
+    			<value>com.lesbonne.order.Order</value>
+    			<value>com.lesbonne.partner.Partner</value>
     		</list>
     	</property>
     	<property name="hibernateProperties">

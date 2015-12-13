@@ -1,0 +1,16 @@
+package com.lesbonne.bean.rest.controller;
+
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.lesbonne.business.bean.User;
+
+/**
+ * @author yucheng
+ * @since 1
+ * */
+public interface ProfileController {
+	public @ResponseBody User getProfile(@RequestHeader String userInfo);
+	public @ResponseBody User updateProfile(@RequestHeader String userInfo, @RequestBody String updateInfo);
+}

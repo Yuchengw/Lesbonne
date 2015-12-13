@@ -7,7 +7,7 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.yummet.bean.rest.controller.UserControllerImpl;
+import com.lesbonne.bean.rest.controller.UserControllerImpl;
 /**
  * This is strict unit test for @link{UserControllerImpl}, this should be replaced by TestNG
  * @author yucheng

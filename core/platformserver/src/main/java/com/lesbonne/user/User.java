@@ -20,16 +20,13 @@ import com.lesbonne.sharingpost.SharingPost;
  * @since 1
  * */
 @Entity
-@Table(name = "USER")
+@Table(name="USER")
 public class User implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * PLEASE Use Mysql statements Define DDL.
-	 * */
 	@Id
 	@Column(name = "USERID", columnDefinition = "VARCHAR(18) NOT NULL")
 	private String userId;

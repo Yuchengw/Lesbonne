@@ -30,12 +30,12 @@
     	<property name="dataSource" ref="dataSource"/>
     	<property name="annotatedClasses">
     		<list>
+    		    <value>com.lesbonne.order.Order</value>
     			<value>com.lesbonne.user.User</value>
     			<value>com.lesbonne.userrelation.UserRelation</value>
     			<value>com.lesbonne.sharingpost.SharingPost</value>
     			<value>com.lesbonne.askingpost.AskingPost</value>
     			<value>com.lesbonne.postcomment.PostComment</value>
-    			<value>com.lesbonne.order.Order</value>
     			<value>com.lesbonne.partner.Partner</value>
     		</list>
     	</property>
@@ -44,7 +44,7 @@
     			<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
     			<prop key="hiberate.show_sql">true</prop>
 				<!-- create create-drop validate update -->
-    			<prop key="hibernate.hbm2ddl.auto">update</prop> 	
+    			<prop key="hibernate.hbm2ddl.auto">create</prop> 	
     		</props>
     	</property>
     </bean>

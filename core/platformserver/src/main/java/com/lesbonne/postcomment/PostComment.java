@@ -19,7 +19,7 @@ import com.lesbonne.user.User;
  * @since 1
  * */
 @Entity
-@Table(name = "POSTCOMMENT")
+@Table(name="POSTCOMMENT")
 public class PostComment implements Serializable{
 
 	/**

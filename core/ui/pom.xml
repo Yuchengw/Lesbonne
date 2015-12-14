@@ -17,7 +17,7 @@
 	<properties>
 		<jackson.databind-version>2.2.3</jackson.databind-version>
 		<maven.compiler.plugin.version>3.2</maven.compiler.plugin.version>
-	    <jetty.port>8080</jetty.port>
+	    <jetty.port>8090</jetty.port>
 	</properties>
 	
   	<!-- dependencies Start -->
@@ -26,6 +26,11 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>4.2.3.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mortbay.jetty</groupId>
+			<artifactId>jetty-ssl</artifactId>
+			<version>7.0.0.pre5</version>
 		</dependency>
 	</dependencies>
 	
@@ -48,7 +53,12 @@
 			  <configuration>
 			  	  <scanIntervalSeconds>10</scanIntervalSeconds>
 			  	  <stopKey>stop</stopKey>
-			      <stopPort>8888</stopPort>
+			      <stopPort>9966</stopPort>
+			      <connectors>
+			      	<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+			      		<port>8090</port>
+			      	</connector>
+			      </connectors>
 			  </configuration>
 	     </plugin>
       </plugins>

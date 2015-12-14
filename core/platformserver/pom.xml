@@ -18,7 +18,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<!-- Spring -->
 		<spring-data-mongodb.version>1.5.2.RELEASE</spring-data-mongodb.version>
-		<jetty.port>9090</jetty.port>
+		<jetty.port>8092</jetty.port>
 		<maven.compiler.plugin.version>3.2</maven.compiler.plugin.version>
 		<spring.version>4.2.3.RELEASE</spring.version>
 	</properties>
@@ -124,6 +124,11 @@
             <artifactId>javax.inject</artifactId>
             <version>1</version>
         </dependency>
+        <dependency>
+			<groupId>org.mortbay.jetty</groupId>
+			<artifactId>jetty-ssl</artifactId>
+			<version>7.0.0.pre5</version>
+		</dependency>
 	</dependencies>
 	
 	<build>
@@ -145,7 +150,12 @@
 			  <configuration>
 			  	  <scanIntervalSeconds>10</scanIntervalSeconds>
 			  	  <stopKey>stop</stopKey>
-			      <stopPort>8888</stopPort>
+			      <stopPort>9967</stopPort>
+			      <connectors>
+			      	<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+			      		<port>8092</port>
+			      	</connector>
+			      </connectors>
 			  </configuration>
 	      </plugin>
       </plugins>

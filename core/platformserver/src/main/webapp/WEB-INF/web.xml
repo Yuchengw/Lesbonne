@@ -15,12 +15,6 @@
 		we are depending on Spring -->
 	<welcome-file-list>
 		<welcome-file>welcome_to_platform.html</welcome-file >
-		<!-- welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file-->
 	</welcome-file-list>
 	
 	

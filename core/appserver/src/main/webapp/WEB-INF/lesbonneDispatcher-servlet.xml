@@ -14,7 +14,10 @@
 	http://www.springframework.org/schema/data/mongo/spring-mongo-1.5.xsd
 	http://www.springframework.org/schema/mvc
 	http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
-
+	
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler />
+	
 	<!--***************************************** Aspects ***************************************************** -->
 	<bean id="logAspect" class="com.lesbonne.service.aop.UserControllerAOPImpl" />
 

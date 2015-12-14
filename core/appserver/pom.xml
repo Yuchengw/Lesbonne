@@ -18,6 +18,7 @@
 	<properties>
 		<jackson.databind-version>2.2.3</jackson.databind-version>
 		<maven.compiler.plugin.version>3.2</maven.compiler.plugin.version>
+		<jetty.port>8091</jetty.port>
 	</properties>
 
 	<!-- dependencies Start -->
@@ -134,6 +135,11 @@
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
 		</dependency>
+		<dependency>
+			<groupId>org.mortbay.jetty</groupId>
+			<artifactId>jetty-ssl</artifactId>
+			<version>7.0.0.pre5</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -155,7 +161,12 @@
 				<configuration>
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 					<stopKey>stop</stopKey>
-					<stopPort>9999</stopPort>
+					<stopPort>9968</stopPort>
+					<connectors>
+			      		<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+			      		<port>8091</port>
+			      		</connector>
+			      	</connectors>
 				</configuration>
 			</plugin>
 		</plugins>

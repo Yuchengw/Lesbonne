@@ -62,8 +62,7 @@ class LesbonneLoginFilter extends AbstractAuthenticationProcessingFilter {
 		tokenAuthenticationService.addAuthentication(response, userAuthentication);
 
 		// Add the authentication to the Security context
-		SecurityContextHolder.getContext().setAuthentication(userAuthentication);
-		
+		SecurityContextHolder.getContext().setAuthentication(userAuthentication);		
 	}
 	
 	 @Override

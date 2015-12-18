@@ -1,6 +1,5 @@
 package com.lesbonne.web.security;
 
-import org.springframework.security.authentication.AccountStatusUserDetailsChecker;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -33,7 +32,7 @@ public class LesbonneUserDetailsService implements UserDetailsService {
 		try {
 			detailsChecker.check(user);
 		} catch (Exception e) {
-			throw e;
+			throw new RuntimeException("user is not authenticated.");
 		}
 		
 		return user;

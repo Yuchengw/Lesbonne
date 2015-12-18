@@ -31,10 +31,10 @@ class LesbonneLoginFilter extends AbstractAuthenticationProcessingFilter {
     private static final String POST = "POST";
 
 	private final TokenAuthenticationService tokenAuthenticationService;
-	private final UserDetailsService userDetailsService;
+	private final LesbonneUserDetailsService userDetailsService;
 
 	protected LesbonneLoginFilter(String urlMapping, TokenAuthenticationService tokenAuthenticationService,
-			UserDetailsService userDetailsService, AuthenticationManager authManager) {
+			LesbonneUserDetailsService userDetailsService, AuthenticationManager authManager) {
 		super(new AntPathRequestMatcher(urlMapping));
 		this.userDetailsService = userDetailsService;
 		this.tokenAuthenticationService = tokenAuthenticationService;

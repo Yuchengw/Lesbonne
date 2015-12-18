@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.lesbonne.web.security.UserAuthentication;
-import com.lesbonne.web.security.UserDetailsService;
+import com.lesbonne.web.security.LesbonneUserDetailsService;
 
 /**
  * @author yucheng
@@ -205,7 +205,7 @@ public class User extends BeanObject implements UserDetails {
 		if (userAuth == null) {
 			//TODO: add proper exception;
 		}
-		UserDetailsService userDetailsService = new UserDetailsService();
+		LesbonneUserDetailsService userDetailsService = new LesbonneUserDetailsService();
 		User user = userDetailsService.loadUserByUsername(userAuth.getName());
 		return user;
 	}

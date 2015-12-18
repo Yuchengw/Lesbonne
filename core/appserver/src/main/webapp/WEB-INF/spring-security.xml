@@ -23,7 +23,7 @@
 		<beans:constructor-arg name="loginFormUrl" value="/service/login" />
 	</beans:bean>
 	
-	<beans:bean id="userDetailsService" class="com.lesbonne.web.security.UserDetailsService">
+	<beans:bean id="LesbonneUserDetailsService" class="com.lesbonne.web.security.LesbonneUserDetailsService">
 		<beans:property name="userProvider" ref="userProvider" />
 	</beans:bean>
 	
@@ -32,7 +32,7 @@
 	</beans:bean>
 	
 	<authentication-manager alias="authenticationManager">
-    	<authentication-provider user-service-ref='userDetailsService'/>
+    	<authentication-provider user-service-ref='LesbonneUserDetailsService'/>
 	</authentication-manager>
 		
 	<beans:bean id="defaultLoginFilter" class="com.lesbonne.web.security.LesbonneLoginFilter">

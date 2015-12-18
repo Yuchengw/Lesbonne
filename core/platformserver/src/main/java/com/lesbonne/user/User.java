@@ -31,14 +31,26 @@ public class User implements Serializable {
 	@Column(name = "USERID", columnDefinition = "VARCHAR(18) NOT NULL")
 	private String userId;
 
-	@Column(name = "USERTYPE", columnDefinition = "TINYINT NOT NULL")
-	private int UserType;
+	@Column(name = "USERROLE", columnDefinition = "TINYINT NOT NULL")
+	private int UserRole;
 	
 	@Column(name = "USEREMAIL", columnDefinition = "VARCHAR(511) NOT NULL")
 	private String userEmail;
 	
 	@Column(name = "ISEMAILAUTHORIZED", columnDefinition = "BOOLEAN")
 	private Boolean isEmailAuthorized;
+	
+	@Column(name = "ACCOUNTNONEXPIRED", columnDefinition = "BOOLEAN")
+	private Boolean accountNonExpired;
+	
+	@Column(name = "ACCOUNTNONLOCKED",  columnDefinition = "BOOLEAN")
+	private Boolean accountNonLocked;
+	
+	@Column(name = "ACCOUNTENABLED", columnDefinition = "BOOLEAN")
+	private Boolean accountEnabled;
+	
+	@Column(name = "CREDENTIALSNONEXPIRED", columnDefinition = "BOOLEAN")
+	private Boolean credentialsNonExpired;
 	
 	@Column(name = "USERPASSWORD", columnDefinition = "VARCHAR(255) NOT NULL")
 	private String userPassword;
@@ -81,12 +93,48 @@ public class User implements Serializable {
 		this.userId = userId;
 	}
 
-	public int getUserType() {
-		return UserType;
+	public int getUserRole() {
+		return UserRole;
 	}
 
 	public void setUserType(int userType) {
-		UserType = userType;
+		UserRole = userType;
+	}
+
+	public Boolean getAccountNonExpired() {
+		return accountNonExpired;
+	}
+
+	public void setAccountNonExpired(Boolean accountNonExpired) {
+		this.accountNonExpired = accountNonExpired;
+	}
+
+	public Boolean getAccountNonLocked() {
+		return accountNonLocked;
+	}
+
+	public void setAccountNonLocked(Boolean accountNonLocked) {
+		this.accountNonLocked = accountNonLocked;
+	}
+
+	public Boolean getAccountEnabled() {
+		return accountEnabled;
+	}
+
+	public void setAccountEnabled(Boolean accountEnabled) {
+		this.accountEnabled = accountEnabled;
+	}
+
+	public Boolean getCredentialsNonExpired() {
+		return credentialsNonExpired;
+	}
+
+	public void setCredentialsNonExpired(Boolean credentialsNonExpired) {
+		this.credentialsNonExpired = credentialsNonExpired;
+	}
+
+	public void setUserRole(int userRole) {
+		UserRole = userRole;
 	}
 
 	public String getUserEmail() {

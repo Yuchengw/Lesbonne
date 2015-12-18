@@ -205,7 +205,7 @@ public class User extends BeanObject implements UserDetails {
 		if (userAuth == null) {
 			//TODO: add proper exception;
 		}
-		LesbonneUserDetailsService userDetailsService = new LesbonneUserDetailsService();
+		UserDetailsService userDetailsService = new UserDetailsService();
 		User user = userDetailsService.loadUserByUsername(userAuth.getName());
 		return user;
 	}

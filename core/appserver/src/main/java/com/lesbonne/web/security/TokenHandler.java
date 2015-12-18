@@ -52,9 +52,7 @@ public final class TokenHandler {
 				boolean validHash = Arrays.equals(createHmac(userBytes), hash);
 				if (validHash) {
 					final User user = fromJSON(userBytes);
-					if (new Date().getTime() < user.getExpires()) {
-						return user;
-					}
+					return user;
 				}
 			} catch (IllegalArgumentException e) {
 				//log tempering attempt here

@@ -56,17 +56,11 @@ public class UserControllerImpl implements UserController {
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		final User currentUser = userProvider.get(authentication.getName());
 		
-		//TODO: should add more checks, because we have on-line transaction functionality
-		if (user.getNewPassword() == null || user.getNewPassword().length() <= 6) {
-			return new ResponseEntity<String>("updated password too short", HttpStatus.UNPROCESSABLE_ENTITY);
-		}
-		
 		final BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder();
 		if (!pwEncoder.matches(user.getPassword(), currentUser.getPassword())) {
 			return new ResponseEntity<String>("old password mismatch", HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 		
-		currentUser.setPassword(pwEncoder.encode(user.getNewPassword()));
 		userProvider.update(user);
 		return new ResponseEntity<String>("user upadate success", HttpStatus.OK);	
 	}
@@ -76,11 +70,11 @@ public class UserControllerImpl implements UserController {
 	public ResponseEntity<String> addUser(@RequestBody User user) {
 		
 		// TODO: add Email regex
-		if (user.getEmail() == null) {
+		if (user.getUserEmail() == null) {
 			return new ResponseEntity<String>("Email not eligible", HttpStatus.UNPROCESSABLE_ENTITY);
 		}  
 		
-		if (userProvider.exists(user.getEmail())) {
+		if (userProvider.exists(user.getUserEmail())) {
 			return new ResponseEntity<String>("User already exists", HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 		

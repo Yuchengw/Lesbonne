@@ -23,63 +23,41 @@ public class User extends BeanObject implements UserDetails {
 
 	private static final long serialVersionUID = -7788619177798333712L;
 
-	private String id;
-	private String email;
+	private String userId;
+	private String userEmail;
 	private String password;
-
 	private String firstName;
 	private String lastName;
 	private String phone;
-	private double creditInfo;
-	private double activeScore;
-
-	private String alias;
-	private String role;
 	private boolean isEmailAuthorized;
-
-	private long expires;
 	private boolean accountNonExpired;
 	private boolean accountNonLocked;
 	private boolean credentialsNonExpired;
 	private boolean accountEnabled;
-	
-	private boolean enabled;
-
-	private String newPassword;
 
 	private Set<UserAuthority> authorities;
 
 	public User() {
 	}
 
-	public User(String email) {
-		this.email = email;
-	}
-
-	public User(String email, Date expires) {
-		this.email = email;
-		this.expires = expires.getTime();
+	public User(String userEmail) {
+		this.userEmail = userEmail;
 	}
 	
-	public User(String id, String email, String alias, String firstName, String lastName) {
+	public User(String id, String userEmail,String firstName, String lastName) {
 		super.setId(id);
-		this.email = email;
-		this.alias = alias;
+		this.userEmail = userEmail;
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public String getUserId() {
+		return userId;
 	}
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-		super.setId(id);
+	public void setUserId(String userId) {
+		this.userId = userId;
+		super.setId(userId);
 	}
 
 	public String getFirstName() {
@@ -105,45 +83,13 @@ public class User extends BeanObject implements UserDetails {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
-	public double getCreditInfo() {
-		return creditInfo;
-	}
-
-	public void setCreditInfo(double creditInfo) {
-		this.creditInfo = creditInfo;
-	}
-
-	public double getActiveScore() {
-		return activeScore;
-	}
-
-	public void setActiveScore(double activeScore) {
-		this.activeScore = activeScore;
-	}
-
+	
 	public String getPassword() {
 		return password;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getAlias() {
-		return alias;
-	}
-
-	public void setAlias(String alias) {
-		this.alias = alias;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
 	}
 
 	public boolean isEmailAuthorized() {
@@ -154,14 +100,66 @@ public class User extends BeanObject implements UserDetails {
 		this.isEmailAuthorized = isEmailAuthorized;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getUserEmail() {
+		return userEmail;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
+	
+	@Override
+	public String getUsername() {
+		return userEmail;
 	}
 
+	@Override
+	public boolean isAccountNonExpired() {
+		return accountNonExpired;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return accountNonLocked;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return credentialsNonExpired;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return accountEnabled;
+	}
+	
+	public boolean isAccountEnabled() {
+		return accountEnabled;
+	}
+
+	public void setAccountEnabled(boolean accountEnabled) {
+		this.accountEnabled = accountEnabled;
+	}
+	
+	public void setAccountNonExpired(boolean accountNonExpired) {
+		this.accountNonExpired = accountNonExpired;
+	}
+
+	public void setAccountNonLocked(boolean accountNonLocked) {
+		this.accountNonLocked = accountNonLocked;
+	}
+	
+	public void setEnabled(boolean enabled) {
+	}
+	
+	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+		this.credentialsNonExpired = credentialsNonExpired;
+	}
+	
+	public static User getInstance() {
+		return getInstance(false);
+	}
+	
 	// Use Roles as external API
 	public Set<UserRole> getRoles() {
 		Set<UserRole> roles = EnumSet.noneOf(UserRole.class);
@@ -201,89 +199,19 @@ public class User extends BeanObject implements UserDetails {
 		return authorities;
 	}
 
-	@Override
-	public String getUsername() {
-		return email;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return accountNonExpired;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return accountNonLocked;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return credentialsNonExpired;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return accountEnabled;
-	}
-
-	public long getExpires() {
-		return expires;
-	}
-
-	public void setExpires(long expires) {
-		this.expires = expires;
-	}
-	
-	public String getNewPassword() {
-		return newPassword;
-	}
-
-	public void setNewPassword(String newPassword) {
-		this.newPassword = newPassword;
-	}
-	
-	public boolean isAccountEnabled() {
-		return accountEnabled;
-	}
-
-	public void setAccountEnabled(boolean accountEnabled) {
-		this.accountEnabled = accountEnabled;
-	}
-	
-	public void setAccountNonExpired(boolean accountNonExpired) {
-		this.accountNonExpired = accountNonExpired;
-	}
-
-	public void setAccountNonLocked(boolean accountNonLocked) {
-		this.accountNonLocked = accountNonLocked;
-	}
-	
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-	
-	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
-		this.credentialsNonExpired = credentialsNonExpired;
-	}
-	
-	// User : <userEmail>
-	@Override
-	public String toString() {
-		return getClass().getSimpleName() + ": " + getUsername();
-	}
-	
-	public static User getInstance() {
-		return getInstance(false);
-	}
-	
 	public static User getInstance(boolean allowInactiveUser) {
 		// TODO: need to add cache for better performance.
 		UserAuthentication userAuth = (UserAuthentication) SecurityContextHolder.getContext().getAuthentication();
 		if (userAuth == null) {
 			//TODO: add proper exception;
 		}
-		UserDetailsService userDetailsService = new UserDetailsService();
+		LesbonneUserDetailsService userDetailsService = new LesbonneUserDetailsService();
 		User user = userDetailsService.loadUserByUsername(userAuth.getName());
 		return user;
+	}
+	
+	@Override
+	public String toString() {
+		return getClass().getSimpleName() + ": " + getUsername();
 	}
 }

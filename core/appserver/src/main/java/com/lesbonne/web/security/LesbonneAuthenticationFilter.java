@@ -18,11 +18,11 @@ import org.springframework.web.filter.GenericFilterBean;
  * @author yucheng
  * @since 1
  * */
-class StatelessAuthenticationFilter extends GenericFilterBean {
+class LesbonneAuthenticationFilter extends GenericFilterBean {
 
 	private final TokenAuthenticationService tokenAuthenticationService;
 
-	protected StatelessAuthenticationFilter(TokenAuthenticationService taService) {
+	protected LesbonneAuthenticationFilter(TokenAuthenticationService taService) {
 		this.tokenAuthenticationService = taService;
 	}
 

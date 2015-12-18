@@ -25,7 +25,7 @@ import com.lesbonne.business.bean.User;
  * @author yucheng
  * @since 1
  * */ 
-class StatelessLoginFilter extends AbstractAuthenticationProcessingFilter {
+class LesbonneLoginFilter extends AbstractAuthenticationProcessingFilter {
 
 	
     private static final String POST = "POST";
@@ -33,7 +33,7 @@ class StatelessLoginFilter extends AbstractAuthenticationProcessingFilter {
 	private final TokenAuthenticationService tokenAuthenticationService;
 	private final UserDetailsService userDetailsService;
 
-	protected StatelessLoginFilter(String urlMapping, TokenAuthenticationService tokenAuthenticationService,
+	protected LesbonneLoginFilter(String urlMapping, TokenAuthenticationService tokenAuthenticationService,
 			UserDetailsService userDetailsService, AuthenticationManager authManager) {
 		super(new AntPathRequestMatcher(urlMapping));
 		this.userDetailsService = userDetailsService;
@@ -46,7 +46,7 @@ class StatelessLoginFilter extends AbstractAuthenticationProcessingFilter {
 			throws AuthenticationException, IOException, ServletException {
 		final User user = new ObjectMapper().readValue(request.getInputStream(), User.class);
 		final UsernamePasswordAuthenticationToken loginToken = new UsernamePasswordAuthenticationToken(
-				user.getEmail(), user.getPassword());
+				user.getUserEmail(), user.getPassword());
 		return getAuthenticationManager().authenticate(loginToken);
 	}
 

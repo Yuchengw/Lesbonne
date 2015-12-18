@@ -63,7 +63,7 @@ public class PostControllerImpl implements PostController {
 		if (user == null) {
 			throw new Exception("user object not find: " + userContext.getName());
 		}
-		List<Post> posts = postProvider.get(user.getEmail(), Integer.parseInt(step), Integer.parseInt(cursor));
+		List<Post> posts = postProvider.get(user.getUserEmail(), Integer.parseInt(step), Integer.parseInt(cursor));
 		postList.setPosts(posts);
 		return postList;
 	}

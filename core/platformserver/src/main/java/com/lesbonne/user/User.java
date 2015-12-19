@@ -20,7 +20,7 @@ import com.lesbonne.sharingpost.SharingPost;
  * @since 1
  * */
 @Entity
-@Table(name="USER")
+@Table(name="LESBONNEUSER")
 public class User implements Serializable {
 	/**
 	 * 
@@ -30,12 +30,15 @@ public class User implements Serializable {
 	@Id
 	@Column(name = "USERID", columnDefinition = "VARCHAR(18) NOT NULL")
 	private String userId;
-
-	@Column(name = "USERROLE", columnDefinition = "TINYINT NOT NULL")
-	private int UserRole;
 	
 	@Column(name = "USEREMAIL", columnDefinition = "VARCHAR(511) NOT NULL")
 	private String userEmail;
+	
+	@Column(name = "USERPASSWORD", columnDefinition = "VARCHAR(255) NOT NULL")
+	private String userPassword;
+	
+	@Column(name = "USERROLE", columnDefinition = "TINYINT NOT NULL")
+	private int UserRole;
 	
 	@Column(name = "ISEMAILAUTHORIZED", columnDefinition = "BOOLEAN")
 	private Boolean isEmailAuthorized;
@@ -51,9 +54,6 @@ public class User implements Serializable {
 	
 	@Column(name = "CREDENTIALSNONEXPIRED", columnDefinition = "BOOLEAN")
 	private Boolean credentialsNonExpired;
-	
-	@Column(name = "USERPASSWORD", columnDefinition = "VARCHAR(255) NOT NULL")
-	private String userPassword;
 	
 	@Column(name = "USERCONTACTINFO", columnDefinition = "MEDIUMTEXT NOT NULL")
 	private String userContactInfo;

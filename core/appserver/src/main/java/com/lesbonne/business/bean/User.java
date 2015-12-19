@@ -159,8 +159,7 @@ public class User extends BeanObject implements UserDetails {
 	public static User getInstance() {
 		return getInstance(false);
 	}
-	
-	// Use Roles as external API
+
 	public Set<UserRole> getRoles() {
 		Set<UserRole> roles = EnumSet.noneOf(UserRole.class);
 		if (authorities != null) {

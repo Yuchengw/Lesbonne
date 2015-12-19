@@ -26,16 +26,11 @@ import com.lesbonne.web.security.UserAuthentication;
 public class UserControllerImpl implements UserController {
 	
 	private UserProvider userProvider;
-	private Jaxb2Marshaller jaxb2Mashaller;
 	
 	public void setUserProvider(UserProvider userProvider) {
 		this.userProvider = userProvider;
 	}
-	
-	public void setJaxb2Mashaller(Jaxb2Marshaller jaxb2Mashaller) {
-		this.jaxb2Mashaller = jaxb2Mashaller;
-	}
-	
+
 	/**
 	 * Get current user, return usercontext via Spring security context
 	 * @return User Bean
@@ -69,7 +64,6 @@ public class UserControllerImpl implements UserController {
 	@RequestMapping(method=RequestMethod.POST, value=UserRestURIConstants.CREATE_USER)
 	public ResponseEntity<String> addUser(@RequestBody User user) {
 		
-		// TODO: add Email regex
 		if (user.getUserEmail() == null) {
 			return new ResponseEntity<String>("Email not eligible", HttpStatus.UNPROCESSABLE_ENTITY);
 		}  

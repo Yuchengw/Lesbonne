@@ -9,7 +9,7 @@ import com.lesbonne.business.bean.User;
 @SuppressWarnings("rawtypes")
 public class AppRestUserClientImpl extends RestClient {
 
-	private static final String REST_USER_PREFIX = "/users";
+	private static final String REST_USER_PREFIX = "/user";
 	
 	@SuppressWarnings("unchecked")
 	public AppRestUserClientImpl(Class expectedType) {
@@ -17,25 +17,25 @@ public class AppRestUserClientImpl extends RestClient {
 	}
 
 	public User getUserByEmail(String email) {
-		User user = (User) doGet(REST_USER_PREFIX + "/userQueryx/" + email);
+		User user = (User) doGet(REST_USER_PREFIX + "/" + email);
 		return user;
 	}
 	
 	@SuppressWarnings("unchecked")
 	public User createUser(User u) {
-		User user = (User) doPost(REST_USER_PREFIX + "/userInsert", u);
+		User user = (User) doPost(REST_USER_PREFIX + "/create", u);
 		return user;
 	}
 		
 	@SuppressWarnings("unchecked")
 	public User updateUser(User u) {
-		User user = (User) doPost(REST_USER_PREFIX + "/userUpsert", u);
+		User user = (User) doPost(REST_USER_PREFIX + "/update", u);
 		return user;
 	}
 	
 	@SuppressWarnings("unchecked")
 	public User deleteUser(User deleteUser) {
-		User returnUser = (User) doPost(REST_USER_PREFIX + "/userDelete", deleteUser);
+		User returnUser = (User) doPost(REST_USER_PREFIX + "/delete/", deleteUser.getUserId());
 		return returnUser;
 	}
 }

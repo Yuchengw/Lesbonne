@@ -35,7 +35,6 @@ public class UserControllerImpl implements UserController {
 	 * Get current user, return usercontext via Spring security context
 	 * @return User Bean
 	 * */
-	@net.bull.javamelody.MonitoredWithSpring
 	@RequestMapping(method=RequestMethod.GET, value=UserRestURIConstants.GET_USER)
 	public User getUser() {
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -60,7 +59,6 @@ public class UserControllerImpl implements UserController {
 		return new ResponseEntity<String>("user upadate success", HttpStatus.OK);	
 	}
 	
-	@net.bull.javamelody.MonitoredWithSpring
 	@RequestMapping(method=RequestMethod.POST, value=UserRestURIConstants.CREATE_USER)
 	public ResponseEntity<String> addUser(@RequestBody User user) {
 		
@@ -82,7 +80,6 @@ public class UserControllerImpl implements UserController {
 		return new ResponseEntity<String>("User creation success", HttpStatus.OK);
 	}
 	
-	@net.bull.javamelody.MonitoredWithSpring
 	@RequestMapping(method=RequestMethod.DELETE, value=UserRestURIConstants.DELETE_USER)
 	public ResponseEntity<String> removeUser(@PathVariable User user) {
 		

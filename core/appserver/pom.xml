@@ -28,6 +28,12 @@
 			<artifactId>spring-context</artifactId>
 			<version>4.0.0.RELEASE</version>
 		</dependency>
+		<!-- ================platform dependency================== -->
+		<dependency>
+			<groupId>yummet.platform</groupId>
+			<artifactId>platform</artifactId>
+			<version>1.0.SNAPSHOT</version>
+		</dependency>
 		<!-- Jackson convert jpo to json format -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>

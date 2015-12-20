@@ -23,7 +23,7 @@ import com.lesbonne.system.context.LesbonneContext;
  * */
 public class AppRestApiUtil implements RestApiUtil{
 
-	public static final String PLATFORM_ROOT_URL= Rest.getPlatformBaseURL(true) + "/api";
+	public static final String PLATFORM_ROOT_URL= Rest.getPlatformBaseURL(true) + "/";
 	private boolean setAuthHeader;
 	
 	@Override

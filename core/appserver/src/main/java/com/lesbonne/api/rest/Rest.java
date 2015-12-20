@@ -6,7 +6,6 @@ public class Rest implements RestConstants, ApiConstants{
 
 	public static String getPlatformBaseURL(boolean useSecure) {
 		//TODO: we should use property files to specify this.
-		return useSecure ? "localhost:8081" : "https://localhost:8081";
+		return useSecure ? "localhost:8092" : "https://localhost:8092";
 	}
-
 }

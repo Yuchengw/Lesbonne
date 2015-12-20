@@ -21,7 +21,7 @@
 		<beans:constructor-arg name="loginFormUrl" value="/service/login" />
 	</beans:bean>
 	
-	<beans:bean id="LesbonneUserDetailsService" class="com.lesbonne.web.security.UserDetailsService">
+	<beans:bean id="LesbonneUserDetailsService" class="com.lesbonne.web.security.LesbonneUserDetailsService">
 		<beans:property name="userProvider" ref="userProvider" />
 	</beans:bean>
 	
@@ -36,7 +36,7 @@
 	<beans:bean id="defaultLoginFilter" class="com.lesbonne.web.security.LesbonneLoginFilter">
 		<beans:constructor-arg index="0" value="/service/login"/>
 		<beans:constructor-arg index="1" ref="tokenAuthenticationService"/>
-		<beans:constructor-arg index="2" ref="userDetailsService"/>
+		<beans:constructor-arg index="2" ref="LesbonneUserDetailsService"/>
 		<beans:constructor-arg index="3" ref="authenticationManager"/> 
 	</beans:bean>
 	

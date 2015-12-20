@@ -8,9 +8,6 @@ import com.lesbonne.api.rest.RestClient;
 import com.lesbonne.business.bean.User;
 import com.lesbonne.system.security.EncryptionUtil;
 import com.lesbonne.util.monitoring.UserControllerPerformanceMonitorInterceptor;
-import com.yummet.bridge.PlatformServiceProvider;
-import com.yummet.bridge.PlatformUserServiceProviderImpl;
-import com.yummet.entities.UserObject;
 
 /**
  * @author yucheng

@@ -16,5 +16,4 @@
     <bean id="postProvider" class="com.lesbonne.lib.objectProvider.PostProvider"/>
     <bean id="postCommentProvider" class="com.lesbonne.lib.objectProvider.PostCommentProvider"/>
     <bean id="orderProvider" class="com.lesbonne.lib.objectProvider.OrderProvider"/>
-   
 </beans>

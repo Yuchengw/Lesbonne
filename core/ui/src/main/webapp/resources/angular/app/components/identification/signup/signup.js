@@ -20,7 +20,7 @@ angular.module('signupApp', ['ngAnimate', 'localStore', 'userContextService', 'a
   
   $scope.signupFormSubmit = function singupFormSubmit() {
 	if (stateService.isLogin && stateService.isLogin === true) {
-		Console.log("you already in Yummmet, Please log out first");
+		Console.log("you already in Lesbonne, Please log out first");
 		// TODO: error message,
 		return;
 	}

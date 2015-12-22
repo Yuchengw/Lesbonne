@@ -13,19 +13,15 @@
           http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
           http://www.springframework.org/schema/tx
           http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
-
-	<context:component-scan base-package="com.lesbonne.*"/>
-	
+          
 	<tx:annotation-driven/>
-	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 						  destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 		<property name="url" value="jdbc:mysql://localhost:3306/lesbonne?createDatabaseIfNotExist=true"/>
 		<property name="username" value="root"/>
 		<property name="password" value="lesbonne"/>
-    </bean>
-    
+    </bean>   
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
     	<property name="dataSource" ref="dataSource"/>
     	<property name="annotatedClasses">
@@ -48,11 +44,10 @@
     		</props>
     	</property>
     </bean>
-
-	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager"
-								  p:sessionFactory-ref="sessionFactory">
+	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" id="PersistenceExceptionTranslator" />
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+   	 	<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-
 <!-- 	<bean id="redisProvider" class="com.yummet.cache.RedisProvider" />   
 	<bean id="redisService" class="com.yummet.cache.RedisService"/>
 	<bean id="redisDataSource" class="com.yummet.cache.RedisDataSourceImpl" />

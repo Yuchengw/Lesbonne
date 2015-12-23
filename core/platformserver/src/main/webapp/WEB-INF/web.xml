@@ -17,7 +17,6 @@
 		<welcome-file>welcome_to_platform.html</welcome-file >
 	</welcome-file-list>
 	
-	
 	<!-- This listener will load other application context file in addition 
 		to rest-servlet.xml -->
 	<listener>
@@ -29,7 +28,6 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>WEB-INF/platform-context.xml</param-value>
 	</context-param>
-
 
 	<!--<listener>
 		<listener-class>net.bull.javamelody.SessionListener</listener-class>

@@ -61,15 +61,15 @@ public class User implements Serializable {
 	@Column(name = "USERRELATIONID", columnDefinition = "VARCHAR(18)")
 	private String userRelationId;
 	
-	@Column(name = "CREATEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP", updatable = false)
-	private String createdTime;
-	
-	@Column(name = "LASTMODIFIEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-	private String lastModifiedTime;
-
-	/*========== Foreign Key Starts From Here. ==========*/
-	@Column(name = "USERPAYMENTID", columnDefinition="VARCHAR(18)")
-	private String userPaymentId;
+//	@Column(name = "CREATEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP", updatable = false)
+//	private String createdTime;
+//	
+//	@Column(name = "LASTMODIFIEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+//	private String lastModifiedTime;
+//
+//	/*========== Foreign Key Starts From Here. ==========*/
+//	@Column(name = "USERPAYMENTID", columnDefinition="VARCHAR(18)")
+//	private String userPaymentId;
 	
 	
 	@OneToMany(mappedBy = "owner")
@@ -177,25 +177,25 @@ public class User implements Serializable {
 		this.userRelationId = userRelationId;
 	}
 
-	public String getCreatedTime() {
-		return createdTime;
-	}
-
-	public String getLastModifiedTime() {
-		return lastModifiedTime;
-	}
-
-	public void setLastModifiedTime(String lastModifiedTime) {
-		this.lastModifiedTime = lastModifiedTime;
-	}
-
-	public String getUserPaymentId() {
-		return userPaymentId;
-	}
-
-	public void setUserPaymentId(String userPaymentId) {
-		this.userPaymentId = userPaymentId;
-	}
+//	public String getCreatedTime() {
+//		return createdTime;
+//	}
+//
+//	public String getLastModifiedTime() {
+//		return lastModifiedTime;
+//	}
+//
+//	public void setLastModifiedTime(String lastModifiedTime) {
+//		this.lastModifiedTime = lastModifiedTime;
+//	}
+//
+//	public String getUserPaymentId() {
+//		return userPaymentId;
+//	}
+//
+//	public void setUserPaymentId(String userPaymentId) {
+//		this.userPaymentId = userPaymentId;
+//	}
 	
 	public List<AskingPost> getAskingPosts() {
 		return askingPosts;

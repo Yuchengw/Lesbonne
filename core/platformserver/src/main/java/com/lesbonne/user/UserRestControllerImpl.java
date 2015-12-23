@@ -51,7 +51,7 @@ public class UserRestControllerImpl implements UserRestController {
 	}
 
 	@Override
-	@RequestMapping(method=RequestMethod.POST, value=UserRestURIConstants.CREATE_USER)
+	@RequestMapping(method=RequestMethod.POST, value=UserRestURIConstants.CREATE_USER, produces = "application/json")
 	public ResponseEntity<String> addUser(User user) {
 		try {
 			userServiceImpl.persistUser(user);

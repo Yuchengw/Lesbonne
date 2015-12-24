@@ -7,41 +7,34 @@
            http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 
 	<!-- ====================Spring Security Configuration @author Yucheng Wang=================== -->
-	
-	<http auto-config="false" use-expressions="true" entry-point-ref="LoginUrlAuthenticationEntryPoint">
+	<http auto-config="false" use-expressions="true" entry-point-ref="LesbonneRestAuthenticationEntryPoint" >
+		<csrf disabled="true"/>
+		<intercept-url pattern="/service/user/login"   access="permitAll"/>
+		<intercept-url pattern="/service/user/logout"  access="permitAll"/>
+		<intercept-url pattern="/service/user/signup"  access="permitAll" requires-channel="any"/>
 		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" requires-channel="https"/>
-		<intercept-url pattern="/service/signup"  access="permitAll" method="POST" requires-channel="https"/>
 		<intercept-url pattern="/service/**" access="hasRole('ROLE_USER')" requires-channel="any"/>
 		<custom-filter position="FORM_LOGIN_FILTER" ref="defaultLoginFilter" />
 		<custom-filter position="BASIC_AUTH_FILTER" ref="defaultAuthenticationFilter" />
-		<csrf/>
 	</http>
-	
-	<beans:bean id="LoginUrlAuthenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
-		<beans:constructor-arg name="loginFormUrl" value="/service/login" />
+	<beans:bean id="LesbonneRestAuthenticationEntryPoint" class="com.lesbonne.web.security.LesbonneRestAuthenticationEntryPoint">
 	</beans:bean>
-	
 	<beans:bean id="LesbonneUserDetailsService" class="com.lesbonne.web.security.LesbonneUserDetailsService">
 		<beans:property name="userProvider" ref="userProvider" />
 	</beans:bean>
-	
 	<beans:bean id="tokenAuthenticationService" class="com.lesbonne.web.security.TokenAuthenticationService">
 		<beans:constructor-arg name="secret" value="lesbonne"/>
 	</beans:bean>
-	
-	<authentication-manager alias="authenticationManager">
-    	<authentication-provider user-service-ref='LesbonneUserDetailsService'/>
-	</authentication-manager>
-		
 	<beans:bean id="defaultLoginFilter" class="com.lesbonne.web.security.LesbonneLoginFilter">
-		<beans:constructor-arg index="0" value="/service/login"/>
+		<beans:constructor-arg index="0" value="/service/user/login"/>
 		<beans:constructor-arg index="1" ref="tokenAuthenticationService"/>
 		<beans:constructor-arg index="2" ref="LesbonneUserDetailsService"/>
 		<beans:constructor-arg index="3" ref="authenticationManager"/> 
 	</beans:bean>
-	
 	<beans:bean id="defaultAuthenticationFilter" class="com.lesbonne.web.security.LesbonneAuthenticationFilter">
 		<beans:constructor-arg ref="tokenAuthenticationService"/>
 	</beans:bean> 
-	
+	<authentication-manager alias="authenticationManager">
+    	<authentication-provider user-service-ref='LesbonneUserDetailsService'/>
+	</authentication-manager>
 </beans:beans>

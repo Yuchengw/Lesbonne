@@ -41,7 +41,7 @@ public class UserRestControllerImpl implements UserRestController {
 
 	@Override
 	@RequestMapping(method=RequestMethod.PUT, value=UserRestURIConstants.UPDATE_USER)
-	public ResponseEntity<String> updateUser(@RequestBody final User user) {
+	public ResponseEntity<String> updateUser(User user) {
 		try {
 			userServiceImpl.updateUser(user);
 		} catch (Exception e) {

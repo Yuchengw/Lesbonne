@@ -45,7 +45,7 @@ public class UserControllerImpl implements UserController {
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, value=UserRestURIConstants.UPDATE_USER)
-	public ResponseEntity<String> updateUser(@RequestBody final User user) {
+	public ResponseEntity<String> updateUser(User user) {
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		final User currentUser = userProvider.get(authentication.getName());
 		
@@ -59,7 +59,7 @@ public class UserControllerImpl implements UserController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value=UserRestURIConstants.CREATE_USER)
-	public ResponseEntity<String> addUser(@RequestBody User user) {
+	public ResponseEntity<String> addUser(User user) {
 		
 		if (user.getUserEmail() == null) {
 			return new ResponseEntity<String>("Email not eligible", HttpStatus.UNPROCESSABLE_ENTITY);

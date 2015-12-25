@@ -25,14 +25,11 @@ public class UserRestControllerImpl implements UserRestController {
 	@Autowired
 	private UserService userServiceImpl;
 	
-	@Override
 	@RequestMapping(method=RequestMethod.GET, value=UserRestURIConstants.GET_USER)
-	public User getUser(@PathVariable User user) {
-		if (user == null) {
-			throw new RuntimeException("User Not Found.");
-		}
+	public User getUser(@PathVariable String userEmail) {
+		User user = null;
 		try {
-			user = userServiceImpl.getUserByEmail(user.getUserEmail());
+			user = userServiceImpl.getUserByEmail(userEmail);
 		} catch (Exception e) {
 			return null;
 		}	

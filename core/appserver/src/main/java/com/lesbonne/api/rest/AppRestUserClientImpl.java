@@ -9,7 +9,7 @@ import com.lesbonne.business.bean.User;
 @SuppressWarnings("rawtypes")
 public class AppRestUserClientImpl extends RestClient {
 
-	private static final String REST_USER_PREFIX = "/user";
+	private static final String REST_USER_PREFIX = "user";
 	
 	@SuppressWarnings("unchecked")
 	public AppRestUserClientImpl(Class expectedType) {

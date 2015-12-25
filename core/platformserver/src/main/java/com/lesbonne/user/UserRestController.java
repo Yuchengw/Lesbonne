@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 public interface UserRestController {
 		
-	public User getUser(@PathVariable User user);
+	public User getUser(@PathVariable String email);
 	
 	public ResponseEntity<String> updateUser(@RequestBody final User user);
 	

@@ -86,6 +86,9 @@ public class PlatformUserServiceImpl extends PlatformUserService implements Plat
 		return updateUser;
 	}
 	
+	/**
+	 * 
+	 * */
 	public boolean deleteUser(User u) {
 		User user = null;
 		try {
@@ -99,6 +102,27 @@ public class PlatformUserServiceImpl extends PlatformUserService implements Plat
 		
 		} finally {
 		
+		}
+		return false;
+	}
+	
+	/**
+	 * TODO:
+	 * */
+	public boolean deleteUser(String userId) {
+		return  true;
+	}
+	
+	/**
+	 * TODO:
+	 * */
+	public boolean existUser(String userId) {
+		try {
+			return true;
+		} catch (Exception e) {
+			
+		} finally {
+			
 		}
 		return false;
 	}

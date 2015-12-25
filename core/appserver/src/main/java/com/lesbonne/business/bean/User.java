@@ -1,5 +1,6 @@
 package com.lesbonne.business.bean;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import java.util.EnumSet;
@@ -11,6 +12,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.DateSerializer;
 import com.lesbonne.web.security.UserAuthentication;
 import com.lesbonne.web.security.LesbonneUserDetailsService;
 
@@ -19,38 +23,35 @@ import com.lesbonne.web.security.LesbonneUserDetailsService;
  * @version 1
  * */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class User extends BeanObject implements UserDetails {
+public class User extends BeanObject implements UserDetails, Serializable {
 
 	private static final long serialVersionUID = -7788619177798333712L;
-
+	
+	@JsonProperty("userId")
 	private String userId;
+	@JsonProperty("userEmail")
 	private String userEmail;
+	@JsonProperty("password")
 	private String password;
+	@JsonProperty("firstName")
 	private String firstName;
+	@JsonProperty("lastName")
 	private String lastName;
+	@JsonProperty("phone")
 	private String phone;
+	@JsonProperty("isEmailAuthorized")
 	private boolean isEmailAuthorized;
+	@JsonProperty("accountNonExpired")
 	private boolean accountNonExpired;
+	@JsonProperty("accountNonLocked")
 	private boolean accountNonLocked;
+	@JsonProperty("credentialsNonExpired")
 	private boolean credentialsNonExpired;
+	@JsonProperty("accountEnabled")
 	private boolean accountEnabled;
 
 	private Set<UserAuthority> authorities;
-
-	public User() {
-	}
-
-	public User(String userEmail) {
-		this.userEmail = userEmail;
-	}
 	
-	public User(String id, String userEmail,String firstName, String lastName) {
-		super.setId(id);
-		this.userEmail = userEmail;
-		this.firstName = firstName;
-		this.lastName = lastName;
-	}
-
 	public String getUserId() {
 		return userId;
 	}

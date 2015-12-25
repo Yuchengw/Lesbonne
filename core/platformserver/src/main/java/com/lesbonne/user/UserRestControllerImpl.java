@@ -52,11 +52,11 @@ public class UserRestControllerImpl implements UserRestController {
 
 	@Override
 	@RequestMapping(method=RequestMethod.POST, value=UserRestURIConstants.CREATE_USER, produces = "application/json")
-	public ResponseEntity<String> addUser(User user) {
+	public ResponseEntity<String> addUser(@RequestBody User user) {
 		try {
 			userServiceImpl.persistUser(user);
 		} catch (Exception e) {
-			return new ResponseEntity<String>("user creation failed." + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<String>("user creation failed.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return new ResponseEntity<String>("user creation success.", HttpStatus.OK);
 	}

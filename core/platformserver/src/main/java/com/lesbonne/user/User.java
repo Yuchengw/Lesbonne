@@ -55,21 +55,21 @@ public class User implements Serializable {
 	@Column(name = "CREDENTIALSNONEXPIRED", columnDefinition = "BOOLEAN")
 	private Boolean credentialsNonExpired;
 	
-	@Column(name = "USERCONTACTINFO", columnDefinition = "MEDIUMTEXT NOT NULL")
+	@Column(name = "USERCONTACTINFO", columnDefinition = "MEDIUMTEXT")
 	private String userContactInfo;
 	
 	@Column(name = "USERRELATIONID", columnDefinition = "VARCHAR(18)")
 	private String userRelationId;
 	
-//	@Column(name = "CREATEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP", updatable = false)
-//	private String createdTime;
-//	
-//	@Column(name = "LASTMODIFIEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-//	private String lastModifiedTime;
-//
-//	/*========== Foreign Key Starts From Here. ==========*/
-//	@Column(name = "USERPAYMENTID", columnDefinition="VARCHAR(18)")
-//	private String userPaymentId;
+	@Column(name = "CREATEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP", updatable = false)
+	private String createdTime;
+	
+	@Column(name = "LASTMODIFIEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+	private String lastModifiedTime;
+
+	/*========== Foreign Key Starts From Here. ==========*/
+	@Column(name = "USERPAYMENTID", columnDefinition="VARCHAR(18)")
+	private String userPaymentId;
 	
 	
 	@OneToMany(mappedBy = "owner")

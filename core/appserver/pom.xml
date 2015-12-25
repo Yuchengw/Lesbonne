@@ -16,7 +16,7 @@
 
 	<!-- Pom properties -->
 	<properties>
-		<jackson.databind-version>2.2.3</jackson.databind-version>
+		<jackson.databind-version>2.3.3</jackson.databind-version>
 		<maven.compiler.plugin.version>3.2</maven.compiler.plugin.version>
 		<jetty.port>8091</jetty.port>
 	</properties>

@@ -26,7 +26,7 @@ public class UserAuthentication implements Authentication {
 
 	@Override
 	public String getName() {
-		return user.getEmail();
+		return user.getUserEmail();
 	}
 
 	@Override
@@ -46,7 +46,7 @@ public class UserAuthentication implements Authentication {
 
 	@Override
 	public Object getPrincipal() {
-		return user.getEmail();
+		return user.getUserEmail();
 	}
 
 	@Override

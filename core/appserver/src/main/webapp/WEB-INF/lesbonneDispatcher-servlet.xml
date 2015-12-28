@@ -17,41 +17,10 @@
 	
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler />
-	
-	<!--***************************************** Aspects ***************************************************** -->
-	<bean id="logAspect" class="com.lesbonne.service.aop.UserControllerAOPImpl" />
-
-	<bean id="performanceMonitor"
-		class="com.lesbonne.util.monitoring.UserControllerPerformanceMonitorInterceptor" />
-	<aop:config>
-		<aop:pointcut id="allServiceMethods"
-			expression="execution(* com.lesbonne.bean.rest.controller.UserController.*.*(..))" />
-		<aop:advisor pointcut-ref="allServiceMethods" advice-ref="performanceMonitor"
-			order="2" />
-	</aop:config>
-
-	<!-- Let Spring be notice of Rest Controllers -->
 	<context:component-scan base-package="com.lesbonne" />
 	<!-- To enable @RequestMapping process on type level and method level -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
-
-	<!-- Restful controller: UserController's aggregate object -->
-	<bean id="userControllerImpl" class="com.lesbonne.bean.rest.controller.UserControllerImpl">
-		<property name="userProvider" ref="userProvider" />
-	</bean>
-
-	<!-- Restful controller: PostController's aggregate object -->
-	<bean id="postControllerImpl" class="com.lesbonne.bean.rest.controller.PostControllerImpl">
-		<property name="postProvider" ref="postProvider" />
-		<property name="userProvider" ref="userProvider" />
-	</bean>
-
-	<!-- Restful controller: ProfileController's aggregate object -->
-	<bean id="profileControllerImpl" class="com.lesbonne.bean.rest.controller.ProfileControllerImpl">
-		<property name="userProvider" ref="userProvider" />
-	</bean>
-
 	<!-- Configure bean to convert JSON to POJO and vice versa -->
 	<bean id="jsonMessageConverter"
 		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
@@ -66,7 +35,6 @@
 			</list>
 		</property>
 	</bean>
-
 	<!-- =========================Exception handling Start here========================= -->
 	<bean id="exceptionResolver"
 		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">

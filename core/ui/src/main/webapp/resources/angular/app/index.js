@@ -7,7 +7,7 @@ var app = angular.module('yummet',['ui.router','ngResource','signupApp','loginAp
 //TODO: need find a better way to put this
 var options = {};
 options.api = {};
-options.api.base_url = "http://localhost:8080";
+options.api.base_url = "http://localhost:8091";
 
 app.config(function($stateProvider, $urlRouterProvider, $httpProvider, modalStateProvider){
 	$stateProvider.state('index', {

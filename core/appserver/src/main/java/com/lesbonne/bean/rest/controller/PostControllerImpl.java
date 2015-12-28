@@ -47,13 +47,11 @@ public class PostControllerImpl implements PostController {
 		this.jaxb2Mashaller = jaxb2Mashaller;
 	}
 	
-	@net.bull.javamelody.MonitoredWithSpring
 	@RequestMapping(method=RequestMethod.GET, value=PostRestURIConstants.GET_POST)
 	public Post getPost(@PathVariable String id, @RequestBody String body) {
 		return postProvider.get(id);
 	}
 	
-	@net.bull.javamelody.MonitoredWithSpring
 	@RequestMapping(method=RequestMethod.GET, value=PostRestURIConstants.GET_POSTS)
 	public PostList getPosts(@PathVariable final String id, @RequestParam(value="step") final String step,
 			@RequestParam(value="cursor") final String cursor, String body) throws Exception {
@@ -63,12 +61,11 @@ public class PostControllerImpl implements PostController {
 		if (user == null) {
 			throw new Exception("user object not find: " + userContext.getName());
 		}
-		List<Post> posts = postProvider.get(user.getEmail(), Integer.parseInt(step), Integer.parseInt(cursor));
+		List<Post> posts = postProvider.get(user.getUserEmail(), Integer.parseInt(step), Integer.parseInt(cursor));
 		postList.setPosts(posts);
 		return postList;
 	}
 
-	@net.bull.javamelody.MonitoredWithSpring
 	@RequestMapping(method=RequestMethod.PUT, value=PostRestURIConstants.UPDATE_POST)
 	public Post updatePost(@PathVariable String id, @RequestBody String body) throws Exception {
 		// Check if old post exists
@@ -87,7 +84,6 @@ public class PostControllerImpl implements PostController {
 		return updatedPost;
 	}
 
-	@net.bull.javamelody.MonitoredWithSpring
 	@RequestMapping(method=RequestMethod.POST, value=PostRestURIConstants.CREATE_POST)
 	public Post addPost(@RequestBody String body) throws Exception {
 		Authentication userContext = SecurityContextHolder.getContext().getAuthentication();
@@ -109,7 +105,6 @@ public class PostControllerImpl implements PostController {
 		return createdPost;
 	}
 
-	@net.bull.javamelody.MonitoredWithSpring
 	@RequestMapping(method=RequestMethod.DELETE, value=PostRestURIConstants.DELETE_POST)
 	public void removePost(@PathVariable String id, @RequestBody String body) {
 		this.postProvider.remove(id);

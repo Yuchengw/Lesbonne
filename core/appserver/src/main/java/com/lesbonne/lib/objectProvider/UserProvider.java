@@ -31,7 +31,10 @@ public class UserProvider {
 		return this.platformUserServiceImpl.getUserByEmail(email);
 	}
 
-	public Boolean remove(int id) {
+	public Boolean remove(String  userId) {
+		if (this.platformUserServiceImpl.existUser(userId)) {
+			return this.platformUserServiceImpl.deleteUser(userId);
+		}
 		return false;
 	}
 	

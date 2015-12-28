@@ -1,5 +1,7 @@
 package com.lesbonne.user;
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,9 +22,12 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
+	@SuppressWarnings("rawtypes")
 	public User getUserByEmail(String email) {
-		return (User)sessionFactory.getCurrentSession().
-				get(User.class, email);
+		List users = (List) sessionFactory.getCurrentSession().
+				createQuery("FROM User WHERE userEmail =:userEmail").
+				setParameter("userEmail", email).list();
+		return users.size() == 1 ? (User)users.get(0) : null;
 	}
 
 	@Override

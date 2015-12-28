@@ -20,11 +20,11 @@ public class OrderProvider {
 	 * mocking
 	 * */
 	static {
-		allOrders = new OrderList();
-		Order o1 = new Order("1", new User("1", "Yucheng", "Wang",
-				"ycwmike@gmail.com", "1234"), new User("2", "George", "Lin",
-				"gglin@gmail.com", "1234"));
-		allOrders.add(o1);
+//		allOrders = new OrderList();
+//		Order o1 = new Order("1", new User("1", "Yucheng", "Wang",
+//				"ycwmike@gmail.com", "1234"), new User("2", "George", "Lin",
+//				"gglin@gmail.com", "1234"));
+//		allOrders.add(o1);
 	}
 
 	public void add(Order user) {

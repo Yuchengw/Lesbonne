@@ -12,7 +12,6 @@
     function userService($http) {
         var service = {};
  
-        service.getAll = getAll;
         service.getById = getById;
         service.getByUsername = getByUsername;
         service.create = create;
@@ -21,10 +20,6 @@
  
         return service;
         
-        // This should be used for super user ...
-        function getAll() {
-            return $http.get(options.api.base_url + '/service/users').then(handleSuccess, handleError('Error getting all users'));
-        }
         // Not supported: userRestURIConstant.java
         function getById(id) {
             return $http.get(options.api.base_url + '/service/user/' + id).then(handleSuccess, handleError('Error getting user by id'));
@@ -38,11 +33,11 @@
 //        	var headers = user ? {authorization : "Basic "
 //		        + btoa(user.username + ":" + user.email + ":" + user.password)
 //		    } : {};
-            return $http.post(options.api.base_url + '/service/user/create/', user).then(handleSuccess, handleError('Error creating user'));
+            return $http.post(options.api.base_url + '/service/user/signup', user).then(handleSuccess, handleError('Error creating user'));
         }
  
         function update(user) {
-            return $http.put(options.api.base_url + '/service/user/update/' + user.id, user).then(handleSuccess, handleError('Error updating user'));
+            return $http.put(options.api.base_url + '/service/user/update' + user.id, user).then(handleSuccess, handleError('Error updating user'));
         }
  
 //      function remove(id) {

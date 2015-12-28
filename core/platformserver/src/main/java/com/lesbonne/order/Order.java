@@ -17,23 +17,21 @@ import com.lesbonne.user.User;
  * @since 1
  * */
 @Entity
-@Table(name="ORDER")
+@Table(name="LESBONNEORDER")
 public class Order implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 379661088187729287L;
-
 	@Id
-	@Column(name = "ORDERID", columnDefinition="VARCHAR(18) NOT NULL")
+	@Column(name = "ORDERID", columnDefinition="VARCHAR(18)")
 	private String orderId;
+
+	// TODO: need another ID to specify the order target.
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="USERID", referencedColumnName="USERID", insertable=false, updatable=false)
+	@JoinColumn(name="USERID", referencedColumnName = "USERID", insertable=false, updatable=false)
 	private User owner;
-	
-	@Column(name = "ID2", columnDefinition="VARCHAR(18) NOT NULL")
-	private String id2;
 	
 	@Column(name = "CREATEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP", updatable = false)
 	private String createdTime;
@@ -55,14 +53,6 @@ public class Order implements Serializable {
 
 	public void setOwner(User owner) {
 		this.owner = owner;
-	}
-
-	public String getId2() {
-		return id2;
-	}
-
-	public void setId2(String id2) {
-		this.id2 = id2;
 	}
 
 	public String getCreatedTime() {

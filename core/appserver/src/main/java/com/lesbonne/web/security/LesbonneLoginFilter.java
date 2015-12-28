@@ -25,16 +25,16 @@ import com.lesbonne.business.bean.User;
  * @author yucheng
  * @since 1
  * */ 
-class StatelessLoginFilter extends AbstractAuthenticationProcessingFilter {
+class LesbonneLoginFilter extends AbstractAuthenticationProcessingFilter {
 
 	
     private static final String POST = "POST";
 
 	private final TokenAuthenticationService tokenAuthenticationService;
-	private final UserDetailsService userDetailsService;
+	private final LesbonneUserDetailsService userDetailsService;
 
-	protected StatelessLoginFilter(String urlMapping, TokenAuthenticationService tokenAuthenticationService,
-			UserDetailsService userDetailsService, AuthenticationManager authManager) {
+	protected LesbonneLoginFilter(String urlMapping, TokenAuthenticationService tokenAuthenticationService,
+			LesbonneUserDetailsService userDetailsService, AuthenticationManager authManager) {
 		super(new AntPathRequestMatcher(urlMapping));
 		this.userDetailsService = userDetailsService;
 		this.tokenAuthenticationService = tokenAuthenticationService;
@@ -46,7 +46,7 @@ class StatelessLoginFilter extends AbstractAuthenticationProcessingFilter {
 			throws AuthenticationException, IOException, ServletException {
 		final User user = new ObjectMapper().readValue(request.getInputStream(), User.class);
 		final UsernamePasswordAuthenticationToken loginToken = new UsernamePasswordAuthenticationToken(
-				user.getEmail(), user.getPassword());
+				user.getUserEmail(), user.getPassword());
 		return getAuthenticationManager().authenticate(loginToken);
 	}
 
@@ -62,25 +62,11 @@ class StatelessLoginFilter extends AbstractAuthenticationProcessingFilter {
 		tokenAuthenticationService.addAuthentication(response, userAuthentication);
 
 		// Add the authentication to the Security context
-		SecurityContextHolder.getContext().setAuthentication(userAuthentication);
-		
+		SecurityContextHolder.getContext().setAuthentication(userAuthentication);		
 	}
 	
 	 @Override
 	 public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
-		 final HttpServletRequest request = (HttpServletRequest) req;
-	     final HttpServletResponse response = (HttpServletResponse) res;
-	     if (request.getMethod().equals(POST)) {
-	    	 // If the incoming request is a POST, then we send it up
-	    	 // to the AbstractAuthenticationProcessingFilter.
-	    	 super.doFilter(request, response, chain);
-	     } else {
-	    	 // If it's a GET, we ignore this request and send it
-	    	 // to the next filter in the chain.  In this case, that
-	    	 // pretty much means the request will hit the /login
-	    	 // controller which will process the request to show the
-	    	 // login page.
-	    	 chain.doFilter(request, response);
-	    }
+		 super.doFilter(req, res, chain);
 	 }
 }

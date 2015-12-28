@@ -1,5 +1,6 @@
 package com.lesbonne.business.bean;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import java.util.EnumSet;
@@ -11,75 +12,53 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.DateSerializer;
 import com.lesbonne.web.security.UserAuthentication;
-import com.lesbonne.web.security.UserDetailsService;
+import com.lesbonne.web.security.LesbonneUserDetailsService;
 
 /**
  * @author yucheng
  * @version 1
  * */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class User extends BeanObject implements UserDetails {
+public class User extends BeanObject implements UserDetails, Serializable {
 
 	private static final long serialVersionUID = -7788619177798333712L;
-
-	private String id;
-	private String email;
-	private String password;
-
-	private String firstName;
-	private String lastName;
-	private String phone;
-	private double creditInfo;
-	private double activeScore;
-
-	private String alias;
-	private String role;
-	private boolean isEmailAuthorized;
-
-	private long expires;
-	private boolean accountNonExpired;
-	private boolean accountNonLocked;
-	private boolean credentialsNonExpired;
-	private boolean accountEnabled;
 	
-	private boolean enabled;
-
-	private String newPassword;
+	@JsonProperty("userId")
+	private String userId;
+	@JsonProperty("userEmail")
+	private String userEmail;
+	@JsonProperty("password")
+	private String password;
+	@JsonProperty("firstName")
+	private String firstName;
+	@JsonProperty("lastName")
+	private String lastName;
+	@JsonProperty("phone")
+	private String phone;
+	@JsonProperty("isEmailAuthorized")
+	private boolean isEmailAuthorized;
+	@JsonProperty("accountNonExpired")
+	private boolean accountNonExpired;
+	@JsonProperty("accountNonLocked")
+	private boolean accountNonLocked;
+	@JsonProperty("credentialsNonExpired")
+	private boolean credentialsNonExpired;
+	@JsonProperty("accountEnabled")
+	private boolean accountEnabled;
 
 	private Set<UserAuthority> authorities;
-
-	public User() {
-	}
-
-	public User(String email) {
-		this.email = email;
-	}
-
-	public User(String email, Date expires) {
-		this.email = email;
-		this.expires = expires.getTime();
-	}
 	
-	public User(String id, String email, String alias, String firstName, String lastName) {
-		super.setId(id);
-		this.email = email;
-		this.alias = alias;
-		this.firstName = firstName;
-		this.lastName = lastName;
+	public String getUserId() {
+		return userId;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-		super.setId(id);
+	public void setUserId(String userId) {
+		this.userId = userId;
+		super.setId(userId);
 	}
 
 	public String getFirstName() {
@@ -105,45 +84,13 @@ public class User extends BeanObject implements UserDetails {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
-	public double getCreditInfo() {
-		return creditInfo;
-	}
-
-	public void setCreditInfo(double creditInfo) {
-		this.creditInfo = creditInfo;
-	}
-
-	public double getActiveScore() {
-		return activeScore;
-	}
-
-	public void setActiveScore(double activeScore) {
-		this.activeScore = activeScore;
-	}
-
+	
 	public String getPassword() {
 		return password;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getAlias() {
-		return alias;
-	}
-
-	public void setAlias(String alias) {
-		this.alias = alias;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
 	}
 
 	public boolean isEmailAuthorized() {
@@ -154,15 +101,66 @@ public class User extends BeanObject implements UserDetails {
 		this.isEmailAuthorized = isEmailAuthorized;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getUserEmail() {
+		return userEmail;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
+	
+	@Override
+	public String getUsername() {
+		return userEmail;
 	}
 
-	// Use Roles as external API
+	@Override
+	public boolean isAccountNonExpired() {
+		return accountNonExpired;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return accountNonLocked;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return credentialsNonExpired;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return accountEnabled;
+	}
+	
+	public boolean isAccountEnabled() {
+		return accountEnabled;
+	}
+
+	public void setAccountEnabled(boolean accountEnabled) {
+		this.accountEnabled = accountEnabled;
+	}
+	
+	public void setAccountNonExpired(boolean accountNonExpired) {
+		this.accountNonExpired = accountNonExpired;
+	}
+
+	public void setAccountNonLocked(boolean accountNonLocked) {
+		this.accountNonLocked = accountNonLocked;
+	}
+	
+	public void setEnabled(boolean enabled) {
+	}
+	
+	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+		this.credentialsNonExpired = credentialsNonExpired;
+	}
+	
+	public static User getInstance() {
+		return getInstance(false);
+	}
+
 	public Set<UserRole> getRoles() {
 		Set<UserRole> roles = EnumSet.noneOf(UserRole.class);
 		if (authorities != null) {
@@ -201,89 +199,19 @@ public class User extends BeanObject implements UserDetails {
 		return authorities;
 	}
 
-	@Override
-	public String getUsername() {
-		return email;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return accountNonExpired;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return accountNonLocked;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return credentialsNonExpired;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return accountEnabled;
-	}
-
-	public long getExpires() {
-		return expires;
-	}
-
-	public void setExpires(long expires) {
-		this.expires = expires;
-	}
-	
-	public String getNewPassword() {
-		return newPassword;
-	}
-
-	public void setNewPassword(String newPassword) {
-		this.newPassword = newPassword;
-	}
-	
-	public boolean isAccountEnabled() {
-		return accountEnabled;
-	}
-
-	public void setAccountEnabled(boolean accountEnabled) {
-		this.accountEnabled = accountEnabled;
-	}
-	
-	public void setAccountNonExpired(boolean accountNonExpired) {
-		this.accountNonExpired = accountNonExpired;
-	}
-
-	public void setAccountNonLocked(boolean accountNonLocked) {
-		this.accountNonLocked = accountNonLocked;
-	}
-	
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-	
-	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
-		this.credentialsNonExpired = credentialsNonExpired;
-	}
-	
-	// User : <userEmail>
-	@Override
-	public String toString() {
-		return getClass().getSimpleName() + ": " + getUsername();
-	}
-	
-	public static User getInstance() {
-		return getInstance(false);
-	}
-	
 	public static User getInstance(boolean allowInactiveUser) {
 		// TODO: need to add cache for better performance.
 		UserAuthentication userAuth = (UserAuthentication) SecurityContextHolder.getContext().getAuthentication();
 		if (userAuth == null) {
 			//TODO: add proper exception;
 		}
-		UserDetailsService userDetailsService = new UserDetailsService();
+		LesbonneUserDetailsService userDetailsService = new LesbonneUserDetailsService();
 		User user = userDetailsService.loadUserByUsername(userAuth.getName());
 		return user;
+	}
+	
+	@Override
+	public String toString() {
+		return getClass().getSimpleName() + ": " + getUsername();
 	}
 }

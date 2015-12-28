@@ -61,7 +61,7 @@ public class PlatformUserServiceImpl extends PlatformUserService implements Plat
 	public User createUser(User user) {
 		User newUser = null;
 		try {
-			user.setPassword(EncryptionUtil.encryptPassword(user.getPassword()));
+			user.setUserPassword(EncryptionUtil.encryptPassword(user.getPassword()));
 			newUser = getUserRestClient().createUser(user);
 			if (newUser == null) {
 				

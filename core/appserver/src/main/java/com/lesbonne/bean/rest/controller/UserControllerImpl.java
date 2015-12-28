@@ -35,13 +35,19 @@ public class UserControllerImpl implements UserController {
 	 * @return User Bean
 	 * */
 	@RequestMapping(method=RequestMethod.GET, value=UserRestURIConstants.GET_USER)
-	public User getUser(@PathVariable String userId) {
-		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		//TODO: check information leak
-		if (authentication instanceof UserAuthentication) {
-			return ((UserAuthentication) authentication).getDetails();
+	public ResponseEntity<User> getUser(@PathVariable String userEmail) {
+		User user = null;
+		try {
+			final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			if (authentication instanceof UserAuthentication) {
+				user = ((UserAuthentication) authentication).getDetails();
+			} else {
+				user = userProvider.get(userEmail);
+			} 
+		} catch (Exception e) {
+			return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return null;
+		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, value=UserRestURIConstants.UPDATE_USER)
@@ -74,7 +80,7 @@ public class UserControllerImpl implements UserController {
 		} 
 		
 		final BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder();
-		user.setPassword(pwEncoder.encode(user.getPassword()));
+		user.setUserPassword(pwEncoder.encode(user.getPassword()));
 		userProvider.add(user);
 		return new ResponseEntity<String>("User creation success", HttpStatus.OK);
 	}

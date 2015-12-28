@@ -31,14 +31,12 @@ public class User extends BeanObject implements UserDetails, Serializable {
 	private String userId;
 	@JsonProperty("userEmail")
 	private String userEmail;
-	@JsonProperty("password")
-	private String password;
+	@JsonProperty("userPassword")
+	private String userPassword;
 	@JsonProperty("firstName")
 	private String firstName;
 	@JsonProperty("lastName")
 	private String lastName;
-	@JsonProperty("phone")
-	private String phone;
 	@JsonProperty("isEmailAuthorized")
 	private boolean isEmailAuthorized;
 	@JsonProperty("accountNonExpired")
@@ -49,6 +47,10 @@ public class User extends BeanObject implements UserDetails, Serializable {
 	private boolean credentialsNonExpired;
 	@JsonProperty("accountEnabled")
 	private boolean accountEnabled;
+	private Collection<AskingPost> askingPosts;
+	private Collection<SharingPost> sharingPosts;
+	private Collection<Order> orders;
+	private Collection<Partner> partners;
 
 	private Set<UserAuthority> authorities;
 	
@@ -77,20 +79,12 @@ public class User extends BeanObject implements UserDetails, Serializable {
 		this.lastName = lastName;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getUserPassword() {
+		return userPassword;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
 	}
 
 	public boolean isEmailAuthorized() {
@@ -214,4 +208,13 @@ public class User extends BeanObject implements UserDetails, Serializable {
 	public String toString() {
 		return getClass().getSimpleName() + ": " + getUsername();
 	}
+
+	@Override
+	public String getPassword() {
+		/**
+		 * Add this getter for UserDetail service.
+		 * */
+		return this.userPassword;
+	}
 }
+

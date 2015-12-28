@@ -33,11 +33,11 @@ public class Order implements Serializable {
 	@JoinColumn(name="USERID", referencedColumnName = "USERID", insertable=false, updatable=false)
 	private User owner;
 	
-	@Column(name = "CREATEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP", updatable = false)
-	private String createdTime;
+	@Column(name = "CREATEDATE", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP", updatable = false)
+	private String createdDate;
 	
-	@Column(name = "LASTMODIFIEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-	private String lastModifiedTime;
+	@Column(name = "LASTMODIFIEDATE", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+	private String lastModifiedDate;
 
 	public String getOrderId() {
 		return orderId;
@@ -55,15 +55,15 @@ public class Order implements Serializable {
 		this.owner = owner;
 	}
 
-	public String getCreatedTime() {
-		return createdTime;
+	public String getCreatedDate() {
+		return createdDate;
 	}
 
-	public String getLastModifiedTime() {
-		return lastModifiedTime;
+	public String getLastModifiedDate() {
+		return lastModifiedDate;
 	}
 
-	public void setLastModifiedTime(String lastModifiedTime) {
-		this.lastModifiedTime = lastModifiedTime;
+	public void setLastModifiedTime(String lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
 	}
 }

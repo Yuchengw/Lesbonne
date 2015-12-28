@@ -26,25 +26,26 @@ public class UserRestControllerImpl implements UserRestController {
 	private UserService userServiceImpl;
 	
 	@RequestMapping(method=RequestMethod.GET, value=UserRestURIConstants.GET_USER)
-	public User getUser(@PathVariable String userEmail) {
+	public ResponseEntity<User> getUser(@PathVariable String userEmail) {
 		User user = null;
 		try {
 			user = userServiceImpl.getUserByEmail(userEmail);
 		} catch (Exception e) {
-			return null;
+			return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}	
-		return user;
+		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 
 	@Override
 	@RequestMapping(method=RequestMethod.PUT, value=UserRestURIConstants.UPDATE_USER)
-	public ResponseEntity<String> updateUser(User user) {
+	public ResponseEntity<User> updateUser(User user) {
+		User updatedUser = null;
 		try {
-			userServiceImpl.updateUser(user);
+			updatedUser = userServiceImpl.updateUser(user);
 		} catch (Exception e) {
-			return new ResponseEntity<String>("user update failed.", HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<String>("user upadate success.", HttpStatus.OK);	
+		return new ResponseEntity<User>(updatedUser, HttpStatus.OK);	
 	}
 
 	@Override

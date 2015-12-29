@@ -39,6 +39,12 @@ public class User extends BeanObject implements UserDetails, Serializable {
 	private String lastName;
 	@JsonProperty("userContactInfo")
 	private String userContactInfo;
+	@JsonProperty("userRelationId")
+	private String userRelationId;
+	@JsonProperty("userPaymentId")
+	private String userPaymentId;
+	@JsonProperty("userRole")
+	private int userRole;
 	@JsonProperty("isEmailAuthorized")
 	private boolean isEmailAuthorized;
 	@JsonProperty("accountNonExpired")
@@ -49,9 +55,13 @@ public class User extends BeanObject implements UserDetails, Serializable {
 	private boolean credentialsNonExpired;
 	@JsonProperty("accountEnabled")
 	private boolean accountEnabled;
+	@JsonProperty("askingPosts")
 	private Collection<AskingPost> askingPosts;
+	@JsonProperty("sharingPosts")
 	private Collection<SharingPost> sharingPosts;
+	@JsonProperty("orders")
 	private Collection<Order> orders;
+	@JsonProperty("partners")
 	private Collection<Partner> partners;
 
 	private Set<UserAuthority> authorities;
@@ -89,12 +99,11 @@ public class User extends BeanObject implements UserDetails, Serializable {
 		this.userPassword = userPassword;
 	}
 	
-	@JsonProperty("isEmailAuthorized")
-	public boolean isEmailAuthorized() {
+	public boolean getIsEmailAuthorized() {
 		return isEmailAuthorized;
 	}
 
-	public void setEmailAuthorized(boolean isEmailAuthorized) {
+	public void setIsEmailAuthorized(boolean isEmailAuthorized) {
 		this.isEmailAuthorized = isEmailAuthorized;
 	}
 
@@ -106,52 +115,44 @@ public class User extends BeanObject implements UserDetails, Serializable {
 		this.userEmail = userEmail;
 	}
 	
-	@Override
-	public String getUsername() {
-		return userEmail;
+	public int getUserRole() {
+		return userRole;
 	}
 
-	@Override
-	@JsonProperty("accountNonExpired")
-	public boolean isAccountNonExpired() {
-		return accountNonExpired;
+	public void setUserRole(int userRole) {
+		this.userRole = userRole;
 	}
 
-	@Override
-	@JsonProperty("accountNonLocked")
-	public boolean isAccountNonLocked() {
-		return accountNonLocked;
-	}
-
-	@Override
-	@JsonProperty("credentialsNonExpired")
-	public boolean isCredentialsNonExpired() {
-		return credentialsNonExpired;
-	}
-
-	@Override
-	@JsonProperty("accountEnabled")
-	public boolean isEnabled() {
-		return accountEnabled;
+	public boolean getAccountNonExpired() {
+		return this.accountNonExpired;
 	}
 	
-	public void setAccountEnabled(boolean accountEnabled) {
-		this.accountEnabled = accountEnabled;
+	public void setAccountNonExpired(boolean expired) {
+		this.accountNonExpired = expired;
 	}
 	
-	public void setAccountNonExpired(boolean accountNonExpired) {
-		this.accountNonExpired = accountNonExpired;
-	}
-
-	public void setAccountNonLocked(boolean accountNonLocked) {
-		this.accountNonLocked = accountNonLocked;
+	public boolean getAccountNonLocked() {
+		return this.accountNonLocked;
 	}
 	
-	public void setEnabled(boolean enabled) {
+	public void setAccountNonLocked(boolean locked) {
+		this.accountNonLocked = locked;
 	}
 	
-	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
-		this.credentialsNonExpired = credentialsNonExpired;
+	public boolean getCredentialsNonExpired() {
+		return this.credentialsNonExpired;
+	}
+	
+	public void setCredentialsNonExpired(boolean expired) {
+		this.credentialsNonExpired = expired;
+	}
+	
+	public boolean getAccountEnabled() {
+		return this.accountEnabled;
+	}
+	
+	public void setAccountEnabled(boolean enabled) {
+		this.accountEnabled = enabled;
 	}
 	
 	public String getUserContactInfo() {
@@ -162,6 +163,54 @@ public class User extends BeanObject implements UserDetails, Serializable {
 		this.userContactInfo = userContactInfo;
 	}
 	
+	public String getUserRelationId() {
+		return userRelationId;
+	}
+
+	public void setUserRelationId(String userRelationId) {
+		this.userRelationId = userRelationId;
+	}
+	
+	public String getUserPaymentId() {
+		return userPaymentId;
+	}
+
+	public void setUserPaymentId(String userPaymentId) {
+		this.userPaymentId = userPaymentId;
+	}
+	
+	public Collection<AskingPost> getAskingPosts() {
+		return askingPosts;
+	}
+
+	public void setAskingPosts(Collection<AskingPost> askingPosts) {
+		this.askingPosts = askingPosts;
+	}
+
+	public Collection<SharingPost> getSharingPosts() {
+		return sharingPosts;
+	}
+
+	public void setSharingPosts(Collection<SharingPost> sharingPosts) {
+		this.sharingPosts = sharingPosts;
+	}
+
+	public Collection<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Collection<Order> orders) {
+		this.orders = orders;
+	}
+
+	public Collection<Partner> getPartners() {
+		return partners;
+	}
+
+	public void setPartners(Collection<Partner> partners) {
+		this.partners = partners;
+	}
+
 	public static User getInstance() {
 		return getInstance(false);
 	}
@@ -198,12 +247,7 @@ public class User extends BeanObject implements UserDetails, Serializable {
 	public boolean hasRole(UserRole role) {
 		return authorities.contains(role.asAuthorityFor(this));
 	}
-		
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return authorities;
-	}
-
+	
 	public static User getInstance(boolean allowInactiveUser) {
 		// TODO: need to add cache for better performance.
 		UserAuthentication userAuth = (UserAuthentication) SecurityContextHolder.getContext().getAuthentication();
@@ -215,6 +259,38 @@ public class User extends BeanObject implements UserDetails, Serializable {
 		return user;
 	}
 	
+	//============================For UserDetail Service=======================//
+	@Override
+	public String getUsername() {
+		return getUserEmail();
+	}
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return authorities;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return getAccountNonExpired();
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return getAccountNonLocked();
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return getCredentialsNonExpired();
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return getAccountEnabled();
+	}
+	
+	
 	@Override
 	public String toString() {
 		return getClass().getSimpleName() + ": " + getUsername();
@@ -222,10 +298,7 @@ public class User extends BeanObject implements UserDetails, Serializable {
 
 	@Override
 	public String getPassword() {
-		/**
-		 * Add this getter for UserDetail service.
-		 * */
-		return this.userPassword;
+		return getUserPassword();
 	}
 }
 

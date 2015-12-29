@@ -37,6 +37,8 @@ public class User extends BeanObject implements UserDetails, Serializable {
 	private String firstName;
 	@JsonProperty("lastName")
 	private String lastName;
+	@JsonProperty("userContactInfo")
+	private String userContactInfo;
 	@JsonProperty("isEmailAuthorized")
 	private boolean isEmailAuthorized;
 	@JsonProperty("accountNonExpired")
@@ -86,7 +88,8 @@ public class User extends BeanObject implements UserDetails, Serializable {
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
-
+	
+	@JsonProperty("isEmailAuthorized")
 	public boolean isEmailAuthorized() {
 		return isEmailAuthorized;
 	}
@@ -109,29 +112,29 @@ public class User extends BeanObject implements UserDetails, Serializable {
 	}
 
 	@Override
+	@JsonProperty("accountNonExpired")
 	public boolean isAccountNonExpired() {
 		return accountNonExpired;
 	}
 
 	@Override
+	@JsonProperty("accountNonLocked")
 	public boolean isAccountNonLocked() {
 		return accountNonLocked;
 	}
 
 	@Override
+	@JsonProperty("credentialsNonExpired")
 	public boolean isCredentialsNonExpired() {
 		return credentialsNonExpired;
 	}
 
 	@Override
+	@JsonProperty("accountEnabled")
 	public boolean isEnabled() {
 		return accountEnabled;
 	}
 	
-	public boolean isAccountEnabled() {
-		return accountEnabled;
-	}
-
 	public void setAccountEnabled(boolean accountEnabled) {
 		this.accountEnabled = accountEnabled;
 	}
@@ -149,6 +152,14 @@ public class User extends BeanObject implements UserDetails, Serializable {
 	
 	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
 		this.credentialsNonExpired = credentialsNonExpired;
+	}
+	
+	public String getUserContactInfo() {
+		return userContactInfo;
+	}
+
+	public void setUserContactInfo(String userContactInfo) {
+		this.userContactInfo = userContactInfo;
 	}
 	
 	public static User getInstance() {

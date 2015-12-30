@@ -13,4 +13,6 @@ public interface UserDAO {
 	User getUserByEmail(String email);
 	
 	User updateUser(User user);
+	
+	Boolean existsUserByEmail(String email);
 }

@@ -7,6 +7,7 @@ import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -261,31 +262,37 @@ public class User extends BeanObject implements UserDetails, Serializable {
 	
 	//============================For UserDetail Service=======================//
 	@Override
+	@JsonIgnore
 	public String getUsername() {
 		return getUserEmail();
 	}
 	
 	@Override
+	@JsonIgnore
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return authorities;
 	}
 
 	@Override
+	@JsonIgnore
 	public boolean isAccountNonExpired() {
 		return getAccountNonExpired();
 	}
 
 	@Override
+	@JsonIgnore
 	public boolean isAccountNonLocked() {
 		return getAccountNonLocked();
 	}
 
 	@Override
+	@JsonIgnore
 	public boolean isCredentialsNonExpired() {
 		return getCredentialsNonExpired();
 	}
 
 	@Override
+	@JsonIgnore
 	public boolean isEnabled() {
 		return getAccountEnabled();
 	}
@@ -297,6 +304,7 @@ public class User extends BeanObject implements UserDetails, Serializable {
 	}
 
 	@Override
+	@JsonIgnore
 	public String getPassword() {
 		return getUserPassword();
 	}

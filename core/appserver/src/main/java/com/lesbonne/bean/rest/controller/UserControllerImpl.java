@@ -1,5 +1,6 @@
 package com.lesbonne.bean.rest.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -24,11 +25,8 @@ import com.lesbonne.web.security.UserAuthentication;
 @RestController
 public class UserControllerImpl implements UserController {
 	
+	@Autowired
 	private UserProvider userProvider;
-	
-	public void setUserProvider(UserProvider userProvider) {
-		this.userProvider = userProvider;
-	}
 
 	/**
 	 * Get current user, return usercontext via Spring security context
@@ -65,13 +63,12 @@ public class UserControllerImpl implements UserController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value=UserRestURIConstants.CREATE_USER)
-	public ResponseEntity<String> addUser(User user) {
-		
+	public ResponseEntity<String> addUser(@RequestBody User user) {
 		if (user.getUserEmail() == null) {
 			return new ResponseEntity<String>("Email not eligible", HttpStatus.UNPROCESSABLE_ENTITY);
 		}  
 		
-		if (userProvider.exists(user.getUserEmail())) {
+		if (userProvider.existsByEmail(user.getUserEmail())) {
 			return new ResponseEntity<String>("User already exists", HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 		
@@ -79,8 +76,12 @@ public class UserControllerImpl implements UserController {
 			return new ResponseEntity<String>("new password too short", HttpStatus.UNPROCESSABLE_ENTITY);
 		} 
 		
-		final BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder();
-		user.setUserPassword(pwEncoder.encode(user.getPassword()));
+//		final BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder();
+//		user.setUserPassword(pwEncoder.encode(user.getPassword()));
+		user.setAccountEnabled(true);
+		user.setAccountNonExpired(true);
+		user.setAccountNonLocked(true);
+		user.setIsEmailAuthorized(true);
 		userProvider.add(user);
 		return new ResponseEntity<String>("User creation success", HttpStatus.OK);
 	}

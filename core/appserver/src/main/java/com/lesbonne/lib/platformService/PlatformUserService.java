@@ -1,6 +1,7 @@
 package com.lesbonne.lib.platformService;
 
 import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
 
 import com.lesbonne.api.rest.AppRestUserClientImpl;
 import com.lesbonne.api.rest.RestClient;
@@ -17,6 +18,7 @@ import com.lesbonne.business.bean.User;
  * @author yucheng
  * @since 1
  * */
+@Service
 public abstract class PlatformUserService implements PlatformService {
 	
 	public AppRestUserClientImpl getUserRestClient() {

@@ -40,4 +40,9 @@ public class UserDAOImpl implements UserDAO{
 	public void deleteUser(User user) {
 		sessionFactory.getCurrentSession().delete(user);
 	}
+
+	@Override
+	public Boolean existsUserByEmail(String email) {
+		return getUserByEmail(email) != null;
+	}
 }

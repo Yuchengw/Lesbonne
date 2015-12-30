@@ -2,6 +2,7 @@ package com.lesbonne.lib.platformService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import com.lesbonne.api.rest.AppRestUserClientImpl;
 import com.lesbonne.api.rest.RestClient;
@@ -13,6 +14,7 @@ import com.lesbonne.util.monitoring.UserControllerPerformanceMonitorInterceptor;
  * @author yucheng
  * @since 1
  * */
+@Service
 public class PlatformUserServiceImpl extends PlatformUserService implements PlatformUserServiceConstants{
 	
 	private static final Logger logger = LoggerFactory.getLogger(PlatformUserServiceImpl.class);	
@@ -61,7 +63,7 @@ public class PlatformUserServiceImpl extends PlatformUserService implements Plat
 	public User createUser(User user) {
 		User newUser = null;
 		try {
-			user.setPassword(EncryptionUtil.encryptPassword(user.getPassword()));
+//			user.setUserPassword(EncryptionUtil.encryptPassword(user.getPassword()));
 			newUser = getUserRestClient().createUser(user);
 			if (newUser == null) {
 				
@@ -93,17 +95,10 @@ public class PlatformUserServiceImpl extends PlatformUserService implements Plat
 		User user = null;
 		try {
 			user = getUserRestClient().deleteUser(u);
-			if (user != null) {
-				return true;
-			} else {
-				logger.debug("there is something wrong when deleting user object");
-			}		
 		} catch (Exception e) {
-		
-		} finally {
-		
-		}
-		return false;
+			throw new RuntimeException("Exception thrown when delete user" + e.getMessage());
+		} 
+		return user != null;
 	}
 	
 	/**
@@ -113,17 +108,22 @@ public class PlatformUserServiceImpl extends PlatformUserService implements Plat
 		return  true;
 	}
 	
-	/**
-	 * TODO:
-	 * */
-	public boolean existUser(String userId) {
+	public boolean existsUserByEmail(String userEmail) {
+		boolean exists = false;
 		try {
-			return true;
+			exists = getUserRestClient().existsUserByEmail(userEmail);
 		} catch (Exception e) {
-			
+			logger.debug("there is somethign wrong when checking user exists with user email.");
 		} finally {
 			
 		}
-		return false;
+		return exists;
+	}
+	
+	/**
+	 * TODO:
+	 * */
+	public boolean existsUserById(String userId) {
+		return true;
 	}
 }

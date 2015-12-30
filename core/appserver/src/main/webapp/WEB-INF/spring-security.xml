@@ -17,9 +17,7 @@
 	</http>
 	<beans:bean id="LesbonneRestAuthenticationEntryPoint" class="com.lesbonne.web.security.LesbonneRestAuthenticationEntryPoint">
 	</beans:bean>
-	<beans:bean id="LesbonneUserDetailsService" class="com.lesbonne.web.security.LesbonneUserDetailsService">
-		<beans:property name="userProvider" ref="userProvider" />
-	</beans:bean>
+	<beans:bean id="LesbonneUserDetailsService" class="com.lesbonne.web.security.LesbonneUserDetailsService"/>
 	<beans:bean id="tokenAuthenticationService" class="com.lesbonne.web.security.TokenAuthenticationService">
 		<beans:constructor-arg name="secret" value="lesbonne"/>
 	</beans:bean>

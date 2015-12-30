@@ -7,6 +7,7 @@ import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,14 +32,20 @@ public class User extends BeanObject implements UserDetails, Serializable {
 	private String userId;
 	@JsonProperty("userEmail")
 	private String userEmail;
-	@JsonProperty("password")
-	private String password;
+	@JsonProperty("userPassword")
+	private String userPassword;
 	@JsonProperty("firstName")
 	private String firstName;
 	@JsonProperty("lastName")
 	private String lastName;
-	@JsonProperty("phone")
-	private String phone;
+	@JsonProperty("userContactInfo")
+	private String userContactInfo;
+	@JsonProperty("userRelationId")
+	private String userRelationId;
+	@JsonProperty("userPaymentId")
+	private String userPaymentId;
+	@JsonProperty("userRole")
+	private int userRole;
 	@JsonProperty("isEmailAuthorized")
 	private boolean isEmailAuthorized;
 	@JsonProperty("accountNonExpired")
@@ -49,6 +56,14 @@ public class User extends BeanObject implements UserDetails, Serializable {
 	private boolean credentialsNonExpired;
 	@JsonProperty("accountEnabled")
 	private boolean accountEnabled;
+	@JsonProperty("askingPosts")
+	private Collection<AskingPost> askingPosts;
+	@JsonProperty("sharingPosts")
+	private Collection<SharingPost> sharingPosts;
+	@JsonProperty("orders")
+	private Collection<Order> orders;
+	@JsonProperty("partners")
+	private Collection<Partner> partners;
 
 	private Set<UserAuthority> authorities;
 	
@@ -77,27 +92,19 @@ public class User extends BeanObject implements UserDetails, Serializable {
 		this.lastName = lastName;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getUserPassword() {
+		return userPassword;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
 	}
 	
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public boolean isEmailAuthorized() {
+	public boolean getIsEmailAuthorized() {
 		return isEmailAuthorized;
 	}
 
-	public void setEmailAuthorized(boolean isEmailAuthorized) {
+	public void setIsEmailAuthorized(boolean isEmailAuthorized) {
 		this.isEmailAuthorized = isEmailAuthorized;
 	}
 
@@ -109,54 +116,102 @@ public class User extends BeanObject implements UserDetails, Serializable {
 		this.userEmail = userEmail;
 	}
 	
-	@Override
-	public String getUsername() {
-		return userEmail;
+	public int getUserRole() {
+		return userRole;
 	}
 
-	@Override
-	public boolean isAccountNonExpired() {
-		return accountNonExpired;
+	public void setUserRole(int userRole) {
+		this.userRole = userRole;
 	}
 
-	@Override
-	public boolean isAccountNonLocked() {
-		return accountNonLocked;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return credentialsNonExpired;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return accountEnabled;
+	public boolean getAccountNonExpired() {
+		return this.accountNonExpired;
 	}
 	
-	public boolean isAccountEnabled() {
-		return accountEnabled;
+	public void setAccountNonExpired(boolean expired) {
+		this.accountNonExpired = expired;
+	}
+	
+	public boolean getAccountNonLocked() {
+		return this.accountNonLocked;
+	}
+	
+	public void setAccountNonLocked(boolean locked) {
+		this.accountNonLocked = locked;
+	}
+	
+	public boolean getCredentialsNonExpired() {
+		return this.credentialsNonExpired;
+	}
+	
+	public void setCredentialsNonExpired(boolean expired) {
+		this.credentialsNonExpired = expired;
+	}
+	
+	public boolean getAccountEnabled() {
+		return this.accountEnabled;
+	}
+	
+	public void setAccountEnabled(boolean enabled) {
+		this.accountEnabled = enabled;
+	}
+	
+	public String getUserContactInfo() {
+		return userContactInfo;
 	}
 
-	public void setAccountEnabled(boolean accountEnabled) {
-		this.accountEnabled = accountEnabled;
+	public void setUserContactInfo(String userContactInfo) {
+		this.userContactInfo = userContactInfo;
 	}
 	
-	public void setAccountNonExpired(boolean accountNonExpired) {
-		this.accountNonExpired = accountNonExpired;
+	public String getUserRelationId() {
+		return userRelationId;
 	}
 
-	public void setAccountNonLocked(boolean accountNonLocked) {
-		this.accountNonLocked = accountNonLocked;
+	public void setUserRelationId(String userRelationId) {
+		this.userRelationId = userRelationId;
 	}
 	
-	public void setEnabled(boolean enabled) {
+	public String getUserPaymentId() {
+		return userPaymentId;
+	}
+
+	public void setUserPaymentId(String userPaymentId) {
+		this.userPaymentId = userPaymentId;
 	}
 	
-	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
-		this.credentialsNonExpired = credentialsNonExpired;
+	public Collection<AskingPost> getAskingPosts() {
+		return askingPosts;
 	}
-	
+
+	public void setAskingPosts(Collection<AskingPost> askingPosts) {
+		this.askingPosts = askingPosts;
+	}
+
+	public Collection<SharingPost> getSharingPosts() {
+		return sharingPosts;
+	}
+
+	public void setSharingPosts(Collection<SharingPost> sharingPosts) {
+		this.sharingPosts = sharingPosts;
+	}
+
+	public Collection<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Collection<Order> orders) {
+		this.orders = orders;
+	}
+
+	public Collection<Partner> getPartners() {
+		return partners;
+	}
+
+	public void setPartners(Collection<Partner> partners) {
+		this.partners = partners;
+	}
+
 	public static User getInstance() {
 		return getInstance(false);
 	}
@@ -193,12 +248,7 @@ public class User extends BeanObject implements UserDetails, Serializable {
 	public boolean hasRole(UserRole role) {
 		return authorities.contains(role.asAuthorityFor(this));
 	}
-		
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return authorities;
-	}
-
+	
 	public static User getInstance(boolean allowInactiveUser) {
 		// TODO: need to add cache for better performance.
 		UserAuthentication userAuth = (UserAuthentication) SecurityContextHolder.getContext().getAuthentication();
@@ -210,8 +260,53 @@ public class User extends BeanObject implements UserDetails, Serializable {
 		return user;
 	}
 	
+	//============================For UserDetail Service=======================//
+	@Override
+	@JsonIgnore
+	public String getUsername() {
+		return getUserEmail();
+	}
+	
+	@Override
+	@JsonIgnore
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return authorities;
+	}
+
+	@Override
+	@JsonIgnore
+	public boolean isAccountNonExpired() {
+		return getAccountNonExpired();
+	}
+
+	@Override
+	@JsonIgnore
+	public boolean isAccountNonLocked() {
+		return getAccountNonLocked();
+	}
+
+	@Override
+	@JsonIgnore
+	public boolean isCredentialsNonExpired() {
+		return getCredentialsNonExpired();
+	}
+
+	@Override
+	@JsonIgnore
+	public boolean isEnabled() {
+		return getAccountEnabled();
+	}
+	
+	
 	@Override
 	public String toString() {
 		return getClass().getSimpleName() + ": " + getUsername();
 	}
+
+	@Override
+	@JsonIgnore
+	public String getPassword() {
+		return getUserPassword();
+	}
 }
+

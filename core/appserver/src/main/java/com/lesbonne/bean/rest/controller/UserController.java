@@ -8,7 +8,7 @@ import com.lesbonne.business.bean.User;
 
 public interface UserController {
 	
-	public User getUser(@PathVariable String userId);
+	public ResponseEntity<User> getUser(@PathVariable String userId);
 
 	public ResponseEntity<String> updateUser(@RequestBody final User user);
 	

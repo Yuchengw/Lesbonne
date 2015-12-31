@@ -51,11 +51,11 @@ public class SharingPost implements Serializable {
 	@Column(name="EXPIREDAT", columnDefinition="DATETIME NOT NULL")
 	private String expiredAt;
 	
-	@Column(name="CREATEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP", updatable = false)
-	private String createdTime;
+	@Column(name="CREATEDATE", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP", updatable = false)
+	private String createdDate;
 	
-	@Column(name="LASTMODIFIEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-	private String lastModifiedTime;
+	@Column(name="LASTMODIFIEDDATE", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+	private String lastModifiedDate;
 	
 	public String getSharingPostId() {
 		return sharingPostId;
@@ -109,15 +109,15 @@ public class SharingPost implements Serializable {
 		this.expiredAt = expiredAt;
 	}
 
-	public void setCreatedTime(String createdTime) {
-		this.createdTime = createdTime;
+	public void setCreatedTime(String createdDate) {
+		this.createdDate = createdDate;
 	}
 
-	public String getLastModifiedTime() {
-		return lastModifiedTime;
+	public String getLastModifiedDate() {
+		return lastModifiedDate;
 	}
 
-	public void setLastModifiedTime(String lastModifiedTime) {
-		this.lastModifiedTime = lastModifiedTime;
+	public void setLastModifiedTime(String lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
 	}
 }

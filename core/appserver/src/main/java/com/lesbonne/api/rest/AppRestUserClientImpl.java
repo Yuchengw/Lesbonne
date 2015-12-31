@@ -9,7 +9,7 @@ import com.lesbonne.business.bean.User;
 @SuppressWarnings("rawtypes")
 public class AppRestUserClientImpl extends RestClient {
 
-	private static final String REST_USER_PREFIX = "/user";
+	private static final String REST_USER_PREFIX = "user";
 	
 	@SuppressWarnings("unchecked")
 	public AppRestUserClientImpl(Class expectedType) {
@@ -17,25 +17,26 @@ public class AppRestUserClientImpl extends RestClient {
 	}
 
 	public User getUserByEmail(String email) {
-		User user = (User) doGet(REST_USER_PREFIX + "/" + email);
-		return user;
+		return (User) doGet(REST_USER_PREFIX + "/" + email);
 	}
 	
 	@SuppressWarnings("unchecked")
 	public User createUser(User u) {
-		User user = (User) doPost(REST_USER_PREFIX + "/create", u);
-		return user;
+		return (User) doPost(REST_USER_PREFIX + "/create", u);
 	}
 		
 	@SuppressWarnings("unchecked")
 	public User updateUser(User u) {
-		User user = (User) doPost(REST_USER_PREFIX + "/update", u);
-		return user;
+		return (User) doPost(REST_USER_PREFIX + "/update", u);
 	}
 	
 	@SuppressWarnings("unchecked")
 	public User deleteUser(User deleteUser) {
-		User returnUser = (User) doPost(REST_USER_PREFIX + "/delete/", deleteUser.getUserId());
-		return returnUser;
+		return (User) doPost(REST_USER_PREFIX + "/delete/", deleteUser.getUserId());
+	}
+	
+	@SuppressWarnings("unchecked")
+	public boolean existsUserByEmail(String userEmail) {
+		return (Boolean) doGet(REST_USER_PREFIX + "/existsUserByEmail/" + userEmail);
 	}
 }

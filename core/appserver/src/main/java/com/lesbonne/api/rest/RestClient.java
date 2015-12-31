@@ -67,7 +67,7 @@ public abstract class RestClient<INPUT extends Object, OUTPUT extends Object> im
 	private OUTPUT execute(HttpMethod method) {
 		try {
 			method = applyHeaders(method);
-			RestApiUtil restUtil = new AppRestApiUtil(); // we are mainly used for app-platform communication
+			RestApiUtil restUtil = new AppRestApiUtil(); 
 			if (oauth != null) {
 				method = applyAuthorization(method);
 				restUtil.setSetAuthHeader(false);

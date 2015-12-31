@@ -15,4 +15,6 @@ public interface UserDAO {
 	User getUserById(String userId);
 	
 	User updateUser(User user);
+	
+	Boolean existsUserByEmail(String email);
 }

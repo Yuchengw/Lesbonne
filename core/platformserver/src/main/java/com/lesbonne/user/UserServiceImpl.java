@@ -43,4 +43,10 @@ public class UserServiceImpl implements UserService{
 	public User getUserById(String userId) {
 		return userDAO.getUserById(userId);
 	}
+	
+	@Override
+	@Transactional
+	public Boolean existsUserByEmail(String userEmail) {
+		return userDAO.existsUserByEmail(userEmail);
+	}
 }

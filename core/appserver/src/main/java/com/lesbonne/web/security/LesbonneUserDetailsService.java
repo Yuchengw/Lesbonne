@@ -13,18 +13,12 @@ import com.lesbonne.lib.objectProvider.UserProvider;
  * */
 @Service
 public class LesbonneUserDetailsService implements UserDetailsService {
-
-	private UserProvider userProvider;
-	
-	public void setUserProvider(UserProvider userProvider) {
-		this.userProvider = userProvider;
-	}
-	
+		
 	private final LesbonneUserDetailsChecker detailsChecker = new LesbonneUserDetailsChecker();
 
 	@Override
 	public final User loadUserByUsername(String userEmail) throws UsernameNotFoundException {
-		final User user = userProvider.get(userEmail);
+		final User user = new UserProvider().get(userEmail);
 		if (user == null) {
 			throw new UsernameNotFoundException("user not found");
 		}

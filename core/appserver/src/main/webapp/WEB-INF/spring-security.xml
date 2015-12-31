@@ -9,9 +9,7 @@
 	<!-- ====================Spring Security Configuration @author Yucheng Wang=================== -->
 	<http auto-config="false" use-expressions="true" entry-point-ref="LesbonneRestAuthenticationEntryPoint" >
 		<csrf disabled="true"/>
-		<intercept-url pattern="/service/user/login"   access="permitAll"/>
-		<intercept-url pattern="/service/user/logout"  access="permitAll"/>
-		<intercept-url pattern="/service/user/signup"  access="permitAll" requires-channel="any"/>
+		<intercept-url pattern="/service/user/signup"  access="permitAll" requires-channel="http"/>
 		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" requires-channel="https"/>
 		<intercept-url pattern="/service/**" access="hasRole('ROLE_USER')" requires-channel="any"/>
 		<custom-filter position="FORM_LOGIN_FILTER" ref="defaultLoginFilter" />
@@ -19,9 +17,7 @@
 	</http>
 	<beans:bean id="LesbonneRestAuthenticationEntryPoint" class="com.lesbonne.web.security.LesbonneRestAuthenticationEntryPoint">
 	</beans:bean>
-	<beans:bean id="LesbonneUserDetailsService" class="com.lesbonne.web.security.LesbonneUserDetailsService">
-		<beans:property name="userProvider" ref="userProvider" />
-	</beans:bean>
+	<beans:bean id="LesbonneUserDetailsService" class="com.lesbonne.web.security.LesbonneUserDetailsService"/>
 	<beans:bean id="tokenAuthenticationService" class="com.lesbonne.web.security.TokenAuthenticationService">
 		<beans:constructor-arg name="secret" value="lesbonne"/>
 	</beans:bean>

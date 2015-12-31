@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -12,7 +13,6 @@ import javax.persistence.Table;
 import com.lesbonne.askingpost.AskingPost;
 import com.lesbonne.order.Order;
 import com.lesbonne.partner.Partner;
-import com.lesbonne.postcomment.PostComment;
 import com.lesbonne.sharingpost.SharingPost;
 
 /**
@@ -55,33 +55,33 @@ public class User implements Serializable {
 	@Column(name = "CREDENTIALSNONEXPIRED", columnDefinition = "BOOLEAN")
 	private Boolean credentialsNonExpired;
 	
-	@Column(name = "USERCONTACTINFO", columnDefinition = "MEDIUMTEXT NOT NULL")
+	@Column(name = "USERCONTACTINFO", columnDefinition = "MEDIUMTEXT")
 	private String userContactInfo;
 	
 	@Column(name = "USERRELATIONID", columnDefinition = "VARCHAR(18)")
 	private String userRelationId;
 	
-//	@Column(name = "CREATEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP", updatable = false)
-//	private String createdTime;
-//	
-//	@Column(name = "LASTMODIFIEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-//	private String lastModifiedTime;
-//
-//	/*========== Foreign Key Starts From Here. ==========*/
-//	@Column(name = "USERPAYMENTID", columnDefinition="VARCHAR(18)")
-//	private String userPaymentId;
+	@Column(name = "CREATEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP", updatable = false)
+	private String createdTime;
+	
+	@Column(name = "LASTMODIFIEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+	private String lastModifiedTime;
+
+	/*========== Foreign Key Starts From Here. ==========*/
+	@Column(name = "USERPAYMENTID", columnDefinition="VARCHAR(18)")
+	private String userPaymentId;
 	
 	
-	@OneToMany(mappedBy = "owner")
+	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
 	private List<AskingPost> askingPosts;
 
-	@OneToMany(mappedBy = "owner")
+	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
 	private List<SharingPost> sharingPosts;
 	
-	@OneToMany(mappedBy = "owner")
+	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
 	private List<Order> orders;
 	
-	@OneToMany(mappedBy = "userPartner1")
+	@OneToMany(mappedBy = "userPartner1", fetch = FetchType.LAZY)
 	private List<Partner> partners;
 
 	/*========== Getters and Setters. ==========*/
@@ -177,25 +177,25 @@ public class User implements Serializable {
 		this.userRelationId = userRelationId;
 	}
 
-//	public String getCreatedTime() {
-//		return createdTime;
-//	}
-//
-//	public String getLastModifiedTime() {
-//		return lastModifiedTime;
-//	}
-//
-//	public void setLastModifiedTime(String lastModifiedTime) {
-//		this.lastModifiedTime = lastModifiedTime;
-//	}
-//
-//	public String getUserPaymentId() {
-//		return userPaymentId;
-//	}
-//
-//	public void setUserPaymentId(String userPaymentId) {
-//		this.userPaymentId = userPaymentId;
-//	}
+	public String getCreatedTime() {
+		return createdTime;
+	}
+
+	public String getLastModifiedTime() {
+		return lastModifiedTime;
+	}
+
+	public void setLastModifiedTime(String lastModifiedTime) {
+		this.lastModifiedTime = lastModifiedTime;
+	}
+
+	public String getUserPaymentId() {
+		return userPaymentId;
+	}
+
+	public void setUserPaymentId(String userPaymentId) {
+		this.userPaymentId = userPaymentId;
+	}
 	
 	public List<AskingPost> getAskingPosts() {
 		return askingPosts;

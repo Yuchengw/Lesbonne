@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
  * @since 1
  * */
 @Repository("userDAO")
-public class UserDAOImpl implements UserDAO{
+public class UserDAOImpl implements UserDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;

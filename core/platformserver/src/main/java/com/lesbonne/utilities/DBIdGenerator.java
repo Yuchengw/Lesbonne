@@ -38,7 +38,9 @@ public class DBIdGenerator implements IdentifierGenerator, Configurable {
 	@Override
 	public Serializable generate(SessionImplementor si, Object o)
 			throws HibernateException {
-		return prefix + UUID.randomUUID().toString().substring(0, 15);
+		String uuid = UUID.randomUUID().toString();
+		uuid = uuid.replace("-", "");
+		return prefix + uuid.substring(0, 15);
 
 	}
 }

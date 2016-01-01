@@ -45,4 +45,9 @@ public class UserDAOImpl implements UserDAO{
 	public Boolean existsUserByEmail(String email) {
 		return getUserByEmail(email) != null;
 	}
+
+	@Override
+	public User getUserById(String id) {
+		return (User) sessionFactory.getCurrentSession().get(User.class, id);
+	}
 }

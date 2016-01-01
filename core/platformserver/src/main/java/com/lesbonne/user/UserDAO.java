@@ -12,6 +12,8 @@ public interface UserDAO {
 
 	User getUserByEmail(String email);
 	
+	User getUserById(String id);
+	
 	User updateUser(User user);
 	
 	Boolean existsUserByEmail(String email);

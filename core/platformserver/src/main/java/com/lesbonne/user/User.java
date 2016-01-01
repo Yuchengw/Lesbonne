@@ -6,9 +6,13 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 import com.lesbonne.askingpost.AskingPost;
 import com.lesbonne.order.Order;
@@ -28,10 +32,13 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "USERID", columnDefinition = "VARCHAR(18) NOT NULL")
+	@Column(name = "USERID", nullable = false, unique = true, columnDefinition = "VARCHAR(18)")
+	@GenericGenerator(strategy="com.lesbonne.mysqldb.DBIdGenerator",name="userIdGenerator",
+					parameters = {@Parameter(name = "prefix", value = "001")})
+	@GeneratedValue(generator="userIdGenerator")
 	private String userId;
 	
-	@Column(name = "USEREMAIL", columnDefinition = "VARCHAR(511) NOT NULL")
+	@Column(name = "USEREMAIL", unique = true, columnDefinition = "VARCHAR(511) NOT NULL")
 	private String userEmail;
 	
 	@Column(name = "USERPASSWORD", columnDefinition = "VARCHAR(255) NOT NULL")

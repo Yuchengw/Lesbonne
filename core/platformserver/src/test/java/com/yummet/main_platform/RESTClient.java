@@ -1,5 +1,6 @@
-package com.yummet.main_platform;
+package test.java.com.yummet.main_platform;
 
+import com.lesbonne.user.UserRestURIConstants;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
@@ -43,7 +44,7 @@ public class RESTClient {
 	 */
 
 	public static void testPostAPIlogin() {
-		String url = "http://localhost:8080/api/users/userUpsert";
+		String url = "http://localhost:8092" + UserRestURIConstants.CREATE_USER;
 		// String url = "http://localhost:8080/platform/rest/userLoginx";
 		// String authString = "test@test.com" + ":" + "test";
 		// String authStringEnc = new
@@ -53,7 +54,7 @@ public class RESTClient {
 		Client restClient = Client.create();
 		WebResource webResource = restClient.resource(url);
 
-		String input = "{\"id\": \"1\", \"firstName\": \"Tom\",\"lastName\": \"Cruise\",\"email\": \"ycwmike@gmai.com\", \"photo\": \"Object or null (paramter decide)\", \"phone\": \"1234567\",\"creditInfo\": \"1231231\",\"activeScore\": \"123112321\",\"alias\": \"alias\",\"role\": \"admin\", \"sessionexpire\": \"01-01-2020\",\"password\": \"afadsfdafa(hash value)\",\"newpassword\": \"adfafdafadfdf\"}";
+		String input = "{\"userEmail\": \"ycwmike@gmai.com\", \"userPassword\": \"adfafdafadfdf\"}";
 		ClientResponse resp = webResource.type("application/json").post(
 				ClientResponse.class, input);
 		if (resp.getStatus() != 201) {

@@ -1,7 +1,5 @@
 package com.lesbonne.user;
 
-import java.util.List;
-
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,25 +13,22 @@ public class UserDAOImpl implements UserDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-
+	
 	@Override
 	public void persistUser(User user) {
 		sessionFactory.getCurrentSession().persist(user);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public User getUserByEmail(String email) {
-		List users = (List) sessionFactory.getCurrentSession()
-				.createQuery("FROM User WHERE userEmail =:userEmail")
-				.setParameter("userEmail", email).list();
-		return users.size() == 1 ? (User) users.get(0) : null;
+	public User getUserByEmail(String userEmail) {
+		return (User)sessionFactory.getCurrentSession().
+				get(User.class, userEmail);
 	}
-
+	
 	@Override
 	public User getUserById(String userId) {
-		return (User) sessionFactory.getCurrentSession()
-				.get(User.class, userId);
+		return (User)sessionFactory.getCurrentSession().
+				get(User.class, userId);
 	}
 
 	@Override
@@ -45,10 +40,5 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public void deleteUser(User user) {
 		sessionFactory.getCurrentSession().delete(user);
-	}
-
-	@Override
-	public Boolean existsUserByEmail(String email) {
-		return getUserByEmail(email) != null;
 	}
 }

@@ -14,11 +14,11 @@ import org.hibernate.annotations.Parameter;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.lesbonne.askingpost.AskingPost;
-import com.lesbonne.order.Order;
-import com.lesbonne.partner.Partner;
-import com.lesbonne.postcomment.PostComment;
-import com.lesbonne.sharingpost.SharingPost;
+//import com.lesbonne.askingpost.AskingPost;
+//import com.lesbonne.order.Order;
+//import com.lesbonne.partner.Partner;
+//import com.lesbonne.postcomment.PostComment;
+//import com.lesbonne.sharingpost.SharingPost;
 
 /**
  * @author yucheng
@@ -72,35 +72,34 @@ public class User implements Serializable {
 	@Column(name = "ACCOUNTENABLED", columnDefinition = "BOOLEAN")
 	private Boolean accountEnabled;
 	
-	@Column(name = "USERCONTACTINFO", nullable = true, columnDefinition = "BLOB")
+	@Column(name = "USERCONTACTINFO", nullable = false, columnDefinition = "BLOB")
 	private String userContactInfo;
 	
 	@Column(name = "USERRELATIONID", columnDefinition = "VARCHAR(18)")
 	private String userRelationId;
 	
-	@Column(name = "CREATEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP", updatable = false)
+	@Column(name = "CREATEDTIME", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", updatable = false)
 //	@Temporal(TemporalType.TIMESTAMP)
-	private String createdTime;
+	private Date createdTime;
 	
-	@Column(name = "LASTMODIFIEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-	private String lastModifiedTime;
+	@Column(name = "LASTMODIFIEDTIME", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+	private Date lastModifiedTime;
 
 	/*========== Foreign Key Starts From Here. ==========*/
 //	@Column(name = "USERPAYMENTID", columnDefinition="VARCHAR(18)")
 //	private String userPaymentId;
 	
-	
-	@OneToMany(mappedBy = "owner")
-	private List<AskingPost> askingPosts;
-
-	@OneToMany(mappedBy = "owner")
-	private List<SharingPost> sharingPosts;
-	
-	@OneToMany(mappedBy = "owner")
-	private List<Order> orders;
-	
-	@OneToMany(mappedBy = "userPartner1")
-	private List<Partner> partners;
+//	@OneToMany(mappedBy = "owner")
+//	private List<AskingPost> askingPosts;
+//
+//	@OneToMany(mappedBy = "owner")
+//	private List<SharingPost> sharingPosts;
+//	
+//	@OneToMany(mappedBy = "owner")
+//	private List<Order> orders;
+//	
+//	@OneToMany(mappedBy = "userPartner1")
+//	private List<Partner> partners;
 
 	/*========== Getters and Setters. ==========*/
 	public String getUserId() {
@@ -197,15 +196,15 @@ public class User implements Serializable {
 		this.userRelationId = userRelationId;
 	}
 
-	public String getCreatedTime() {
+	public Date getCreatedTime() {
 		return createdTime;
 	}
 
-	public String getLastModifiedTime() {
+	public Date getLastModifiedTime() {
 		return lastModifiedTime;
 	}
 
-	public void setLastModifiedTime(String lastModifiedTime) {
+	public void setLastModifiedTime(Date lastModifiedTime) {
 		this.lastModifiedTime = lastModifiedTime;
 	}
 //
@@ -217,28 +216,28 @@ public class User implements Serializable {
 //		this.userPaymentId = userPaymentId;
 //	}
 	
-	public List<AskingPost> getAskingPosts() {
-		return askingPosts;
-	}
-
-	public void setAskingPosts(List<AskingPost> askingPosts) {
-		this.askingPosts = askingPosts;
-	}
-	
-	public List<SharingPost> getSharingPosts() {
-		return sharingPosts;
-	}
-
-	public void setSharingPosts(List<SharingPost> sharingPosts) {
-		this.sharingPosts = sharingPosts;
-	}
-	
-	public List<Order> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
-	}
+//	public List<AskingPost> getAskingPosts() {
+//		return askingPosts;
+//	}
+//
+//	public void setAskingPosts(List<AskingPost> askingPosts) {
+//		this.askingPosts = askingPosts;
+//	}
+//	
+//	public List<SharingPost> getSharingPosts() {
+//		return sharingPosts;
+//	}
+//
+//	public void setSharingPosts(List<SharingPost> sharingPosts) {
+//		this.sharingPosts = sharingPosts;
+//	}
+//	
+//	public List<Order> getOrders() {
+//		return orders;
+//	}
+//
+//	public void setOrders(List<Order> orders) {
+//		this.orders = orders;
+//	}
 }
 

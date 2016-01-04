@@ -1,4 +1,4 @@
-package com.lesbonne.restapi;
+package test.java.com.lesbonne.restapi;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

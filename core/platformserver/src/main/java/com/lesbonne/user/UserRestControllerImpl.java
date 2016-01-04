@@ -22,6 +22,7 @@ public class UserRestControllerImpl implements UserRestController {
 	@Autowired
 	private UserService userService;
 	
+
 	@RequestMapping(method=RequestMethod.GET, value=UserRestURIConstants.EXISTS_USER_BY_EMAIL)
 	public ResponseEntity<Boolean> existsUserByEmail(@PathVariable String userEmail) {
 		Boolean exists = false;
@@ -54,7 +55,7 @@ public class UserRestControllerImpl implements UserRestController {
 		}
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
-
+	
 	@Override
 	@RequestMapping(method=RequestMethod.PUT, value=UserRestURIConstants.UPDATE_USER)
 	public ResponseEntity<User> updateUser(User user) {

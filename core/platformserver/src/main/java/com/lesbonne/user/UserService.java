@@ -13,6 +13,8 @@ public interface UserService {
 	
 	User getUserByEmail(String userEmail);
 	
+	User getUserById(String userId);
+	
 	User updateUser(User user);
 	
 	void deleteUser(User user);

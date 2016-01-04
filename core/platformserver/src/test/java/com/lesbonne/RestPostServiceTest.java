@@ -1,4 +1,4 @@
-package com.yummet.main_platform;
+package test.java.com.lesbonne;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

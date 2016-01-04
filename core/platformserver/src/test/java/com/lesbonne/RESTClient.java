@@ -1,4 +1,4 @@
-package com.yummet.main_platform;
+package test.java.com.lesbonne;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;

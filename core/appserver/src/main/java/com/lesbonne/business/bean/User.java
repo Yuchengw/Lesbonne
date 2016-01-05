@@ -48,14 +48,14 @@ public class User extends BeanObject implements UserDetails, Serializable {
 	private int userRole;
 	@JsonProperty("isEmailAuthorized")
 	private boolean isEmailAuthorized;
-	@JsonProperty("accountNonExpired")
-	private boolean accountNonExpired;
-	@JsonProperty("accountNonLocked")
-	private boolean accountNonLocked;
-	@JsonProperty("credentialsNonExpired")
-	private boolean credentialsNonExpired;
-	@JsonProperty("accountEnabled")
-	private boolean accountEnabled;
+	@JsonProperty("userAccountNonExpired")
+	private boolean userAccountNonExpired;
+	@JsonProperty("userAccountNonLocked")
+	private boolean userAccountNonLocked;
+	@JsonProperty("userCredentialsNonExpired")
+	private boolean userCredentialsNonExpired;
+	@JsonProperty("userAccountEnabled")
+	private boolean userAccountEnabled;
 	@JsonProperty("askingPosts")
 	private Collection<AskingPost> askingPosts;
 	@JsonProperty("sharingPosts")
@@ -124,36 +124,36 @@ public class User extends BeanObject implements UserDetails, Serializable {
 		this.userRole = userRole;
 	}
 
-	public boolean getAccountNonExpired() {
-		return this.accountNonExpired;
+	public boolean getUserAccountNonExpired() {
+		return this.userAccountNonExpired;
 	}
 	
-	public void setAccountNonExpired(boolean expired) {
-		this.accountNonExpired = expired;
+	public void setUserAccountNonExpired(boolean expired) {
+		this.userAccountNonExpired = expired;
 	}
 	
-	public boolean getAccountNonLocked() {
-		return this.accountNonLocked;
+	public boolean getUserAccountNonLocked() {
+		return this.userAccountNonLocked;
 	}
 	
-	public void setAccountNonLocked(boolean locked) {
-		this.accountNonLocked = locked;
+	public void setUserAccountNonLocked(boolean locked) {
+		this.userAccountNonLocked = locked;
 	}
 	
-	public boolean getCredentialsNonExpired() {
-		return this.credentialsNonExpired;
+	public boolean getUserCredentialsNonExpired() {
+		return this.userCredentialsNonExpired;
 	}
 	
-	public void setCredentialsNonExpired(boolean expired) {
-		this.credentialsNonExpired = expired;
+	public void setUserCredentialsNonExpired(boolean expired) {
+		this.userCredentialsNonExpired = expired;
 	}
 	
-	public boolean getAccountEnabled() {
-		return this.accountEnabled;
+	public boolean getUserAccountEnabled() {
+		return this.userAccountEnabled;
 	}
 	
-	public void setAccountEnabled(boolean enabled) {
-		this.accountEnabled = enabled;
+	public void setUserAccountEnabled(boolean enabled) {
+		this.userAccountEnabled = enabled;
 	}
 	
 	public String getUserContactInfo() {
@@ -268,35 +268,29 @@ public class User extends BeanObject implements UserDetails, Serializable {
 	}
 	
 	@Override
-	@JsonIgnore
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return authorities;
 	}
 
 	@Override
-	@JsonIgnore
 	public boolean isAccountNonExpired() {
-		return getAccountNonExpired();
+		return getUserAccountNonExpired();
 	}
 
 	@Override
-	@JsonIgnore
 	public boolean isAccountNonLocked() {
-		return getAccountNonLocked();
+		return getUserAccountNonLocked();
 	}
 
 	@Override
-	@JsonIgnore
 	public boolean isCredentialsNonExpired() {
-		return getCredentialsNonExpired();
+		return getUserCredentialsNonExpired();
 	}
 
 	@Override
-	@JsonIgnore
 	public boolean isEnabled() {
-		return getAccountEnabled();
+		return getUserAccountEnabled();
 	}
-	
 	
 	@Override
 	public String toString() {
@@ -304,7 +298,6 @@ public class User extends BeanObject implements UserDetails, Serializable {
 	}
 
 	@Override
-	@JsonIgnore
 	public String getPassword() {
 		return getUserPassword();
 	}

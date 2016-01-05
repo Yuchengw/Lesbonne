@@ -70,7 +70,6 @@ public class PlatformUserServiceImpl extends PlatformUserService implements Plat
 	public User createUser(User user) {
 		User newUser = null;
 		try {
-			user.setUserPassword(EncryptionUtil.encryptPassword(user.getPassword()));
 			newUser = getUserRestClient().createUser(user);
 		} catch (Exception e) {
 			logger.debug("there is something wrong when inserting user object" + e.getStackTrace());

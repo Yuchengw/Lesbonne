@@ -18,7 +18,7 @@ public interface UserController {
 
 	public ResponseEntity<String> updateUser(@RequestBody final User user);
 	
-	public ResponseEntity<String> addUser(@RequestBody User user); 
+	public ResponseEntity<User> addUser(@RequestBody User user); 
 
 	public ResponseEntity<Boolean> removeUser(@RequestBody User user);
 }

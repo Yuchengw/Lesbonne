@@ -74,27 +74,31 @@ public class UserControllerImpl implements UserController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value=UserRestURIConstants.CREATE_USER)
-	public ResponseEntity<String> addUser(@RequestBody User user) {
+	public ResponseEntity<User> addUser(@RequestBody User user) {
 		if (user.getUserEmail() == null) {
-			return new ResponseEntity<String>("Email not eligible", HttpStatus.UNPROCESSABLE_ENTITY);
+			return new ResponseEntity<User>(HttpStatus.UNPROCESSABLE_ENTITY);
 		}  
 		
 		if (userProvider.existsByEmail(user.getUserEmail())) {
-			return new ResponseEntity<String>("User already exists", HttpStatus.UNPROCESSABLE_ENTITY);
+			return new ResponseEntity<User>(HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 		
 		if (user.getPassword() == null || user.getPassword().length() <= 6) {
-			return new ResponseEntity<String>("new password too short", HttpStatus.UNPROCESSABLE_ENTITY);
+			return new ResponseEntity<User>(HttpStatus.UNPROCESSABLE_ENTITY);
 		} 
 		
 		final BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder();
-		user.setUserPassword(pwEncoder.encode(user.getPassword()));
-		user.setAccountEnabled(true);
-		user.setAccountNonExpired(true);
-		user.setAccountNonLocked(true);
+		user.setUserPassword(pwEncoder.encode(user.getUserPassword()));
+		user.setUserAccountEnabled(true);
+		user.setUserAccountNonExpired(true);
+		user.setUserAccountNonLocked(true);
 		user.setIsEmailAuthorized(true);
-		userProvider.add(user);
-		return new ResponseEntity<String>("User creation success", HttpStatus.OK);
+		user.setUserCredentialsNonExpired(true);
+		User newUser = userProvider.add(user);
+		if (newUser != null) {
+			return new ResponseEntity<User>(newUser, HttpStatus.OK);
+		} 
+		return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 	@RequestMapping(method=RequestMethod.POST, value=UserRestURIConstants.DELETE_USER)

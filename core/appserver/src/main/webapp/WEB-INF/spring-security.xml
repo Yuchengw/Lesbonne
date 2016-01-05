@@ -15,6 +15,9 @@
 		<custom-filter position="FORM_LOGIN_FILTER" ref="defaultLoginFilter" />
 		<custom-filter position="BASIC_AUTH_FILTER" ref="defaultAuthenticationFilter" />
 	</http>
+	<beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+		<beans:constructor-arg name="strength" value="10" />
+	</beans:bean>
 	<beans:bean id="LesbonneRestAuthenticationEntryPoint" class="com.lesbonne.web.security.LesbonneRestAuthenticationEntryPoint">
 	</beans:bean>
 	<beans:bean id="LesbonneUserDetailsService" class="com.lesbonne.web.security.LesbonneUserDetailsService"/>
@@ -31,6 +34,8 @@
 		<beans:constructor-arg ref="tokenAuthenticationService"/>
 	</beans:bean> 
 	<authentication-manager alias="authenticationManager">
-    	<authentication-provider user-service-ref='LesbonneUserDetailsService'/>
+    	<authentication-provider user-service-ref='LesbonneUserDetailsService'>
+			<password-encoder ref="encoder" />
+    	</authentication-provider>
 	</authentication-manager>
 </beans:beans>

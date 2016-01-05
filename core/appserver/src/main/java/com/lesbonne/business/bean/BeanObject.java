@@ -3,6 +3,8 @@ package com.lesbonne.business.bean;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.codehaus.jackson.annotate.JsonProperty;
+
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.DateSerializer;
 
@@ -17,9 +19,12 @@ public abstract class BeanObject implements Serializable {
 	 */
 	private static final long serialVersionUID = 149762661465164766L;
 	
+	@JsonProperty("id")
 	private String id;
-	private Date createdDate;
-	private Date lastModifiedDate;
+	@JsonProperty("createdTime")
+	private Date createdTime;
+	@JsonProperty("lastModifiedTime")
+	private Date lastModifiedTime;
 	
 	public String getId() {
 		return id;
@@ -30,20 +35,20 @@ public abstract class BeanObject implements Serializable {
 	}
 	
     @JsonSerialize(using=DateSerializer.class)
-	public Date getCreatedDate() {
-		return createdDate;
+	public Date getCreatedTime() {
+		return createdTime;
 	}
     
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
 	}
 	
     @JsonSerialize(using=DateSerializer.class)
-	public Date getLastModifiedDate() {
-		return lastModifiedDate;
+	public Date getLastModifiedTime() {
+		return lastModifiedTime;
 	}
     
-	public void setLastModifiedDate(Date lastModifiedDate) {
-		this.lastModifiedDate = lastModifiedDate;
+	public void setLastModifiedDate(Date lastModifiedTime) {
+		this.lastModifiedTime = lastModifiedTime;
 	}
 }

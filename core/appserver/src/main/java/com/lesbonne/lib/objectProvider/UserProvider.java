@@ -1,5 +1,6 @@
 package com.lesbonne.lib.objectProvider;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lesbonne.business.bean.User;
@@ -13,12 +14,9 @@ import com.lesbonne.lib.platformService.PlatformUserServiceImpl;
 @Service
 public class UserProvider {
 
+	@Autowired
 	private PlatformUserServiceImpl platformUserServiceImpl;
 	
-	public UserProvider() {
-		this.platformUserServiceImpl = new PlatformUserServiceImpl();
-	}
-	// we should hide this, directly use provider's api to get the data for controller
 	public PlatformUserServiceImpl getUserServiceImpl() {
 		return (PlatformUserServiceImpl) this.platformUserServiceImpl;
 	}
@@ -28,10 +26,13 @@ public class UserProvider {
 	}
 	
 	public User get(String email) {
-		return this.platformUserServiceImpl.getUserByEmail(email);
+		return new PlatformUserServiceImpl().getUserByEmail(email);
 	}
 
-	public Boolean remove(int id) {
+	public Boolean remove(String  userId) {
+		if (this.platformUserServiceImpl.existsUserById(userId)) {
+			return this.platformUserServiceImpl.deleteUser(userId);
+		}
 		return false;
 	}
 	
@@ -57,8 +58,7 @@ public class UserProvider {
 	 * @param email
 	 * @return true or false
 	 * */
-	public boolean exists(String email) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean existsByEmail(String email) {
+		return this.platformUserServiceImpl.existsUserByEmail(email);
 	}
 }

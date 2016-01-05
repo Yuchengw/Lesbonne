@@ -17,29 +17,27 @@ import com.lesbonne.user.User;
  * @since 1
  * */
 @Entity
-@Table(name="ORDER")
+@Table(name="LESBONNEORDER")
 public class Order implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 379661088187729287L;
-
 	@Id
-	@Column(name = "ORDERID", columnDefinition="VARCHAR(18) NOT NULL")
+	@Column(name = "ORDERID", columnDefinition="VARCHAR(18)")
 	private String orderId;
+
+	// TODO: need another ID to specify the order target.
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="USERID", referencedColumnName="USERID", insertable=false, updatable=false)
+	@JoinColumn(name="USERID", referencedColumnName = "USERID", insertable=false, updatable=false)
 	private User owner;
 	
-	@Column(name = "ID2", columnDefinition="VARCHAR(18) NOT NULL")
-	private String id2;
+	@Column(name = "CREATEDATE", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP", updatable = false)
+	private String createdDate;
 	
-	@Column(name = "CREATEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP", updatable = false)
-	private String createdTime;
-	
-	@Column(name = "LASTMODIFIEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-	private String lastModifiedTime;
+	@Column(name = "LASTMODIFIEDATE", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+	private String lastModifiedDate;
 
 	public String getOrderId() {
 		return orderId;
@@ -57,23 +55,15 @@ public class Order implements Serializable {
 		this.owner = owner;
 	}
 
-	public String getId2() {
-		return id2;
+	public String getCreatedDate() {
+		return createdDate;
 	}
 
-	public void setId2(String id2) {
-		this.id2 = id2;
+	public String getLastModifiedDate() {
+		return lastModifiedDate;
 	}
 
-	public String getCreatedTime() {
-		return createdTime;
-	}
-
-	public String getLastModifiedTime() {
-		return lastModifiedTime;
-	}
-
-	public void setLastModifiedTime(String lastModifiedTime) {
-		this.lastModifiedTime = lastModifiedTime;
+	public void setLastModifiedTime(String lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
 	}
 }

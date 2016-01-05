@@ -1,4 +1,4 @@
-package com.yummet.main_platform;
+package test.java.com.lesbonne;
 
 //import com.iamhere.cache.CacheManager;
 //import com.iamhere.entities.UserObject;

@@ -1,31 +1,13 @@
 package com.lesbonne.mysqldb;
  
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.data.mongodb.MongoDbFactory;
-//import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
-//import org.springframework.data.mongodb.core.MongoTemplate;
-//import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
-//
-//import com.mongodb.Mongo;
-//import com.mongodb.MongoClient;
 /**
- * This is the java style configuration for Mongotemplate
+ * This is the java style configuration for Lesbonne DB.
  * @author Yucheng
  * @since 1
  * */
 //@Configuration
 public class LesbonneMysqlConfig {
  
-	private static final String MYSQL_NAME = "iamhere";
+	private static final String MYSQL_NAME = "lesbonne";
 	private static final String MYSQL_ADDRESS = "127.0.0.1";
-	
-//	public @Bean MongoDbFactory mongoDbFactory() throws Exception {
-//		return new SimpleMongoDbFactory(new MongoClient(MONGODB_ADDRESS), MONGODB_NAME);
-//	}
-// 
-//	public @Bean MongoTemplate mongoTemplate() throws Exception {
-//		MongoTemplate mongoTemplate = new MongoTemplate(mongoDbFactory());
-//		return mongoTemplate;
-//	}
 }

@@ -18,17 +18,15 @@ public class LesbonneUserDetailsService implements UserDetailsService {
 
 	@Override
 	public final User loadUserByUsername(String userEmail) throws UsernameNotFoundException {
-		final User user = new UserProvider().get(userEmail);
+		final User user = new UserProvider().getUserByEmail(userEmail);
 		if (user == null) {
 			throw new UsernameNotFoundException("user not found");
 		}
-		
 		try {
 			detailsChecker.check(user);
 		} catch (Exception e) {
-			throw new RuntimeException("user is not authenticated.");
+			throw new RuntimeException("user is not authenticated." + e);
 		}
-		
 		return user;
 	}
 }

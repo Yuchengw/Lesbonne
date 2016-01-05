@@ -4,11 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.lesbonne.api.rest.AppRestUserClientImpl;
-import com.lesbonne.api.rest.RestClient;
 import com.lesbonne.business.bean.User;
 import com.lesbonne.system.security.EncryptionUtil;
-import com.lesbonne.util.monitoring.UserControllerPerformanceMonitorInterceptor;
 
 /**
  * @author yucheng
@@ -29,11 +26,21 @@ public class PlatformUserServiceImpl extends PlatformUserService implements Plat
 		User user = null;
 		try {
 			user = getUserRestClient().getUserByEmail(userEmail);
-			if (user == null) {
-			
-			}
 		} catch (Exception e) {
-			logger.debug("Error happens when retriving User object" + e.getStackTrace());
+			logger.debug("Error happens when retriving User object by userEmail" + e);
+		}
+		return user;
+	}
+	
+	/**
+	 * 
+	 * */
+	public User getUserById(String userId) {
+		User user = null;
+		try {
+			user = getUserRestClient().getUserById(userId);
+		} catch (Exception e) {
+			logger.debug("Error happends when retriving User Object by userId" + e);
 		}
 		return user;
 	}
@@ -63,11 +70,8 @@ public class PlatformUserServiceImpl extends PlatformUserService implements Plat
 	public User createUser(User user) {
 		User newUser = null;
 		try {
-//			user.setUserPassword(EncryptionUtil.encryptPassword(user.getPassword()));
+			user.setUserPassword(EncryptionUtil.encryptPassword(user.getPassword()));
 			newUser = getUserRestClient().createUser(user);
-			if (newUser == null) {
-				
-			}
 		} catch (Exception e) {
 			logger.debug("there is something wrong when inserting user object" + e.getStackTrace());
 		}
@@ -92,20 +96,13 @@ public class PlatformUserServiceImpl extends PlatformUserService implements Plat
 	 * 
 	 * */
 	public boolean deleteUser(User u) {
-		User user = null;
+		boolean success = false;
 		try {
-			user = getUserRestClient().deleteUser(u);
+			success = getUserRestClient().deleteUser(u);
 		} catch (Exception e) {
 			throw new RuntimeException("Exception thrown when delete user" + e.getMessage());
 		} 
-		return user != null;
-	}
-	
-	/**
-	 * TODO:
-	 * */
-	public boolean deleteUser(String userId) {
-		return  true;
+		return success;
 	}
 	
 	public boolean existsUserByEmail(String userEmail) {
@@ -113,17 +110,21 @@ public class PlatformUserServiceImpl extends PlatformUserService implements Plat
 		try {
 			exists = getUserRestClient().existsUserByEmail(userEmail);
 		} catch (Exception e) {
-			logger.debug("there is somethign wrong when checking user exists with user email.");
-		} finally {
-			
-		}
+			logger.debug("there is something wrong when checking user exists with user email." + e);
+		} 
 		return exists;
 	}
 	
 	/**
-	 * TODO:
+	 * 
 	 * */
 	public boolean existsUserById(String userId) {
-		return true;
+		boolean exists = false;
+		try {
+			exists = getUserRestClient().existsUserByid(userId);
+		} catch (Exception e) {
+			logger.debug("there is something wrong when checking user exists with user id." + e);
+		}
+		return exists;
 	}
 }

@@ -27,9 +27,6 @@ public abstract class RestClient<INPUT extends Object, OUTPUT extends Object> im
 	private String oauth = null;
 	
 	public RestClient(Class<OUTPUT> expectedType) {
-		if (expectedType == null) {
-			//TODO: 
-		}
 		this.expectedType = expectedType;
 	}
 	

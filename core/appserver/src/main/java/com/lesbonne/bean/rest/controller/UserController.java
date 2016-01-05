@@ -6,14 +6,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.lesbonne.business.bean.User;
 
+/**
+ * @author yucheng
+ * @since 1
+ * */
 public interface UserController {
 	
-	public ResponseEntity<User> getUser(@PathVariable String userId);
+	public ResponseEntity<User> getUserByEmail(@PathVariable String userEmail);
+	
+	public ResponseEntity<User> getUserById(@PathVariable String userId);
 
 	public ResponseEntity<String> updateUser(@RequestBody final User user);
 	
 	public ResponseEntity<String> addUser(@RequestBody User user); 
 
-	public ResponseEntity<String> removeUser(@PathVariable String userId);
-	
+	public ResponseEntity<Boolean> removeUser(@RequestBody User user);
 }

@@ -25,15 +25,20 @@ public class UserProvider {
 		return this.platformUserServiceImpl.createUser(user);
 	}
 	
-	public User get(String email) {
+	public User getUserByEmail(String email) {
 		return new PlatformUserServiceImpl().getUserByEmail(email);
 	}
+	
+	public User getUserById(String id) {
+		return new PlatformUserServiceImpl().getUserById(id);
+	}
 
-	public Boolean remove(String  userId) {
-		if (this.platformUserServiceImpl.existsUserById(userId)) {
-			return this.platformUserServiceImpl.deleteUser(userId);
+	public boolean remove(User  user) {
+		try {
+			return new PlatformUserServiceImpl().deleteUser(user);
+		} catch (Exception e) {
+			return false;
 		}
-		return false;
 	}
 	
 	/**
@@ -59,6 +64,10 @@ public class UserProvider {
 	 * @return true or false
 	 * */
 	public boolean existsByEmail(String email) {
-		return this.platformUserServiceImpl.existsUserByEmail(email);
+		try {
+			return this.platformUserServiceImpl.existsUserByEmail(email);
+		} catch (Exception e) {
+			return false;
+		}
 	}
 }

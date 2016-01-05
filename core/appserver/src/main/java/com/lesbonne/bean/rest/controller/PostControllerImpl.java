@@ -33,7 +33,6 @@ public class PostControllerImpl implements PostController {
 
 	private PostProvider postProvider;
 	private UserProvider userProvider;
-	private Jaxb2Marshaller jaxb2Mashaller;
 	
 	public void setPostProvider(PostProvider postProvider) {
 		this.postProvider = postProvider;
@@ -41,10 +40,6 @@ public class PostControllerImpl implements PostController {
 	
 	public void setUserProvider(UserProvider userProvider) {
 		this.userProvider = userProvider;
-	}
-	
-	public void setJaxb2Mashaller(Jaxb2Marshaller jaxb2Mashaller) {
-		this.jaxb2Mashaller = jaxb2Mashaller;
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value=PostRestURIConstants.GET_POST)
@@ -56,7 +51,7 @@ public class PostControllerImpl implements PostController {
 	public PostList getPosts(@PathVariable final String id, @RequestParam(value="step") final String step,
 			@RequestParam(value="cursor") final String cursor, String body) throws Exception {
 		PostList postList = new PostList();
-		User user = userProvider.get(id);
+		User user = userProvider.getUserByEmail(id);
 		Authentication userContext = SecurityContextHolder.getContext().getAuthentication();
 		if (user == null) {
 			throw new Exception("user object not find: " + userContext.getName());
@@ -74,7 +69,7 @@ public class PostControllerImpl implements PostController {
 			throw new Exception("Post does not exist: " + id);
 		}
 		Authentication userContext = SecurityContextHolder.getContext().getAuthentication();
-		User user = userProvider.get(userContext.getName());
+		User user = userProvider.getUserByEmail(userContext.getName());
 		if (user == null) {
 			throw new Exception("user object not find: " + userContext.getName());
 		}
@@ -87,7 +82,7 @@ public class PostControllerImpl implements PostController {
 	@RequestMapping(method=RequestMethod.POST, value=PostRestURIConstants.CREATE_POST)
 	public Post addPost(@RequestBody String body) throws Exception {
 		Authentication userContext = SecurityContextHolder.getContext().getAuthentication();
-		User user = userProvider.get(userContext.getName());
+		User user = userProvider.getUserByEmail(userContext.getName());
 		if (user == null) {
 			throw new Exception("user object not find: " + userContext.getName());
 		}

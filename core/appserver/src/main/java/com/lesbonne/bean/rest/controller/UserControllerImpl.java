@@ -32,16 +32,27 @@ public class UserControllerImpl implements UserController {
 	 * Get current user, return usercontext via Spring security context
 	 * @return User Bean
 	 * */
-	@RequestMapping(method=RequestMethod.GET, value=UserRestURIConstants.GET_USER)
-	public ResponseEntity<User> getUser(@PathVariable String userEmail) {
+	@RequestMapping(method=RequestMethod.GET, value=UserRestURIConstants.GET_USER_BY_EMAIL)
+	public ResponseEntity<User> getUserByEmail(@PathVariable String userEmail) {
 		User user = null;
 		try {
 			final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 			if (authentication instanceof UserAuthentication) {
 				user = ((UserAuthentication) authentication).getDetails();
 			} else {
-				user = userProvider.get(userEmail);
+				user = userProvider.getUserByEmail(userEmail);
 			} 
+		} catch (Exception e) {
+			return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<User>(user, HttpStatus.OK);
+	}
+	
+	@RequestMapping(method=RequestMethod.GET, value=UserRestURIConstants.GET_USER_BY_ID)
+	public ResponseEntity<User> getUserById(@PathVariable String userId) {
+		User user = null;
+		try {
+			user = userProvider.getUserById(userId);
 		} catch (Exception e) {
 			return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -51,7 +62,7 @@ public class UserControllerImpl implements UserController {
 	@RequestMapping(method=RequestMethod.PUT, value=UserRestURIConstants.UPDATE_USER)
 	public ResponseEntity<String> updateUser(@RequestBody User user) {
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		final User currentUser = userProvider.get(authentication.getName());
+		final User currentUser = userProvider.getUserByEmail(authentication.getName());
 		
 		final BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder();
 		if (!pwEncoder.matches(user.getPassword(), currentUser.getPassword())) {
@@ -76,8 +87,8 @@ public class UserControllerImpl implements UserController {
 			return new ResponseEntity<String>("new password too short", HttpStatus.UNPROCESSABLE_ENTITY);
 		} 
 		
-//		final BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder();
-//		user.setUserPassword(pwEncoder.encode(user.getPassword()));
+		final BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder();
+		user.setUserPassword(pwEncoder.encode(user.getPassword()));
 		user.setAccountEnabled(true);
 		user.setAccountNonExpired(true);
 		user.setAccountNonLocked(true);
@@ -85,11 +96,13 @@ public class UserControllerImpl implements UserController {
 		userProvider.add(user);
 		return new ResponseEntity<String>("User creation success", HttpStatus.OK);
 	}
-	
-	@RequestMapping(method=RequestMethod.DELETE, value=UserRestURIConstants.DELETE_USER)
-	public ResponseEntity<String> removeUser(@PathVariable String userId) {
-		userProvider.remove(userId);
-		return new ResponseEntity<String>("User Deleted successful", HttpStatus.OK);
-	}
 
+	@RequestMapping(method=RequestMethod.POST, value=UserRestURIConstants.DELETE_USER)
+	public ResponseEntity<Boolean> removeUser(@RequestBody User user) {
+		if (userProvider.remove(user)) {
+			return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Boolean>(false, HttpStatus.FORBIDDEN);
+		}
+	}
 }

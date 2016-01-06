@@ -1,0 +1,319 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Form Style
+ * label, input(text, password, radio button, checkbox), select, textarea, button
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * /
+/*
+ * Label
+ */
+label {
+  cursor: pointer;
+  color: $gray-10;
+}
+
+/*
+ * General
+ */
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+  font-size: $form-font-size;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  outline: none;
+  -webkit-appearance: none;
+  @include border-radius(4px);
+}
+
+input[type = "text"],
+input[type = "password"],
+input[type = "search"],
+textarea {
+  width: 100%;
+  border: 1px solid $gray-70;
+  color: $gray-10;
+
+  &:disabled {
+    background: $gray-70;
+    opacity: 0.3;
+  }
+}
+
+input[type="date"] {
+  width: 100%;
+}
+
+input[type = "text"],
+input[type = "password"],
+input[type = "date"],
+input[type = "search"] {
+  height: 50px;
+  max-width: $text-input-mobile-max-width;
+  padding: 0 10px;
+}
+
+/* hides ie10+ default close/password icons */
+input[type="text"]::-ms-clear,
+input[type="password"]::-ms-reveal {
+  width: 0;
+  height: 0;
+}
+
+textarea {
+  margin-top: 10px;
+  padding: 10px;
+
+  &:disabled,
+  &:read-only {
+    background: $gray-70;
+    opacity: 0.3;
+  }
+}
+
+input[type = "text"].error,
+input[type = "password"].error,
+textarea.error {
+  color: $gray-10;
+  border-color: $red-00;
+}
+
+input[type = "text"].short-input,
+input[type = "password"].short-input {
+  display: inline-block;
+  width: $short-input-width;
+  padding: 0 5px;
+}
+
+input[type = "text"].middle-input,
+input[type = "password"].middle-input {
+  padding: 0 10px;
+  width: $middle-input-width;
+}
+
+/*
+ * Radio Button
+ * source: http://www.sitepoint.com/replacing-radio-buttons-without-replacing-radio-buttons/
+ */
+input[type = "radio"] {
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+input[type = "radio"] + label {
+  display: table;
+  color: inherit;
+}
+
+input[type = "radio"] + label:before {
+  display: inline-block;
+  content: '';
+  width: 10px;
+  height: 10px;
+  vertical-align: top;
+  margin: 2px 15px 0 2px;
+  border: 3px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px $gray-70;
+}
+
+input[type = "radio"]:checked + label:before {
+  background: $turquoise-00;
+  box-shadow: 0 0 0 1px $gray-50;
+}
+
+input[type = "radio"]:hover + label:before,
+input[type = "radio"] + label:before:hover {
+  box-shadow: 0 0 0 1px $gray-50;
+}
+
+input[type = "radio"]:checked:hover + label:before,
+input[type = "radio"]:checked + label:before:hover {
+  background: $turquoise-50;
+  box-shadow: 0 0 0 1px $gray-70;
+}
+
+input[type = "radio"]:disabled + label:before {
+  background: $gray-90;
+  border-color: $gray-90;
+  box-shadow: 0 0 0 1px $gray-70;
+}
+
+input[type = "radio"]:checked:disabled + label:before {
+  background: $turquoise-50;
+  border-color: $gray-70;
+}
+
+/*------Checkbox------*/
+input[type = "checkbox"] {
+  display: none;
+}
+
+input[type = "checkbox"] + label:before {
+  display: table-cell;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 0;
+  overflow: hidden;
+  float: left;
+  background: white;
+  margin-right: 10px;
+  @include box-sizing(border-box);
+}
+
+input[type = "checkbox"] + label span,
+input[type = "radio"] + label span {
+  display: table-cell;
+  vertical-align: middle;
+
+  span.inline {
+    display: inline;
+  }
+}
+
+input[type = "checkbox"] + label:before {
+  content: "";
+  color: $gray-30;
+  font-family: 'icomoon';
+  text-align: center;
+  vertical-align: middle;
+}
+
+input[type = "checkbox"] + label:before {
+  padding-left: 1px;
+  margin-top: 2px;
+  width: 14px;
+  height: 14px;
+  font-size: 10px;
+  border: 1px solid $gray-70;
+  @include border-radius(2px);
+}
+
+input[type = "checkbox"].small + label:before {
+  margin-top: 0;
+}
+
+input[type = "checkbox"]:checked + label:before {
+  content: "\e90a";
+  background: $gray-70;
+}
+
+input[type = "checkbox"].active + label:before {
+  content: "\e800";
+  background: $gray-70;
+}
+
+input[type = "checkbox"]:disabled + label,
+input[type = "radio"]:disabled + label {
+  color: $gray-70;
+}
+
+input[type = "checkbox"]:disabled + label:before {
+  color: $gray-70;
+  background: $gray-90;
+}
+
+input[type = "checkbox"]:hover + label:before,
+input[type = "checkbox"] + label:hover:before {
+  background: $gray-90;
+}
+
+/*------Special Checkbox: Toggle------*/
+input[type = "checkbox"].toggle + label:before {
+  padding-left: 1px;
+  width: 35px;
+  height: 18px;
+  font-size: 10px;
+  content:'';
+  background: $gray-50;
+  border: 0;
+  margin: 0;
+  @include border-radius(9px);
+  @include transition(all, 0.1s, ease-out);
+}
+
+input[type = "checkbox"].toggle + label span.toggle {
+  display: inline-block;
+  text-indent: -20000px;
+  position: absolute;
+  left: 1px;
+  top: 1px;
+  height: 16px;
+  width: 16px;
+  background: white;
+  @include border-radius(8px);
+  @include transition(all, 0.1s, ease-out);
+}
+
+input[type = "checkbox"].toggle:checked + label:before {
+  background: $turquoise-00;
+}
+
+input[type = "checkbox"].toggle:disabled + label:before {
+  background: $gray-90;
+}
+
+input[type = "checkbox"].toggle:checked + label span.toggle {
+  left: 18px;
+}
+
+
+@media only screen and ( min-width: $tablet-large ) {
+
+  input[type='text'], input[type='password'] {
+    display: block;
+    max-width: $text-input-desk-max-width;
+  }
+}
+
+
+
+/*
+ * Normalize Browser Default
+ */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+  border-color: $gray-30;
+}
+
+button::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner {
+  padding: 0;
+  border: 0
+}
+
+input[type='date'] {
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    display: none;
+    margin: 0;
+  }
+
+  &::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0px;
+    left: 85px;
+    width: 30px;
+    height: 9px;
+    padding: 8px 8px;
+    opacity: 0;
+  }
+}
+
+::-webkit-input-placeholder,
+:-moz-placeholder, /*Firefox 18- */
+::-moz-placeholder, /* Firefox 19+ */
+:-ms-input-placeholder {
+  color: $dark-green-00;
+}

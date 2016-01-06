@@ -1,0 +1,113 @@
+/*
+ * Color
+ * All the colors we are using on the site
+ */
+
+/********Gray**********/
+$gray-10: #1d1d1d;
+$gray-30: #333333;
+$gray-40: #4c4c4c;
+$gray-50: #a0aab4;
+$gray-70: #d2d7dc;
+$gray-90: #e6ebf0;
+$gray-100: #e1dede;
+$gray-110: #f1f1f1;
+
+/********Green********/
+$green-00: #31b75e;
+
+
+/********Dark Green********/
+$dark-green-00: #435b61;
+
+/********Gold********/
+$gold-00: #f9bf54;
+
+
+/********Red********/
+$red-00: #d1394d;
+$red-50: #e66878;
+
+/********Blue*********/
+$blue-00: #005C70;
+
+
+/********Navy*********/
+$navy-00: #10123e;
+
+
+/********Turquoise*********/
+$turquoise-00: #2db4d2;
+$turquoise-30: #70C9C5;
+$turquoise-50:#81d2e4;
+
+
+/********Purple*********/
+$purple-00: #7397d4;
+
+
+/********Social*********/
+$facebook: #3c5b9b;
+$googleplus: #d62120;
+
+
+/*
+ * Breakpoints ----- Layout
+ * The window width that will potentially change the way we layout things
+ */
+//$mobile-small: 240px;
+$mobile-large: 320px;
+$tablet-small: 480px;
+$tablet-large: 768px;
+$screen-small: 1024px;
+$screen-large: 1280px;
+
+
+
+
+
+/*
+ * Breakpoints ----- Component
+ * The window width that will potentially change the way we layout component
+ */
+$date-picker-breakpoint: 410px;   //It will change the popup calender layout
+$color-picker-breakpoint: 320px;  //It will change the popup arrow position
+
+
+
+/*
+ * Dimensions
+ * The height or width of a type of element
+ */
+/********Form*********/
+$checkbox-column-width: 30px;
+
+$short-input-width: 100px;
+$middle-input-width: 210px;
+
+$text-input-mobile-max-width: 440px;
+$text-input-desk-max-width: 400px;
+
+$button-set-width: 320px;
+
+
+
+
+
+/*
+ * Typography
+ * Variables that's used to set typography styles
+ */
+/********Font Family*********/
+$base-font-family:Helvetica, Verdana, Arial, sans-serif;
+
+
+/********Font Size*********/
+$base-font-size: 18px;
+$form-font-size: 16px;
+$small-font-size: 14px;
+
+
+$button-font-size: 20px;
+/********Line Height*********/
+$base-line-height: 1.25;

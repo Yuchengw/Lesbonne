@@ -1,0 +1,111 @@
+.btn,
+button,
+input[type='reset'],
+input[type='submit'],
+input[type='button']{
+  display: table-cell;
+  font-family: $base-font-family;
+  font-size: $button-font-size;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: uppercase;
+  width: 100%;
+  height: 50px;
+  line-height: 1;
+  color: white;
+  background: $green-00;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  @include border-radius(4px);
+
+  &:hover,
+  &.loading {
+    background: darken($green-00, 5);
+    color: white;
+  }
+
+  &:disabled,
+  &.disabled {
+    cursor: auto;
+    background: $gray-70;
+  }
+
+  &.navy-btn {
+    background: $navy-00;
+
+    &:hover,
+    &.loading {
+      background: darken($navy-00, 5);
+    }
+  }
+}
+
+
+.btn-social {
+  width: 158px;
+  height: 40px;
+  font-size: 16px;
+  text-transform: none;
+
+  @include border-radius(40px);
+
+  &.btn-facebook {
+    background: $facebook;
+  }
+
+  &.btn-googleplus {
+    background: $googleplus;
+  }
+}
+
+.icon-edit {
+  color: $gray-50;
+
+  &:hover,
+  &.active {
+    color: $gray-30;
+  }
+}
+
+// style a button like a link for semantic markup purposes
+button.link {
+  background: transparent;
+  color: $turquoise-00;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  font-weight: 400;
+  font-size: inherit;
+  text-align: left;
+  @include border-radius(0);
+  display: inline;
+  width: auto;
+
+  &:hover {
+    color: $turquoise-50;
+  }
+
+  &.unit-height {
+    height: auto;
+    padding-bottom: 5px;
+  }
+}
+
+@media only screen and ( min-width: $tablet-large ) {
+  .btn,
+  button,
+  input[type='reset'],
+  input[type='submit'],
+  input[type='button'] {
+    width: 330px;
+
+
+    &.full-width {
+      width: 100%;
+    }
+  }
+}

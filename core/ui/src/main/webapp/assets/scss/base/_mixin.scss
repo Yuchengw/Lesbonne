@@ -1,0 +1,138 @@
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin border-radius-top-left($radius) {
+  -webkit-border-top-left-radius: $radius;
+  -moz-border-radius-topleft: $radius;
+  border-top-left-radius: $radius;
+}
+
+@mixin border-radius-top-right($radius) {
+  -webkit-border-top-right-radius: $radius;
+  -moz-border-radius-topright: $radius;
+  border-top-right-radius: $radius;
+}
+
+@mixin border-radius-bottom-left($radius) {
+  -webkit-border-bottom-left-radius: $radius;
+  -moz-border-radius-bottomleft: $radius;
+  border-bottom-left-radius: $radius;
+}
+
+
+@mixin border-radius-bottom-right($radius) {
+  -webkit-border-bottom-right-radius: $radius;
+  -moz-border-radius-bottomright: $radius;
+  border-bottom-right-radius: $radius;
+}
+
+@mixin padding-vertical($padding){
+  padding-top: $padding;
+  padding-bottom: $padding;
+}
+
+@mixin padding-horizontal($padding){
+  padding-left: $padding;
+  padding-right: $padding;
+}
+
+@mixin margin-vertical($margin){
+  margin-top: $margin;
+  margin-bottom: $margin;
+}
+
+@mixin margin-horizontal($margin){
+  margin-left: $margin;
+  margin-right: $margin;
+}
+
+@mixin box-shadow($shadow){
+  -webkit-box-shadow: 0 0 $shadow rgba(0,0,0,0.1);
+  -moz-box-shadow:  0 0 $shadow rgba(0,0,0,0.1);
+  box-shadow: 0 0 $shadow rgba(0,0,0,0.1);
+}
+
+
+@mixin box-sizing($box-sizing){
+  -webkit-box-sizing: $box-sizing;
+  -moz-box-sizing: $box-sizing;
+  -ms-box-sizing: $box-sizing;
+  box-sizing: $box-sizing;
+}
+
+/* $border1 is the height of the arrow, $border2 is width/2 of the arrow */
+@mixin dropdown-arrow($bordersize1, $bordersize2, $color){
+  border-color: $color  transparent;
+  border-style: solid;
+  border-width: $bordersize1 $bordersize2 0;
+  width: 0;
+  height: 0;
+  display: inline-block;
+  line-height: 0;
+  position: absolute;
+  top: 50%;
+  margin-top: -$bordersize1/2;
+  content: "";
+}
+
+/* $border1 is the height of the arrow, $border2 is width/2 of the arrow */
+@mixin tooltip-arrow($bordersize1, $bordersize2, $color){
+  border-color: $color  transparent;
+  border-style: solid;
+  border-width: 0 $bordersize2 $bordersize1;
+  width: 0;
+  height: 0;
+  display: inline-block;
+  line-height: 0;
+  position: absolute;
+  top: 0;
+  margin-top: -$bordersize1;
+  left: 50%;
+  margin-left: -$bordersize2;
+  content: "";
+}
+
+/* $border1 is the height of the arrow, $border2 is width/2 of the arrow */
+@mixin tooltip-arrow-bottom($bordersize1, $bordersize2, $color){
+  border-color: $color  transparent;
+  border-style: solid;
+  border-width:  $bordersize1 $bordersize2 0;
+  width: 0;
+  height: 0;
+  display: inline-block;
+  line-height: 0;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: -$bordersize1;
+  left: 50%;
+  margin-left: -$bordersize2;
+  content: "";
+}
+
+@mixin icon-circle($circumference, $background, $color, $border) {
+  @include border-radius(50%);
+  width: $circumference;
+  height: $circumference;
+  background: $background;
+  color: $color;
+  text-align: center;
+  border: $border;
+}
+
+@mixin transition($effect, $duration, $animation-type) {
+  -webkit-transition: $effect $duration $animation-type;
+  -moz-transition: $effect $duration $animation-type;
+  -ms-transition: $effect $duration $animation-type;
+  transition: $effect $duration $animation-type;
+}
+
+@mixin backgroundGradient($direction, $from, $to) {
+  background: -webkit-linear-gradient($direction, $from, $to);
+  background: -moz-linear-gradient($direction, $from, $to);
+  background: -ms-linear-gradient($direction, $from, $to);
+  background: linear-gradient(to $direction, $from, $to);
+}

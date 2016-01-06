@@ -1,0 +1,140 @@
+/*
+ * Base styles
+ */
+html {
+  height: 100%;
+}
+
+body {
+  background: white;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+  color: $gray-30;
+  text-align: center;
+  min-height: 100%;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/*
+ * h1
+ * Default h1 styles. Header for summary pages.
+ */
+
+h1 {
+  margin-bottom: 15px;
+  font-size: 24px;
+  font-weight: 600;
+  color: $gray-10;
+  text-transform: uppercase;
+}
+
+/*
+ * h2
+ * Default h2 styles. Default 1st level heading.
+ * Used for headers with borders
+ */
+
+h2 {
+  font-size: 22px;
+  color: $gray-10;
+}
+
+/*
+ * h3
+ * Default h3 styles. Used as second level heading.
+ */
+
+h3 {
+  font-size: 34px;
+  font-weight: 400;
+}
+
+/*
+ * h4
+ * Default h4 styles. Used as third level heading.
+ */
+
+h4 {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+/*
+ * h5
+ * Default h5 styles.
+ */
+
+h5 {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+/*
+ * h6
+ * Default h6 styles. Used for subnavigation headers.
+ */
+
+h6 {
+  font-size: 15px;
+}
+
+/*
+ * p
+ * Default p styles. Inherits default body font size.
+ */
+
+p {
+  margin-bottom: 1em;
+  white-space: normal;
+}
+
+/*
+ * a
+ * Default link styles. No underlined links.
+ */
+
+a {
+  color: $turquoise-00;
+  text-decoration: none;
+  cursor: pointer;
+  target-new: tab;
+
+  &:hover,
+  &:active {
+    color: $turquoise-50;
+  }
+}
+
+/*
+ * ul
+ * Default list styles. No bullet points.
+ */
+
+ul {
+  list-style-type: none;
+}
+
+/*
+ * dialog
+ * Default html5 dialog styles.
+ */
+
+dialog {
+  display: none;
+  position: relative;
+  right: auto;
+  left: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  &[open] {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: $tablet-large) {
+
+}

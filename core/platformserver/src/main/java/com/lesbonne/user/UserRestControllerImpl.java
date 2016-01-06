@@ -22,17 +22,18 @@ public class UserRestControllerImpl implements UserRestController {
 	@Autowired
 	private UserService userServiceImpl;
 	
-	@RequestMapping(method=RequestMethod.GET, value=UserRestURIConstants.EXISTS_USER_BY_EMAIL)
-	public ResponseEntity<Boolean> existsUserByEmail(@PathVariable String userEmail) {
-		Boolean exists = false;
-		try {
-			exists = userServiceImpl.existsUserByEmail(userEmail);
-		} catch (Exception e) {
-			return new ResponseEntity<Boolean>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		return new ResponseEntity<Boolean>(exists, HttpStatus.OK);
-	}
+//	@RequestMapping(method=RequestMethod.GET, value=UserRestURIConstants.EXISTS_USER_BY_EMAIL)
+//	public ResponseEntity<Boolean> existsUserByEmail(@PathVariable String userEmail) {
+//		Boolean exists = false;
+//		try {
+//			exists = userServiceImpl.existsUserByEmail(userEmail);
+//		} catch (Exception e) {
+//			return new ResponseEntity<Boolean>(HttpStatus.INTERNAL_SERVER_ERROR);
+//		}
+//		return new ResponseEntity<Boolean>(exists, HttpStatus.OK);
+//	}
 	
+	@Override
 	@RequestMapping(method=RequestMethod.GET, value=UserRestURIConstants.GET_USER_BY_EMAIL)
 	public ResponseEntity<User> getUserByEmail(@PathVariable String userEmail) {
 		User user = null;

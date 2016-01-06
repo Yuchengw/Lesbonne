@@ -227,5 +227,11 @@ public class User implements Serializable {
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
 	}
+	
+	public String toString() {
+		return "{"
+				+ "\"userEmail\":\"" + getUserEmail() + "\","
+						+ "\"userPassword\":\"" + getUserPassword() + "\"}";
+	}
 }
 

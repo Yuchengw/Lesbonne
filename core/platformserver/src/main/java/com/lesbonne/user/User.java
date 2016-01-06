@@ -50,17 +50,17 @@ public class User implements Serializable {
 	@Column(name = "ISEMAILAUTHORIZED", columnDefinition = "BOOLEAN")
 	private Boolean isEmailAuthorized;
 	
-	@Column(name = "ACCOUNTNONEXPIRED", columnDefinition = "BOOLEAN")
-	private Boolean accountNonExpired;
+	@Column(name = "USERACCOUNTNONEXPIRED", columnDefinition = "BOOLEAN")
+	private Boolean userAccountNonExpired;
 	
-	@Column(name = "ACCOUNTNONLOCKED",  columnDefinition = "BOOLEAN")
-	private Boolean accountNonLocked;
+	@Column(name = "USERACCOUNTNONLOCKED",  columnDefinition = "BOOLEAN")
+	private Boolean userAccountNonLocked;
 	
-	@Column(name = "ACCOUNTENABLED", columnDefinition = "BOOLEAN")
-	private Boolean accountEnabled;
+	@Column(name = "USERACCOUNTENABLED", columnDefinition = "BOOLEAN")
+	private Boolean userAccountEnabled;
 	
-	@Column(name = "CREDENTIALSNONEXPIRED", columnDefinition = "BOOLEAN")
-	private Boolean credentialsNonExpired;
+	@Column(name = "USERCREDENTIALSNONEXPIRED", columnDefinition = "BOOLEAN")
+	private Boolean userCredentialsNonExpired;
 	
 	@Column(name = "USERCONTACTINFO", columnDefinition = "MEDIUMTEXT")
 	private String userContactInfo;
@@ -108,36 +108,36 @@ public class User implements Serializable {
 		UserRole = userType;
 	}
 
-	public Boolean getAccountNonExpired() {
-		return accountNonExpired;
+	public Boolean getUserAccountNonExpired() {
+		return userAccountNonExpired;
 	}
 
-	public void setAccountNonExpired(Boolean accountNonExpired) {
-		this.accountNonExpired = accountNonExpired;
+	public void setUserAccountNonExpired(Boolean accountNonExpired) {
+		this.userAccountNonExpired = accountNonExpired;
 	}
 
-	public Boolean getAccountNonLocked() {
-		return accountNonLocked;
+	public Boolean getUserAccountNonLocked() {
+		return userAccountNonLocked;
 	}
 
-	public void setAccountNonLocked(Boolean accountNonLocked) {
-		this.accountNonLocked = accountNonLocked;
+	public void setUserAccountNonLocked(Boolean accountNonLocked) {
+		this.userAccountNonLocked = accountNonLocked;
 	}
 
-	public Boolean getAccountEnabled() {
-		return accountEnabled;
+	public Boolean getUserAccountEnabled() {
+		return userAccountEnabled;
 	}
 
-	public void setAccountEnabled(Boolean accountEnabled) {
-		this.accountEnabled = accountEnabled;
+	public void setUserAccountEnabled(Boolean accountEnabled) {
+		this.userAccountEnabled = accountEnabled;
 	}
 
-	public Boolean getCredentialsNonExpired() {
-		return credentialsNonExpired;
+	public Boolean getUserCredentialsNonExpired() {
+		return userCredentialsNonExpired;
 	}
 
-	public void setCredentialsNonExpired(Boolean credentialsNonExpired) {
-		this.credentialsNonExpired = credentialsNonExpired;
+	public void setUserCredentialsNonExpired(Boolean credentialsNonExpired) {
+		this.userCredentialsNonExpired = credentialsNonExpired;
 	}
 
 	public void setUserRole(int userRole) {

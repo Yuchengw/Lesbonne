@@ -1,0 +1,43 @@
+/*
+ * Base
+ * Initial settings. Resets, element styles, variables, mixins
+ */
+
+@import "base/reset";
+@import "base/variable";
+@import "base/mixin";
+@import "base/default";
+@import "base/formElement";
+@import "base/btn";
+
+/*
+ * Vendor
+ * Vendored assets.
+ */
+
+/*
+ * Layout
+ * Reusable block of code that comprise page styles
+ */
+@import "layout/basic";
+@import "layout/nav";
+
+/*
+ * Helpers
+ * Classes not specifically related to one element
+ */
+
+@import "helper/float";
+@import "helper/space";
+
+/*
+ * Components
+ * Small standalone blocks of reusable code
+ */
+
+/*
+ * Page
+ * Page specific styles
+ */
+
+@import "page/homepage";

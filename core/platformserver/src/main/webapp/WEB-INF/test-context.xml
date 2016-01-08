@@ -18,5 +18,6 @@
     http://www.mockito.org/spring/mockito 
     http://www.mockito.org/spring/mockito.xsd">
     <bean id="userService" class="org.mockito.Mockito" factory-method="mock">
+    	<constructor-arg value="com.lesbonne.user.UserService"/>
 	</bean>
 </beans>

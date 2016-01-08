@@ -1,4 +1,5 @@
-# Lesbonne ![ScreenShot](https://circleci.com/gh/Yuchengw/Lesbonne.svg?style=shield&circle-token=0fdc76abb916186ee823d87f74fed83ff7f1d109)
+# Lesbonne 
+Master Branch: [![Status of Master Branch on CircleCI](https://circleci.com/gh/Yuchengw/Lesbonne.svg?style=shield&circle-token=0fdc76abb916186ee823d87f74fed83ff7f1d109)]
 
 [Master](https://github.com/Yuchengw/Lesbonne) for development sandbox.
 

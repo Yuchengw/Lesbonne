@@ -72,6 +72,6 @@ public class UserControllerTest {
         then().
         statusCode (HttpServletResponse.SC_OK).
         contentType ("application/json").
-        body(equalTo("true"));
+        body(equalTo("false"));
     }
 }

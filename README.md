@@ -1,6 +1,7 @@
 # Lesbonne 
+World's first Food Cloud Platform.
 
-Master Branch: [![Status](https://circleci.com/gh/Yuchengw/Lesbonne.svg?style=shield&circle-token=0fdc76abb916186ee823d87f74fed83ff7f1d109)](https://circleci.com/gh/Yuchengw/Lesbonne)
+Master Branch: [![Status](https://circleci.com/gh/Yuchengw/Lesbonne.svg?style=shield&circle-token=9ff556dd8b3a95262efeb7e0d43003caf341055a)](https://circleci.com/gh/Yuchengw/Lesbonne)
 
 [Master](https://github.com/Yuchengw/Lesbonne) for development sandbox.
 

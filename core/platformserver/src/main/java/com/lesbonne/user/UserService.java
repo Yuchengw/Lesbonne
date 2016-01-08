@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
  * @author yucheng
  * @since 1
  * */
-@Service
 public interface UserService {
 	
 	void persistUser(User user);

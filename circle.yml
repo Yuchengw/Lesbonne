@@ -47,9 +47,9 @@ machine:
   #   - "~/custom_2" # relative to the user's home directory
 
 ## Customize database setup
-database:
-  override:
-    - mysql -u root
+# database:
+#   override:
+#     - mysql -u root
 
 ## Customize test commands
 test:

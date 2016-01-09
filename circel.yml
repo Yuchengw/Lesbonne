@@ -1,3 +1,7 @@
+# Add build sub-directory
+general:
+  build_dir: core/platformserver
+    
 ## Customize the test machine
 machine:
 
@@ -10,10 +14,10 @@ machine:
       oraclejdk7
 
   # Override /etc/hosts
-  hosts:
-    circlehost: 127.0.0.1
-    dev.lesbonne.com: 127.0.0.1
-
+  # hosts:
+  #   circlehost: 127.0.0.1
+  #   dev.lesbonne.com: 127.0.0.1
+  
   # Add some environment variables
   # environment:
   #   CIRCLE_ENV: test

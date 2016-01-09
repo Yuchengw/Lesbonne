@@ -49,7 +49,7 @@ machine:
 ## Customize database setup
 database:
   override:
-    ./mysql -uroot -plesbonne
+    - mysql -uroot -plesbonne
 
 ## Customize test commands
 test:

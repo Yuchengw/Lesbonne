@@ -16,7 +16,6 @@
 	http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 	<!-- ===========================Import platform xml configure============================= -->
 	<mvc:annotation-driven />
-	<mvc:resources mapping="/rs/**" location="/resources/" />
 	<mvc:resources mapping="/vw/**" location="/views/" />
 	<mvc:resources mapping="/as/**" location="/assets/" />
 	<mvc:default-servlet-handler />

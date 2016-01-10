@@ -30,7 +30,7 @@ help:
 ## install dependencies
 install:
 	# ui install
-	npm install react --save
+	npm install
 
 ## start webpack dev server
 serve_packs:

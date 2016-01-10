@@ -265,7 +265,13 @@
       		<artifactId>springockito-annotations</artifactId>
       	    <version>1.0.9</version>
             <scope>test</scope>
-        </dependency>		
+        </dependency>
+        <!-- Elsatic Search -->
+        <dependency>
+			<groupId>org.elasticsearch</groupId>
+			<artifactId>elasticsearch</artifactId>
+			<version>2.1.1</version>
+		</dependency>	
 	</dependencies>
 	<build>
       <finalName>platform</finalName>

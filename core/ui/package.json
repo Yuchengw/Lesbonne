@@ -1,0 +1,21 @@
+{
+	"name": "ui-server-frontend",
+	"verson": "1.0.0",
+	"description": "The front end dependencies for the Lesbonne UI server",
+	"dependencies": {
+		"webpack": "^1.12.9"
+		"webpack-dev-server": "^1.14.0",
+		"sinon": "^1.17.2"
+	},
+	"devDependencies": {
+		"react": "^0.13.3"
+	},
+	"scripts": {
+		"test": "testem",
+		"test-ci": "testem ci",
+		"dev-pack": "cd src/main/webapp/assets &&  webpack -d --bail",
+		"dev-pack-watch": "cd src/main/webapp/assets && webpack -d --watch",
+		"prod-pack": "cd src/main/webapp/assets && BUILD=true webpack -d --bail"
+	},
+	"author": "Lesbonne Yucheng"
+}

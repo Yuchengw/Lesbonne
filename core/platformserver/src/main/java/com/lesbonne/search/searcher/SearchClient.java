@@ -8,4 +8,5 @@ public interface SearchClient {
 	final String indexName = "lesbonne";
 	
 	SearchHits search(SearchCriteria rule) throws IOException;
+	void close();
 }

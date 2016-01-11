@@ -11,7 +11,6 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.node.Node;
 import org.elasticsearch.node.NodeBuilder;
-import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 
 public class SearchClientImpl implements SearchClient {
@@ -38,7 +37,7 @@ public class SearchClientImpl implements SearchClient {
                 .setSearchType(SearchType.QUERY_AND_FETCH);
         
         for (Entry<String, String> entry : rule.getFieldQueries().entrySet()) {
-        	request.setQuery(QueryBuilders.queryStringQuery(entry.getValue()));
+        	request.setQuery(QueryBuilders.wildcardQuery(entry.getKey(), String.format("*%s*", entry.getValue())));
         }
         
         SearchResponse response = request.setFrom(rule.getStart()).setSize(rule.getEnd()).setExplain(true)
@@ -47,5 +46,9 @@ public class SearchClientImpl implements SearchClient {
 		
         return response.getHits();
 	}
-
+	
+	@Override
+	public void close() {
+		this.client.close();
+	}
 }

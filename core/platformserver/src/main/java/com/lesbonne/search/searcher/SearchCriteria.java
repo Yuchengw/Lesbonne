@@ -7,17 +7,17 @@ public class SearchCriteria {
 	private final String type;
 	private final int start;
 	private final int end;
-	private final Map<String, String> fieldQueries;
+	private final Map<String, Object> fieldQueries;
 	
 	public SearchCriteria(String type, int start, int end) {
 		this.type = type;
 		this.start = start;
 		this.end = end;
-		this.fieldQueries = new HashMap<String, String>();
+		this.fieldQueries = new HashMap<String, Object>();
 	}
 	
-	public void addFieldQuery(String field, String keywords) {
-		this.fieldQueries.put(field, keywords);
+	public void addFieldQuery(String field, Object keyword) {
+		this.fieldQueries.put(field, keyword);
 	}
 	
 	public String getType() {
@@ -32,7 +32,7 @@ public class SearchCriteria {
 		return this.end;
 	}
 	
-	public Map<String, String> getFieldQueries() {
+	public Map<String, Object> getFieldQueries() {
 		return this.fieldQueries;
 	}
 	

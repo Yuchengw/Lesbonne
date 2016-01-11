@@ -1,5 +1,9 @@
 package com.lesbonne.search.searcher;
 
-public class UserSearcher extends EntitySearcherImpl {
+import java.util.List;
+import java.util.Map;
 
+public interface UserSearcher {
+	
+	List<Map<String, Object>> searchUserEmail(String keyword, int start, int end) throws Exception;
 }

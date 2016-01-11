@@ -233,7 +233,7 @@ public class User implements EntityBean, Serializable {
 	
 	@Override
 	public Map<String, Object> getIndexedColumns() {
-		Map<String, Object> searchableColumns = new HashMap<String, Object>();
+		Map<String, String> searchableColumns = new HashMap<String, Object>();
 		searchableColumns.put("email", getUserEmail());
 		return searchableColumns;
 	}

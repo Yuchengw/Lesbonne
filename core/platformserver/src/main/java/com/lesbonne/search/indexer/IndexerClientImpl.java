@@ -52,7 +52,7 @@ public class IndexerClientImpl implements IndexerClient {
 	public UpdateResponse updateIndex(String type, EntityBean entity) throws Exception {
 		XContentBuilder builder = jsonBuilder().startObject();
 		
-		for (Entry<String, Object> entry : entity.getIndexedColumns().entrySet()) {
+		for (Entry<String, String> entry : entity.getIndexedColumns().entrySet()) {
 			builder.field(entry.getKey(), entry.getValue());
 		}
         builder.endObject();

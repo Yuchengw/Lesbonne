@@ -1,20 +1,18 @@
 package com.lesbonne.user;
 
-import org.springframework.stereotype.Service;
-
 /**
  * @author yucheng
  * @since 1
  * */
 public interface UserService {
 	
-	void persistUser(User user) throws Exception;
+	void persistUser(User user);
 	
 	User getUserByEmail(String userEmail);
 	
 	User getUserById(String userId);
 	
-	User updateUser(User user) throws Exception;
+	User updateUser(User user);
 	
 	void deleteUser(User user);
 	

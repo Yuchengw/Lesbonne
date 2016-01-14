@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	@Transactional
-	public void persistUser(User user) throws Exception{
+	public void persistUser(User user){
 		userDAO.persistUser(user);
 		
 		//TODO - move this to async job
@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	@Transactional
-	public User updateUser(User user) throws Exception{
+	public User updateUser(User user){
 		User newUser = userDAO.updateUser(user);
 		
 		//TODO - move this to async job

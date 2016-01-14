@@ -26,7 +26,7 @@ public class SearchClientImpl implements SearchClient {
 	
 	@Override
 	public SearchHits search(SearchCriteria rule) throws IOException {
-		SearchRequestBuilder request = client.prepareSearch("lesbonne")
+		SearchRequestBuilder request = client.prepareSearch(indexName)
                 .setTypes(rule.getType())
                 .setSearchType(SearchType.QUERY_AND_FETCH);
         

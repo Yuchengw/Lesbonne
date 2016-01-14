@@ -9,7 +9,7 @@ import com.lesbonne.entity.EntityBean;
 
 public interface IndexerClient {
 	
-	final String indexName = "lesbonne";
+	final String indexName = "elasticsearch";
 	
 	IndexResponse createIndex(String type, EntityBean entity) throws IOException;
 	
@@ -18,6 +18,4 @@ public interface IndexerClient {
 	void deleteIndex();
 	
 	void getIndex();
-	
-	void close();
 }

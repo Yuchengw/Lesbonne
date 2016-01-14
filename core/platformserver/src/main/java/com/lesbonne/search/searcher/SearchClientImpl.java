@@ -7,11 +7,10 @@ import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.client.Client;
-import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.node.Node;
-import org.elasticsearch.node.NodeBuilder;
 import org.elasticsearch.search.SearchHits;
+
+import com.lesbonne.search.ElasticSearchClient;
 
 public class SearchClientImpl implements SearchClient {
 	
@@ -22,12 +21,7 @@ public class SearchClientImpl implements SearchClient {
 	}
 	
 	private void init() throws Exception{
-		Node node = new NodeBuilder()
-			        .settings(Settings.settingsBuilder().put("http.enabled", false))
-			        .client(true)
-			    .node();
-
-		this.client = node.client();
+		this.client = ElasticSearchClient.getInstance().getConnection();
 	}
 	
 	@Override
@@ -36,7 +30,7 @@ public class SearchClientImpl implements SearchClient {
                 .setTypes(rule.getType())
                 .setSearchType(SearchType.QUERY_AND_FETCH);
         
-        for (Entry<String, String> entry : rule.getFieldQueries().entrySet()) {
+        for (Entry<String, Object> entry : rule.getFieldQueries().entrySet()) {
         	request.setQuery(QueryBuilders.wildcardQuery(entry.getKey(), String.format("*%s*", entry.getValue())));
         }
         
@@ -45,10 +39,5 @@ public class SearchClientImpl implements SearchClient {
                 .actionGet();
 		
         return response.getHits();
-	}
-	
-	@Override
-	public void close() {
-		this.client.close();
 	}
 }

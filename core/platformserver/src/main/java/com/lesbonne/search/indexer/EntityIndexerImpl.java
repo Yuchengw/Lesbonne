@@ -19,22 +19,14 @@ public class EntityIndexerImpl implements EntityIndexer {
 	public IndexResponse create() throws Exception {
 		IndexerClient client = new IndexerClientImpl();
 		
-		try {
-			return client.createIndex(this.type, this.entity);
-		} finally {
-			client.close();
-		}
+		return client.createIndex(this.type, this.entity);
 	}
 
 	@Override
 	public UpdateResponse update() throws Exception {
 		IndexerClient client = new IndexerClientImpl();
 		
-		try {
-			return client.updateIndex(this.type, this.entity);
-		} finally {
-			client.close();
-		}
+		return client.updateIndex(this.type, this.entity);
 	}
 	
 }

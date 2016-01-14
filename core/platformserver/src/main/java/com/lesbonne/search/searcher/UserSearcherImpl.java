@@ -15,15 +15,11 @@ public class UserSearcherImpl implements UserSearcher {
 		SearchClient client = new SearchClientImpl();
 		List<Map<String, Object>> results = Lists.newArrayList();
 		
-		try {
-			SearchCriteria rule = new SearchCriteria("user",start,end);
-			rule.addFieldQuery("email", keyword);
-			SearchHits hits = client.search(rule);
-			for (SearchHit hit : hits.getHits()) {
-				results.add(hit.getSource());
-			}
-		} finally {
-			client.close();
+		SearchCriteria rule = new SearchCriteria("user",start,end);
+		rule.addFieldQuery("email", keyword);
+		SearchHits hits = client.search(rule);
+		for (SearchHit hit : hits.getHits()) {
+			results.add(hit.getSource());
 		}
 		
 		return results;

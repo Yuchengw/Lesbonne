@@ -1,12 +1,9 @@
 package com.lesbonne.user;
 
-import org.elasticsearch.action.index.IndexResponse;
-import org.elasticsearch.action.update.UpdateResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lesbonne.search.indexer.UserIndexer;
 
 /**
  * @author yucheng
@@ -24,11 +21,11 @@ public class UserServiceImpl implements UserService{
 		userDAO.persistUser(user);
 		
 		//TODO - move this to async job
-		UserIndexer indexer = new UserIndexer("user", user);
-		IndexResponse response = indexer.create();
-		
-		System.out.println("CREATE");
-		System.out.println(response);
+//		UserIndexer indexer = new UserIndexer("user", user);
+//		IndexResponse response = indexer.create();
+//		
+//		System.out.println("CREATE");
+//		System.out.println(response);
 	}
 	
 	@Override
@@ -43,11 +40,11 @@ public class UserServiceImpl implements UserService{
 		User newUser = userDAO.updateUser(user);
 		
 		//TODO - move this to async job
-		UserIndexer indexer = new UserIndexer("user", user);
-		UpdateResponse response = indexer.update();
-		
-		System.out.println("UPDATE");
-		System.out.println(response);
+//		UserIndexer indexer = new UserIndexer("user", user);
+//		UpdateResponse response = indexer.update();
+//		
+//		System.out.println("UPDATE");
+//		System.out.println(response);
 		
 		return newUser;
 	}

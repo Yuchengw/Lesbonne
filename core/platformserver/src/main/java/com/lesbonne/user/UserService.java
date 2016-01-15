@@ -1,7 +1,5 @@
 package com.lesbonne.user;
 
-import org.springframework.stereotype.Service;
-
 /**
  * @author yucheng
  * @since 1

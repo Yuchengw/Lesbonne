@@ -7,9 +7,9 @@ package com.lesbonne.api.rest;
 import java.io.IOException;
 
 import org.apache.commons.httpclient.HttpMethod;
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.JsonMappingException;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.lesbonne.api.config.ApiProtocol;
 
 public interface RestApiUtil {

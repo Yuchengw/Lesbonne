@@ -265,7 +265,23 @@
       		<artifactId>springockito-annotations</artifactId>
       	    <version>1.0.9</version>
             <scope>test</scope>
-        </dependency>		
+        </dependency>
+        <dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>19.0</version>
+		</dependency>
+        <!-- Elsatic Search -->
+        <dependency>
+			<groupId>org.elasticsearch</groupId>
+			<artifactId>elasticsearch</artifactId>
+			<version>2.1.1</version>
+		</dependency>	
+		<dependency>
+			<groupId>com.sun.jna</groupId>
+			<artifactId>jna</artifactId>
+			<version>3.0.9</version>
+		</dependency>
 	</dependencies>
 	<build>
       <finalName>platform</finalName>

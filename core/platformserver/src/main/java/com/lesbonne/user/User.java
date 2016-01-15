@@ -1,7 +1,9 @@
 package com.lesbonne.user;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +17,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import com.lesbonne.askingpost.AskingPost;
+import com.lesbonne.entity.EntityBean;
 import com.lesbonne.order.Order;
 import com.lesbonne.partner.Partner;
 import com.lesbonne.sharingpost.SharingPost;
@@ -25,7 +28,7 @@ import com.lesbonne.sharingpost.SharingPost;
  * */
 @Entity
 @Table(name="LESBONNEUSER")
-public class User implements Serializable {
+public class User implements EntityBean, Serializable {
 	/**
 	 * 
 	 */
@@ -226,6 +229,18 @@ public class User implements Serializable {
 
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
+	}
+	
+	@Override
+	public Map<String, Object> getIndexedColumns() {
+		Map<String, Object> searchableColumns = new HashMap<String, Object>();
+		searchableColumns.put("email", getUserEmail());
+		return searchableColumns;
+	}
+	
+	@Override
+	public String getId() {
+		return getUserId();
 	}
 }
 

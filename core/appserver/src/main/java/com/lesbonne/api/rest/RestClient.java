@@ -9,8 +9,8 @@ import org.apache.commons.httpclient.methods.ByteArrayRequestEntity;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.PutMethod;
-import org.codehaus.jackson.map.ObjectMapper;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lesbonne.api.config.ApiConstants;
 import com.lesbonne.api.config.ApiProtocol;
 import com.lesbonne.api.config.PlatformApiVersion;

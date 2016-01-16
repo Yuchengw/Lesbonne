@@ -7,10 +7,10 @@ module.exports = {
 	    // "app": path.resolve(__dirname, "./src/main/webapp/assets/js/entry.js")
 	    getEntrySources(['./js/entry.js']),
 	output: {
-    	path: path.resolve(__dirname, './src/main/webapp/product'),
-    	filename: 'bundle.js',
-    	 publicPath: 'http://localhost:8090/',
-    	 filename: 'prod/bundle.js'	
+//    	path: path.resolve(__dirname, './src/main/webapp/product'),
+//    	filename: 'bundle.js',
+    	publicPath: 'http://localhost:8090/',
+    	filename: 'prod/bundle.js'	
 	},
 	externals: {
 
@@ -27,7 +27,7 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: 'source-map'
+                loader: 'source-map-loader'
             }
         ],
         loaders: [
@@ -53,7 +53,7 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/,
                 loaders: [
                     'react-hot',
-                    'babel?stage=0'
+                    'babel'
                 ]
             }
         ]

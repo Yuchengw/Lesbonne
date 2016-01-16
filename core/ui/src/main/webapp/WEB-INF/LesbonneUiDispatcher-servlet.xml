@@ -17,6 +17,7 @@
 	<!-- ===========================Import platform xml configure============================= -->
 	<mvc:annotation-driven />
 	<mvc:resources mapping="/as/**" location="/assets/" />
+	<mvc:resources mapping="/prod/**" location="/product/" />
 	<mvc:default-servlet-handler />
 
 	<!-- =========================Exception handling Start here========================= -->

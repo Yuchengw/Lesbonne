@@ -11,9 +11,12 @@
 # eclipse settings
 **/.settings
 
-# local bin or target
+# local bin, target, product and build
 **/bin
 **/target
+**/product
+**/build
+
 
 # Ignore Mac DS_Store files
 .DS_Store
@@ -22,5 +25,5 @@
 tools/*
 
 # Ignore npm files
-*node_modules
-*node
+**/node_modules
+**/node

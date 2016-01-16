@@ -4,13 +4,13 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 	entry: 
-	    // "entry": path.resolve(__dirname, "./src/main/webapp/assets/js/entry.js")
-	    getEntrySources(["./js/entry.js"]),
+	    // "app": path.resolve(__dirname, "./src/main/webapp/assets/js/entry.js")
+	    getEntrySources(['./js/entry.js']),
 	output: {
-    	// path: path.resolve(__dirname, './src/main/webapp/product'),
-    	// filename: 'bundle.js',
-    	publicPath: 'http://localhost:8090/',
-    	filename: 'prod/bundle.js'	
+    	path: path.resolve(__dirname, './src/main/webapp/product'),
+    	filename: 'bundle.js',
+    	 publicPath: 'http://localhost:8090/',
+    	 filename: 'prod/bundle.js'	
 	},
 	externals: {
 

@@ -1,5 +1,5 @@
-import React from 'react';
-import HelloText from './HelloText';
+import React from 'react'
+import HelloText from './HelloText'
 
 export default class HelloBox extends React.Component {
     constructor() {
@@ -7,8 +7,6 @@ export default class HelloBox extends React.Component {
     }
 
     render() {
-        return <div>
-            <HelloText name="Dan" />
-        </div>
+        return <div> <HelloText name="Yucheng" /> </div>
     }
 }

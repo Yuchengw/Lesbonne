@@ -34,3 +34,8 @@ install:
 ## start webpack dev server
 serve_packs:
 	npm run dev-pack-server
+
+## build webpack bunlde.js
+build:
+	npm run prod-pack
+	

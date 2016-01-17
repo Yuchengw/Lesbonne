@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
  * @author yucheng
  * @since 1
  * */
-@Repository("SharingPostDAO")
+@Repository("sharingPostDAO")
 public class SharingPostDAOImpl implements SharingPostDAO {
 
 	@Autowired

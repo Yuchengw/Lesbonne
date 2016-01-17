@@ -1,6 +1,6 @@
 package com.lesbonne.userrelation;
 
-import com.lesbonne.user.User;
+import org.springframework.stereotype.Service;
 
 /**
  * @author yucheng

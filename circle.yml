@@ -1,0 +1,41 @@
+## @author yucheng ycwmike@gmail.com
+
+## Add build sub-directory
+general:
+  build_dir: core/platformserver
+    
+## Customize the test machine
+machine:
+
+  timezone:
+    America/Los_Angeles # Set the timezone
+
+  # Version of ruby to use
+  java:
+    version:
+      oraclejdk7
+
+## Customize database setup
+# database:
+#   override:
+#     - mysql -u root
+
+## Customize test commands
+test:
+  override:
+    - mvn clean
+    - mvn dependency:resolve
+    - mvn test 
+  post:
+    - mvn clean
+
+## Customize deployment commands
+# deployment:
+  # staging:
+#     branch: master
+
+## Custom notifications
+# notify:
+#   webhooks:
+    # A list of hashes representing hooks. Only the url field is supported.
+    # - url: https://someurl.com/hooks/circle

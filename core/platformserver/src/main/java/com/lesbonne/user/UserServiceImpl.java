@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author yucheng
  * @since 1
  * */
-@Service("UserService")
+@Service
 public class UserServiceImpl implements UserService{
 	
 	@Autowired
@@ -16,8 +16,8 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	@Transactional
-	public void persistUser(User user){
-		userDAO.persistUser(user);
+	public User persistUser(User user){
+		return userDAO.persistUser(user);
 	}
 	
 	@Override

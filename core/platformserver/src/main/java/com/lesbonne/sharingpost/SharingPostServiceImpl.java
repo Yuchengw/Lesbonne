@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author yucheng
  * @since 1
  * */
-@Service("SharingPostService")
+@Service
 public class SharingPostServiceImpl implements SharingPostService{
 	
 	@Autowired

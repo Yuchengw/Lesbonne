@@ -20,25 +20,25 @@ public class UserRestControllerImpl implements UserRestController {
 	private static final Logger logger = LoggerFactory.getLogger(UserRestControllerImpl.class);
 	
 	@Autowired
-	private UserService userServiceImpl;
+	private UserService userService;
 	
-//	@RequestMapping(method=RequestMethod.GET, value=UserRestURIConstants.EXISTS_USER_BY_EMAIL)
-//	public ResponseEntity<Boolean> existsUserByEmail(@PathVariable String userEmail) {
-//		Boolean exists = false;
-//		try {
-//			exists = userServiceImpl.existsUserByEmail(userEmail);
-//		} catch (Exception e) {
-//			return new ResponseEntity<Boolean>(HttpStatus.INTERNAL_SERVER_ERROR);
-//		}
-//		return new ResponseEntity<Boolean>(exists, HttpStatus.OK);
-//	}
+	@RequestMapping(method=RequestMethod.GET, value=UserRestURIConstants.EXISTS_USER_BY_EMAIL)
+	public ResponseEntity<Boolean> existsUserByEmail(@PathVariable String userEmail) {
+		Boolean exists = false;
+		try {
+			exists = userService.existsUserByEmail(userEmail);
+		} catch (Exception e) {
+			return new ResponseEntity<Boolean>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<Boolean>(exists, HttpStatus.OK);
+	}
 	
 	@Override
 	@RequestMapping(method=RequestMethod.GET, value=UserRestURIConstants.GET_USER_BY_EMAIL)
 	public ResponseEntity<User> getUserByEmail(@PathVariable String userEmail) {
 		User user = null;
 		try {
-			user = userServiceImpl.getUserByEmail(userEmail);
+			user = userService.getUserByEmail(userEmail);
 		} catch (Exception e) {
 			return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}	
@@ -49,7 +49,7 @@ public class UserRestControllerImpl implements UserRestController {
 	public ResponseEntity<User> getUserById(@PathVariable String userId) {
 		User user = null;
 		try {
-			user = userServiceImpl.getUserById(userId);
+			user = userService.getUserById(userId);
 		} catch (Exception e) {
 			return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -61,7 +61,7 @@ public class UserRestControllerImpl implements UserRestController {
 	public ResponseEntity<User> updateUser(User user) {
 		User updatedUser = null;
 		try {
-			updatedUser = userServiceImpl.updateUser(user);
+			updatedUser = userService.updateUser(user);
 		} catch (Exception e) {
 			return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -71,19 +71,20 @@ public class UserRestControllerImpl implements UserRestController {
 	@Override
 	@RequestMapping(method=RequestMethod.POST, value=UserRestURIConstants.CREATE_USER, produces = "application/json")
 	public ResponseEntity<User> addUser(@RequestBody User user) {
+		User result = null;
 		try {
-			userServiceImpl.persistUser(user);
+			result = userService.persistUser(user);
 		} catch (Exception e) {
 			return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<User>(user, HttpStatus.OK);
+		return new ResponseEntity<User>(result, HttpStatus.OK);
 	}
 
 	@Override
 	@RequestMapping(method=RequestMethod.DELETE, value=UserRestURIConstants.DELETE_USER)
 	public ResponseEntity<Boolean> deleteUser(User user) {
 		try {
-			userServiceImpl.deleteUser(user);
+			userService.deleteUser(user);
 		} catch (Exception e) {
 			return new ResponseEntity<Boolean>(false, HttpStatus.INTERNAL_SERVER_ERROR);
 		}

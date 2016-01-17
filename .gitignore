@@ -25,6 +25,6 @@
 tools/*
 
 # Ignore npm files
-**/node_modules
-**/node
+node_modules/
+node/
 *.log

@@ -51,10 +51,16 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
-                loaders: [
-                    'react-hot',
-                    'babel'
-                ]
+                loader: 'react-hot'
+            },
+            {
+            	test: /\.jsx?$/,
+                exclude: /(node_modules|bower_components)/,
+                loader: 'babel',
+            	query: {
+            		presets: ['stage-0','react','es2015'],
+            		cacheDirectory: true
+            	}
             }
         ]
     },

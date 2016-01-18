@@ -31,7 +31,6 @@ import static org.hamcrest.CoreMatchers.equalTo;
 public class UserGetTest extends BaseRestUserControllerTest {
 
 	@Test
-	@Transactional
 	public void testExistsUserByEmailWithValidInput() {
 		// Fake the userService call on existsUserByEmail
 		// return true all the time if the input is TESTEMAIL
@@ -51,7 +50,6 @@ public class UserGetTest extends BaseRestUserControllerTest {
 	}
 
 	@Test
-	@Transactional
 	public void testNoExistsUserByEmailWithValidInput() {
 		// Fake the userService call on existsUserByEmail
 		// return false all the time if the input is TESTEMAIL

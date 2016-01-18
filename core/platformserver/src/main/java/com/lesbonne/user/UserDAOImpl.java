@@ -17,8 +17,9 @@ public class UserDAOImpl implements UserDAO{
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public void persistUser(User user) {
+	public User persistUser(User user) {
 		sessionFactory.getCurrentSession().persist(user);
+		return user;
 	}
 
 	@Override

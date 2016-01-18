@@ -4,13 +4,10 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 	entry: 
-	    // "app": path.resolve(__dirname, "./src/main/webapp/assets/js/entry.js")
 	    getEntrySources(['./js/entry.js']),
 	output: {
-//    	path: path.resolve(__dirname, './src/main/webapp/product'),
-//    	filename: 'bundle.js',
-    	publicPath: 'http://localhost:8090/',
-    	filename: 'prod/bundle.js'	
+    	path: path.resolve(__dirname, './build'),
+    	filename: 'bundle.js',
 	},
 	externals: {
 
@@ -65,12 +62,13 @@ module.exports = {
         ]
     },
 	plugins: [
+	    new ExtractTextPlugin("style.css")
 	]
 };
 
 function getEntrySources(sources) {
     if (process.env.NODE_ENV !== 'production') {
-        sources.push('webpack-dev-server/client?http://localhost:8080');
+        sources.push('webpack-dev-server/client?https://localhost:8080');
         sources.push('webpack/hot/only-dev-server');
     }
 

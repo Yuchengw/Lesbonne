@@ -45,7 +45,6 @@ public class UserCreateTest extends BaseRestUserControllerTest {
 	private static final String TEMP_Key = "001"; 
 	
 	@Test
-	@Transactional
 	public void testCreateANewUserPositive() {
 		// create a simple user with just email and password
 		User testUser = new User();

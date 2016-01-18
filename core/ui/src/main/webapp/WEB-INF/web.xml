@@ -10,7 +10,7 @@
 
 	<!-- This is the basic home page, show the world, deprecate it now since we are depending on Spring -->
 	<welcome-file-list> 
-		<welcome-file>index.html</welcome-file> 
+		<welcome-file>assets/views/index.html</welcome-file> 
 	</welcome-file-list>
 	
 	<!-- This listener will load other application context file in addition 

@@ -242,5 +242,11 @@ public class User implements EntityBean, Serializable {
 	public String getId() {
 		return getUserId();
 	}
+
+	public String toString() {
+		return "{"
+				+ "\"userEmail\":\"" + getUserEmail() + "\","
+						+ "\"userPassword\":\"" + getUserPassword() + "\"}";
+	}
 }
 

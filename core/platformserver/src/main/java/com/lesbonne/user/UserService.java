@@ -6,7 +6,7 @@ package com.lesbonne.user;
  * */
 public interface UserService {
 	
-	void persistUser(User user);
+	User persistUser(User user);
 	
 	User getUserByEmail(String userEmail);
 	

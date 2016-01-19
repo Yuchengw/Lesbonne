@@ -6,7 +6,7 @@ package com.lesbonne.user;
  * */
 public interface UserDAO {
 	
-	void persistUser(User user);
+	User persistUser(User user);
 
 	void deleteUser(User user);
 

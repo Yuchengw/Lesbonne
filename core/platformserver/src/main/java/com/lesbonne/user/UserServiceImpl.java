@@ -17,8 +17,8 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	@Transactional
-	public void persistUser(User user){
-		userDAO.persistUser(user);
+	public User persistUser(User user){
+		return userDAO.persistUser(user);
 		
 		//TODO - move this to async job
 //		UserIndexer indexer = new UserIndexer("user", user);

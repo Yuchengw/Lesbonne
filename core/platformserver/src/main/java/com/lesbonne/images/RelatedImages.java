@@ -1,13 +1,11 @@
 package com.lesbonne.images;
 
-import java.sql.Blob;
 import java.sql.Date;
  
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
 
 /**
@@ -75,14 +73,6 @@ public class RelatedImages {
 	public void setFilename(String filename) {
 		this.filename = filename;
 	}
-
-//	public Blob getContent() {
-//		return content;
-//	}
-//
-//	public void setContent(Blob content) {
-//		this.content = content;
-//	}
 
 	public String getContentType() {
 		return contentType;

@@ -27,6 +27,9 @@ public class UserDAOImpl implements UserDAO{
 		List users = (List) sessionFactory.getCurrentSession().
 				createQuery("FROM User WHERE userEmail =:userEmail").
 				setParameter("userEmail", email).list();
+		// List users = (List) sessionFactory.getCurrentSession().
+		// createSQLQuery("select * FROM LESBONNEUSER WHERE USEREMAIL =:userEmail").addEntity(User.class).
+		// setParameter("userEmail", email).list();
 		return users.size() == 1 ? (User)users.get(0) : null;
 	}
 

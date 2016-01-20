@@ -59,10 +59,10 @@
 	"scripts": {
 		"test": "testem",
 		"test-ci": "testem ci",
-		"webpack-server": "webpack-dev-server --hot --progress --colors",
-		"dev-pack": "cd src/main/webapp/assets &&  webpack -d --bail",
-		"dev-pack-watch": "cd src/main/webapp/assets && webpack -d --watch",
-		"dev-pack-server": "cd src/main/webapp/assets && webpack-dev-server --https -d",
+		"webpack-server": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --progress --colors",
+		"dev-pack": "cd src/main/webapp/assets && ../../../../node_modules/webpack/bin/webpack.js -d --bail",
+		"dev-pack-watch": "cd src/main/webapp/assets && ../../../../node_modules/webpack/bin/webpack.js -d --watch",
+		"dev-pack-server": "cd src/main/webapp/assets && ../../../../node_modules/webpack-dev-server/bin/webpack-dev-server.js --https -d",
 		"prod-pack": "cd src/main/webapp/assets && BUILD=true webpack -d --bail"
 	},
 	"author": "Lesbonne Yucheng"

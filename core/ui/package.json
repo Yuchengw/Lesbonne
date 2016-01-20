@@ -63,7 +63,7 @@
 		"dev-pack": "cd src/main/webapp/assets && ../../../../node_modules/webpack/bin/webpack.js -d --bail",
 		"dev-pack-watch": "cd src/main/webapp/assets && ../../../../node_modules/webpack/bin/webpack.js -d --watch",
 		"dev-pack-server": "cd src/main/webapp/assets && ../../../../node_modules/webpack-dev-server/bin/webpack-dev-server.js --https -d",
-		"prod-pack": "cd src/main/webapp/assets && BUILD=true webpack -d --bail"
+		"prod-pack": "cd src/main/webapp/assets && BUILD=true ../../../../node_modules/webpack/bin/webpack.js -d --bail"
 	},
 	"author": "Lesbonne Yucheng"
 }

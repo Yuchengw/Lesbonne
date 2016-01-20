@@ -5,7 +5,7 @@ package com.lesbonne.user;
  * @since 1
  * */
 public class UserRestURIConstants {
-	public static final String GET_USER_BY_EMAIL = "/platform/v1/user/email/{userEmail:.+}";
+	public static final String GET_USER_BY_EMAIL = "/platform/v1/user/email/{userEmail}/";
 	public static final String GET_USER_BY_ID = "/platform/v1/user/id/{userId}";
 	public static final String CREATE_USER = "/platform/v1/user/create";
 	public static final String UPDATE_USER = "/platform/v1/user/update";

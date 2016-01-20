@@ -34,6 +34,7 @@ public class UserRestControllerImpl implements UserRestController {
 		return new ResponseEntity<Boolean>(exists, HttpStatus.OK);
 	}
 	
+	@Override
 	@RequestMapping(method=RequestMethod.GET, value=UserRestURIConstants.GET_USER_BY_EMAIL)
 	public ResponseEntity<User> getUserByEmail(@PathVariable String userEmail) {
 		User user = null;
@@ -71,12 +72,13 @@ public class UserRestControllerImpl implements UserRestController {
 	@Override
 	@RequestMapping(method=RequestMethod.POST, value=UserRestURIConstants.CREATE_USER, produces = "application/json")
 	public ResponseEntity<User> addUser(@RequestBody User user) {
+		User result = null;
 		try {
-			userService.persistUser(user);
+			result = userService.persistUser(user);
 		} catch (Exception e) {
 			return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<User>(user, HttpStatus.OK);
+		return new ResponseEntity<User>(result, HttpStatus.OK);
 	}
 
 	@Override

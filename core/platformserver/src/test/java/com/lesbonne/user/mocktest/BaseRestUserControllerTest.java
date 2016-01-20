@@ -37,4 +37,6 @@ public abstract class BaseRestUserControllerTest {
 		RestAssuredMockMvc.mockMvc = MockMvcBuilders
 				.webAppContextSetup(context).build();
 	}
+	
+	public abstract String getBaseTestURI();
 }

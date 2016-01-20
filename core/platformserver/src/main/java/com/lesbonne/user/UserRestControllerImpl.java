@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.lesbonne.utilities.TextUtil;
 /**
  * @author yucheng
  * @since 1
@@ -74,6 +76,13 @@ public class UserRestControllerImpl implements UserRestController {
 	public ResponseEntity<User> addUser(@RequestBody User user) {
 		User result = null;
 		try {
+			if (user == null || TextUtil.isNullOrEmpty(user.getUserEmail()) || TextUtil.isNullOrEmpty(user.getUserPassword())) {
+				return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
+			}
+			// check if a similar user already exists
+			if (userService.existsUserByEmail(user.getUserEmail())) {
+				return new ResponseEntity<User>(HttpStatus.NOT_ACCEPTABLE);
+			}
 			result = userService.persistUser(user);
 		} catch (Exception e) {
 			return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);

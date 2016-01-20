@@ -31,7 +31,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 public class UserGetTest extends BaseRestUserControllerTest {
 
 	@Test
-	public void testExistsUserByEmailWithValidInput() {
+	public void testExistsUserByEmailBasicPositive() {
 		// Fake the userService call on existsUserByEmail
 		// return true all the time if the input is TESTEMAIL
 		Mockito.when(userService.existsUserByEmail(TEST_EMAIL)).thenReturn(true);
@@ -50,7 +50,7 @@ public class UserGetTest extends BaseRestUserControllerTest {
 	}
 
 	@Test
-	public void testNoExistsUserByEmailWithValidInput() {
+	public void testNoExistsUserByEmailWithANoExistUser() {
 		// Fake the userService call on existsUserByEmail
 		// return false all the time if the input is TESTEMAIL
 		Mockito.when(userService.existsUserByEmail(TEST_EMAIL))
@@ -59,6 +59,12 @@ public class UserGetTest extends BaseRestUserControllerTest {
 		given().when().get(URLPREFIX + "existsUserByEmail" + "/" + TEST_EMAIL)
 				.then().statusCode(HttpServletResponse.SC_OK)
 				.contentType("application/json").body(equalTo("false"));
+	}
+
+	@Override
+	public String getBaseTestURI() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 //	@Test

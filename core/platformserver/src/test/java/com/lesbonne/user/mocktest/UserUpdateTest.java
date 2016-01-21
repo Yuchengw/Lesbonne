@@ -1,95 +1,84 @@
 package test.java.com.lesbonne.user.mocktest;
 
-import com.jayway.restassured.http.ContentType;
+import static com.jayway.restassured.module.mockmvc.RestAssuredMockMvc.given;
+import static org.hamcrest.CoreMatchers.equalTo;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.junit.Test;
 import org.mockito.Matchers;
 import org.mockito.Mockito;
 
-import javax.servlet.http.HttpServletResponse;
-
+import com.jayway.restassured.http.ContentType;
 import com.lesbonne.user.User;
 
-import static com.jayway.restassured.module.mockmvc.RestAssuredMockMvc.given;
-import static org.hamcrest.CoreMatchers.equalTo;
-
-/**
- * Test Create User
- * 
- * @author jassica
- *
- */
-public class UserCreateTest extends BaseRestUserControllerTest {
-
-	// given().contentType("application/json").request()
-	// .body(newUser.toString()).expect().statusCode(200)
-	// .body("userPassword", equalTo("12345678")).when().post();
+public class UserUpdateTest extends BaseRestUserControllerTest {
 
 	@Override
 	public String getBaseTestURI() {
-		return URLPREFIX + "create";
+		return URLPREFIX + "update";
 	}
-
+	
 	@Test
-	public void testAddUserPositive() {
+	public void testUpdateUserPositive() {
 		// create a simple user with just email and password
 		User testUser = new User();
 		testUser.setUserEmail(TEST_EMAIL);
 		testUser.setUserPassword(TEST_PASSWORD);
-
+		testUser.setUserId(TEMP_Key);
+		
 		// create a simple user for persistent user return call
 		User resultUser = new User();
-		resultUser.setUserEmail(TEST_EMAIL);
+		resultUser.setUserEmail(TEST_EMAIL + "Update");
 		resultUser.setUserPassword(TEST_PASSWORD);
-
 		resultUser.setUserId(TEMP_Key);
 
 		// Testing user with existing email, return true.
-		Mockito.when(userService.persistUser((User) Matchers.anyObject()))
+		Mockito.when(userService.updateUser((User) Matchers.anyObject()))
 				.thenReturn(resultUser);
 		Mockito.when(userService.existsUserByEmail(TEST_EMAIL)).thenReturn(
 				false);
 
 		given().body(testUser).contentType(ContentType.JSON).when()
-				.post(getBaseTestURI()).then()
+				.put(getBaseTestURI()).then()
 				.statusCode(HttpServletResponse.SC_OK)
 				.contentType(ContentType.JSON)
-				.body("userId", equalTo(TEMP_Key));
+				.body("userEmail", equalTo(TEST_EMAIL + "Update"));
 	}
-
+	
 	@Test
-	public void testAddUserWithoutEmail() {
-		User testUser = new User();
-		testUser.setUserEmail(TEST_EMAIL);
-
-		given().body(testUser).contentType(ContentType.JSON).when()
-				.post(URLPREFIX + "create").then()
-				.statusCode(HttpServletResponse.SC_BAD_REQUEST);
-	}
-
-	@Test
-	public void testAddUserWithoutPassword() {
+	public void testUpdateUserWithoutEmail() {
+		// create a simple user with just email and password
 		User testUser = new User();
 		testUser.setUserPassword(TEST_PASSWORD);
-
+		testUser.setUserId(TEMP_Key);
+		
 		given().body(testUser).contentType(ContentType.JSON).when()
-				.post(URLPREFIX + "create").then()
+				.put(getBaseTestURI()).then()
 				.statusCode(HttpServletResponse.SC_BAD_REQUEST);
 	}
-
+	
 	@Test
-	public void testAddUserWhereAUserAlreadyExists() {
+	public void testUpdateUserWithoutPassword() {
+		// create a simple user with just email and password
+		User testUser = new User();
+		testUser.setUserEmail(TEST_EMAIL);
+		testUser.setUserId(TEMP_Key);
+		
+		given().body(testUser).contentType(ContentType.JSON).when()
+				.put(getBaseTestURI()).then()
+				.statusCode(HttpServletResponse.SC_BAD_REQUEST);
+	}
+	
+	@Test
+	public void testUpdateUserWithoutUserid() {
 		// create a simple user with just email and password
 		User testUser = new User();
 		testUser.setUserEmail(TEST_EMAIL);
 		testUser.setUserPassword(TEST_PASSWORD);
-
-		org.mockito.Mockito.when(userService.existsUserByEmail(TEST_EMAIL))
-				.thenReturn(true);
-
+		
 		given().body(testUser).contentType(ContentType.JSON).when()
-				.post(URLPREFIX + "create").then()
-				.statusCode(HttpServletResponse.SC_NOT_ACCEPTABLE);
+				.put(getBaseTestURI()).then()
+				.statusCode(HttpServletResponse.SC_BAD_REQUEST);
 	}
-
 }

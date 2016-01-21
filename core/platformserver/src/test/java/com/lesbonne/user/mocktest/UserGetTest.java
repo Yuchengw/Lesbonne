@@ -1,25 +1,12 @@
 package test.java.com.lesbonne.user.mocktest;
 
-import com.jayway.restassured.http.ContentType;
-import com.jayway.restassured.module.mockmvc.RestAssuredMockMvc;
-
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Matchers;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.context.WebApplicationContext;
+
+import com.jayway.restassured.http.ContentType;
+import com.lesbonne.user.User;
 
 import javax.servlet.http.HttpServletResponse;
-
-import com.lesbonne.user.User;
-import com.lesbonne.user.UserService;
 
 import static com.jayway.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -31,34 +18,60 @@ import static org.hamcrest.CoreMatchers.equalTo;
 public class UserGetTest extends BaseRestUserControllerTest {
 
 	@Test
-	public void testExistsUserByEmailWithValidInput() {
+	public void testExistsUserByEmailBasicPositive() {
 		// Fake the userService call on existsUserByEmail
 		// return true all the time if the input is TESTEMAIL
 		Mockito.when(userService.existsUserByEmail(TEST_EMAIL)).thenReturn(true);
 
-		given().when().get(URLPREFIX + "existsUserByEmail" + "/" + TEST_EMAIL)
+		given().when().get(URLPREFIX + "existsUserByEmail/" + TEST_EMAIL)
 				.then().statusCode(HttpServletResponse.SC_OK)
-				.contentType("application/json").body(equalTo("true"));
-
-		// Testing user with non-existing email, return false
-		org.mockito.Mockito.when(userService.existsUserByEmail(TEST_EMAIL))
-				.thenReturn(false);
-
-		given().when().get(URLPREFIX + "existsUserByEmail" + "/" + TEST_EMAIL)
-				.then().statusCode(HttpServletResponse.SC_OK)
-				.contentType("application/json").body(equalTo("false"));
+				.contentType(ContentType.JSON).body(equalTo("true"));
 	}
 
 	@Test
-	public void testNoExistsUserByEmailWithValidInput() {
+	public void testExistsUserByEmailWithANoExistUser() {
 		// Fake the userService call on existsUserByEmail
 		// return false all the time if the input is TESTEMAIL
 		Mockito.when(userService.existsUserByEmail(TEST_EMAIL))
 				.thenReturn(false);
 
-		given().when().get(URLPREFIX + "existsUserByEmail" + "/" + TEST_EMAIL)
+		given().when().get(URLPREFIX + "existsUserByEmail/" + TEST_EMAIL)
 				.then().statusCode(HttpServletResponse.SC_OK)
-				.contentType("application/json").body(equalTo("false"));
+				.contentType(ContentType.JSON).body(equalTo("false"));
+	}
+
+	@Test
+	public void testGetUserByEmailBasicPositive() {
+		User testUser = new User();
+		testUser.setUserEmail(TEST_EMAIL);
+		testUser.setUserPassword(TEST_PASSWORD);
+		// Fake the userService call on existsUserByEmail
+		// return true all the time if the input is TESTEMAIL
+		Mockito.when(userService.getUserByEmail(TEST_EMAIL)).thenReturn(testUser);
+
+		given().when().get(URLPREFIX + "getUserByEmail/" + TEST_EMAIL)
+				.then().statusCode(HttpServletResponse.SC_OK)
+				.contentType(ContentType.JSON).body("userPassword", equalTo(TEST_PASSWORD));
+	}
+	
+	@Test
+	public void testGetUserByIdBasicPositive() {
+		User testUser = new User();
+		testUser.setUserEmail(TEST_EMAIL);
+		testUser.setUserPassword(TEST_PASSWORD);
+		// Fake the userService call on existsUserByEmail
+		// return true all the time if the input is TESTEMAIL
+		Mockito.when(userService.getUserById(TEMP_Key)).thenReturn(testUser);
+
+		given().when().get(URLPREFIX + "id/" + TEMP_Key)
+				.then().statusCode(HttpServletResponse.SC_OK)
+				.contentType(ContentType.JSON).body("userPassword", equalTo(TEST_PASSWORD));
+	}
+
+	@Override
+	public String getBaseTestURI() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 //	@Test
@@ -78,11 +91,5 @@ public class UserGetTest extends BaseRestUserControllerTest {
 //		// "error", equalTo(null)).
 //		// when().
 //		// get("/user/login?userName=wadexu&password=NzrmRcIfIW4=");
-//	}
-//
-//	@Test
-//	public void testGetANonExistUser() {
-//		// given().param("q",
-//		// "java8").when().get("/search").then().body("count", equalTo(2));
 //	}
 }

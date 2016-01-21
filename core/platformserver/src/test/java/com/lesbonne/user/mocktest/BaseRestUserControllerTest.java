@@ -27,7 +27,8 @@ public abstract class BaseRestUserControllerTest {
 	protected UserService userService;
 	protected static final String URLPREFIX = "/platform/v1/user/";
 	protected static final String TEST_EMAIL = "user@test";
-	
+	protected static final String TEST_PASSWORD = "123456";
+	protected static final String TEMP_Key = "001";
 	@Autowired
 	protected WebApplicationContext context;
 	
@@ -37,4 +38,6 @@ public abstract class BaseRestUserControllerTest {
 		RestAssuredMockMvc.mockMvc = MockMvcBuilders
 				.webAppContextSetup(context).build();
 	}
+	
+	public abstract String getBaseTestURI();
 }

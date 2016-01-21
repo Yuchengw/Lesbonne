@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lesbonne.utilities.TextUtil;
 /**
@@ -25,7 +26,7 @@ public class UserRestControllerImpl implements UserRestController {
 	private UserService userService;
 	
 
-	@RequestMapping(method=RequestMethod.GET, value=UserRestURIConstants.EXISTS_USER_BY_EMAIL)
+	@RequestMapping(method=RequestMethod.GET, value=UserRestURIConstants.EXISTS_USER_BY_EMAIL, produces = "application/json")
 	public ResponseEntity<Boolean> existsUserByEmail(@PathVariable String userEmail) {
 		Boolean exists = false;
 		try {
@@ -37,8 +38,8 @@ public class UserRestControllerImpl implements UserRestController {
 	}
 	
 	@Override
-	@RequestMapping(method=RequestMethod.GET, value=UserRestURIConstants.GET_USER_BY_EMAIL)
-	public ResponseEntity<User> getUserByEmail(@PathVariable String userEmail) {
+	@RequestMapping(method=RequestMethod.GET, value=UserRestURIConstants.GET_USER_BY_EMAIL, produces = "application/json")
+	public @ResponseBody ResponseEntity<User> getUserByEmail(@PathVariable String userEmail) {
 		User user = null;
 		try {
 			user = userService.getUserByEmail(userEmail);
@@ -48,8 +49,8 @@ public class UserRestControllerImpl implements UserRestController {
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 	
-	@RequestMapping(method=RequestMethod.GET, value=UserRestURIConstants.GET_USER_BY_ID)
-	public ResponseEntity<User> getUserById(@PathVariable String userId) {
+	@RequestMapping(method=RequestMethod.GET, value=UserRestURIConstants.GET_USER_BY_ID, produces = "application/json")
+	public @ResponseBody ResponseEntity<User> getUserById(@PathVariable String userId) {
 		User user = null;
 		try {
 			user = userService.getUserById(userId);
@@ -60,10 +61,14 @@ public class UserRestControllerImpl implements UserRestController {
 	}
 	
 	@Override
-	@RequestMapping(method=RequestMethod.PUT, value=UserRestURIConstants.UPDATE_USER)
-	public ResponseEntity<User> updateUser(User user) {
+	@RequestMapping(method=RequestMethod.PUT, value=UserRestURIConstants.UPDATE_USER, produces = "application/json")
+	public ResponseEntity<User> updateUser(@RequestBody User user) {
 		User updatedUser = null;
 		try {
+			if (user == null || TextUtil.isNullOrEmpty(user.getUserEmail()) || TextUtil.isNullOrEmpty(user.getUserPassword()) 
+					|| TextUtil.isNullOrEmpty(user.getUserId())) {
+				return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
+			}
 			updatedUser = userService.updateUser(user);
 		} catch (Exception e) {
 			return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -98,6 +103,6 @@ public class UserRestControllerImpl implements UserRestController {
 		} catch (Exception e) {
 			return new ResponseEntity<Boolean>(false, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 	}
 }

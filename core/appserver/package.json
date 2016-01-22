@@ -59,7 +59,7 @@
 	"scripts": {
 		"test": "testem",
 		"test-ci": "testem ci",
-		"webpack-server": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --port 8080 --hot --progress --colors",
+		"webpack-server": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js  --hot --progress --colors",
 		"dev-pack": "cd src/main/webapp/assets && ../../../../node_modules/webpack/bin/webpack.js -d --bail",
 		"dev-pack-watch": "cd src/main/webapp/assets && ../../../../node_modules/webpack/bin/webpack.js -d --watch",
 		"dev-pack-server": "cd src/main/webapp/assets && ../../../../node_modules/webpack-dev-server/bin/webpack-dev-server.js --https -d",

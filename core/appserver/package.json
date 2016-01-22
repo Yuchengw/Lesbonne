@@ -1,5 +1,5 @@
 {
-	"name": "ui-server-frontend",
+	"name": "app-server-frontend",
 	"verson": "1.0.0",
 	"description": "The front end dependencies for the Lesbonne UI server",
 	"private": true,

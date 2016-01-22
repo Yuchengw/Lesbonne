@@ -1,7 +1,7 @@
 #copyright Lesbonne.inc
 #author yucheng
 #since 1
-#This Makefile is used for Ui Server
+#This Makefile is used for App Server
 ifndef REMOTE
 REMOTE =
 else

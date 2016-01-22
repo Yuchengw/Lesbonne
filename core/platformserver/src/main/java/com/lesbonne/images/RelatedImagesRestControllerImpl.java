@@ -38,7 +38,7 @@ public class RelatedImagesRestControllerImpl implements
 				.getOriginalFilename());
 		remoteSaver.saveToRemoteServer(remoteFileLocation, file);
 		RelatedImages document = new RelatedImages();
-		document.setName(file.getName());
+		document.setName(file.getOriginalFilename());
 		document.setContent(remoteFileLocation);
 		document.setContentType(file.getContentType());
 		try {

@@ -17,7 +17,9 @@ module.exports = {
 	},
 	devtool: 'eval',
 	sassLoader: {
-
+		includePaths:[
+		    path.resolve(__dirname, './scss')
+		]
 	},
     module: {
         preLoaders: [
@@ -68,8 +70,6 @@ module.exports = {
 
 function getEntrySources(sources) {
     if (process.env.NODE_ENV !== 'production') {
-        sources.push('webpack-dev-server/client?https://localhost:8080');
-        sources.push('webpack/hot/only-dev-server');
     }
 
     return sources;

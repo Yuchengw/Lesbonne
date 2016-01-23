@@ -1,4 +1,4 @@
-import '../css/master.scss'
+import '../scss/master.scss'
 import HelloBox from './HelloBox'
 import React from 'react'
 

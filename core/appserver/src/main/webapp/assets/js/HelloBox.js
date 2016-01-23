@@ -7,6 +7,6 @@ export default class HelloBox extends React.Component {
     }
 
     render() {
-        return <div><h1> <HelloText name="Y Hey, This is Lesbonne Appserver!" /> </h1></div>
+        return <div><h1> <HelloText name="Hey dd, This is Lesbonne Appserver!" /> </h1></div>
     }
 }

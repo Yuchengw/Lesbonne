@@ -1,12 +1,15 @@
 package com.lesbonne.images;
 
 import java.sql.Date;
- 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 /**
  * Represents the image information from UserProfiles, Posts and so on
@@ -17,9 +20,11 @@ import javax.persistence.Table;
 @Table(name="LESBONNEIMAGES")
 public class RelatedImages {
 	@Id
-    @GeneratedValue
-    @Column(name="id")
-    private Integer id;
+	@Column(name = "id", nullable = false, unique = true, columnDefinition = "VARCHAR(18)")
+	@GenericGenerator(strategy="com.lesbonne.mysqldb.DBIdGenerator",name="imageIdGenerator",
+					parameters = {@Parameter(name = "prefix", value = "002")})
+	@GeneratedValue(generator="imageIdGenerator")
+    private String id;
  
     @Column(name="name")
     private String name;
@@ -42,11 +47,11 @@ public class RelatedImages {
     @Column(name="created")
     private Date created;
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

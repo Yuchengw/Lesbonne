@@ -26,6 +26,7 @@ import com.lesbonne.images.RelatedImagesService;
 public abstract class BaseRestRelatedImagesControllerTest {
 	protected RelatedImagesService relatedImagesService;
 	protected static final String URLPREFIX = "/platform/v1/images/";
+	protected final String TEST_NAME = "TestFile.txt";
 
 	@Autowired
 	protected WebApplicationContext context;

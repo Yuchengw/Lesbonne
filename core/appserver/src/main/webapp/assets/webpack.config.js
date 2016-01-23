@@ -32,7 +32,6 @@ module.exports = {
         loaders: [
             {
                 test: /\.scss$/,
-                include: /src\/main\/webapp\/assets/,
                 loaders: [
                     'style',
                     'css',

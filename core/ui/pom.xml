@@ -98,8 +98,8 @@
                           <arguments>run prod-pack</arguments>
                       </configuration>
                   </execution>
-                </executions>
-            </plugin>
+              </executions>
+          </plugin>
       </plugins>
   </build>
 </project>

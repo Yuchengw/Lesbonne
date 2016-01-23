@@ -1,7 +1,7 @@
 {
-	"name": "ui-server-frontend",
+	"name": "app-server-frontend",
 	"verson": "1.0.0",
-	"description": "The front end dependencies for the Lesbonne UI server",
+	"description": "The front end dependencies for the Lesbonne appserver server",
 	"private": true,
   	"devDependencies": {
 	   	"autoprefixer-loader": "^3.1.0",
@@ -59,7 +59,7 @@
 	"scripts": {
 		"test": "testem",
 		"test-ci": "testem ci",
-		"webpack-server": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --port 8080 --hot --progress --colors",
+		"webpack-server": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js  --hot --inline --colors",
 		"dev-pack": "cd src/main/webapp/assets && ../../../../node_modules/webpack/bin/webpack.js -d --bail",
 		"dev-pack-watch": "cd src/main/webapp/assets && ../../../../node_modules/webpack/bin/webpack.js -d --watch",
 		"dev-pack-server": "cd src/main/webapp/assets && ../../../../node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --https --progress --port 8081 -d",

@@ -1,0 +1,6 @@
+test:
+  adapter: mysql2
+  database: lesbonne
+  username: root
+  password: lesbonne
+  pool: 5

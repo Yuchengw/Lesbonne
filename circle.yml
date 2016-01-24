@@ -18,7 +18,9 @@ machine:
 # Customize database setup
 database:
   override:
-    - mysql -u ubuntu circle_test < test_database_setup.sql
+    # - mysql -u ubuntu circle_test < test_database_setup.sql
+    - mv config/database.ci.yml config/database.yml
+    - bundle exec rake db:create db:schema:load --trace
 
 ## Customize test commands
 test:

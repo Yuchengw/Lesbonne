@@ -15,10 +15,10 @@ machine:
     version:
       oraclejdk7
 
-## Customize database setup
-# database:
-#   override:
-#     - mysql -u root
+# Customize database setup
+database:
+  override:
+    - mysql -u ubuntu
 
 ## Customize test commands
 test:

@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,7 +39,8 @@ public class RelatedImagesRestControllerImpl implements
 				.getOriginalFilename());
 		remoteSaver.saveToRemoteServer(remoteFileLocation, file);
 		RelatedImages document = new RelatedImages();
-		document.setName(file.getName());
+		document.setName(file.getOriginalFilename());
+		document.setFilename(file.getOriginalFilename());
 		document.setContent(remoteFileLocation);
 		document.setContentType(file.getContentType());
 		try {
@@ -54,11 +56,10 @@ public class RelatedImagesRestControllerImpl implements
 
 	@Override
 	@RequestMapping(method = RequestMethod.GET, value = RelatedImagesRestURIConstants.GET_IMAGE_BY_ID)
-	public ResponseEntity<RelatedImages> getRelatedImagesById(String imageId) {
+	public ResponseEntity<RelatedImages> getRelatedImagesById(@PathVariable String imageId) {
 		RelatedImages image = null;
-		Integer idValue = new Integer(imageId);
 		try {
-			image = relatedImagesService.getRelatedImagesById(idValue);
+			image = relatedImagesService.getRelatedImagesById(imageId);
 		} catch (Exception e) {
 			return new ResponseEntity<RelatedImages>(
 					HttpStatus.INTERNAL_SERVER_ERROR);

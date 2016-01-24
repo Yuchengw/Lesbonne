@@ -20,4 +20,7 @@
     <bean id="userService" class="org.mockito.Mockito" factory-method="mock">
     	<constructor-arg value="com.lesbonne.user.UserService"/>
 	</bean>
+	<bean id="relatedImagesService" class="org.mockito.Mockito" factory-method="mock">
+    	<constructor-arg value="com.lesbonne.images.RelatedImagesService"/>
+	</bean>
 </beans>

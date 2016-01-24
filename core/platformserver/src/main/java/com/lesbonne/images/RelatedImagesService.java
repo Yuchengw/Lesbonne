@@ -10,7 +10,7 @@ public interface RelatedImagesService {
 
 	void deleteRelatedImages(RelatedImages image);
 
-	RelatedImages getRelatedImagesById(Integer id);
+	RelatedImages getRelatedImagesById(String id);
 	
 	RelatedImages updateRelatedImages(RelatedImages image);
 }

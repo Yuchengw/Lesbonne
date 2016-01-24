@@ -29,7 +29,7 @@ public class RelatedImagesServiceImpl implements RelatedImagesService {
 
 	@Override
 	@Transactional
-	public RelatedImages getRelatedImagesById(Integer id) {
+	public RelatedImages getRelatedImagesById(String id) {
 		return relatedImagesDAO.getRelatedImagesById(id);
 	}
 

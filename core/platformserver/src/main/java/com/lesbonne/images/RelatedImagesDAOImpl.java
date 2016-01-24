@@ -32,7 +32,7 @@ public class RelatedImagesDAOImpl implements RelatedImagesDAO {
 	}
 
 	@Override
-	public RelatedImages getRelatedImagesById(Integer id) {
+	public RelatedImages getRelatedImagesById(String id) {
 		Session session = sessionFactory.getCurrentSession();
 		RelatedImages imageFound = (RelatedImages) session.get(
 				RelatedImages.class, id);

@@ -3,7 +3,7 @@
 ## Add build sub-directory
 general:
   build_dir: core/platformserver
-    
+
 ## Customize the test machine
 machine:
 
@@ -18,7 +18,7 @@ machine:
 # Customize database setup
 database:
   override:
-    - mysql -u ubuntu
+    - mysql -u ubuntu circle_test < test_database_setup.sql
 
 ## Customize test commands
 test:

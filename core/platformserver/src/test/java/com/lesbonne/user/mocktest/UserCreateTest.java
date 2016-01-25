@@ -21,10 +21,6 @@ import static org.hamcrest.CoreMatchers.equalTo;
  */
 public class UserCreateTest extends BaseRestUserControllerTest {
 
-	// given().contentType("application/json").request()
-	// .body(newUser.toString()).expect().statusCode(200)
-	// .body("userPassword", equalTo("12345678")).when().post();
-
 	@Override
 	public String getBaseTestURI() {
 		return URLPREFIX + "create";
@@ -91,5 +87,4 @@ public class UserCreateTest extends BaseRestUserControllerTest {
 				.post(URLPREFIX + "create").then()
 				.statusCode(HttpServletResponse.SC_NOT_ACCEPTABLE);
 	}
-
 }

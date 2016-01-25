@@ -26,14 +26,14 @@ public class UserUpdateTest extends BaseRestUserControllerTest {
 		testUser.setUserEmail(TEST_EMAIL);
 		testUser.setUserPassword(TEST_PASSWORD);
 		testUser.setUserId(TEMP_Key);
+		Mockito.when(userService.persistUser((User) Matchers.anyObject()))
+		.thenReturn(testUser);
 		
 		// create a simple user for persistent user return call
 		User resultUser = new User();
 		resultUser.setUserEmail(TEST_EMAIL + "Update");
 		resultUser.setUserPassword(TEST_PASSWORD);
 		resultUser.setUserId(TEMP_Key);
-
-		// Testing user with existing email, return true.
 		Mockito.when(userService.updateUser((User) Matchers.anyObject()))
 				.thenReturn(resultUser);
 		Mockito.when(userService.existsUserByEmail(TEST_EMAIL)).thenReturn(

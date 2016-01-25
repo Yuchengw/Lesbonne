@@ -15,7 +15,7 @@ import com.lesbonne.user.UserService;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
 		"file:**/LesbonnePlatformDispatcher-servlet.xml",
-		"file:**/platform-context-test.xml", "file:**/test-context.xml" })
+		"file:**/platform-context.xml", "file:**/test-context.xml" })
 @WebAppConfiguration
 /**
  * Base Test Class for the RestUserController

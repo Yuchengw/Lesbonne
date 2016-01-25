@@ -73,23 +73,4 @@ public class UserGetTest extends BaseRestUserControllerTest {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-//	@Test
-//	public void testGetAExistUser() {
-//		// expect().body("userPassword", equalTo("1234"))
-//		// .when()
-//		// .get("http://localhost:8092/platform/v1/user/email/test1@test.com");
-//		given().contentType("application/json").when().get("/test1@test.com/")
-//				.then().statusCode(200).body("userPassword", equalTo("1234"));
-//		// expect().
-//		// statusCode(200).
-//		// body(
-//		// "success", equalTo(true),
-//		// "userInfo.userId", equalTo("wadexu"),
-//		// "userInfo.firstName", equalTo("Wade"),
-//		// "userInfo.lastName", equalTo("Xu"),
-//		// "error", equalTo(null)).
-//		// when().
-//		// get("/user/login?userName=wadexu&password=NzrmRcIfIW4=");
-//	}
 }

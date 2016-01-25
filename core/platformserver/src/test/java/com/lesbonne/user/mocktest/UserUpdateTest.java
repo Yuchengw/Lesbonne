@@ -1,4 +1,4 @@
-package test.java.com.lesbonne.user.mocktest;
+package com.lesbonne.user.mocktest;
 
 import static com.jayway.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static org.hamcrest.CoreMatchers.equalTo;

@@ -1,4 +1,4 @@
-package com.lesbonne.user.mocktest;
+package test.java.com.lesbonne.user.mocktest;
 
 import com.jayway.restassured.http.ContentType;
 

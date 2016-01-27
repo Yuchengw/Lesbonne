@@ -16,8 +16,9 @@ public class SharingPostServiceImpl implements SharingPostService{
 	
 	@Override
 	@Transactional
-	public void persistSharingPost(SharingPost sharingPost){
+	public SharingPost persistSharingPost(SharingPost sharingPost){
 		sharingPostDAO.persistSharingPost(sharingPost);
+		return sharingPost;
 	}
 	
 	@Override

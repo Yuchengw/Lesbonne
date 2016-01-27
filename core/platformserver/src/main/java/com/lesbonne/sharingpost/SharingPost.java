@@ -1,16 +1,23 @@
 package com.lesbonne.sharingpost;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 import com.lesbonne.postcomment.PostComment;
 import com.lesbonne.user.User;
@@ -18,6 +25,8 @@ import com.lesbonne.user.User;
 /**
  * @author yucheng
  * @since 1
+ * @author Jassica
+ * @since 2
  * */
 @Entity
 @Table(name = "SHARINGPOST")
@@ -29,12 +38,11 @@ public class SharingPost implements Serializable {
 	private static final long serialVersionUID = -3170417062437731814L;
 
 	@Id
-	@Column(name="SHARINGPOSTID", columnDefinition="VARCHAR(18) NOT NULL")
+	@Column(name = "SHARINGPOSTID", nullable = false, unique = true, columnDefinition = "VARCHAR(18)")
+	@GenericGenerator(strategy="com.lesbonne.mysqldb.DBIdGenerator",name="sharingPostIdGenerator",
+					parameters = {@Parameter(name = "prefix", value = "00s")})
+	@GeneratedValue(generator="sharingPostIdGenerator")
 	private String sharingPostId;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "USERID", referencedColumnName = "USERID", insertable=false, updatable=false)
-	private User owner;
 	
 	@Column(name="SHARINGPOSTSUBJECT", columnDefinition="VARCHAR(255) NOT NULL")
 	private String sharingPostSubject;
@@ -42,25 +50,33 @@ public class SharingPost implements Serializable {
 	@Column(name="CATEGORY", columnDefinition="VARCHAR(255) NOT NULL")
 	private String category;
 	
-	@OneToMany(mappedBy = "sharingPost")
-	private List<PostComment> postComments;
-	
 	@Column(name="PARTNERID", columnDefinition="VARCHAR(18)")
 	private String partnerId;
 	
 	@Column(name="EXPIREDAT", columnDefinition="DATETIME NOT NULL")
 	private String expiredAt;
 	
-	@Column(name="CREATEDATE", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP", updatable = false)
-	private String createdDate;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "CREATEDATE", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
+	private Date createdDate;
 	
-	@Column(name="LASTMODIFIEDDATE", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-	private String lastModifiedDate;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="LASTMODIFIEDDATE", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP", insertable = false, updatable = false)
+	private Date lastModifiedDate;
+	
+	// Foreign keys
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "USERID", referencedColumnName = "USERID", nullable = false)//, insertable=false, updatable=false)
+	private User owner;
+	
+	@OneToMany(mappedBy = "sharingPost", fetch = FetchType.LAZY)
+	private Set<PostComment> postComments;
+	
 	
 	public String getSharingPostId() {
 		return sharingPostId;
 	}
-
+	
 	public User getOwner() {
 		return owner;
 	}
@@ -85,11 +101,11 @@ public class SharingPost implements Serializable {
 		this.category = category;
 	}
 
-	public List<PostComment> getPostComments() {
+	public Set<PostComment> getPostComments() {
 		return postComments;
 	}
 
-	public void setPostComments(List<PostComment> postComments) {
+	public void setPostComments(Set<PostComment> postComments) {
 		this.postComments = postComments;
 	}
 
@@ -109,15 +125,15 @@ public class SharingPost implements Serializable {
 		this.expiredAt = expiredAt;
 	}
 
-	public void setCreatedTime(String createdDate) {
+	public void setCreatedTime(Date createdDate) {
 		this.createdDate = createdDate;
 	}
 
-	public String getLastModifiedDate() {
+	public Date getLastModifiedDate() {
 		return lastModifiedDate;
 	}
 
-	public void setLastModifiedTime(String lastModifiedDate) {
+	public void setLastModifiedTime(Date lastModifiedDate) {
 		this.lastModifiedDate = lastModifiedDate;
 	}
 }

@@ -13,10 +13,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.GenerationTime;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -77,17 +81,31 @@ public class User implements EntityBean, Serializable {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "CREATEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP",  insertable = false, updatable = false)
+	@org.hibernate.annotations.Generated(value=GenerationTime.INSERT)
 	private Date createdTime;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "LASTMODIFIEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP", insertable = false, updatable = false)
+	@org.hibernate.annotations.Generated(value=GenerationTime.ALWAYS)
 	private Date lastModifiedTime;
 
+	@PrePersist
+	public void onCreate() {
+		lastModifiedTime = createdTime = new Date();
+	}
+	
+	@PreUpdate
+	public void onUpdate() {
+		lastModifiedTime = new Date();
+	}
+	
 	/*========== Foreign Key Starts From Here. ==========*/
 	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+	@Cascade(value = org.hibernate.annotations.CascadeType.ALL)
 	private Set<SharingPost> sharingPosts;
 	
 	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+	@Cascade(value = org.hibernate.annotations.CascadeType.ALL)
 	private List<AskingPost> askingPosts;
 	
 	@Column(name = "USERPAYMENTID", columnDefinition="VARCHAR(18)")

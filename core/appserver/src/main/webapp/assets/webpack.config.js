@@ -4,13 +4,13 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 	entry: 
-	    getEntrySources(['./js/entry.js']),
+	    getEntrySources(['./entrypoints/entry.js']),
 	output: {
     	path: path.resolve(__dirname, './build'),
     	filename: 'bundle.js',
 	},
 	externals: {
-
+        'react': 'React'
 	},
 	resolve: {
 
@@ -25,9 +25,12 @@ module.exports = {
         preLoaders: [
             {
                 test: /\.jsx?$/,
-                exclude: /(node_modules|bower_components)/,
-                loader: 'source-map-loader'
-            }
+                exclude: /(node_modules)/,
+				loader: 'eslint',
+                query: {
+                    fix: true,
+                    failOnError: true
+                },            }
         ],
         loaders: [
             {
@@ -48,13 +51,13 @@ module.exports = {
             },
             {
                 test: /\.jsx?$/,
-                exclude: /(node_modules|bower_components)/,
+                exclude: /(node_modules)/,
                 loader: 'react-hot'
             },
             {
             	test: /\.jsx?$/,
-                exclude: /(node_modules|bower_components)/,
-                loader: 'babel',
+                exclude: /(node_modules)/,
+                loader: ['react-hot','babel-loader'],
             	query: {
             		presets: ['stage-0','react','es2015'],
             		cacheDirectory: true

@@ -16,7 +16,11 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.Parameter;
 
 import com.lesbonne.postcomment.PostComment;
@@ -67,6 +71,7 @@ public class SharingPost implements Serializable {
 	// Foreign keys
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "USERID", referencedColumnName = "USERID", nullable = false)//, insertable=false, updatable=false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User owner;
 	
 	@OneToMany(mappedBy = "sharingPost", fetch = FetchType.LAZY)

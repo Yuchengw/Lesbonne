@@ -12,5 +12,5 @@ public interface UserRestController {
 	
 	public ResponseEntity<User> addUser(@RequestBody User user);
 	
-	public ResponseEntity<Boolean> deleteUser(@PathVariable User user);
+	public ResponseEntity<Boolean> deleteUser(@RequestBody User user);
 }

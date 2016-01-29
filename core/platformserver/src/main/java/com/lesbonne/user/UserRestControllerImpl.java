@@ -96,8 +96,8 @@ public class UserRestControllerImpl implements UserRestController {
 	}
 
 	@Override
-	@RequestMapping(method=RequestMethod.DELETE, value=UserRestURIConstants.DELETE_USER)
-	public ResponseEntity<Boolean> deleteUser(@RequestBody User user) {
+	@RequestMapping(method=RequestMethod.DELETE, value=UserRestURIConstants.DELETE_USER, produces = "application/json")
+	public @ResponseBody ResponseEntity<Boolean> deleteUser(@RequestBody User user) {
 		try {
 			userService.deleteUser(user);
 		} catch (Exception e) {

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -100,8 +101,8 @@ public class User implements EntityBean, Serializable {
 	}
 	
 	/*========== Foreign Key Starts From Here. ==========*/
-	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
-	@Cascade(value = org.hibernate.annotations.CascadeType.ALL)
+	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+//	@Cascade(value = org.hibernate.annotations.CascadeType.ALL)
 	private Set<SharingPost> sharingPosts;
 	
 	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)

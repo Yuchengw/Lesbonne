@@ -1,4 +1,4 @@
-package com.lesbonne.user.mocktest;
+package test.java.com.lesbonne.user.mocktest;
 
 import org.junit.Before;
 import org.junit.runner.RunWith;

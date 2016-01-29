@@ -62,7 +62,7 @@ public class UserRestControllerImpl implements UserRestController {
 	
 	@Override
 	@RequestMapping(method=RequestMethod.PUT, value=UserRestURIConstants.UPDATE_USER, produces = "application/json")
-	public ResponseEntity<User> updateUser(@RequestBody User user) {
+	public @ResponseBody ResponseEntity<User> updateUser(@RequestBody User user) {
 		User updatedUser = null;
 		try {
 			if (user == null || TextUtil.isNullOrEmpty(user.getUserEmail()) || TextUtil.isNullOrEmpty(user.getUserPassword()) 
@@ -78,7 +78,7 @@ public class UserRestControllerImpl implements UserRestController {
 
 	@Override
 	@RequestMapping(method=RequestMethod.POST, value=UserRestURIConstants.CREATE_USER, produces = "application/json")
-	public ResponseEntity<User> addUser(@RequestBody User user) {
+	public @ResponseBody ResponseEntity<User> addUser(@RequestBody User user) {
 		User result = null;
 		try {
 			if (user == null || TextUtil.isNullOrEmpty(user.getUserEmail()) || TextUtil.isNullOrEmpty(user.getUserPassword())) {
@@ -96,8 +96,8 @@ public class UserRestControllerImpl implements UserRestController {
 	}
 
 	@Override
-	@RequestMapping(method=RequestMethod.DELETE, value=UserRestURIConstants.DELETE_USER)
-	public ResponseEntity<Boolean> deleteUser(User user) {
+	@RequestMapping(method=RequestMethod.DELETE, value=UserRestURIConstants.DELETE_USER, produces = "application/json")
+	public @ResponseBody ResponseEntity<Boolean> deleteUser(@RequestBody User user) {
 		try {
 			userService.deleteUser(user);
 		} catch (Exception e) {

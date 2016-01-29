@@ -1,18 +1,27 @@
 package com.lesbonne.user;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.GenerationTime;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -71,29 +80,44 @@ public class User implements EntityBean, Serializable {
 	@Column(name = "USERRELATIONID", columnDefinition = "VARCHAR(18)")
 	private String userRelationId;
 	
-	@Column(name = "CREATEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP", updatable = false)
-	private String createdTime;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "CREATEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP",  insertable = false, updatable = false)
+	@org.hibernate.annotations.Generated(value=GenerationTime.INSERT)
+	private Date createdTime;
 	
-	@Column(name = "LASTMODIFIEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-	private String lastModifiedTime;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "LASTMODIFIEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP", insertable = false, updatable = false)
+	@org.hibernate.annotations.Generated(value=GenerationTime.ALWAYS)
+	private Date lastModifiedTime;
 
+	@PrePersist
+	public void onCreate() {
+		lastModifiedTime = createdTime = new Date();
+	}
+	
+	@PreUpdate
+	public void onUpdate() {
+		lastModifiedTime = new Date();
+	}
+	
 	/*========== Foreign Key Starts From Here. ==========*/
+	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+//	@Cascade(value = org.hibernate.annotations.CascadeType.ALL)
+	private Set<SharingPost> sharingPosts;
+	
+	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+	@Cascade(value = org.hibernate.annotations.CascadeType.ALL)
+	private List<AskingPost> askingPosts;
+	
 	@Column(name = "USERPAYMENTID", columnDefinition="VARCHAR(18)")
 	private String userPaymentId;
-	
-	
-	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
-	private List<AskingPost> askingPosts;
 
-	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
-	private List<SharingPost> sharingPosts;
-	
 	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
 	private List<Order> orders;
 	
 	@OneToMany(mappedBy = "userPartner1", fetch = FetchType.LAZY)
 	private List<Partner> partners;
-
+	
 	/*========== Getters and Setters. ==========*/
 	public String getUserId() {
 		return userId;
@@ -187,15 +211,15 @@ public class User implements EntityBean, Serializable {
 		this.userRelationId = userRelationId;
 	}
 
-	public String getCreatedTime() {
+	public Date getCreatedTime() {
 		return createdTime;
 	}
 
-	public String getLastModifiedTime() {
+	public Date getLastModifiedTime() {
 		return lastModifiedTime;
 	}
 
-	public void setLastModifiedTime(String lastModifiedTime) {
+	public void setLastModifiedTime(Date lastModifiedTime) {
 		this.lastModifiedTime = lastModifiedTime;
 	}
 
@@ -215,11 +239,11 @@ public class User implements EntityBean, Serializable {
 		this.askingPosts = askingPosts;
 	}
 	
-	public List<SharingPost> getSharingPosts() {
+	public Set<SharingPost> getSharingPosts() {
 		return sharingPosts;
 	}
 
-	public void setSharingPosts(List<SharingPost> sharingPosts) {
+	public void setSharingPosts(Set<SharingPost> sharingPosts) {
 		this.sharingPosts = sharingPosts;
 	}
 	

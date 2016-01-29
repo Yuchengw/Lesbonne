@@ -6,7 +6,7 @@ package com.lesbonne.sharingpost;
  * */
 public interface SharingPostService {
 
-	void persistSharingPost(SharingPost sharingPost);
+	SharingPost persistSharingPost(SharingPost sharingPost);
 	
 	SharingPost getSharingPostById(String sharingPostId);
 	

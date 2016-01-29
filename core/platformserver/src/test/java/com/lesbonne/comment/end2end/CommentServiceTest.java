@@ -1,4 +1,4 @@
-package com.lesbonne.comment.end2end;
+package test.java.com.lesbonne.comment.end2end;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

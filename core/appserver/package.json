@@ -51,10 +51,11 @@
 	    "url-loader": "^0.5.7",
 	    "webpack": "^1.12.9",
 	    "webpack-dev-server": "^1.14.0",
-	    "webshim": "^1.15.10"
+	    "webshim": "^1.15.10",
+	    "jsx-loader": "0.13.2"
  	},
   	"dependencies": {
-    	"react": "^0.13.3"
+    	"react": "^0.14.3"
   	},
 	"scripts": {
 		"test": "testem",

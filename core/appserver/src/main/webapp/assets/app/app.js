@@ -1,4 +1,4 @@
-import React from "react";
-import HelloBox from './HelloBox'
+var ReactDom = require('react-dom');
+var React = require('react');
 
-React.render(<HelloBox />, document.getElementsByTagName('body')[0])
+ReactDom.render(<h1> Hello Lesbonnes </h1>, document.getElementsByTagName('body')[0]);

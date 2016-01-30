@@ -4,43 +4,55 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 	entry: 
-	    getEntrySources(['./entrypoints/entry.js']),
+	    getEntrySources(['./app/app.js']),
 	output: {
+//		publicPath: 'http://localhost:8081/',
     	path: path.resolve(__dirname, './build'),
-    	filename: 'bundle.js',
-	},
-	externals: {
-        'react': 'React'
+    	filename: './build/bundle.js',
 	},
 	resolve: {
-
+		root: [
+		       path.resolve('./node_modules'),
+		       path.resolve('./')
+		],
 	},
 	devtool: 'eval',
-	sassLoader: {
-		includePaths:[
-		    path.resolve(__dirname, './scss')
-		]
-	},
+//	sassLoader: {
+//		includePaths:[
+//		    path.resolve(__dirname, './scss')
+//		]
+//	},
     module: {
         preLoaders: [
-            {
-                test: /\.jsx?$/,
-                exclude: /(node_modules)/,
-				loader: 'eslint',
-                query: {
-                    fix: true,
-                    failOnError: true
-                },            }
         ],
         loaders: [
             {
+            	test: /\.js?$/,
+                exclude: /(node_modules)/,
+                loader: 'react-hot'
+            },
+            {
+            	test: /\.js?$/,
+                exclude: /(node_modules)/,
+                loader: 'jsx'
+            },
+            {
+            	test: /\.js?$/,
+                exclude: /(node_modules)/,
+                loader: 'babel',
+                query: {
+                	presets: ['es2015','react']
+                }
+            },
+            {
                 test: /\.scss$/,
-                loaders: [
-                    'style',
-                    'css',
-                    'autoprefixer?browsers=last 3 versions',
-                    'sass?outputStyle=expanded'
-                ]
+                loader: ExtractTextPlugin.extract('css!sass')
+//                loaders: [
+//                    'style',
+//                    'css',
+//                    'autoprefixer?browsers=last 3 versions',
+//                    'sass?outputStyle=expanded'
+//                ]
             },
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
@@ -48,31 +60,18 @@ module.exports = {
                     'url?limit=8192',
                     'img'
                 ]
-            },
-            {
-                test: /\.jsx?$/,
-                exclude: /(node_modules)/,
-                loader: 'react-hot'
-            },
-            {
-            	test: /\.jsx?$/,
-                exclude: /(node_modules)/,
-                loader: ['react-hot','babel-loader'],
-            	query: {
-            		presets: ['stage-0','react','es2015'],
-            		cacheDirectory: true
-            	}
             }
         ]
     },
 	plugins: [
-	    new ExtractTextPlugin("style.css")
+	    new ExtractTextPlugin("./css/style.css")
 	]
 };
 
 function getEntrySources(sources) {
     if (process.env.NODE_ENV !== 'production') {
+//        sources.push('webpack-dev-server/client?http://localhost:8081');
+    	sources.push('webpack/hot/only-dev-server');
     }
-
     return sources;
 }

@@ -20,11 +20,11 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenerationTime;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.lesbonne.askingpost.AskingPost;
 import com.lesbonne.entity.EntityBean;
 import com.lesbonne.order.Order;
@@ -36,7 +36,7 @@ import com.lesbonne.sharingpost.SharingPost;
  * @since 1
  * */
 @Entity
-@Table(name="LESBONNEUSER")
+@Table(name = "LESBONNEUSER")
 public class User implements EntityBean, Serializable {
 	/**
 	 * 
@@ -45,80 +45,78 @@ public class User implements EntityBean, Serializable {
 
 	@Id
 	@Column(name = "USERID", nullable = false, unique = true, columnDefinition = "VARCHAR(18)")
-	@GenericGenerator(strategy="com.lesbonne.mysqldb.DBIdGenerator",name="userIdGenerator",
-					parameters = {@Parameter(name = "prefix", value = "001")})
-	@GeneratedValue(generator="userIdGenerator")
+	@GenericGenerator(strategy = "com.lesbonne.mysqldb.DBIdGenerator", name = "userIdGenerator", parameters = { @Parameter(name = "prefix", value = "001") })
+	@GeneratedValue(generator = "userIdGenerator")
 	private String userId;
-	
+
 	@Column(name = "USEREMAIL", unique = true, columnDefinition = "VARCHAR(511) NOT NULL")
 	private String userEmail;
-	
+
 	@Column(name = "USERPASSWORD", columnDefinition = "VARCHAR(255) NOT NULL")
 	private String userPassword;
-	
+
 	@Column(name = "USERROLE", columnDefinition = "TINYINT NOT NULL")
 	private int UserRole;
-	
+
 	@Column(name = "ISEMAILAUTHORIZED", columnDefinition = "BOOLEAN")
 	private Boolean isEmailAuthorized;
-	
+
 	@Column(name = "USERACCOUNTNONEXPIRED", columnDefinition = "BOOLEAN")
 	private Boolean userAccountNonExpired;
-	
-	@Column(name = "USERACCOUNTNONLOCKED",  columnDefinition = "BOOLEAN")
+
+	@Column(name = "USERACCOUNTNONLOCKED", columnDefinition = "BOOLEAN")
 	private Boolean userAccountNonLocked;
-	
+
 	@Column(name = "USERACCOUNTENABLED", columnDefinition = "BOOLEAN")
 	private Boolean userAccountEnabled;
-	
+
 	@Column(name = "USERCREDENTIALSNONEXPIRED", columnDefinition = "BOOLEAN")
 	private Boolean userCredentialsNonExpired;
-	
+
 	@Column(name = "USERCONTACTINFO", columnDefinition = "MEDIUMTEXT")
 	private String userContactInfo;
-	
+
 	@Column(name = "USERRELATIONID", columnDefinition = "VARCHAR(18)")
 	private String userRelationId;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "CREATEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP",  insertable = false, updatable = false)
-	@org.hibernate.annotations.Generated(value=GenerationTime.INSERT)
+	@Column(name = "CREATEDTIME", columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
+	@org.hibernate.annotations.Generated(value = GenerationTime.INSERT)
 	private Date createdTime;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "LASTMODIFIEDTIME", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP", insertable = false, updatable = false)
-	@org.hibernate.annotations.Generated(value=GenerationTime.ALWAYS)
+	@Column(name = "LASTMODIFIEDTIME", columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP", insertable = false, updatable = false)
+	@org.hibernate.annotations.Generated(value = GenerationTime.ALWAYS)
 	private Date lastModifiedTime;
 
 	@PrePersist
 	public void onCreate() {
 		lastModifiedTime = createdTime = new Date();
 	}
-	
+
 	@PreUpdate
 	public void onUpdate() {
 		lastModifiedTime = new Date();
 	}
-	
-	/*========== Foreign Key Starts From Here. ==========*/
-	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-//	@Cascade(value = org.hibernate.annotations.CascadeType.ALL)
+
+	/* ========== Foreign Key Starts From Here. ========== */
+	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY, cascade={CascadeType.ALL}, targetEntity = SharingPost.class)
+	@JsonManagedReference
 	private Set<SharingPost> sharingPosts;
-	
+
 	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
-	@Cascade(value = org.hibernate.annotations.CascadeType.ALL)
 	private List<AskingPost> askingPosts;
-	
-	@Column(name = "USERPAYMENTID", columnDefinition="VARCHAR(18)")
+
+	@Column(name = "USERPAYMENTID", columnDefinition = "VARCHAR(18)")
 	private String userPaymentId;
 
 	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
 	private List<Order> orders;
-	
+
 	@OneToMany(mappedBy = "userPartner1", fetch = FetchType.LAZY)
 	private List<Partner> partners;
-	
-	/*========== Getters and Setters. ==========*/
+
+	/* ========== Getters and Setters. ========== */
 	public String getUserId() {
 		return userId;
 	}
@@ -230,7 +228,7 @@ public class User implements EntityBean, Serializable {
 	public void setUserPaymentId(String userPaymentId) {
 		this.userPaymentId = userPaymentId;
 	}
-	
+
 	public List<AskingPost> getAskingPosts() {
 		return askingPosts;
 	}
@@ -238,7 +236,7 @@ public class User implements EntityBean, Serializable {
 	public void setAskingPosts(List<AskingPost> askingPosts) {
 		this.askingPosts = askingPosts;
 	}
-	
+
 	public Set<SharingPost> getSharingPosts() {
 		return sharingPosts;
 	}
@@ -246,7 +244,7 @@ public class User implements EntityBean, Serializable {
 	public void setSharingPosts(Set<SharingPost> sharingPosts) {
 		this.sharingPosts = sharingPosts;
 	}
-	
+
 	public List<Order> getOrders() {
 		return orders;
 	}
@@ -254,23 +252,21 @@ public class User implements EntityBean, Serializable {
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
 	}
-	
+
 	@Override
 	public Map<String, Object> getIndexedColumns() {
 		Map<String, Object> searchableColumns = new HashMap<String, Object>();
 		searchableColumns.put("email", getUserEmail());
 		return searchableColumns;
 	}
-	
+
 	@Override
 	public String getId() {
 		return getUserId();
 	}
 
 	public String toString() {
-		return "{"
-				+ "\"userEmail\":\"" + getUserEmail() + "\","
-						+ "\"userPassword\":\"" + getUserPassword() + "\"}";
+		return "{" + "\"userEmail\":\"" + getUserEmail() + "\","
+				+ "\"userPassword\":\"" + getUserPassword() + "\"}";
 	}
 }
-

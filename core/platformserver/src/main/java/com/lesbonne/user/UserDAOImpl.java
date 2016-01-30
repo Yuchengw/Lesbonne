@@ -2,9 +2,12 @@ package com.lesbonne.user;
 
 import java.util.List;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.lesbonne.sharingpost.SharingPost;
 
 /**
  * @author yucheng
@@ -42,7 +45,12 @@ public class UserDAOImpl implements UserDAO{
 
 	@Override
 	public void deleteUser(User user) {
-		sessionFactory.getCurrentSession().delete(user);
+		Session session = sessionFactory.getCurrentSession();
+		User toBeRemoved = (User) session.get(User.class, user.getUserId());
+		for (SharingPost post : toBeRemoved.getSharingPosts()) {
+			post.setOwner(null);
+		}
+		session.delete(toBeRemoved);
 	}
 
 	@Override

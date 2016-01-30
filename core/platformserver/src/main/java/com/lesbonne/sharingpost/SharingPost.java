@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,12 +18,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.Parameter;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.lesbonne.postcomment.PostComment;
 import com.lesbonne.user.User;
 
@@ -70,8 +71,10 @@ public class SharingPost implements Serializable {
 	
 	// Foreign keys
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "USERID", referencedColumnName = "USERID", nullable = false)//, insertable=false, updatable=false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name = "USERID", referencedColumnName = "USERID", nullable = false)//, nullable = false, insertable=false, updatable=false)
+//	@OnDelete(action = OnDeleteAction.NO_ACTION)
+//	@ManyToOne(targetEntity = User.class, cascade= {CascadeType.REMOVE})
+	@JsonBackReference
 	private User owner;
 	
 	@OneToMany(mappedBy = "sharingPost", fetch = FetchType.LAZY)

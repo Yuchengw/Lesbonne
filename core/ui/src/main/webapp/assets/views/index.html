@@ -2,23 +2,21 @@
 <html lang="en"> 
 <head>
 <meta charset="UTF-8">
-<title>Lesbonne - Share Food With World</title>
-
-<!--==== Bootstrap Core css ====-->
-<link rel="stylesheet" type="text/css"
-	href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"></link>
-<!--==== css====-->
-<!-- Accessibility Issues -->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+<title>Lesbonnes - Share Food With World</title>
+<link rel="stylesheet" type="text/css" href="https://localhost:8081/css/style.css"></link>
 <script>
       document.write('<base href="' + document.location + '" />');
+      /*var cdn = (process.env.NODE_ENV === 'production' ? '/as/build/' : 'https://localhost:8081/build/');
+      swig.setDefaults({
+          locals: { // Global variables
+              cdn: cdn
+          }
+      });*/
 </script>
 </head>
 <body>
-	<script src="/as/build/bundle.js" charset="utf-8"></script>
+	<script src="https://localhost:8081/build/bundle.js" charset="utf-8"></script>
+	
     <header>
       <nav class="container">
         <h1 class="site-name">
@@ -67,17 +65,17 @@
     <section class="value-pop">
       <div class="container">
         <div class="column-3">
-          <img src="/as/images/homemade-icon.png">
+          <img src="/as/scss/images/homemade-icon.png">
           <h3>Home made food with love</h3>
           <p>Extra portion of home made food coming from people share their passion</p>
         </div>
         <div class="column-3">
-          <img src="/as/images/instant-icon.png">
+          <img src="/as/scss/images/instant-icon.png">
           <h3>Instant Order</h3>
           <p>Browse and order food instantly</p>
         </div>
         <div class="column-3">
-          <img src="/as/images/pickup-icon.png">
+          <img src="/as/scss/images/pickup-icon.png">
           <h3>Pick it up, or have it delivered</h3>
           <p>It's free to pick it up at the door, chat with the chef. Some offer task rabbit delivery services</p>
         </div>
@@ -100,9 +98,9 @@
               </span>
               <span class="price">10</span>
             </div>
-            <img src="/as/images/showcase-1.png" />
+            <img src="/as/scss/images/showcase-1.png" />
             <div class="showcase-bottom">
-              <img class="profile-img" src="/as/images/profile-1.png"/>
+              <img class="profile-img" src="/as/scss/images/profile-1.png"/>
               <div class="profile-name">
                 <span class="name">Bobby Coleman</span>
                 <br>
@@ -120,9 +118,9 @@
               </span>
               <span class="price">8</span>
             </div>
-            <img src="/as/images/showcase-2.png" />
+            <img src="/as/scss/images/showcase-2.png" />
             <div class="showcase-bottom">
-              <img class="profile-img" src="/as/images/profile-2.png"/>
+              <img class="profile-img" src="/as/scss/images/profile-2.png"/>
               <div class="profile-name">
                 <span class="name">Kate Lisowska</span>
                 <br>
@@ -138,9 +136,9 @@
               <span class="dish-name">Mushroom Salmon Pasta</span>
               <span class="price">8</span>
             </div>
-            <img src="/as/images/showcase-3.png" />
+            <img src="/as/scss/images/showcase-3.png" />
             <div class="showcase-bottom">
-              <img class="profile-img" src="/as/images/profile-3.png"/>
+              <img class="profile-img" src="/as/scss/images/profile-3.png"/>
               <div class="profile-name">
                 <span class="name">Julia Burke</span>
                 <br>
@@ -156,9 +154,9 @@
               <span class="dish-name">Golden Mushroom Corn Soup</span>
               <span class="price">6</span>
             </div>
-            <img src="/as/images/showcase-4.png" />
+            <img src="/as/scss/images/showcase-4.png" />
             <div class="showcase-bottom">
-              <img class="profile-img" src="/as/images/profile-4.png"/>
+              <img class="profile-img" src="/as/scss/images/profile-4.png"/>
               <div class="profile-name">
                 <span class="name">Megan George</span>
                 <br>
@@ -174,9 +172,9 @@
               <span class="dish-name">My favorite Shrimp Pasta</span>
               <span class="price">6</span>
             </div>
-            <img src="/as/images/showcase-5.png" />
+            <img src="/as/scss/images/showcase-5.png" />
             <div class="showcase-bottom">
-              <img class="profile-img" src="/as/images/profile-5.png"/>
+              <img class="profile-img" src="/as/scss/images/profile-5.png"/>
               <div class="profile-name">
                 <span class="name">Alexander Walters</span>
                 <br>
@@ -192,9 +190,9 @@
               <span class="dish-name">Curry Bean Sprout Noodle</span>
               <span class="price">12</span>
             </div>
-            <img src="/as/images/showcase-6.png" />
+            <img src="/as/scss/images/showcase-6.png" />
             <div class="showcase-bottom">
-              <img class="profile-img" src="/as/images/profile-6.png"/>
+              <img class="profile-img" src="/as/scss/images/profile-6.png"/>
               <div class="profile-name">
                 <span class="name">Jason Lee</span>
                 <br>
@@ -210,9 +208,9 @@
               <span class="dish-name">Japanese Tonkosu Ramen</span>
               <span class="price">6</span>
             </div>
-            <img src="/as/images/showcase-7.png" />
+            <img src="/as/scss/images/showcase-7.png" />
             <div class="showcase-bottom">
-              <img class="profile-img" src="/as/images/profile-7.png"/>
+              <img class="profile-img" src="/as/scss/images/profile-7.png"/>
               <div class="profile-name">
                 <span class="name">Megan George</span>
                 <br>
@@ -228,9 +226,9 @@
               <span class="dish-name">Party Chicken Burger</span>
               <span class="price">7.5</span>
             </div>
-            <img src="/as/images/showcase-8.png" />
+            <img src="/as/scss/images/showcase-8.png" />
             <div class="showcase-bottom">
-              <img class="profile-img" src="/as/images/profile-8.png"/>
+              <img class="profile-img" src="/as/scss/images/profile-8.png"/>
               <div class="profile-name">
                 <span class="name">Alexander Walters</span>
                 <br>
@@ -246,9 +244,9 @@
               <span class="dish-name">Handmade Sashimi</span>
               <span class="price">15</span>
             </div>
-            <img src="/as/images/showcase-9.png" />
+            <img src="/as/scss/images/showcase-9.png" />
             <div class="showcase-bottom">
-              <img class="profile-img" src="/as/images/profile-9.png"/>
+              <img class="profile-img" src="/as/scss/images/profile-9.png"/>
               <div class="profile-name">
                 <span class="name">Ashwin Bhatttacharjee</span>
                 <br>
@@ -265,6 +263,4 @@
     <section>
     </section>
   </body>
-</html>
-
 </html>

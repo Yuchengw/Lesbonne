@@ -6,9 +6,9 @@ module.exports = {
 	entry: 
 	    getEntrySources(['./app/app.js']),
 	output: {
-//		publicPath: 'http://localhost:8081/',
-    	path: path.resolve(__dirname, './build'),
-    	filename: './build/bundle.js',
+		publicPath: 'http://localhost:8081/',
+//    	path: path.resolve(__dirname, './build'),
+//    	filename: './build/bundle.js',
 	},
 	resolve: {
 		root: [

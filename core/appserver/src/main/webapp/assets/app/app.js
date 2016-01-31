@@ -1,13 +1,15 @@
-let ReactDom = require('react-dom');
-let React = require('react');
+//let Router = require('react-router')
+//let Route = Router.Route
+//let Link = Router.Link
+import React from 'react';
+import Header from './templates/header.js';
+
 require('../scss/app.scss');
 
-let App = React.createClass({
-	  render: function() {
-	    return (
-	     <h1>testing react33 </h1>
-	    );
-	  }
-	  
-});
-module.exports = App;
+export default class App extends React.Component {
+  render() {
+    return (
+    	<Header />
+    );
+  }
+}

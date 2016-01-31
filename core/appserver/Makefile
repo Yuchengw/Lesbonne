@@ -28,7 +28,6 @@ help:
 
 ## install dependencies
 install:
-	# ui install
 	npm install
 
 ## start webpack dev server
@@ -41,5 +40,5 @@ build:
 
 ## clean the npm files
 clean:
-	rm -rf node_modules
+	rm -rf node_modules && rm -rf node
 	

@@ -1,6 +1,13 @@
-var ReactDom = require('react-dom');
-var React = require('react');
-require('../scss/master.scss');
-require('bootstrap-loader');
+let ReactDom = require('react-dom');
+let React = require('react');
+require('../scss/app.scss');
 
-ReactDom.render(<h2> Yucheng Testing again 1 </h2>, document.getElementsByTagName('body')[0]);
+let App = React.createClass({
+	  render: function() {
+	    return (
+	     <h1>testing react </h1>
+	    );
+	  }
+	  
+});
+module.exports = App;

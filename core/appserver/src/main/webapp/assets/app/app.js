@@ -5,7 +5,7 @@ require('../scss/app.scss');
 let App = React.createClass({
 	  render: function() {
 	    return (
-	     <h1>testing react </h1>
+	     <h1>testing react33 </h1>
 	    );
 	  }
 	  

@@ -8,24 +8,25 @@ module.exports = {
 	output: {
 //		publicPath: 'http://localhost:8081/',
     	path: path.resolve(__dirname, './build'),
-    	filename: './build/bundle.js',
+    	filename: 'bundle.js',
+	},
+	externals: {
+		'$': 'jQuery'
 	},
 	resolve: {
 		root: [
-		       path.resolve('./node_modules'),
+		       path.resolve('../../../../node_modules'),
 		       path.resolve('./')
 		],
 	},
 	devtool: 'eval',
-//	sassLoader: {
-//		includePaths:[
-//		    path.resolve(__dirname, './scss')
-//		]
-//	},
     module: {
         preLoaders: [
         ],
         loaders: [
+            {   test: /bootstrap-sass\/assets\/javascripts\//, 
+                  	loader: 'imports?jQuery=jquery' 
+            },
             {
             	test: /\.js?$/,
                 exclude: /(node_modules)/,
@@ -55,11 +56,14 @@ module.exports = {
 //                ]
             },
             {
-                test: /\.(jpe?g|png|gif|svg)$/i,
+                test: /\.(jpe?g|png|gif|woff2?|svg)$/i,
                 loaders: [
                     'url?limit=8192',
                     'img'
                 ]
+            },
+            {  test: /\.(ttf|eot)$/, 
+               loader: 'file' 
             }
         ]
     },
@@ -70,7 +74,6 @@ module.exports = {
 
 function getEntrySources(sources) {
     if (process.env.NODE_ENV !== 'production') {
-//        sources.push('webpack-dev-server/client?http://localhost:8081');
     	sources.push('webpack/hot/only-dev-server');
     }
     return sources;

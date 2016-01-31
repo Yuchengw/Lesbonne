@@ -4,73 +4,75 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 	entry: 
-	    getEntrySources(['./js/entry.js']),
+	    getEntrySources(['./app/app.js']),
 	output: {
+//		publicPath: 'http://localhost:8081/',
     	path: path.resolve(__dirname, './build'),
-    	filename: 'bundle.js',
-	},
-	externals: {
-
+    	filename: './build/bundle.js',
 	},
 	resolve: {
-
+		root: [
+		       path.resolve('./node_modules'),
+		       path.resolve('./')
+		],
 	},
 	devtool: 'eval',
-	sassLoader: {
-		includePaths:[
-		    path.resolve(__dirname, './scss')
-		]
-	},
     module: {
         preLoaders: [
-            {
-                test: /\.jsx?$/,
-                exclude: /(node_modules|bower_components)/,
-                loader: 'source-map-loader'
-            }
         ],
         loaders: [
             {
-                test: /\.scss$/,
-                include: /src\/main\/webapp\/assets/,
-                loaders: [
-                    'style',
-                    'css',
-                    'autoprefixer?browsers=last 3 versions',
-                    'sass?outputStyle=expanded'
-                ]
+            	test: /\.js?$/,
+                exclude: /(node_modules)/,
+                loader: 'react-hot'
+            },
+            { 	test: /bootstrap-sass\/assets\/javascripts\//, 
+            	loader: 'imports?jQuery=jquery' 
             },
             {
-                test: /\.(jpe?g|png|gif|svg)$/i,
+            	test: /\.js?$/,
+                exclude: /(node_modules)/,
+                loader: 'jsx'
+            },
+            {
+            	test: /\.js?$/,
+                exclude: /(node_modules)/,
+                loader: 'babel',
+                query: {
+                	presets: ['es2015','react']
+                }
+            },
+            {
+                test: /\.scss$/,
+                loader: ExtractTextPlugin.extract('css!sass')
+//                loaders: [
+//                    'style',
+//                    'css',
+//                    'autoprefixer?browsers=last 3 versions',
+//                    'sass?outputStyle=expanded'
+//                ]
+            },
+            {
+                test: /\.(jpe?g|png|gif|woff2?|svg)$/i,
                 loaders: [
                     'url?limit=8192',
                     'img'
                 ]
             },
-            {
-                test: /\.jsx?$/,
-                exclude: /(node_modules|bower_components)/,
-                loader: 'react-hot'
+            {   test: /\.(ttf|eot)$/, 
+            	loader: 'file' 
             },
-            {
-            	test: /\.jsx?$/,
-                exclude: /(node_modules|bower_components)/,
-                loader: 'babel',
-            	query: {
-            		presets: ['stage-0','react','es2015'],
-            		cacheDirectory: true
-            	}
-            }
         ]
     },
 	plugins: [
-	    new ExtractTextPlugin("style.css")
+	    new ExtractTextPlugin("./css/style.css")
 	]
 };
 
 function getEntrySources(sources) {
     if (process.env.NODE_ENV !== 'production') {
+//        sources.push('webpack-dev-server/client?http://localhost:8081');
+    	sources.push('webpack/hot/only-dev-server');
     }
-
     return sources;
 }

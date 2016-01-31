@@ -6,9 +6,9 @@ module.exports = {
 	entry: 
 	    getEntrySources(['./app/app.js']),
 	output: {
-		publicPath: 'http://localhost:8081/',
-//    	path: path.resolve(__dirname, './build'),
-//    	filename: './build/bundle.js',
+//		publicPath: 'http://localhost:8081/',
+    	path: path.resolve(__dirname, './build'),
+    	filename: './build/bundle.js',
 	},
 	resolve: {
 		root: [
@@ -71,7 +71,6 @@ module.exports = {
 
 function getEntrySources(sources) {
     if (process.env.NODE_ENV !== 'production') {
-//        sources.push('webpack-dev-server/client?http://localhost:8081');
     	sources.push('webpack/hot/only-dev-server');
     }
     return sources;

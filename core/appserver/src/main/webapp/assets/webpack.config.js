@@ -6,16 +6,12 @@ module.exports = {
 	entry: 
 	    getEntrySources(['./app/app.js']),
 	output: {
-//		publicPath: 'http://localhost:8081/',
     	path: path.resolve(__dirname, './build'),
-    	filename: 'bundle.js',
-	},
-	externals: {
-		'$': 'jQuery'
+    	filename: './build/bundle.js',
 	},
 	resolve: {
 		root: [
-		       path.resolve('../../../../node_modules'),
+		       path.resolve('./node_modules'),
 		       path.resolve('./')
 		],
 	},
@@ -24,9 +20,6 @@ module.exports = {
         preLoaders: [
         ],
         loaders: [
-            {   test: /bootstrap-sass\/assets\/javascripts\//, 
-                  	loader: 'imports?jQuery=jquery' 
-            },
             {
             	test: /\.js?$/,
                 exclude: /(node_modules)/,
@@ -63,7 +56,10 @@ module.exports = {
                 ]
             },
             {  test: /\.(ttf|eot)$/, 
-               loader: 'file' 
+                loader: 'file' 
+            },
+            {   test: /bootstrap-sass\/assets\/javascripts\//, 
+              	loader: 'imports?jQuery=jquery' 
             }
         ]
     },

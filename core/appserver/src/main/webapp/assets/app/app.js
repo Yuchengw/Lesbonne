@@ -1,6 +1,15 @@
-var ReactDom = require('react-dom');
-var React = require('react');
-require('../scss/master.scss');
-require('bootstrap-loader');
+//let Router = require('react-router')
+//let Route = Router.Route
+//let Link = Router.Link
+import React from 'react';
+import Header from './templates/header.js';
 
-ReactDom.render(<h2> Yucheng Testing again 1 </h2>, document.getElementsByTagName('body')[0]);
+require('../scss/app.scss');
+
+export default class App extends React.Component {
+  render() {
+    return (
+    	<Header />
+    );
+  }
+}

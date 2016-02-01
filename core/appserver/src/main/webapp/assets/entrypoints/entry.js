@@ -1,6 +1,7 @@
-//import React from "react";
-//import App from "../app/app.js";
-import Router from "../app/router.js";
+import ReactDom from 'react-dom';
+import React from 'react';
+import App from '../app/app.js';
 
-//var application = App.create();
-require('../scss/master.scss')
+require('bootstrap-loader');
+
+ReactDom.render(<App/>, document.getElementById('app'));

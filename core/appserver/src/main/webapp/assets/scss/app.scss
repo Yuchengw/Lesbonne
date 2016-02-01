@@ -648,12 +648,30 @@ nav {
     line-height: 18px;
     padding: 11px 18px; }
     nav li:last-child {
-      margin-left: 18px; }
+      margin-left: 18px; 
+}
 
 .login {
   border: 2px solid white;
   border-radius: 4px;
-  text-transform: uppercase; }
+  text-transform: uppercase; 
+  a {
+  	/*1important not good, will get ride of this later.
+  	 */
+	text-decoration: none !important;  
+  }
+}
+
+.signup {
+  border: 2px solid white;
+  border-radius: 4px;
+  text-transform: uppercase; 
+  a {
+  	/*1important not good, will get ride of this later.
+  	 */
+	text-decoration: none !important;  
+  }
+}
 
 /*
  * Helpers

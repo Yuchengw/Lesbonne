@@ -1,15 +1,6 @@
-//let Router = require('react-router')
-//let Route = Router.Route
-//let Link = Router.Link
-import React from 'react';
-import Header from './templates/header.js';
+var ReactDom = require('react-dom');
+var React = require('react');
+require('../scss/master.scss');
+require('bootstrap-loader');
 
-require('../scss/app.scss');
-
-export default class App extends React.Component {
-  render() {
-    return (
-    	<Header />
-    );
-  }
-}
+ReactDom.render(<h2> Yucheng Testing again 1 </h2>, document.getElementsByTagName('body')[0]);

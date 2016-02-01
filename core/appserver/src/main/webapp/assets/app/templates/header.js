@@ -5,6 +5,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import Login from './login.js';
+import Signup from './signup.js';
 
 export default class Header extends React.Component{
 	render() {
@@ -18,7 +19,8 @@ export default class Header extends React.Component{
 		          <li>Explore test</li>
 		          <li>How it works</li>
 		          <li>Become a chef</li>
-		          <Login /> 			
+		          <li className="login"> <Login /> </li> 
+		          <li className="signup"> <Signup /> </li>
 		        </ul>
 		      </nav>
 		    </header>

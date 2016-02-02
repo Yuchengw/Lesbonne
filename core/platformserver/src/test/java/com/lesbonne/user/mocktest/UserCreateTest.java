@@ -37,7 +37,6 @@ public class UserCreateTest extends BaseRestUserControllerTest {
 		User resultUser = new User();
 		resultUser.setUserEmail(TEST_EMAIL);
 		resultUser.setUserPassword(TEST_PASSWORD);
-
 		resultUser.setUserId(TEMP_Key);
 
 		// Testing user with existing email, return true.

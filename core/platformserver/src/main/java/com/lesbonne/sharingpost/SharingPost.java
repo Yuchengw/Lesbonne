@@ -75,6 +75,10 @@ public class SharingPost extends CommonEntityInfo implements Serializable {
         return sharingPostId;
     }
     
+    public void setSharingPostId(String sharingPostId) {
+        this.sharingPostId = sharingPostId;
+    }
+    
     public User getOwner() {
         return owner;
     }

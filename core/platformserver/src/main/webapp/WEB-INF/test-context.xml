@@ -23,4 +23,7 @@
 	<bean id="relatedImagesService" class="org.mockito.Mockito" factory-method="mock">
     	<constructor-arg value="com.lesbonne.images.RelatedImagesService"/>
 	</bean>
+	<bean id="sharingPostService" class="org.mockito.Mockito" factory-method="mock">
+    	<constructor-arg value="com.lesbonne.sharingpost.SharingPostService"/>
+	</bean>
 </beans>

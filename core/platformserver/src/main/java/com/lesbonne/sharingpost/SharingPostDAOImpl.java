@@ -1,8 +1,12 @@
 package com.lesbonne.sharingpost;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.lesbonne.postcomment.PostComment;
+import com.lesbonne.user.User;
 
 /**
  * @author yucheng
@@ -32,6 +36,11 @@ public class SharingPostDAOImpl implements SharingPostDAO {
 	
 	@Override
 	public void deleteSharingPost(SharingPost sharingPost) {
-		sessionFactory.getCurrentSession().delete(sharingPost);
+		Session session = sessionFactory.getCurrentSession();
+		SharingPost toBeRemoved = (SharingPost) session.get(SharingPost.class, sharingPost.getSharingPostId());
+        for (PostComment comment : toBeRemoved.getPostComments()) {
+            comment.setSharingPost(null);
+        }
+        session.delete(toBeRemoved);
 	}
 }

@@ -6,7 +6,7 @@ package com.lesbonne.postcomment;
  * */
 public interface PostCommentService {
 	
-	void persistPostCommentService(PostComment postComment);
+    PostComment persistPostComment(PostComment postComment);
 	
 	PostComment getPostCommentById(String postCommentId);
 	

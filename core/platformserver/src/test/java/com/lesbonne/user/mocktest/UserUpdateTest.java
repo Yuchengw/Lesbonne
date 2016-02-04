@@ -81,4 +81,34 @@ public class UserUpdateTest extends BaseRestUserControllerTest {
 				.put(getBaseTestURI()).then()
 				.statusCode(HttpServletResponse.SC_BAD_REQUEST);
 	}
+	
+	@Test
+    public void testDeleteUser() {
+        // create a simple user with just email and password
+        User testUser = new User();
+        testUser.setUserEmail(TEST_EMAIL);
+        testUser.setUserPassword(TEST_PASSWORD);
+        
+        Mockito.doNothing().when(userService).deleteUser((User) Matchers.anyObject());
+        
+        given().body(testUser).contentType(ContentType.JSON).when()
+                .delete(URLPREFIX + "delete").then()
+                .statusCode(HttpServletResponse.SC_OK)
+                .contentType(ContentType.JSON).body(equalTo("true"));
+    }
+	
+	@Test
+    public void testDeleteUserCascade() {
+	    // TODO: Add sharing post
+//	    User testUser = new User();
+//        testUser.setUserEmail(TEST_EMAIL);
+//        testUser.setUserPassword(TEST_PASSWORD);
+//        
+//        Mockito.doNothing().when(userService).deleteUser((User) Matchers.anyObject());
+//        
+//        given().body(testUser).contentType(ContentType.JSON).when()
+//                .delete(URLPREFIX + "delete").then()
+//                .statusCode(HttpServletResponse.SC_OK)
+//                .contentType(ContentType.JSON).body(equalTo("true"));
+    }
 }

@@ -63,7 +63,7 @@ public class UserGetTest extends BaseRestUserControllerTest {
 		// return true all the time if the input is TESTEMAIL
 		Mockito.when(userService.getUserById(TEMP_Key)).thenReturn(testUser);
 
-		given().when().get(URLPREFIX + "id/" + TEMP_Key)
+		given().when().get(URLPREFIX + "getUserById/" + TEMP_Key)
 				.then().statusCode(HttpServletResponse.SC_OK)
 				.contentType(ContentType.JSON).body("userPassword", equalTo(TEST_PASSWORD));
 	}

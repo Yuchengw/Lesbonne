@@ -3,6 +3,7 @@ package com.lesbonne.askingpost;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,6 +17,9 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.lesbonne.entity.CommonEntityInfo;
 import com.lesbonne.postcomment.PostComment;
 import com.lesbonne.user.User;
 
@@ -27,7 +31,7 @@ import com.lesbonne.user.User;
  * */
 @Entity
 @Table(name = "ASKINGPOST")
-public class AskingPost implements Serializable {
+public class AskingPost extends CommonEntityInfo implements Serializable {
 	
 	/**
 	 * 
@@ -41,7 +45,7 @@ public class AskingPost implements Serializable {
 	@GeneratedValue(generator="askingPostIdGenerator")
 	private String askingPostId;
 	
-	@Column(name="ASKINGPOSTSUBJECT", columnDefinition="VARCHAR(255) NOT NULL")
+    @Column(name="ASKINGPOSTSUBJECT", columnDefinition="VARCHAR(255) NOT NULL")
 	private String askingPostSubject;
 	
 	@Column(name="CATEGORY", columnDefinition="VARCHAR(255) NOT NULL")
@@ -50,27 +54,30 @@ public class AskingPost implements Serializable {
 	@Column(name="PARTNERID", columnDefinition="VARCHAR(18)")
 	private String partnerId;
 	
-	@Column(name="EXPIREDAT", columnDefinition="DATETIME NOT NULL")
-	private String expiredAt;
-	
-	@Column(name = "CREATEDATE", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP", updatable = false)
-	private String createdDate;
-	
-	@Column(name = "LASTMODIFIEDDATE", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-	private String lastModifiedDate;
+	@Column(name = "EXPIREDAT", columnDefinition = "DATETIME NOT NULL")
+    private String expiredAt;
 	
 	// Foreign keys
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "USERID", referencedColumnName = "USERID", nullable = false)//, insertable=false, updatable=false)
+    @JoinColumn(
+            name = "USERID", referencedColumnName = "USERID", nullable = false)
+    @JsonBackReference(value="user-askingpost")
 	private User owner;
 	
-	@OneToMany(mappedBy = "askingPost", fetch = FetchType.LAZY)
+	@OneToMany(
+            mappedBy = "askingPost", fetch = FetchType.LAZY,
+            cascade = { CascadeType.ALL }, targetEntity = PostComment.class)
+    @JsonManagedReference(value="askingpost-postcomment")
 	private Set<PostComment> postComments;
 	
 	public String getAskingPostId() {
 		return askingPostId;
 	}
 
+	public void setAskingPostId(String askingPostId) {
+        this.askingPostId = askingPostId;
+    }
+	
 	public User getOwner() {
 		return owner;
 	}
@@ -117,17 +124,5 @@ public class AskingPost implements Serializable {
 
 	public void setExpiredAt(String expiredAt) {
 		this.expiredAt = expiredAt;
-	}
-
-	public String getCreatedDate() {
-		return createdDate;
-	}
-
-	public String getLastModifiedDate() {
-		return lastModifiedDate;
-	}
-
-	public void setLastModifiedTime(String lastModifiedDate) {
-		this.lastModifiedDate = lastModifiedDate;
 	}
 }

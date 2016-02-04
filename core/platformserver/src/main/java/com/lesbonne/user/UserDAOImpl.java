@@ -7,6 +7,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.lesbonne.askingpost.AskingPost;
+import com.lesbonne.postcomment.PostComment;
 import com.lesbonne.sharingpost.SharingPost;
 
 /**
@@ -50,6 +52,12 @@ public class UserDAOImpl implements UserDAO{
 		for (SharingPost post : toBeRemoved.getSharingPosts()) {
 			post.setOwner(null);
 		}
+		for (AskingPost post : toBeRemoved.getAskingPosts()) {
+            post.setOwner(null);
+        }
+		for (PostComment comment : toBeRemoved.getPostComments()) {
+		    comment.setOwner(null);
+        }
 		session.delete(toBeRemoved);
 	}
 

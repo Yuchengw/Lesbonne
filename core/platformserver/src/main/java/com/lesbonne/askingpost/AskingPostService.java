@@ -1,12 +1,13 @@
 package com.lesbonne.askingpost;
 
 /**
- * @author yucheng
+ * The interfact for the AskingPostService
+ * @author Jassica
  * @since 1
  * */
 public interface AskingPostService {
 	
-	void persistAskingPost(AskingPost askingPost);
+	AskingPost persistAskingPost(AskingPost askingPost);
 	
 	AskingPost getAskingPostById(String askingPostId);
 	

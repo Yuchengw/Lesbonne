@@ -16,8 +16,9 @@ public class AskingPostServiceImpl implements AskingPostService {
 	
 	@Override
 	@Transactional
-	public void persistAskingPost(AskingPost askingPost) {
+	public AskingPost persistAskingPost(AskingPost askingPost) {
 		askingPostDAO.persistAskingPost(askingPost);
+		return askingPost;
 	}
 	
 	@Override

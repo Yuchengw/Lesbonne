@@ -14,7 +14,9 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.lesbonne.askingpost.AskingPost;
+import com.lesbonne.entity.CommonEntityInfo;
 import com.lesbonne.sharingpost.SharingPost;
 import com.lesbonne.user.User;
 
@@ -26,7 +28,7 @@ import com.lesbonne.user.User;
  * */
 @Entity
 @Table(name = "POSTCOMMENT")
-public class PostComment implements Serializable {
+public class PostComment extends CommonEntityInfo implements Serializable {
 
 	/**
 	 * 
@@ -40,30 +42,28 @@ public class PostComment implements Serializable {
 	@GeneratedValue(generator="postCommentIdGenerator")
 	private String postCommentId;
 
-	@Column(name = "COMMENTBODY", columnDefinition = "VARCHAR(1023)")
+	@Column(name = "COMMENTBODY", columnDefinition = "VARCHAR(1023) NOT NULL")
 	private String commentBody;
 
 
 	@Column(name = "ATUSER", columnDefinition = "VARCHAR(19999)")
 	private String atUser;
 
-	@Column(name = "CREATEDTIME", columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP", updatable = false)
-	private String createdTime;
-
-	@Column(name = "LASTMODIFIEDTIME", columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-	private String lastModifiedTime;
-
 	// Foreign Keys
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "USERID", referencedColumnName = "USERID", nullable = false)// , insertable=false, updatable=false)
+    @JoinColumn(
+            name = "USERID", referencedColumnName = "USERID", nullable = false)
+    @JsonBackReference(value="user-postcomment")
 	private User owner;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "SHARINGPOSTID", referencedColumnName = "SHARINGPOSTID", nullable = true)// , insertable=false, updatable=false)
+    @ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "SHARINGPOSTID", referencedColumnName = "SHARINGPOSTID", nullable = true)
+    @JsonBackReference(value="sharingpost-postcomment")
 	private SharingPost sharingPost;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ASKINGPOSTID", referencedColumnName = "ASKINGPOSTID", nullable = true)// , insertable=false, updatable=false)
+	@JoinColumn(name = "ASKINGPOSTID", referencedColumnName = "ASKINGPOSTID", nullable = true)
+	@JsonBackReference(value="askingpost-postcomment")
 	private AskingPost askingPost;
 
 	public String getPostCommentId() {
@@ -105,16 +105,12 @@ public class PostComment implements Serializable {
 	public void setAtUser(String atUser) {
 		this.atUser = atUser;
 	}
+	
+	public String getCommentBody() {
+        return commentBody;
+    }
 
-	public String getCreatedTime() {
-		return createdTime;
-	}
-
-	public String getlastModifiedTime() {
-		return lastModifiedTime;
-	}
-
-	public void setLastModifiedTime(String lastModifiedTime) {
-		this.lastModifiedTime = lastModifiedTime;
-	}
+    public void setCommentBody(String commentBody) {
+        this.commentBody = commentBody;
+    }
 }

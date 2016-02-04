@@ -24,6 +24,7 @@ import com.lesbonne.entity.CommonEntityInfo;
 import com.lesbonne.entity.EntityBean;
 import com.lesbonne.order.Order;
 import com.lesbonne.partner.Partner;
+import com.lesbonne.postcomment.PostComment;
 import com.lesbonne.sharingpost.SharingPost;
 
 /**
@@ -85,11 +86,20 @@ public class User extends CommonEntityInfo implements EntityBean, Serializable {
     @OneToMany(
             mappedBy = "owner", fetch = FetchType.LAZY,
             cascade = { CascadeType.ALL }, targetEntity = SharingPost.class)
-    @JsonManagedReference
+    @JsonManagedReference(value="user-sharingpost")
     private Set<SharingPost> sharingPosts;
     
-    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
-    private List<AskingPost> askingPosts;
+    @OneToMany(
+            mappedBy = "owner", fetch = FetchType.LAZY,
+            cascade = { CascadeType.ALL }, targetEntity = AskingPost.class)
+    @JsonManagedReference(value="user-askingpost")
+    private Set<AskingPost> askingPosts;
+    
+    @OneToMany(
+            mappedBy = "owner", fetch = FetchType.LAZY,
+            cascade = { CascadeType.ALL }, targetEntity = PostComment.class)
+    @JsonManagedReference(value="user-postcomment")
+    private Set<PostComment> postComments;
     
     @Column(name = "USERPAYMENTID", columnDefinition = "VARCHAR(18)")
     private String userPaymentId;
@@ -201,11 +211,11 @@ public class User extends CommonEntityInfo implements EntityBean, Serializable {
         this.userPaymentId = userPaymentId;
     }
     
-    public List<AskingPost> getAskingPosts() {
+    public Set<AskingPost> getAskingPosts() {
         return askingPosts;
     }
     
-    public void setAskingPosts(List<AskingPost> askingPosts) {
+    public void setAskingPosts(Set<AskingPost> askingPosts) {
         this.askingPosts = askingPosts;
     }
     
@@ -215,6 +225,14 @@ public class User extends CommonEntityInfo implements EntityBean, Serializable {
     
     public void setSharingPosts(Set<SharingPost> sharingPosts) {
         this.sharingPosts = sharingPosts;
+    }
+    
+    public Set<PostComment> getPostComments() {
+        return postComments;
+    }
+
+    public void setPostComments(Set<PostComment> postComments) {
+        this.postComments = postComments;
     }
     
     public List<Order> getOrders() {

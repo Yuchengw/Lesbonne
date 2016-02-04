@@ -3,6 +3,7 @@ package com.lesbonne.sharingpost;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,6 +18,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.lesbonne.entity.CommonEntityInfo;
 import com.lesbonne.postcomment.PostComment;
 import com.lesbonne.user.User;
@@ -65,10 +67,13 @@ public class SharingPost extends CommonEntityInfo implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(
             name = "USERID", referencedColumnName = "USERID", nullable = false)
-    @JsonBackReference
+    @JsonBackReference(value="user-sharingpost")
     private User owner;
     
-    @OneToMany(mappedBy = "sharingPost", fetch = FetchType.LAZY)
+    @OneToMany(
+            mappedBy = "sharingPost", fetch = FetchType.LAZY,
+            cascade = { CascadeType.ALL }, targetEntity = PostComment.class)
+    @JsonManagedReference(value="sharingpost-postcomment")
     private Set<PostComment> postComments;
     
     public String getSharingPostId() {

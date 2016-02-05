@@ -12,7 +12,7 @@ const routes = (
 		    <Route name="signup" handler={Signup}/>
 		    <Route name="main" path="/" handler={App}/>
 		  </Route>
-		);
+);
 
 const router = Router.create({routes});
 RouterContainer.set(router);

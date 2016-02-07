@@ -3,8 +3,8 @@
  * @since 1
  */
 
-import AuthService from '../global_services/AuthService';
-import RouterContainer from '../global_services/RouterContainer';
+import AuthService from '../global_services/auth_service.js';
+import RouterContainer from '../global_services/router_container.js';
 
 export default {
 
@@ -47,5 +47,4 @@ export default {
     RouterContainer.get().transitionTo('/signup', {});
     console.log("signupFailed");
   }
-
 }

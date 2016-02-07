@@ -1,8 +1,13 @@
+'use strict';
+
 import ReactDom from 'react-dom';
 import React from 'react';
+import Router from 'react-router';
+var { Route, DefaultRoute, NotFoundRoute} = Router;
 import App from '../app/app.js';
 import Login from '../app/templates/homepage/login.js';
 import Signup from '../app/templates/homepage/signup.js';
+import RouterContainer from '../app/global_services/router_container.js';
 
 require('bootstrap-loader');
 

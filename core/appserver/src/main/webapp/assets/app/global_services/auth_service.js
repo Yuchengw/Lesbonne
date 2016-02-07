@@ -2,7 +2,7 @@
  * @author Yucheng
  * @since 1
  */
-import AuthActions from '../actions/AuthActions';
+import AuthActions from '../actions/auth_actions.js';
 
 class AuthService {
 

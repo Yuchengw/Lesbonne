@@ -5,7 +5,7 @@ import React from 'react';
 import Header from './templates/homepage/header.js';
 import Hero from './templates/homepage/hero.js';
 import Value from './templates/homepage/value.js';
-import SearchContainer from './templates/homepage/searchcontainer.js';
+import SearchContainer from './templates/homepage/search_container.js';
 
 require('../scss/app.scss');
 

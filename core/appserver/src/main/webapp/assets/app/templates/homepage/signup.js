@@ -3,25 +3,29 @@
  * @since 1
  */
 import React from 'react';
+import ReactDOM from 'react-dom';
 import AuthService from '../../global_services/auth_service.js';
 
 export default class Signup extends React.Component {
 	
 	 constructor(props) {
 		 super(props);
-		 this.signup = this.signup.bind(this);
 	     this.state = {
 	         email: '',
 	         password: '',
-	         fullname: ''
+	         name: ''
 	     };
      }
 
 	 signup(event) {
 	   event.preventDefault();
-	   this.state.fullname = React.findDOMNode(this.refs.fullname).value.trim();
-	   this.state.email = React.findDOMNode(this.refs.email).value.trim();
-	   this.state.password = React.findDOMNode(this.refs.password).value.trim();
+	   this.state.name = ReactDOM.findDOMNode(this.refs.name).value.trim();
+	   this.state.email = ReactDOM.findDOMNode(this.refs.email).value.trim();
+	   this.state.password = ReactDOM.findDOMNode(this.refs.password).value.trim();
+	   if (!this.state.name || !this.state.password || !this.state.email) {
+		   console.log('signup form error.');
+		   return;
+	   }
 	   AuthService.signup(this.state);
 	 }
 	  
@@ -43,12 +47,12 @@ export default class Signup extends React.Component {
 			          </div>
 			          <span>We will not send you spam with this</span>
 			        </div>
-			        <form role="form">
+			        <form role="form" className="signupForm">
 				        <div className="signup-email">
 				          <p>Or, Sign Up with Email</p>
-				          <input type="text" refs='fullname' placeholder="Your Full Name"/>
-				          <input type="text" refs='email' placeholder="Password"/>
-				          <input type="text" refs='password' placeholder="Email"/>
+				          <input type="text" id='name' ref='name' placeholder="name" />
+				          <input type="text" id='email' ref='email' placeholder="email" />
+				          <input type="password" id='password' ref='password' placeholder="password" />
 				        </div>
 				        <input type="submit" onClick={this.signup.bind(this)} className="navy-btn" value="Sign Up"> </input>
 			        </form>

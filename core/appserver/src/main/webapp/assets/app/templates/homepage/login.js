@@ -14,22 +14,23 @@ import Popover from 'react-bootstrap/lib/Popover';
 export default class Login extends React.Component {
 	
   constructor(props) {
-	    super(props);
-	    this.state = { 
-	    	show: false,
-		    email: '',
-		    password: ''
-	    };
+    super(props);
+    this.state = { 
+    	show: false,
+	    email: '',
+	    password: ''
+    };
   }
   
-  login(e) {
-	    e.preventDefault();
-	    this.state.email = ReactDOM.findDOMNode(this.refs.email).value.trim();
-	    this.state.password = ReactDOM.findDOMNode(this.refs.password).value.trim();
-	    if (!this.state.email || !this.state.password) {
-	    	return;
-	    }
-	    AuthService.login(this.state);
+  login(event) {
+    event.preventDefault();
+    this.state.email = ReactDOM.findDOMNode(this.refs.email).value.trim();
+    this.state.password = ReactDOM.findDOMNode(this.refs.password).value.trim();
+    this.setState({show: !this.state.show});
+    AuthService.login(this.state)
+    .catch(function(err) {
+    	console.log('Error for login : ', err);
+    });
   }
 	 
   render() {

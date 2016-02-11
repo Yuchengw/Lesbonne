@@ -17,17 +17,17 @@ export default class Login extends React.Component {
     super(props);
     this.state = { 
     	show: false,
-	    email: '',
+	    name: '',
 	    password: ''
     };
   }
   
   login(event) {
     event.preventDefault();
-    this.state.email = ReactDOM.findDOMNode(this.refs.email).value.trim();
+    this.state.name = ReactDOM.findDOMNode(this.refs.name).value.trim();
     this.state.password = ReactDOM.findDOMNode(this.refs.password).value.trim();
     this.setState({show: !this.state.show});
-    AuthService.login(this.state)
+    AuthService.login(this.state.name, this.state.password)
     .catch(function(err) {
     	console.log('Error for login : ', err);
     });
@@ -48,8 +48,8 @@ export default class Login extends React.Component {
           <Popover title="Please Enter your username/email and password.">
 	          <form role="form" className="loginForm">
 		          <div className="form-group">
-		            <label htmlFor="username">Email</label>
-		            <input type="text" className="form-control" id="email" ref="email" placeholder="Email" />
+		            <label htmlFor="username">Name</label>
+		            <input type="text" className="form-control" id="email" ref="name" placeholder="Name" />
 		          </div>
 		          <div className="form-group">
 		            <label htmlFor="password">Password</label>

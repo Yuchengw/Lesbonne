@@ -3,7 +3,7 @@
  * @since 1
  */
 import { EventEmitter } from 'events';
-import AppDispatcher from '../dispatchers/AppDispatcher';
+import AppDispatcher from '../dispatcher/AppDispatcher';
 
 export default class BaseStore extends EventEmitter {
 

@@ -22,6 +22,11 @@ const routes = (
 const router = Router.create({routes});
 RouterContainer.set(router);
 
+let login_token = localStorage.getItem('login_token');
+if (login_token) {
+  LoginActions.loginUser(login_token);
+}
+
 router.run(function (Handler) {
 	ReactDom.render(<App/>, document.getElementById('app'));
 });

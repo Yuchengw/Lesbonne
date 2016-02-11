@@ -60,7 +60,9 @@
   		"react-mixin": "^1.1.0",
 	    "react-router": "^0.13.0",
 	   	"react": "^0.14.3",
-	    "react-dom": "^0.14.3"
+	    "react-dom": "^0.14.3",
+	    "reqwest": "^1.1.5",
+	    "when": "^3.7.2"
   	},
 	"scripts": {
 		"test": "testem",

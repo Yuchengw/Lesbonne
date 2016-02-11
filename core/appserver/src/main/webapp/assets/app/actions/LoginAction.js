@@ -2,13 +2,13 @@
  * @author yucheng
  * @since 1
  */
-import AppDispatcher from '../dispatchers/AppDispatcher.js';
+import AppDispatcher from '../dispatcher/AppDispatcher.js';
 import {LOGIN_USER, LOGOUT_USER} from '../constants/LoginConstants.js';
-import RouterContainer from '../globla_services/RouterContainer'
+import RouterContainer from '../globla_services/RouterContainer.js'
 
 export default {
   loginUser: (login_token) => {
-    var saved_login_token = localStorage.getItem('login_token');
+    const saved_login_token = localStorage.getItem('login_token');
     
     AppDispatcher.dispatch({
       actionType: LOGIN_USER,
@@ -21,6 +21,7 @@ export default {
       localStorage.setItem('login_token', login_token);
     }
   },
+		  
   logoutUser: () => {
     RouterContainer.get().transitionTo('/');
     localStorage.removeItem('login_token');
@@ -28,4 +29,5 @@ export default {
       actionType: LOGOUT_USER
     });
   }
+  
 }

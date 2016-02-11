@@ -23,7 +23,7 @@ export default (ComposedComponent) => {
       return {
         userLoggedIn: LoginStore.isLoggedIn(),
         user: LoginStore.user,
-        jwt: LoginStore.jwt
+        login_token: LoginStore.login_token
       };
     }
 

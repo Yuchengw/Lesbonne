@@ -31,11 +31,11 @@ class LoginStore extends BaseStore {
     };
   }
 
-  get user() {
+  getUser() {
     return this._user;
   }
 
-  get loginToken() {
+  getloginToken() {
     return this._login_token;
   }
 

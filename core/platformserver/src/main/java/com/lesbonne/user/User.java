@@ -25,6 +25,8 @@ import com.lesbonne.entity.EntityBean;
 import com.lesbonne.order.Order;
 import com.lesbonne.partner.Partner;
 import com.lesbonne.postcomment.PostComment;
+import com.lesbonne.promotion.PromotionCode;
+import com.lesbonne.promotionusage.PromotionUsage;
 import com.lesbonne.sharingpost.SharingPost;
 
 /**
@@ -100,6 +102,18 @@ public class User extends CommonEntityInfo implements EntityBean, Serializable {
             cascade = { CascadeType.ALL }, targetEntity = PostComment.class)
     @JsonManagedReference(value="user-postcomment")
     private Set<PostComment> postComments;
+    
+    @OneToMany(
+            mappedBy = "owner", fetch = FetchType.LAZY,
+            cascade = { CascadeType.ALL }, targetEntity = PromotionCode.class)
+    @JsonManagedReference(value="user-promotion")
+    private Set<PromotionCode> promotionCodes;
+    
+    @OneToMany(
+            mappedBy = "usedBy", fetch = FetchType.LAZY,
+            cascade = { CascadeType.ALL }, targetEntity = PromotionUsage.class)
+    @JsonManagedReference(value="user-promotionusage")
+    private Set<PromotionUsage> promotionUsages;
     
     @Column(name = "USERPAYMENTID", columnDefinition = "VARCHAR(18)")
     private String userPaymentId;
@@ -243,6 +257,22 @@ public class User extends CommonEntityInfo implements EntityBean, Serializable {
         this.orders = orders;
     }
     
+    public Set<PromotionCode> getPromotionCodes() {
+        return promotionCodes;
+    }
+
+    public void setPromotionCodes(Set<PromotionCode> promotionCodes) {
+        this.promotionCodes = promotionCodes;
+    }
+    
+    public Set<PromotionUsage> getPromotionUsages() {
+        return promotionUsages;
+    }
+
+    public void setPromotionUsages(Set<PromotionUsage> promotionUsages) {
+        this.promotionUsages = promotionUsages;
+    }
+
     @Override
     public Map<String, Object> getIndexedColumns() {
         Map<String, Object> searchableColumns = new HashMap<String, Object>();

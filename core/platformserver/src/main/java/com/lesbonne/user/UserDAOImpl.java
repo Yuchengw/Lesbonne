@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.lesbonne.askingpost.AskingPost;
 import com.lesbonne.postcomment.PostComment;
+import com.lesbonne.promotion.PromotionCode;
+import com.lesbonne.promotionusage.PromotionUsage;
 import com.lesbonne.sharingpost.SharingPost;
 
 /**
@@ -57,6 +59,12 @@ public class UserDAOImpl implements UserDAO{
         }
 		for (PostComment comment : toBeRemoved.getPostComments()) {
 		    comment.setOwner(null);
+        }
+		for (PromotionCode code : toBeRemoved.getPromotionCodes()) {
+            code.setOwner(null);
+        }
+		for (PromotionUsage usage : toBeRemoved.getPromotionUsages()) {
+		    usage.setUsedBy(null);
         }
 		session.delete(toBeRemoved);
 	}

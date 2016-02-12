@@ -32,6 +32,8 @@
 				<value>com.lesbonne.postcomment.PostComment</value>
 				<value>com.lesbonne.partner.Partner</value>
 				<value>com.lesbonne.images.RelatedImages</value>
+				<value>com.lesbonne.promotion.PromotionCode</value>
+				<value>com.lesbonne.promotionusage.PromotionUsage</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

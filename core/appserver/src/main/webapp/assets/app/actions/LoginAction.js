@@ -4,7 +4,7 @@
  */
 import AppDispatcher from '../dispatcher/AppDispatcher.js';
 import {LOGIN_USER, LOGOUT_USER} from '../constants/LoginConstants.js';
-import RouterContainer from '../globla_services/RouterContainer.js'
+import RouterContainer from '../global_services/RouterContainer.js'
 
 export default {
   loginUser: (login_token) => {

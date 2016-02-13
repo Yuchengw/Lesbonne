@@ -32,8 +32,8 @@ export default class Login extends React.Component {
     	console.log('Error for login : ', err);
     });
   }
-	 
-  render() {
+
+	render() {
     return (
       <ButtonToolbar>
         <a onClick={e => this.setState({ target: e.target, show: !this.state.show })}>

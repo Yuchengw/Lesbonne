@@ -4,8 +4,11 @@
  */
 import React from 'react';
 import ReactDom from 'react-dom';
+
+import AuthService from '../../global_services/auth_service.js';
 import LoginStore from '../../stores/LoginStore.js';
-import AuthService from '../../global_services/auth_service.js'
+import Login from './login.js';
+
 
 export default class Header extends React.Component {
   constructor() {
@@ -15,7 +18,7 @@ export default class Header extends React.Component {
 
   _getLoginState() {
     return {
-      userLoggedIn: LoginStore.isLoggedIn()
+      userLoggedIn: LoginStore.isLoggedIn(),
       userName: LoginStore.getUser()
     };
   }
@@ -26,7 +29,7 @@ export default class Header extends React.Component {
   }
   
   render() {
-	if (!this.state.userLoggedIn) {
+	if (this.state.userLoggedIn) {
 		return (
 		    <header>
 		      <nav className="container">

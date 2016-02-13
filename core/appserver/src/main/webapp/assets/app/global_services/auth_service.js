@@ -2,7 +2,7 @@
  * @author Yucheng
  * @since 1
  */
-import LoginActions from '../actions/LoginActions.js';
+import LoginActions from '../actions/LoginAction.js';
 import when from 'when';
 import {LOGIN_URL, SIGNUP_URL} from '../constants/LoginConstants.js';
 import request from 'reqwest';
@@ -42,6 +42,9 @@ class AuthService {
 	        const login_token = response.login_token;
 	        LoginActions.loginUser(login_token);
 	        return true;
+	    })
+	      .catch(function(){
+	    	console.log("user Login failed");
 	    });
 	}
 }

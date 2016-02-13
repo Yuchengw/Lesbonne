@@ -7,7 +7,7 @@ var { Route, DefaultRoute, NotFoundRoute} = Router;
 import App from '../app/app.js';
 import Login from '../app/templates/homepage/login.js';
 import Signup from '../app/templates/homepage/signup.js';
-import RouterContainer from '../app/global_services/router_container.js';
+import RouterContainer from '../app/global_services/RouterContainer.js';
 
 require('bootstrap-loader');
 

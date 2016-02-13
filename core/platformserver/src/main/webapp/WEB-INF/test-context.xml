@@ -32,4 +32,10 @@
 	<bean id="postCommentService" class="org.mockito.Mockito" factory-method="mock">
     	<constructor-arg value="com.lesbonne.postcomment.PostCommentService"/>
 	</bean>
+	<bean id="promotionCodeService" class="org.mockito.Mockito" factory-method="mock">
+    	<constructor-arg value="com.lesbonne.promotion.PromotionCodeService"/>
+	</bean>
+	<bean id="promotionUsageService" class="org.mockito.Mockito" factory-method="mock">
+    	<constructor-arg value="com.lesbonne.promotionusage.PromotionUsageService"/>
+	</bean>
 </beans>

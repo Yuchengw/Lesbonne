@@ -4,19 +4,18 @@
  */
 import LoginActions from '../actions/LoginAction.js';
 import when from 'when';
-import {LOGIN_URL, SIGNUP_URL} from '../constants/LoginConstants.js';
+import LOGIN_CONSTANTS from '../constants/LoginConstants.js';
 import request from 'reqwest';
 
 class AuthService {
-	login(username, password) {
+	login(useremail, password) {
+		const sentData = JSON.stringify({"userEmail":useremail, "userPassword":password});
 	    return this.handleAuth(when(request({
-	      url: LOGIN_URL,
+	      url: LOGIN_CONSTANTS.LOGIN_URL,
 	      method: 'POST',
 	      crossOrigin: true,
 	      type: 'json',
-	      data: {
-	        username, password
-	      }
+	      data: sentData
 	    })));
 	}
 
@@ -24,15 +23,15 @@ class AuthService {
 	    LoginActions.logoutUser();
 	}
 	
-	signup(username, password, useremail) {
+	signup(useremail, password) {
+		const sentData = JSON.stringify({"userEmail":useremail, "userPassword":password});
 	    return this.handleAuth(when(request({
-	      url: SIGNUP_URL,
+	      url: LOGIN_CONSTANTS.SIGNUP_URL,
 	      method: 'POST',
 	      crossOrigin: true,
+	      contentType: 'application/json',
 	      type: 'json',
-	      data: {
-	        username, password, useremail
-	      }
+	      data: sentData
 	    })));
 	}
 	
@@ -43,7 +42,7 @@ class AuthService {
 	        LoginActions.loginUser(login_token);
 	        return true;
 	    })
-	      .catch(function(){
+	      .catch(function(error){
 	    	console.log("user Login failed");
 	    });
 	}

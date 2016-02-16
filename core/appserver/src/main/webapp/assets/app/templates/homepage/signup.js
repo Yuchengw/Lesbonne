@@ -19,14 +19,13 @@ export default class Signup extends React.Component {
 
 	 signup(event) {
 	   event.preventDefault();
-	   this.state.name = ReactDOM.findDOMNode(this.refs.name).value.trim();
 	   this.state.email = ReactDOM.findDOMNode(this.refs.email).value.trim();
 	   this.state.password = ReactDOM.findDOMNode(this.refs.password).value.trim();
-	   if (!this.state.name || !this.state.password || !this.state.email) {
+	   if (!this.state.password || !this.state.email) {
 		   console.log('signup form error.');
 		   return;
 	   }
-	   AuthService.signup(this.state);
+	   AuthService.signup(this.state.email, this.state.password);
 	 }
 	  
 	 render() {
@@ -50,7 +49,6 @@ export default class Signup extends React.Component {
 			        <form role="form" className="signupForm">
 				        <div className="signup-email">
 				          <p>Or, Sign Up with Email</p>
-				          <input type="text" id='name' ref='name' placeholder="name" />
 				          <input type="text" id='email' ref='email' placeholder="email" />
 				          <input type="password" id='password' ref='password' placeholder="password" />
 				        </div>

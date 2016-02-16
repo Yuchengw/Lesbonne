@@ -19,13 +19,6 @@ public class UserServiceImpl implements UserService{
 	@Transactional
 	public User persistUser(User user){
 		return userDAO.persistUser(user);
-		
-		//TODO - move this to async job
-//		UserIndexer indexer = new UserIndexer("user", user);
-//		IndexResponse response = indexer.create();
-//		
-//		System.out.println("CREATE");
-//		System.out.println(response);
 	}
 	
 	@Override
@@ -38,14 +31,6 @@ public class UserServiceImpl implements UserService{
 	@Transactional
 	public User updateUser(User user){
 		User newUser = userDAO.updateUser(user);
-		
-		//TODO - move this to async job
-//		UserIndexer indexer = new UserIndexer("user", user);
-//		UpdateResponse response = indexer.update();
-//		
-//		System.out.println("UPDATE");
-//		System.out.println(response);
-		
 		return newUser;
 	}
 	

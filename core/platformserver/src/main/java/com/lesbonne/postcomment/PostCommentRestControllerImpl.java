@@ -75,11 +75,18 @@ public class PostCommentRestControllerImpl implements PostCommentRestController 
             @RequestBody PostComment postComment) {
         PostComment result = null;
         try {
-            // TODO: Add required field validation
+            // The post comment cannot be null
             if (postComment == null) {
                 return new ResponseEntity<PostComment>(HttpStatus.BAD_REQUEST);
             }
-            result = postCommentService.persistPostComment(postComment);
+            
+            // The post comment parent post can either be askingpost or
+            // providerpost, but cannot set both or set none
+            if ((postComment.getAskingPost() == null && postComment.getSharingPost() == null)
+                    || (postComment.getAskingPost() != null && postComment.getSharingPost() != null)) {
+                return new ResponseEntity<PostComment>(HttpStatus.BAD_REQUEST);
+            }
+                result = postCommentService.persistPostComment(postComment);
         } catch (Exception e) {
             return new ResponseEntity<PostComment>(
                     HttpStatus.INTERNAL_SERVER_ERROR);

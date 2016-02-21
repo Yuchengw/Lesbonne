@@ -84,10 +84,6 @@ public class UserRestControllerImpl implements UserRestController {
 			if (user == null || TextUtil.isNullOrEmpty(user.getUserEmail()) || TextUtil.isNullOrEmpty(user.getUserPassword())) {
 				return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
 			}
-			// check if a similar user already exists
-			if (userService.existsUserByEmail(user.getUserEmail())) {
-				return new ResponseEntity<User>(HttpStatus.NOT_ACCEPTABLE);
-			}
 			result = userService.persistUser(user);
 		} catch (Exception e) {
 			return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);

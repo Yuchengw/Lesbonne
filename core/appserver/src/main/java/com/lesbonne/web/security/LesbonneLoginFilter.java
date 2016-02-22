@@ -57,11 +57,11 @@ class LesbonneLoginFilter extends AbstractAuthenticationProcessingFilter {
 		final User authenticatedUser = userDetailsService.loadUserByUsername(authentication.getName());
 		final UserAuthentication userAuthentication = new UserAuthentication(authenticatedUser);
 
-		// Add the custom token as HTTP header to the response
-		tokenAuthenticationService.addAuthentication(response, userAuthentication);
-
 		// Add the authentication to the Security context
 		SecurityContextHolder.getContext().setAuthentication(userAuthentication);		
+		
+		// Add the custom token in the HTTP response.
+		tokenAuthenticationService.addAuthentication(response, userAuthentication);
 	}
 	
 	 @Override

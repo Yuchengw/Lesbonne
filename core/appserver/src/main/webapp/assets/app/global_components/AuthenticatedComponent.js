@@ -10,7 +10,7 @@ export default (ComposedComponent) => {
 
     static willTransitionTo(transition) {
       if (!LoginStore.isLoggedIn()) {
-        transition.redirect('/login', {}, {'nextPath' : transition.path});
+        transition.redirect('/');
       }
     }
 
@@ -22,8 +22,8 @@ export default (ComposedComponent) => {
     _getLoginState() {
       return {
         userLoggedIn: LoginStore.isLoggedIn(),
-        user: LoginStore.user,
-        login_token: LoginStore.login_token
+        user: LoginStore.getUser(),
+        login_token: LoginStore.getloginToken()
       };
     }
 

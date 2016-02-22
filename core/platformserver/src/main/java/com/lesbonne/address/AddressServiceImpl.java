@@ -9,7 +9,7 @@ public class AddressServiceImpl implements AddressService {
 	
 	@Override
 	public Address persistAddress(Address address) {
-		addressDAO.persistAddress(address);
+		return addressDAO.persistAddress(address);
 	}
 
 	@Override

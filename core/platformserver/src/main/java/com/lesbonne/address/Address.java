@@ -28,7 +28,7 @@ import com.lesbonne.user.User;
  * @since 1
  * */
 @Entity
-@Table(name = "Address")
+@Table(name = "LESBONNEADDRESS")
 public class Address implements Serializable, EntityBean{	
 
 	/**
@@ -74,10 +74,10 @@ public class Address implements Serializable, EntityBean{
 	@Column(name = "LASTMODIFIEDATE", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
 	private Date lastModifiedDate;
 	
-	@Column(name = "LONGITUDE", columnDefinition="DOUBLE(3,10)")
+	@Column(name = "LONGITUDE", columnDefinition="DOUBLE(5,5)")
 	private double longitude;
 	
-	@Column(name = "LATITUDE", columnDefinition="DOUBLE(3,10)")
+	@Column(name = "LATITUDE", columnDefinition="DOUBLE(5,5)")
 	private double latitude;
 
 	@PrePersist

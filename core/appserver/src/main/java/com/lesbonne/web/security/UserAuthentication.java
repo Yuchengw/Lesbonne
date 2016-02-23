@@ -26,7 +26,7 @@ public class UserAuthentication implements Authentication {
 
 	@Override
 	public String getName() {
-		return user.getUserEmail();
+		return user.getUserName();
 	}
 
 	@Override

@@ -19,12 +19,12 @@ class AuthService {
 	    })));
 	}
 
-	logout() {
+	logout() { 
 	    LoginActions.logoutUser();
 	}
 	
-	signup(useremail, password) {
-		const sentData = JSON.stringify({"userEmail":useremail, "userPassword":password});
+	signup(useremail, password, username) {
+		const sentData = JSON.stringify({"userEmail":useremail, "userPassword":password, "userName":username});
 	    return this.handleAuth(when(request({
 	      url: LOGIN_CONSTANTS.SIGNUP_URL,
 	      method: 'POST',

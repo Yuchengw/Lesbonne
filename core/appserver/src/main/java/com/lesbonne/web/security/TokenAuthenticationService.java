@@ -30,7 +30,7 @@ public class TokenAuthenticationService {
 	public void addAuthentication(HttpServletResponse response, UserAuthentication authentication) {
 		final User user = authentication.getDetails();
 		response.addHeader(AUTH_HEADER_NAME, tokenHandler.createTokenForUser(user));
-		response.addHeader(AUTH_USER_NAME, user.getUsername());
+		response.addHeader(AUTH_USER_NAME, user.getUserName());
 	}
 
 	public Authentication getAuthentication(HttpServletRequest request) {

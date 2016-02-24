@@ -10,7 +10,7 @@ import request from 'reqwest';
 class AuthService {
 	login(useremail, password) {
 		const sentData = JSON.stringify({"userEmail":useremail, "userPassword":password});
-	    return this.handleAuth(when(request({
+	    return this.handleLogin(when(request({
 	      url: LOGIN_CONSTANTS.LOGIN_URL,
 	      method: 'POST',
 	      crossOrigin: true,
@@ -25,7 +25,7 @@ class AuthService {
 	
 	signup(useremail, password, username) {
 		const sentData = JSON.stringify({"userEmail":useremail, "userPassword":password, "userName":username});
-	    return this.handleAuth(when(request({
+	    return this.handleSignup(when(request({
 	      url: LOGIN_CONSTANTS.SIGNUP_URL,
 	      method: 'POST',
 	      crossOrigin: true,
@@ -35,7 +35,7 @@ class AuthService {
 	    })));
 	}
 	
-	handleAuth(loginPromise) {
+	handleLogin(loginPromise) {
 	    return loginPromise
 	      .then(function(response) {
 	    	if (response.status === 200 && response.statusText == "OK") {
@@ -46,7 +46,22 @@ class AuthService {
 	    	return false;
 	    })
 	      .catch(function(error){
-	    	console.log("user Login failed");
+	    	console.log("login failed");
+	    });
+	}
+	
+	handleSignup(signupPromise) {
+	    return signupPromise
+	      .then(function(response) { //TODO: need to figure out response.status, response.result to wrap the result
+	    	if (response.userName && response.isEmailAuthorized) {
+		        LoginActions.loginUser("temp_token", response.userName);
+		        console.log("user Signup Success");
+		        return true;
+	    	} 
+	    	return false;
+	    })
+	      .catch(function(error){
+	    	console.log("signup failed");
 	    });
 	}
 }

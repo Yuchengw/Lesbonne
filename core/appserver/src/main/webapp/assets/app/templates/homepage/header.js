@@ -8,8 +8,8 @@ import AuthenticatedComponent from '../../global_components/AuthenticatedCompone
 
 
 export default AuthenticatedComponent(class Header extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props);
     this.state = this._getLoginState();
   }
 
@@ -26,7 +26,7 @@ export default AuthenticatedComponent(class Header extends React.Component {
   }
   
   render() {
-	if (this.state.userLoggedIn) {
+	if (this.props.userLoggedIn) {
 		return (
 		    <header>
 		      <nav className="container">
@@ -37,7 +37,7 @@ export default AuthenticatedComponent(class Header extends React.Component {
 		          <li>Explore test</li>
 		          <li>How it works</li>
 		          <li>Become a chef</li>
-		          <li>Hey, {this.state.userName}</li> 
+		          <li>Hey, {this.props.user}</li> 
 		          <li><a href="" onClick={this.logout}>Logout</a></li>
 		        </ul>
 		      </nav>

@@ -26,7 +26,6 @@ export default class Signup extends React.Component {
 	 }
 	  
 	 render() {
-		console.log("Signup");
 	    return (
 	      <div>
 		      <div className="float-right signup-block">

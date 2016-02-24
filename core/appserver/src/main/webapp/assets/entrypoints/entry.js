@@ -30,5 +30,5 @@ if (login_token && login_user) {
 }
 
 router.run(function (Handler) {
-	ReactDom.render(<App/>, document.getElementById('app'));
+	ReactDom.render(<App />, document.getElementById('app'));
 });

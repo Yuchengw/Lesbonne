@@ -4,8 +4,8 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Signup from './signup.js';
-import AuthenticatedComponent from '../../global_components/AuthenticatedComponent.js'
+import Signup from '../../../authentication/signup/signup.js';
+import AuthenticatedComponent from '../../../global_components/AuthenticatedComponent.js'
 
 export default AuthenticatedComponent(class Hero extends React.Component {
 	constructor(props) {
@@ -31,7 +31,7 @@ export default AuthenticatedComponent(class Hero extends React.Component {
 				 <section className="hero">
 			      <div className="container">
 			        <div className="float-left">
-			          <h2>Welcome {this.props.user}, Explore more have have fun today!</h2>
+			          <h2>Hey {this.props.user.split(' ')[0]}, Explore more and have fun today!</h2>
 			          <p className="mb-35">We have some recommendations for you, check it out!</p>
 			          <a className="btn">Explore Food</a>
 			        </div>

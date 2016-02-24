@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import AuthService from '../../global_services/auth_service.js';
+import AuthService from '../service/AuthService.js';
 import ReactDOM from 'react-dom';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 import Button from 'react-bootstrap/lib/Button';

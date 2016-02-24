@@ -4,7 +4,7 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AuthService from '../../global_services/auth_service.js';
+import AuthService from '../service/AuthService.js';
 
 export default class Signup extends React.Component {
 	

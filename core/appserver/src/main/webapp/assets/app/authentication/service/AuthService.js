@@ -2,9 +2,9 @@
  * @author Yucheng
  * @since 1
  */
-import LoginActions from '../actions/LoginAction.js';
+import LoginActions from '../login/LoginAction.js';
 import when from 'when';
-import LOGIN_CONSTANTS from '../constants/LoginConstants.js';
+import LOGIN_CONSTANTS from '../login/LoginConstants.js';
 import request from 'reqwest';
 
 class AuthService {

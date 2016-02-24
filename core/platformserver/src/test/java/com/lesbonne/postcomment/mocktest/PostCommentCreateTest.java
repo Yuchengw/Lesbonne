@@ -45,10 +45,46 @@ public class PostCommentCreateTest extends BaseRestPostCommentControllerTest{
 
         Mockito.when(postCommentService.persistPostComment((PostComment) Matchers.anyObject()))
                 .thenReturn(result);
-        given().body(comment).contentType(ContentType.JSON).when()
+        given().body(comment.toString()).contentType(ContentType.JSON).when()
                 .post(getBaseTestURI()).then()
                 .statusCode(HttpServletResponse.SC_OK)
                 .contentType(ContentType.JSON)
                 .body("postCommentId", equalTo(TEMP_KEY));
+    }
+    
+    @Test
+    public void testCreatePostCommentFailWhenNoParentIsSet() {
+        User testUser = new User();
+        testUser.setUserId("001*");
+
+        PostComment comment = new PostComment();
+        comment.setCommentBody(COMMENT_BODY);;
+        comment.setOwner(testUser);
+        
+        given().body(comment.toString()).contentType(ContentType.JSON).when()
+                .post(getBaseTestURI()).then()
+                .statusCode(HttpServletResponse.SC_BAD_REQUEST);
+    }
+    
+    @Test
+    public void testCreatePostCommentFailWhenBothParentIsSet() {
+        User testUser = new User();
+        testUser.setUserId("001*");
+
+        SharingPost post = new SharingPost();
+        post.setSharingPostId("00s*");
+        
+        AskingPost askPost = new AskingPost();
+        askPost.setAskingPostId("00a*");
+        
+        PostComment comment = new PostComment();
+        comment.setCommentBody(COMMENT_BODY);;
+        comment.setOwner(testUser);
+        comment.setAskingPost(askPost);
+        comment.setSharingPost(post);
+        
+        given().body(comment.toString()).contentType(ContentType.JSON).when()
+                .post(getBaseTestURI()).then()
+                .statusCode(HttpServletResponse.SC_BAD_REQUEST);
     }
 }

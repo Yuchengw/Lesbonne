@@ -30,11 +30,13 @@ public class UserCreateTest extends BaseRestUserControllerTest {
 	public void testAddUserPositive() {
 		// create a simple user with just email and password
 		User testUser = new User();
+		testUser.setUserName(TEST_NAME);
 		testUser.setUserEmail(TEST_EMAIL);
 		testUser.setUserPassword(TEST_PASSWORD);
 
 		// create a simple user for persistent user return call
 		User resultUser = new User();
+		resultUser.setUserName(TEST_NAME);
 		resultUser.setUserEmail(TEST_EMAIL);
 		resultUser.setUserPassword(TEST_PASSWORD);
 		resultUser.setUserId(TEMP_Key);
@@ -71,11 +73,22 @@ public class UserCreateTest extends BaseRestUserControllerTest {
 				.post(URLPREFIX + "create").then()
 				.statusCode(HttpServletResponse.SC_BAD_REQUEST);
 	}
+	
+	@Test
+	public void testAddUserWithoutUserName() {
+		User testUser = new User();
+		testUser.setUserName(TEST_NAME);
+		
+		given().body(testUser).contentType(ContentType.JSON).when()
+				.post(URLPREFIX + "create").then()
+				.statusCode(HttpServletResponse.SC_BAD_REQUEST);
+	}
 
 	@Test
 	public void testAddUserWhereAUserAlreadyExists() {
 		// create a simple user with just email and password
 		User testUser = new User();
+		testUser.setUserName(TEST_NAME);
 		testUser.setUserEmail(TEST_EMAIL);
 		testUser.setUserPassword(TEST_PASSWORD);
 

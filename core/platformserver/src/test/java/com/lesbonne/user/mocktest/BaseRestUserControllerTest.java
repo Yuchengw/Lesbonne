@@ -28,6 +28,7 @@ public abstract class BaseRestUserControllerTest {
 	protected static final String URLPREFIX = "/platform/v1/user/";
 	protected static final String TEST_EMAIL = "user@test";
 	protected static final String TEST_PASSWORD = "123456";
+	protected static final String TEST_NAME = "testname";
 	protected static final String TEMP_Key = "001";
 	@Autowired
 	protected WebApplicationContext context;

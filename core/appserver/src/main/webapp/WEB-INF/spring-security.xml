@@ -14,6 +14,10 @@
 		<intercept-url pattern="/service/**" access="hasRole('ROLE_USER')" requires-channel="any"/>
 		<custom-filter position="FORM_LOGIN_FILTER" ref="defaultLoginFilter" />
 		<custom-filter position="BASIC_AUTH_FILTER" ref="defaultAuthenticationFilter" />
+		<session-management invalid-session-url="/login" session-fixation-protection="newSession" >
+		   <concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />
+		</session-management>
+		<logout logout-success-url="/login" delete-cookies="JSESSIONID" />
 	</http>
 	<beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
 		<beans:constructor-arg name="strength" value="10" />

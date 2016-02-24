@@ -3,6 +3,7 @@ package com.lesbonne.bean.rest.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lesbonne.business.bean.User;
 
@@ -18,7 +19,7 @@ public interface UserController {
 
 	public ResponseEntity<String> updateUser(@RequestBody final User user);
 	
-	public ResponseEntity<User> addUser(@RequestBody User user); 
+	public @ResponseBody ResponseEntity<User> addUser(@RequestBody User user); 
 
 	public ResponseEntity<Boolean> removeUser(@RequestBody User user);
 }

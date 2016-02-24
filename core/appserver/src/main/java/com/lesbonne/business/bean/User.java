@@ -34,10 +34,8 @@ public class User extends BeanObject implements UserDetails, Serializable {
 	private String userEmail;
 	@JsonProperty("userPassword")
 	private String userPassword;
-	@JsonProperty("firstName")
-	private String firstName;
-	@JsonProperty("lastName")
-	private String lastName;
+	@JsonProperty("userName")
+	private String userName;
 	@JsonProperty("userContactInfo")
 	private String userContactInfo;
 	@JsonProperty("userRelationId")
@@ -76,20 +74,12 @@ public class User extends BeanObject implements UserDetails, Serializable {
 		super.setId(userId);
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getUserPassword() {

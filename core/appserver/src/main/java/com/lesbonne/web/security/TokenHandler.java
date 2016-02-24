@@ -24,8 +24,7 @@ public final class TokenHandler {
 	private static final String HMAC_ALGO = "HmacSHA256";
 	private static final String SEPARATOR = ".";
 	private static final String SEPARATOR_SPLITTER = "\\.";
-	private static final String SECRETE_RECIPE = "yuchengYummet";
-
+	private static final String SECRETE_RECIPE = "Lesbonnes";
 
 	private final Mac hmac;
 

@@ -17,8 +17,9 @@ import com.lesbonne.business.bean.User;
  * */
 public class TokenAuthenticationService {
 
-	private static final String AUTH_HEADER_NAME = "X-CSRF-TOKEN";
-	private static final long TEN_DAYS = 1000 * 60 * 60 * 24 * 100;
+	private static final String AUTH_HEADER_NAME = "LOGIN-TOKEN";
+	private static final String AUTH_USER_NAME = "USER-NAME";
+	private static final long TEN_DAYS = 1000 * 60 * 60 * 24 * 10;
 
 	private final TokenHandler tokenHandler;
 	
@@ -29,6 +30,7 @@ public class TokenAuthenticationService {
 	public void addAuthentication(HttpServletResponse response, UserAuthentication authentication) {
 		final User user = authentication.getDetails();
 		response.addHeader(AUTH_HEADER_NAME, tokenHandler.createTokenForUser(user));
+		response.addHeader(AUTH_USER_NAME, user.getUserName());
 	}
 
 	public Authentication getAuthentication(HttpServletRequest request) {

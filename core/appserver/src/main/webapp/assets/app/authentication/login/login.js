@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import AuthService from '../../global_services/auth_service.js';
+import AuthService from '../service/AuthService.js';
 import ReactDOM from 'react-dom';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 import Button from 'react-bootstrap/lib/Button';
@@ -24,10 +24,10 @@ export default class Login extends React.Component {
   
   login(event) {
     event.preventDefault();
-    this.state.name = ReactDOM.findDOMNode(this.refs.name).value.trim();
+    this.state.email = ReactDOM.findDOMNode(this.refs.email).value.trim();
     this.state.password = ReactDOM.findDOMNode(this.refs.password).value.trim();
     this.setState({show: !this.state.show});
-    AuthService.login(this.state.name, this.state.password)
+    AuthService.login(this.state.email, this.state.password)
     .catch(function(err) {
     	console.log('Error for login : ', err);
     });
@@ -48,8 +48,8 @@ export default class Login extends React.Component {
           <Popover title="Please Enter your username/email and password.">
 	          <form role="form" className="loginForm">
 		          <div className="form-group">
-		            <label htmlFor="username">Name</label>
-		            <input type="text" className="form-control" id="email" ref="name" placeholder="Name" />
+		            <label htmlFor="email">Email</label>
+		            <input type="text" className="form-control" id="email" ref="email" placeholder="Email" />
 		          </div>
 		          <div className="form-group">
 		            <label htmlFor="password">Password</label>

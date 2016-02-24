@@ -3,14 +3,14 @@
  * @since 1
  */
 import React from 'react';
-import LoginStore from '../stores/LoginStore.js';
+import LoginStore from '../authentication/login/LoginStore.js';
 
 export default (ComposedComponent) => {
   return class AuthenticatedComponent extends React.Component {
 
     static willTransitionTo(transition) {
       if (!LoginStore.isLoggedIn()) {
-        transition.redirect('/login', {}, {'nextPath' : transition.path});
+        transition.redirect('/');
       }
     }
 
@@ -22,8 +22,8 @@ export default (ComposedComponent) => {
     _getLoginState() {
       return {
         userLoggedIn: LoginStore.isLoggedIn(),
-        user: LoginStore.user,
-        login_token: LoginStore.login_token
+        user: LoginStore.getUser(),
+        login_token: LoginStore.getloginToken()
       };
     }
 

@@ -1,9 +1,12 @@
 package com.lesbonne.business.bean;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Address extends BeanObject implements Serializable {
 	
 	@JsonProperty("addressId")
@@ -16,20 +19,22 @@ public class Address extends BeanObject implements Serializable {
 	private String street2;
 	@JsonProperty("city")
 	private String city;
+	@JsonProperty("country")
+	private String country;
 	@JsonProperty("state")
 	private String state;
 	@JsonProperty("zipcode")
 	private String zipcode;
-	@JsonProperty("userId")
-	private String userId;
+	@JsonProperty("user")
+	private User user;
 	private String longitude;
 	private String latitude;
 	
-	public String getUserID() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public String getName() {
 		return name;
@@ -67,17 +72,33 @@ public class Address extends BeanObject implements Serializable {
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
-	public String getLongitude() {
-		return longitude;
+	public double getLongitude() {
+		return Double.valueOf(longitude);
 	}
-	public void setLongitude(String longitude) {
-		this.longitude = longitude;
+	public void setLongitude(double longitude) {
+		this.longitude = String.valueOf(longitude);
 	}
-	public String getLatitude() {
-		return latitude;
+	public double getLatitude() {
+		return Double.valueOf(latitude);
 	}
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
+	public void setLatitude(double latitude) {
+		this.latitude = String.valueOf(latitude);
+	}
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
 	}
 	
+	@Override
+	/**
+	 * @return
+	 * Salesforce.com
+	 * 1 Market Street
+	 * San Francisco, CA 94105
+	 */
+	public String toString() {
+		return String.format("%s\n%s\n%s\n%s, %s %s", getName(), getStreet1(), getStreet2(), getCity(), getState(), getZipcode());
+	}
 }

@@ -12,7 +12,7 @@ import com.lesbonne.business.bean.Address;
 public interface AddressController {
 	public ResponseEntity<String> updateAddress(@RequestBody final Address address);
 	
-	public ResponseEntity<Address> addAddress(@RequestBody Address address); 
+	public ResponseEntity<Address> addAddress(@RequestBody Address address) throws Exception; 
 
 	public ResponseEntity<Boolean> removeAddress(@RequestBody Address address);
 }

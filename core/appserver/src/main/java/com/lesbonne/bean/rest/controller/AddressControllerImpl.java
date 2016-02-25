@@ -1,5 +1,7 @@
 package com.lesbonne.bean.rest.controller;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.maps.model.LatLng;
 import com.lesbonne.business.bean.Address;
+import com.lesbonne.geocoding.GoogleGeocodingService;
+import com.lesbonne.geocoding.GoogleGeocodingServiceImpl;
 import com.lesbonne.lib.objectProvider.AddressProvider;
 
 /**
@@ -30,10 +35,12 @@ public class AddressControllerImpl implements AddressController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value=AddressRestURIConstants.CREATE_ADDRESS)
-	public ResponseEntity<Address> addAddress(@RequestBody Address address) {
+	public ResponseEntity<Address> addAddress(@RequestBody Address address) throws Exception {
 		//TODO - add validation
-		
-		
+		GoogleGeocodingService geocodingService = new GoogleGeocodingServiceImpl();
+		LatLng latlng  =geocodingService.getGeocodingData(address.toString());
+		address.setLatitude(latlng.lat);
+		address.setLongitude(latlng.lng);
 		Address newAddress = addressProvider.add(address);
 		if (newAddress != null) {
 			return new ResponseEntity<Address>(newAddress, HttpStatus.OK);

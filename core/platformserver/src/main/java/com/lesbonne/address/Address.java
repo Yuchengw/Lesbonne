@@ -44,8 +44,8 @@ public class Address implements Serializable, EntityBean{
 	private String addressId;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="USERID", referencedColumnName = "USERID", insertable=false, updatable=false)
-	private User userAddress;
+	@JoinColumn(name="USERID", referencedColumnName = "USERID", nullable = false)
+	private User user;
 	
 	@Column(name = "NAME", columnDefinition = "VARCHAR(100) NOT NULL")
 	private String name;
@@ -74,11 +74,11 @@ public class Address implements Serializable, EntityBean{
 	@Column(name = "LASTMODIFIEDATE", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
 	private Date lastModifiedDate;
 	
-	@Column(name = "LONGITUDE", columnDefinition="DOUBLE(5,5)")
-	private double longitude;
+	@Column(name = "LONGITUDE", columnDefinition="VARCHAR(20)")
+	private String longitude;
 	
-	@Column(name = "LATITUDE", columnDefinition="DOUBLE(5,5)")
-	private double latitude;
+	@Column(name = "LATITUDE", columnDefinition="VARCHAR(20)")
+	private String latitude;
 
 	@PrePersist
 	public void onCreate() {
@@ -98,12 +98,12 @@ public class Address implements Serializable, EntityBean{
 		this.addressId = addressId;
 	}
 
-	public User getUserAddress() {
-		return userAddress;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserAddress(User userAddress) {
-		this.userAddress = userAddress;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public String getName() {
@@ -179,18 +179,18 @@ public class Address implements Serializable, EntityBean{
 	}
 	
 	public double getLongitude() {
-		return longitude;
+		return Double.valueOf(longitude);
 	}
 
-	public void setLongitude(double longitude) {
+	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
 	
 	public double getLatitude() {
-		return latitude;
+		return Double.valueOf(latitude);
 	}
 
-	public void setLatitude(double latitude) {
+	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
 	
@@ -206,9 +206,10 @@ public class Address implements Serializable, EntityBean{
 		searchableColumns.put("street2", getStreet2());
 		searchableColumns.put("city", getCity());
 		searchableColumns.put("state", getState());
+		searchableColumns.put("country", getCountry());
 		searchableColumns.put("zipcode", getZipcode());
 		searchableColumns.put("location", getGeoPoint());
-		searchableColumns.put("userId", getUserAddress().getUserId());
+		//searchableColumns.put("userId", getUserAddress().getUserId());
 		return searchableColumns;
 	}
 

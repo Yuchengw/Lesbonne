@@ -2,7 +2,7 @@ package com.lesbonne.address;
 
 public interface AddressService {
 	
-	Address persistAddress(Address address);
+	Address persistAddress(Address address) throws Exception;
 	
 	void deleteAddress(Address address);
 	

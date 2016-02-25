@@ -13,7 +13,7 @@ public enum ElasticSearchClient {
 	private final Client client;
 
 	ElasticSearchClient() {		
-		final TransportAddress address = ElasticSearchUtils.fromHostAndPort(HostAndPort.fromParts("localhost", 9300));
+		final TransportAddress address = ElasticSearchUtils.fromHostAndPort(HostAndPort.fromHost("localhost"));
 		this.client = TransportClient.builder().build().addTransportAddresses(address);
 	}
 

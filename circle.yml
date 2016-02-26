@@ -27,7 +27,7 @@ test:
   override:
     - mvn clean
     - mvn dependency:resolve
-    - mvn test 
+    - mvn test jacoco:report coveralls:report
   post:
     - mvn clean
 

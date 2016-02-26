@@ -6,7 +6,9 @@ general:
 
 ## Customize the test machine
 machine:
-
+  environment:
+    COVERALLS_REPO_TOKEN: bTw7HQwLazRZvDYowQL25svJPct6gAxDG
+  
   timezone:
     America/Los_Angeles # Set the timezone
 

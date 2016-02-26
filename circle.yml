@@ -33,7 +33,7 @@ test:
   post:
     - mvn clean
     - mkdir $CIRCLE_ARTIFACTS/test_output
-    - mv core/platformserver/target/site/jacoco/* $CIRCLE_ARTIFACTS/test_output
+    - mv core/platformserver/target/site/jacoco/*.xml $CIRCLE_ARTIFACTS/test_output
 
 ## Customize deployment commands
 # deployment:

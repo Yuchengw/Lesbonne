@@ -31,9 +31,9 @@ test:
     - mvn dependency:resolve
     - mvn test jacoco:report coveralls:report
   post:
-    - mvn clean
     - mkdir $CIRCLE_ARTIFACTS/test_output
     - mv core/platformserver/target/site/jacoco/jacoco.xml $CIRCLE_ARTIFACTS/test_output
+    - mvn clean
 
 ## Customize deployment commands
 # deployment:

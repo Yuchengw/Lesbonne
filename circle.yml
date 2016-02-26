@@ -32,6 +32,7 @@ test:
     - mvn test jacoco:report coveralls:report
   post:
     - mkdir $CIRCLE_ARTIFACTS/test_output
+    - pwd
     - mv core/platformserver/target/site/jacoco/jacoco.xml $CIRCLE_ARTIFACTS/test_output
     - mvn clean
 

@@ -16,7 +16,7 @@ public class AppRestUserClientImpl extends RestClient<User, Object> {
 	}
 
 	public User getUserByEmail(String email) {
-		return (User) doGet(REST_USER_PREFIX + "/email/" + email);
+		return (User) doGet(REST_USER_PREFIX + "/getUserByEmail/" + email);
 	}
 	
 	public User getUserById(String userId) {

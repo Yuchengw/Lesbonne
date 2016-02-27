@@ -6,6 +6,8 @@ general:
 
 ## Customize the test machine
 machine:
+  environment:
+    COVERALLS_REPO_TOKEN: bTw7HQwLazRZvDYowQL25svJPct6gAxDG
 
   timezone:
     America/Los_Angeles # Set the timezone
@@ -27,8 +29,10 @@ test:
   override:
     - mvn clean
     - mvn dependency:resolve
-    - mvn test 
+    - mvn test jacoco:report coveralls:report
   post:
+    - mkdir $CIRCLE_ARTIFACTS/test_output
+    - mv target/site/jacoco/* $CIRCLE_ARTIFACTS/test_output
     - mvn clean
 
 ## Customize deployment commands

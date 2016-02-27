@@ -842,6 +842,16 @@ nav {
   .hero p {
     font-size: 18px;
     color: white; }
+.signedin-block {
+  width: 370px;
+  overflow: hidden;
+  margin: 166px 0;
+  text-align: center;
+  background: white;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px; }
 
 .signup-block {
   width: 370px;
@@ -853,6 +863,7 @@ nav {
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
   border-radius: 4px; }
+  
 
 .signup-block-header {
   background: #10123e;

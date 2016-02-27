@@ -35,11 +35,15 @@ public class UserDAOImpl implements UserDAO{
 	public User getUserByEmail(String email) {
 		List users = (List) sessionFactory.getCurrentSession().
 				createQuery("FROM User WHERE userEmail =:userEmail").
-				setParameter("userEmail", email).list();
-		// List users = (List) sessionFactory.getCurrentSession().
-		// createSQLQuery("select * FROM LESBONNEUSER WHERE USEREMAIL =:userEmail").addEntity(User.class).
-		// setParameter("userEmail", email).list();
-		return users.size() == 1 ? (User)users.get(0) : null;
+				setString("userEmail", email).list();
+		
+		if (users.size() == 0) {
+			throw new RuntimeException("There is no user with this email address.");
+		}
+		if (users.size() > 1) {
+			throw new RuntimeException("There are multiple users with this email address.");
+		}
+		return (User)users.get(0);
 	}
 
 	@Override
@@ -75,7 +79,10 @@ public class UserDAOImpl implements UserDAO{
 
 	@Override
 	public Boolean existsUserByEmail(String email) {
-		return getUserByEmail(email) != null;
+		List users = (List) sessionFactory.getCurrentSession().
+				createQuery("FROM User WHERE userEMAIL =:userEmail").
+				setString("userEmail", email).list();
+		return users.size() > 0;
 	}
 
 	@Override

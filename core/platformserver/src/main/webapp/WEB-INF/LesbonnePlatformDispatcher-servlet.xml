@@ -24,6 +24,7 @@
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
     <bean id="handlerMapping" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
     	<property name="useSuffixPatternMatch" value="false"/>
+    	<property name="removeSemicolonContent" value="false"/>
 	</bean>
     <!-- Configure to plugin JSON as request and response in method handler -->
     <bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">

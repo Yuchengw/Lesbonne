@@ -60,6 +60,9 @@ public class User extends CommonEntityInfo implements EntityBean, Serializable {
     @Column(name = "USERPASSWORD", columnDefinition = "VARCHAR(255) NOT NULL")
     private String userPassword;
     
+    @Column(name = "USERNAME", columnDefinition = "VARCHAR(255) NOT NULL")
+    private String userName;
+    
     @Column(name = "USERROLE", columnDefinition = "TINYINT NOT NULL")
     private int UserRole;
     
@@ -202,6 +205,14 @@ public class User extends CommonEntityInfo implements EntityBean, Serializable {
     
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
+    }
+    
+    public String getUserName() {
+    	return userName;
+    }
+    
+    public void setUserName(String userName) {
+    	this.userName = userName;
     }
     
     public String getUserContactInfo() {

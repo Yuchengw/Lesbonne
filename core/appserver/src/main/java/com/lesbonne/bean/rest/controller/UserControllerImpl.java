@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lesbonne.business.bean.User;
@@ -74,7 +75,7 @@ public class UserControllerImpl implements UserController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value=UserRestURIConstants.CREATE_USER)
-	public ResponseEntity<User> addUser(@RequestBody User user) {
+	public @ResponseBody ResponseEntity<User> addUser(@RequestBody User user) {
 		if (user.getUserEmail() == null) {
 			return new ResponseEntity<User>(HttpStatus.UNPROCESSABLE_ENTITY);
 		}  
@@ -96,7 +97,7 @@ public class UserControllerImpl implements UserController {
 		user.setUserCredentialsNonExpired(true);
 		User newUser = userProvider.add(user);
 		if (newUser != null) {
-			return new ResponseEntity<User>(newUser, HttpStatus.OK);
+			return new ResponseEntity<User> (newUser,HttpStatus.OK);
 		} 
 		return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}

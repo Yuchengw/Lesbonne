@@ -3,8 +3,8 @@
  * @since 1
  */
 
-import {LOGIN_USER, LOGOUT_USER} from '../constants/LoginConstants';
-import BaseStore from './BaseStore.js';
+import {LOGIN_USER, LOGOUT_USER} from './LoginConstants';
+import BaseStore from '../../global_store/BaseStore.js';
 
 class LoginStore extends BaseStore {
 

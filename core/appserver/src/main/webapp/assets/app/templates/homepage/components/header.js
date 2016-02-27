@@ -1,18 +1,15 @@
-/**
- * @author yucheng
- * @since 1
- */
 import React from 'react';
 import ReactDom from 'react-dom';
 
-import AuthService from '../../global_services/auth_service.js';
-import LoginStore from '../../stores/LoginStore.js';
-import Login from './login.js';
+import AuthService from '../../../authentication/service/AuthService.js';
+import LoginStore from '../../../authentication/login/LoginStore.js';
+import Login from '../../../authentication/login/login.js';
+import AuthenticatedComponent from '../../../global_components/AuthenticatedComponent.js'
 
 
-export default class Header extends React.Component {
-  constructor() {
-    super()
+export default AuthenticatedComponent(class Header extends React.Component {
+  constructor(props) {
+    super(props);
     this.state = this._getLoginState();
   }
 
@@ -29,7 +26,7 @@ export default class Header extends React.Component {
   }
   
   render() {
-	if (this.state.userLoggedIn) {
+	if (this.props.userLoggedIn) {
 		return (
 		    <header>
 		      <nav className="container">
@@ -40,7 +37,7 @@ export default class Header extends React.Component {
 		          <li>Explore test</li>
 		          <li>How it works</li>
 		          <li>Become a chef</li>
-		          <li>Hey, this.state.userName</li> 
+		          <li>welcome {this.props.user} :)</li> 
 		          <li><a href="" onClick={this.logout}>Logout</a></li>
 		        </ul>
 		      </nav>
@@ -62,4 +59,4 @@ export default class Header extends React.Component {
 		    </header>)
 		}
 	}
-}
+});

@@ -29,10 +29,10 @@ class LesbonneAuthenticationFilter extends GenericFilterBean {
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException,
 			ServletException {
-		Authentication userContext = tokenAuthenticationService.getAuthentication((HttpServletRequest)req);
-		if (userContext != null && userContext.isAuthenticated()) {
-			SecurityContextHolder.getContext().setAuthentication(userContext);
-		} 
+//		Authentication userContext = tokenAuthenticationService.getAuthentication((HttpServletRequest)req);
+//		if (userContext != null && userContext.isAuthenticated()) {
+//			SecurityContextHolder.getContext().setAuthentication(userContext);
+//		} 
 		chain.doFilter(req, res); // always continue
 	}
 }

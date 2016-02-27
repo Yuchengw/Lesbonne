@@ -31,9 +31,6 @@ import com.lesbonne.user.User;
 @Table(name = "LESBONNEADDRESS")
 public class Address implements Serializable, EntityBean{	
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 5977747993416662711L;
 
 	@Id

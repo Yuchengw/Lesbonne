@@ -16,8 +16,9 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Override
 	@Transactional
-	public void persistOrder(Order order) {
+	public Order persistOrder(Order order) {
 		orderDAO.persistOrder(order);
+		return order;
 	}
 	
 	@Override

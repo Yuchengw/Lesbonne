@@ -12,6 +12,7 @@ import com.lesbonne.postcomment.PostComment;
 import com.lesbonne.promotion.PromotionCode;
 import com.lesbonne.promotionusage.PromotionUsage;
 import com.lesbonne.sharingpost.SharingPost;
+import com.lesbonne.order.Order;
 
 /**
  * @author yucheng
@@ -70,6 +71,9 @@ public class UserDAOImpl implements UserDAO{
 		for (PromotionUsage usage : toBeRemoved.getPromotionUsages()) {
 		    usage.setUsedBy(null);
         }
+		for (Order order: toBeRemoved.getOrders()) {
+		    order.setOwner(null);
+		}
 		session.delete(toBeRemoved);
 	}
 

@@ -38,4 +38,7 @@
 	<bean id="promotionUsageService" class="org.mockito.Mockito" factory-method="mock">
     	<constructor-arg value="com.lesbonne.promotionusage.PromotionUsageService"/>
 	</bean>
+	<bean id="orderService" class="org.mockito.Mockito" factory-method="mock">
+    	<constructor-arg value="com.lesbonne.order.OrderService"/>
+	</bean>
 </beans>

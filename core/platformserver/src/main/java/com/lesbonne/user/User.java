@@ -87,6 +87,9 @@ public class User extends CommonEntityInfo implements EntityBean, Serializable {
     @Column(name = "USERRELATIONID", columnDefinition = "VARCHAR(18)")
     private String userRelationId;
     
+    @Column(name = "USERPAYMENTID", columnDefinition = "VARCHAR(18)")
+    private String userPaymentId;
+    
     /* ========== Foreign Key Starts From Here. ========== */
     @OneToMany(
             mappedBy = "owner", fetch = FetchType.LAZY,
@@ -118,11 +121,11 @@ public class User extends CommonEntityInfo implements EntityBean, Serializable {
     @JsonManagedReference(value="user-promotionusage")
     private Set<PromotionUsage> promotionUsages;
     
-    @Column(name = "USERPAYMENTID", columnDefinition = "VARCHAR(18)")
-    private String userPaymentId;
-    
-    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
-    private List<Order> orders;
+    @OneToMany(
+            mappedBy = "owner", fetch = FetchType.LAZY,
+            cascade = { CascadeType.ALL }, targetEntity = Order.class)
+    @JsonManagedReference(value="user-order")
+    private Set<Order> orders;
     
     @OneToMany(mappedBy = "userPartner1", fetch = FetchType.LAZY)
     private List<Partner> partners;
@@ -260,11 +263,11 @@ public class User extends CommonEntityInfo implements EntityBean, Serializable {
         this.postComments = postComments;
     }
     
-    public List<Order> getOrders() {
+    public Set<Order> getOrders() {
         return orders;
     }
     
-    public void setOrders(List<Order> orders) {
+    public void setOrders(Set<Order> orders) {
         this.orders = orders;
     }
     

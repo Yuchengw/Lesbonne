@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.lesbonne.order.Order;
 import com.lesbonne.postcomment.PostComment;
 import com.lesbonne.sharingpost.SharingPost;
 
@@ -39,7 +40,10 @@ public class AskingPostDAOImpl implements AskingPostDAO {
 		Session session = sessionFactory.getCurrentSession();
         AskingPost toBeRemoved = (AskingPost) session.get(AskingPost.class, askingPost.getAskingPostId());
         for (PostComment comment : toBeRemoved.getPostComments()) {
-            comment.setSharingPost(null);
+            comment.setAskingPost(null);
+        }
+        for (Order order : toBeRemoved.getOrders()) {
+            order.setAskingPost(null);
         }
         session.delete(toBeRemoved);
 	}

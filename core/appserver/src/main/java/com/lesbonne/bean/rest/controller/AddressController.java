@@ -10,7 +10,7 @@ import com.lesbonne.business.bean.Address;
  * @since 1
  * */
 public interface AddressController {
-	public ResponseEntity<String> updateAddress(@RequestBody final Address address);
+	public ResponseEntity<Address> updateAddress(@RequestBody final Address address);
 	
 	public ResponseEntity<Address> addAddress(@RequestBody Address address) throws Exception; 
 

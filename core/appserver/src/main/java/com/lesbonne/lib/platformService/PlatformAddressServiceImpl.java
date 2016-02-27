@@ -23,7 +23,7 @@ public class PlatformAddressServiceImpl extends PlatformAddressService implement
 		try {
 			newAddress = getAddressRestClient().createAddress(address);
 		} catch (Exception e) {
-			logger.debug("there is something wrong when inserting address object" + e.getStackTrace());
+			throw new RuntimeException("there is something wrong when inserting address object" + e.getMessage());
 		}
 		return newAddress;
 	}
@@ -37,7 +37,7 @@ public class PlatformAddressServiceImpl extends PlatformAddressService implement
 		try {
 			updateAddress = getAddressRestClient().updateAddress(address);
 		} catch (Exception e) {
-			logger.debug("there is something wrong when updating address object" + e.getStackTrace());
+			throw new RuntimeException("there is something wrong when updating address object" + e.getMessage());
 		}
 		return updateAddress;
 	}

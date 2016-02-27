@@ -73,7 +73,7 @@
 		"webpack-server": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js  --hot --inline --colors",
 		"dev-pack": "cd src/main/webapp/assets && ../../../../node_modules/webpack/bin/webpack.js -d --bail",
 		"dev-pack-watch": "cd src/main/webapp/assets && ../../../../node_modules/webpack/bin/webpack.js -d --watch",
-		"dev-pack-server": "cd src/main/webapp/assets && ../../../../node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --http --progress --port 8081 -d",
+		"dev-pack-server": "cd src/main/webapp/assets && ../../../../node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --https --progress --port 8081 -d",
 		"prod-pack": "cd src/main/webapp/assets && NODE_ENV=production ../../../../node_modules/webpack/bin/webpack.js -d --bail -p"
 	},
 	"author": "Lesbonne Yucheng"

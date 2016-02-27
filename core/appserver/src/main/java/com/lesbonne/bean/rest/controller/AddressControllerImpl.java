@@ -29,9 +29,9 @@ public class AddressControllerImpl implements AddressController {
 	private AddressProvider addressProvider;
 	
 	@RequestMapping(method=RequestMethod.PUT, value=AddressRestURIConstants.UPDATE_ADDRESS)
-	public ResponseEntity<String> updateAddress(@RequestBody Address address) {	
+	public ResponseEntity<Address> updateAddress(@RequestBody Address address) {	
 		addressProvider.update(address);
-		return new ResponseEntity<String>("address upadate success", HttpStatus.OK);	
+		return new ResponseEntity<Address>(address, HttpStatus.OK);	
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value=AddressRestURIConstants.CREATE_ADDRESS)

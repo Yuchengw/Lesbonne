@@ -6,7 +6,7 @@ package com.lesbonne.order;
  * */
 public interface OrderService {
 	
-	void persistOrder(Order order);
+	Order persistOrder(Order order);
 	
 	Order getOrderById(String orderId);
 	

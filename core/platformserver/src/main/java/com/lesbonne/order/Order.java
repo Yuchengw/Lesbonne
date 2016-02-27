@@ -5,65 +5,147 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.lesbonne.askingpost.AskingPost;
+import com.lesbonne.entity.CommonEntityInfo;
+import com.lesbonne.sharingpost.SharingPost;
 import com.lesbonne.user.User;
 
 /**
  * @author yucheng
  * @since 1
+ * @author jassica
+ * @since 2
  * */
 @Entity
-@Table(name="LESBONNEORDER")
-public class Order implements Serializable {
-	/**
+@Table(name = "LESBONNEORDER")
+public class Order extends CommonEntityInfo implements Serializable {
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = 379661088187729287L;
-	@Id
-	@Column(name = "ORDERID", columnDefinition="VARCHAR(18)")
-	private String orderId;
+    private static final long serialVersionUID = 379661088187729287L;
+    
+    @Id
+    @Column(
+            name = "ORDERID", nullable = false, unique = true,
+            columnDefinition = "VARCHAR(18)")
+    @GenericGenerator(
+            strategy = "com.lesbonne.mysqldb.DBIdGenerator",
+            name = "orderIdGenerator", parameters = { @Parameter(
+                    name = "prefix", value = "00d") })
+    @GeneratedValue(generator = "orderIdGenerator")
+    private String orderId;
+    
+    @Column(name = "QUANTITY", columnDefinition = "TINYINT NOT NULL")
+    private int quantity;
+    
+    @Column(name = "UNITPRICE", columnDefinition = "DECIMAL(10,2) NOT NULL default '0.00'")
+    private double unitPrice;
+    
+    // TODO: need another ID to specify the order target.
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "USERID", referencedColumnName = "USERID", nullable = false)
+    @JsonBackReference(value = "user-order")
+    private User owner;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "SHARINGPOSTID", referencedColumnName = "SHARINGPOSTID",
+            nullable = true)
+    @JsonBackReference(value = "sharingpost-order")
+    private SharingPost sharingPost;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "ASKINGPOSTID", referencedColumnName = "ASKINGPOSTID",
+            nullable = true)
+    @JsonBackReference(value = "askingpost-order")
+    private AskingPost askingPost;
+    
+    public String getOrderId() {
+        return orderId;
+    }
+    
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+    
+    public User getOwner() {
+        return owner;
+    }
+    
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+    
+    public SharingPost getSharingPost() {
+        return sharingPost;
+    }
+    
+    public void setSharingPost(SharingPost sharingPost) {
+        this.sharingPost = sharingPost;
+    }
+    
+    public AskingPost getAskingPost() {
+        return askingPost;
+    }
+    
+    public void setAskingPost(AskingPost askingPost) {
+        this.askingPost = askingPost;
+    }
 
-	// TODO: need another ID to specify the order target.
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="USERID", referencedColumnName = "USERID", insertable=false, updatable=false)
-	private User owner;
-	
-	@Column(name = "CREATEDATE", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP", updatable = false)
-	private String createdDate;
-	
-	@Column(name = "LASTMODIFIEDATE", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-	private String lastModifiedDate;
+    public int getQuantity() {
+        return quantity;
+    }
 
-	public String getOrderId() {
-		return orderId;
-	}
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
-	public void setOrderId(String orderId) {
-		this.orderId = orderId;
-	}
+    public double getUnitPrice() {
+        return unitPrice;
+    }
 
-	public User getOwner() {
-		return owner;
-	}
-
-	public void setOwner(User owner) {
-		this.owner = owner;
-	}
-
-	public String getCreatedDate() {
-		return createdDate;
-	}
-
-	public String getLastModifiedDate() {
-		return lastModifiedDate;
-	}
-
-	public void setLastModifiedTime(String lastModifiedDate) {
-		this.lastModifiedDate = lastModifiedDate;
-	}
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+    
+    public String toString() {
+        StringBuffer result = new StringBuffer();
+        result.append(
+                "{" + "\"orderId\":\"" + getOrderId() + "\","
+                + "\"unitPrice\":\"" + getUnitPrice() + "\","
+                + "\"quantity\":\"" + getQuantity()  + "\"");
+        result.append(getOwner() != null ? 
+                ","
+                + "\"owner\":{"
+                    + "\"userId\":\"" + getOwner().getUserId() + "\"" +
+                "}" : "");
+        result.append(getAskingPost() != null ?
+                "," 
+                + "\"askingPost\":{"
+                    + "\"askingPostId\":\"" + getAskingPost().getAskingPostId() + "\"" +
+                "}"
+                : "");
+        result.append(getSharingPost() != null ?
+                ","
+                + "\"sharingPost\":{"
+                    + "\"sharingPostId\":\"" + getSharingPost().getSharingPostId() + "\"" +
+                "}" : "");
+        result.append("}");
+        return result.toString();
+                 
+        
+    }
 }

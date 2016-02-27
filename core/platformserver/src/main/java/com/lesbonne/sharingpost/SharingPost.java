@@ -20,6 +20,7 @@ import org.hibernate.annotations.Parameter;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.lesbonne.entity.CommonEntityInfo;
+import com.lesbonne.order.Order;
 import com.lesbonne.postcomment.PostComment;
 import com.lesbonne.user.User;
 
@@ -76,6 +77,12 @@ public class SharingPost extends CommonEntityInfo implements Serializable {
     @JsonManagedReference(value="sharingpost-postcomment")
     private Set<PostComment> postComments;
     
+    @OneToMany(
+            mappedBy = "sharingPost", fetch = FetchType.LAZY,
+            cascade = { CascadeType.ALL }, targetEntity = Order.class)
+    @JsonManagedReference(value="sharingpost-order")
+    private Set<Order> orders;
+    
     public String getSharingPostId() {
         return sharingPostId;
     }
@@ -116,6 +123,14 @@ public class SharingPost extends CommonEntityInfo implements Serializable {
         this.postComments = postComments;
     }
     
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
     public String getPartnerId() {
         return partnerId;
     }

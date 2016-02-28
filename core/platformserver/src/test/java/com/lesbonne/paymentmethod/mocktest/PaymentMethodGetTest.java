@@ -27,8 +27,8 @@ public class PaymentMethodGetTest extends BaseRestPaymentMethodControllerTest{
     
     @Test
     public void testGetPostByIdBasicPositive() {
-//        User testUser = new User();
-//        testUser.setUserId("001*");
+        User testUser = new User();
+        testUser.setUserId("001*");
         
         PaymentMethod payment1 = new PaymentMethod();
         payment1.setPaymentType(1);
@@ -37,6 +37,7 @@ public class PaymentMethodGetTest extends BaseRestPaymentMethodControllerTest{
         payment1.setColumn3("2020");
         payment1.setColumn4("222");
         payment1.setColumn5("visa");
+        payment1.setOwner(testUser);
         
         Mockito.when(paymentMethodService.getPaymentMethodById(TEMP_KEY)).thenReturn(payment1);
 

@@ -28,8 +28,8 @@ public class PaymentMethodCreateTest extends BaseRestPaymentMethodControllerTest
     
     @Test
     public void testCreatePaymentMethodPositive() {
-//        User testUser = new User();
-//        testUser.setUserId("001*");
+        User testUser = new User();
+        testUser.setUserId("001*");
 
         PaymentMethod payment1 = new PaymentMethod();
         payment1.setPaymentType(1);
@@ -38,6 +38,7 @@ public class PaymentMethodCreateTest extends BaseRestPaymentMethodControllerTest
         payment1.setColumn3("2020");
         payment1.setColumn4("222");
         payment1.setColumn5("visa");
+        payment1.setOwner(testUser);
         
         PaymentMethod paymentResult = new PaymentMethod();
         paymentResult.setPaymentMethodId(TEMP_KEY);
@@ -54,8 +55,8 @@ public class PaymentMethodCreateTest extends BaseRestPaymentMethodControllerTest
     
     @Test
     public void testCreateCreditCardPositive() {
-//        User testUser = new User();
-//        testUser.setUserId("001*");
+        User testUser = new User();
+        testUser.setUserId("001*");
 
         CreditCard payment1 = new CreditCard();
         payment1.setCardNumber("1111222233334444");
@@ -63,6 +64,7 @@ public class PaymentMethodCreateTest extends BaseRestPaymentMethodControllerTest
         payment1.setExpireYear("2020");
         payment1.setCVC("222");
         payment1.setCardType("visa");
+        payment1.setOwner(testUser);
         
         CreditCard paymentResult = new CreditCard();
         paymentResult.setPaymentMethodId(TEMP_KEY);

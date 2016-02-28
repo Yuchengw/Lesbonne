@@ -24,6 +24,7 @@ import com.lesbonne.entity.CommonEntityInfo;
 import com.lesbonne.entity.EntityBean;
 import com.lesbonne.order.Order;
 import com.lesbonne.partner.Partner;
+import com.lesbonne.paymentmethod.PaymentMethod;
 import com.lesbonne.postcomment.PostComment;
 import com.lesbonne.promotion.PromotionCode;
 import com.lesbonne.promotionusage.PromotionUsage;
@@ -126,6 +127,12 @@ public class User extends CommonEntityInfo implements EntityBean, Serializable {
             cascade = { CascadeType.ALL }, targetEntity = Order.class)
     @JsonManagedReference(value="user-order")
     private Set<Order> orders;
+    
+    @OneToMany(
+            mappedBy = "owner", fetch = FetchType.LAZY,
+            cascade = { CascadeType.ALL }, targetEntity = PaymentMethod.class)
+    @JsonManagedReference(value="user-paymentmethod")
+    private Set<PaymentMethod> paymentMethods;
     
     @OneToMany(mappedBy = "userPartner1", fetch = FetchType.LAZY)
     private List<Partner> partners;
@@ -285,6 +292,14 @@ public class User extends CommonEntityInfo implements EntityBean, Serializable {
 
     public void setPromotionUsages(Set<PromotionUsage> promotionUsages) {
         this.promotionUsages = promotionUsages;
+    }
+
+    public Set<PaymentMethod> getPaymentMethods() {
+        return paymentMethods;
+    }
+
+    public void setPaymentMethods(Set<PaymentMethod> paymentMethods) {
+        this.paymentMethods = paymentMethods;
     }
 
     @Override

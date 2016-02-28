@@ -96,13 +96,21 @@ public class PaymentMethodRestControllerImpl implements PaymentMethodRestControl
         return new ResponseEntity<CreditCard>(card, HttpStatus.OK);
     }
 
-	
-	
-
     @Override
-    public ResponseEntity<CreditCard> updateCreditCard(CreditCard creditCard) {
-        // TODO Auto-generated method stub
-        return null;
+    @RequestMapping(method = RequestMethod.PUT, value = PaymentMethodRestURIConstants.UPDATE_CREDITCARD, produces = "application/json")
+    public ResponseEntity<CreditCard> updateCreditCard(@RequestBody CreditCard creditCard) {
+        CreditCard updatedPaymentMethod = null;
+        try {
+            // TODO: Add validation on the basic required field
+            if (creditCard == null) {
+                return new ResponseEntity<CreditCard>(HttpStatus.BAD_REQUEST);
+            }
+            PaymentMethod method = paymentMethodService.updatePaymentMethod(creditCard.convertToParent());
+            updatedPaymentMethod = new CreditCard(method);
+        } catch (Exception e) {
+            return new ResponseEntity<CreditCard>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<CreditCard>(updatedPaymentMethod, HttpStatus.OK);  
     }
     
     @Override
@@ -122,11 +130,14 @@ public class PaymentMethodRestControllerImpl implements PaymentMethodRestControl
         return new ResponseEntity<CreditCard>(result, HttpStatus.OK);
     }
 
-
-
     @Override
-    public ResponseEntity<Boolean> deleteCreditCard(CreditCard creditCard) {
-        // TODO Auto-generated method stub
-        return null;
+    @RequestMapping(method=RequestMethod.DELETE, value=PaymentMethodRestURIConstants.DELETE_CREDITCARD)
+    public ResponseEntity<Boolean> deleteCreditCard(@RequestBody CreditCard creditCard) {
+        try {
+            paymentMethodService.deletePaymentMethod(creditCard.convertToParent());
+        } catch (Exception e) {
+            return new ResponseEntity<Boolean>(false, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<Boolean>(true, HttpStatus.OK);
     }
 }

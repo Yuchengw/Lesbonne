@@ -1,7 +1,15 @@
 package com.lesbonne.paymentmethod;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/**
+ * The CreditCard information entity holder
+ * @author jassica
+ *
+ */
+@JsonIgnoreProperties(value = { "column1", "column2", "column3", "column4", "column5"})
 public class CreditCard extends PaymentMethod {
+    private static final long serialVersionUID = -7116449282620644265L;
     
     public CreditCard() {
         setPaymentType(1);
@@ -71,6 +79,7 @@ public class CreditCard extends PaymentMethod {
         p.setColumn5(getColumn5());
         p.setPaymentType(getPaymentType());
         p.setPaymentMethodId(getPaymentMethodId());
+        p.setOwner(getOwner());
         return p;
     }
     
@@ -83,5 +92,6 @@ public class CreditCard extends PaymentMethod {
         setPaymentMethodId(p.getPaymentMethodId());
         setPaymentType(getPaymentType());
         setLastModifiedTime(getLastModifiedTime());
+        setOwner(getOwner());
     }
 }

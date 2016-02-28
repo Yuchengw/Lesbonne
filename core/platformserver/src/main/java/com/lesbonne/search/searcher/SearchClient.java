@@ -8,4 +8,6 @@ public interface SearchClient {
 	final String indexName = "elasticsearch";
 	
 	SearchHits search(SearchCriteria rule) throws IOException;
+	
+	SearchHits searchLocation(LocationSearchCriteria rule) throws IOException;
 }

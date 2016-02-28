@@ -1,12 +1,17 @@
 package com.lesbonne.search.searcher;
 
 import java.io.IOException;
+
 import java.util.Map.Entry;
 
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.client.Client;
+import org.elasticsearch.common.geo.GeoDistance;
+import org.elasticsearch.common.geo.GeoPoint;
+import org.elasticsearch.common.unit.DistanceUnit;
+import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHits;
 
@@ -35,6 +40,27 @@ public class SearchClientImpl implements SearchClient {
         }
         
         SearchResponse response = request.setFrom(rule.getStart()).setSize(rule.getEnd()).setExplain(true)
+                .execute()
+                .actionGet();
+		
+        return response.getHits();
+	}
+
+	@Override
+	public SearchHits searchLocation(LocationSearchCriteria rule) throws IOException {
+		SearchRequestBuilder request = client.prepareSearch(indexName)
+                .setTypes(rule.getType())
+                .setSearchType(SearchType.QUERY_AND_FETCH);
+		
+		GeoPoint pin = (GeoPoint)rule.getFieldQueries().get("location");
+		QueryBuilder qb = QueryBuilders.geoDistanceQuery("location")  
+			    .point(pin.getLat(), pin.getLon())                                 
+			    .distance(rule.getDistance(), DistanceUnit.KILOMETERS)         
+			    .optimizeBbox("memory")                         
+			    .geoDistance(GeoDistance.ARC); 
+		
+		request.setQuery(qb);
+		SearchResponse response = request.setFrom(rule.getStart()).setSize(rule.getEnd()).setExplain(true)
                 .execute()
                 .actionGet();
 		

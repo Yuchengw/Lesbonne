@@ -8,7 +8,7 @@ import org.elasticsearch.common.transport.TransportAddress;
 import com.google.common.net.HostAndPort;
 
 public class ElasticSearchUtils {
-	private static final int DEFAULT_PORT = 9301;
+	private static final int DEFAULT_PORT = 9300;
 
     /**
      * Convert a {@link HostAndPort} instance to {@link TransportAddress}. If the {@link HostAndPort} instance doesn't

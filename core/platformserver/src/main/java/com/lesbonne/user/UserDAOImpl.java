@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.lesbonne.askingpost.AskingPost;
+import com.lesbonne.paymentmethod.PaymentMethod;
 import com.lesbonne.postcomment.PostComment;
 import com.lesbonne.promotion.PromotionCode;
 import com.lesbonne.promotionusage.PromotionUsage;
@@ -74,6 +75,9 @@ public class UserDAOImpl implements UserDAO{
 		for (Order order: toBeRemoved.getOrders()) {
 		    order.setOwner(null);
 		}
+		for (PaymentMethod paymentMethod: toBeRemoved.getPaymentMethods()) {
+		    paymentMethod.setOwner(null);
+        }
 		session.delete(toBeRemoved);
 	}
 

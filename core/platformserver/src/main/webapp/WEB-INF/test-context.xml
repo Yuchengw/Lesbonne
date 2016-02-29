@@ -41,4 +41,7 @@
 	<bean id="orderService" class="org.mockito.Mockito" factory-method="mock">
     	<constructor-arg value="com.lesbonne.order.OrderService"/>
 	</bean>
+	<bean id="paymentMethodService" class="org.mockito.Mockito" factory-method="mock">
+    	<constructor-arg value="com.lesbonne.paymentmethod.PaymentMethodService"/>
+	</bean>
 </beans>

@@ -34,6 +34,7 @@
 				<value>com.lesbonne.images.RelatedImages</value>
 				<value>com.lesbonne.promotion.PromotionCode</value>
 				<value>com.lesbonne.promotionusage.PromotionUsage</value>
+				<value>com.lesbonne.paymentmethod.PaymentMethod</value>
 				<value>com.lesbonne.address.Address</value>
 			</list>
 		</property>

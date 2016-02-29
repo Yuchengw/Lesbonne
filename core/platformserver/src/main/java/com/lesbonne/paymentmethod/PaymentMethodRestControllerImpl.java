@@ -105,7 +105,7 @@ public class PaymentMethodRestControllerImpl implements PaymentMethodRestControl
             if (creditCard == null) {
                 return new ResponseEntity<CreditCard>(HttpStatus.BAD_REQUEST);
             }
-            PaymentMethod method = paymentMethodService.updatePaymentMethod(creditCard.convertToParent());
+            PaymentMethod method = paymentMethodService.updatePaymentMethod(creditCard);
             updatedPaymentMethod = new CreditCard(method);
         } catch (Exception e) {
             return new ResponseEntity<CreditCard>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -122,7 +122,7 @@ public class PaymentMethodRestControllerImpl implements PaymentMethodRestControl
             if (creditCard == null) {
                 return new ResponseEntity<CreditCard>(HttpStatus.BAD_REQUEST);
             }
-            PaymentMethod method = paymentMethodService.persistPaymentMethod(creditCard.convertToParent());
+            PaymentMethod method = paymentMethodService.persistPaymentMethod(creditCard);
             result = new CreditCard(method);
         } catch (Exception e) {
             return new ResponseEntity<CreditCard>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -134,7 +134,7 @@ public class PaymentMethodRestControllerImpl implements PaymentMethodRestControl
     @RequestMapping(method=RequestMethod.DELETE, value=PaymentMethodRestURIConstants.DELETE_CREDITCARD)
     public ResponseEntity<Boolean> deleteCreditCard(@RequestBody CreditCard creditCard) {
         try {
-            paymentMethodService.deletePaymentMethod(creditCard.convertToParent());
+            paymentMethodService.deletePaymentMethod(creditCard);
         } catch (Exception e) {
             return new ResponseEntity<Boolean>(false, HttpStatus.INTERNAL_SERVER_ERROR);
         }

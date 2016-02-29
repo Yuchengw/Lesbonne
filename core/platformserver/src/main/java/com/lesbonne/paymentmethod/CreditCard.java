@@ -4,10 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * The CreditCard information entity holder
+ * 
  * @author jassica
  *
  */
-@JsonIgnoreProperties(value = { "column1", "column2", "column3", "column4", "column5"})
+@JsonIgnoreProperties(value = { "column1", "column2", "column3", "column4",
+        "column5", "column6", "column7", "column8", "column9", "column10",
+        "column11", "column12", "column13", "column14", "column15", "column16",
+        "column17", "column18", "column19", "column20" })
 public class CreditCard extends PaymentMethod {
     private static final long serialVersionUID = -7116449282620644265L;
     
@@ -29,7 +33,8 @@ public class CreditCard extends PaymentMethod {
     // column1: credit card number; column2: expiration month; column3:
     // expiration year; column4: cvc; column5: cridit card type; column6: name
     // on card; column7: address without zipcode; column8: address zipcode;
-    // If paymentType is 2, it means paypal and so far we don't know what field information we need
+    // If paymentType is 2, it means paypal and so far we don't know what field
+    // information we need
     public String getCardNumber() {
         return super.getColumn1();
     }
@@ -68,19 +73,6 @@ public class CreditCard extends PaymentMethod {
     
     public void setCardType(String value) {
         super.setColumn5(value);
-    }
-    
-    public PaymentMethod convertToParent() {
-        PaymentMethod p = new PaymentMethod();
-        p.setColumn1(getColumn1());
-        p.setColumn2(getColumn2());
-        p.setColumn3(getColumn3());
-        p.setColumn4(getColumn4());
-        p.setColumn5(getColumn5());
-        p.setPaymentType(getPaymentType());
-        p.setPaymentMethodId(getPaymentMethodId());
-        p.setOwner(getOwner());
-        return p;
     }
     
     public CreditCard(PaymentMethod p) {

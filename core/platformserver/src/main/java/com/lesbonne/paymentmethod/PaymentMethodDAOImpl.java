@@ -21,7 +21,7 @@ public class PaymentMethodDAOImpl implements PaymentMethodDAO {
 	
 	@Override
 	public void persistPaymentMethod(PaymentMethod paymentMethod) {
-		sessionFactory.getCurrentSession().persist(paymentMethod);
+		sessionFactory.getCurrentSession().persist("com.lesbonne.paymentmethod.PaymentMethod", paymentMethod);
 	}
 	
 	@Override
@@ -31,7 +31,7 @@ public class PaymentMethodDAOImpl implements PaymentMethodDAO {
 
 	@Override
 	public PaymentMethod updatePaymentMethod(PaymentMethod paymentMethod) {
-		sessionFactory.getCurrentSession().update(paymentMethod);
+		sessionFactory.getCurrentSession().update("com.lesbonne.paymentmethod.PaymentMethod", paymentMethod);
 		return paymentMethod;
 	}
 	

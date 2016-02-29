@@ -7,6 +7,9 @@ import Header from './components/header.js';
 import Hero from './components/hero.js';
 import Value from './components/value.js';
 import SearchContainer from './components/search_container.js';
+import Chef from './components/chef.js';
+
+require('./homepage.scss');
 
 export default class HomePage extends React.Component {
 	render() {
@@ -16,6 +19,7 @@ export default class HomePage extends React.Component {
 	    		<Hero />
 	    		<Value />
 	    		<SearchContainer />
+	    		<Chef />
 	    	</div>
 	    );
 	  }

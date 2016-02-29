@@ -6,6 +6,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import AuthService from '../service/AuthService.js';
 
+require ('./signup.scss');
+
 export default class Signup extends React.Component {
 	
 	 constructor(props) {

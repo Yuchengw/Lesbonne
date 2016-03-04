@@ -27,7 +27,9 @@ public class Address extends BeanObject implements Serializable {
 	private String zipcode;
 	@JsonProperty("user")
 	private User user;
+	@JsonProperty("longitude")
 	private String longitude;
+	@JsonProperty("latitude")
 	private String latitude;
 	
 	public User getUser() {

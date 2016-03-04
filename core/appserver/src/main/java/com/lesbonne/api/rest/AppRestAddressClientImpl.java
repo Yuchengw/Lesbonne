@@ -1,5 +1,7 @@
 package com.lesbonne.api.rest;
 
+import java.util.List;
+
 import com.lesbonne.business.bean.Address;
 
 /**
@@ -25,5 +27,10 @@ public class AppRestAddressClientImpl extends RestClient<Address, Object> {
 	
 	public boolean deleteAddress(Address deleteAddress) {
 		return (boolean) doPost(REST_ADDRESS_PREFIX + "/delete/", deleteAddress);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Address> searchNearbyLocations(double latitude, double longitude) {
+		return (List<Address>) doGet(REST_ADDRESS_PREFIX + "/search/" + latitude + "/" + longitude);
 	}
 }

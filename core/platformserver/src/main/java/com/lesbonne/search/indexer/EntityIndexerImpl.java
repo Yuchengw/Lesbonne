@@ -7,8 +7,8 @@ import com.lesbonne.entity.EntityBean;
 
 public class EntityIndexerImpl implements EntityIndexer {
 	
-	private EntityBean entity;
-	private String type;
+	protected EntityBean entity;
+	protected String type;
 	
 	public EntityIndexerImpl(String type, EntityBean entity) {
 		this.entity = entity;

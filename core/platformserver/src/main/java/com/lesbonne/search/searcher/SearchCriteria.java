@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SearchCriteria {
-	private final String type;
-	private final int start;
-	private final int end;
-	private final Map<String, Object> fieldQueries;
+	protected final String type;
+	protected final int start;
+	protected final int end;
+	protected final Map<String, Object> fieldQueries;
 	
 	public SearchCriteria(String type, int start, int end) {
 		this.type = type;

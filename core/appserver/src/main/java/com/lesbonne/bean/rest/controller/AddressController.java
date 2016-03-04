@@ -1,6 +1,9 @@
 package com.lesbonne.bean.rest.controller;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.lesbonne.business.bean.Address;
@@ -10,9 +13,12 @@ import com.lesbonne.business.bean.Address;
  * @since 1
  * */
 public interface AddressController {
-	public ResponseEntity<Address> updateAddress(@RequestBody final Address address);
+	ResponseEntity<Address> updateAddress(@RequestBody final Address address);
 	
-	public ResponseEntity<Address> addAddress(@RequestBody Address address) throws Exception; 
+	ResponseEntity<Address> addAddress(@RequestBody Address address) throws Exception; 
 
-	public ResponseEntity<Boolean> removeAddress(@RequestBody Address address);
+	ResponseEntity<Boolean> removeAddress(@RequestBody Address address);
+	
+	ResponseEntity<List<Address>> searchNearbyLocations(@PathVariable double latitude, @PathVariable double longitude);
+		
 }

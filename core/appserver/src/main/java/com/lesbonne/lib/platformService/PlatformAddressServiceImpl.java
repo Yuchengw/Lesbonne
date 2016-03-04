@@ -1,5 +1,7 @@
 package com.lesbonne.lib.platformService;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -53,5 +55,15 @@ public class PlatformAddressServiceImpl extends PlatformAddressService implement
 			throw new RuntimeException("Exception thrown when delete address" + e.getMessage());
 		} 
 		return success;
+	}
+	
+	public List<Address> searchNearbyLocations(double latitude, double longitude) {
+		List<Address> addresses = null;
+		try {
+			addresses = getAddressRestClient().searchNearbyLocations(latitude, longitude);
+		} catch (Exception e) {
+			throw new RuntimeException("there is something wrong when search nearby locations " + e.getMessage());
+		}
+		return addresses;
 	}
 }

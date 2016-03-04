@@ -1,11 +1,16 @@
 package com.lesbonne.address;
 
+import java.util.List;
+
 import org.elasticsearch.action.index.IndexResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lesbonne.search.ElasticSearchConstants;
 import com.lesbonne.search.indexer.AddressIndexer;
+import com.lesbonne.search.searcher.AddressSearcher;
+import com.lesbonne.search.searcher.AddressSearcherImpl;
 
 @Service
 public class AddressServiceImpl implements AddressService {
@@ -19,9 +24,6 @@ public class AddressServiceImpl implements AddressService {
 		addressDAO.persistAddress(address);
 		AddressIndexer indexer = new AddressIndexer("address", address);
 		IndexResponse response = indexer.create();
-		
-		System.out.println("CREATE");
-		System.out.println(response);
 		
 		return address;
 	}
@@ -41,6 +43,12 @@ public class AddressServiceImpl implements AddressService {
 	@Transactional
 	public Address updateAddress(Address address) {
 		return addressDAO.updateAddress(address);
+	}
+	
+	@Override
+	public List<Address> searchNearbyLocations(double latitude, double longitude) throws Exception {
+		AddressSearcher searcher = new AddressSearcherImpl();
+		return searcher.searchNearbyLocations(latitude, longitude, ElasticSearchConstants.START, ElasticSearchConstants.END, ElasticSearchConstants.RADIUS);
 	}
 
 }

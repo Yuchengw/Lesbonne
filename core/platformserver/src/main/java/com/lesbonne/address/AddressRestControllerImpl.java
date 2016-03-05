@@ -1,7 +1,5 @@
 package com.lesbonne.address;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.common.collect.Lists;
 
 /**
  * @author shuchun.yang
@@ -65,13 +62,13 @@ public class AddressRestControllerImpl implements AddressRestController {
 	
 	@Override
 	@RequestMapping(method=RequestMethod.GET, value=AddressRestURIConstants.SEARCH_NEARBY_LOCATION, produces = "application/json")
-	public @ResponseBody ResponseEntity<List<Address>> searchNearbyLocations(@PathVariable double latitude, @PathVariable double longitude) {
-		List<Address> nearbyLocations = Lists.newArrayList();
+	public @ResponseBody ResponseEntity<Address[]> searchNearbyLocations(@PathVariable double latitude, @PathVariable double longitude) {
+		Address[] nearbyLocations = null;
 		try {
 			nearbyLocations = addressService.searchNearbyLocations(latitude, longitude);
 		} catch (Exception e) {
-			return new ResponseEntity<List<Address>>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<Address[]>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<List<Address>>(nearbyLocations, HttpStatus.OK);
+		return new ResponseEntity<Address[]>(nearbyLocations, HttpStatus.OK);
 	}
 }

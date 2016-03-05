@@ -1,7 +1,5 @@
 package com.lesbonne.lib.platformService;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -57,10 +55,10 @@ public class PlatformAddressServiceImpl extends PlatformAddressService implement
 		return success;
 	}
 	
-	public List<Address> searchNearbyLocations(double latitude, double longitude) {
-		List<Address> addresses = null;
+	public Address[] searchNearbyLocations(double latitude, double longitude) {
+		Address[] addresses = null;
 		try {
-			addresses = getAddressRestClient().searchNearbyLocations(latitude, longitude);
+			addresses = getAddressArrayRestClient().searchNearbyLocations(latitude, longitude);
 		} catch (Exception e) {
 			throw new RuntimeException("there is something wrong when search nearby locations " + e.getMessage());
 		}

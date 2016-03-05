@@ -12,5 +12,5 @@ public interface AddressService {
 	
 	Address updateAddress(Address address);
 	
-	List<Address> searchNearbyLocations(double latitude, double longitude) throws Exception;
+	Address[] searchNearbyLocations(double latitude, double longitude) throws Exception;
 }

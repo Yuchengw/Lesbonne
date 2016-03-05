@@ -1,29 +1,28 @@
 package com.lesbonne.search.searcher;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
 import org.elasticsearch.common.geo.GeoPoint;
 import org.elasticsearch.search.SearchHit;
 
-import com.google.common.collect.Lists;
+
 import com.lesbonne.address.Address;
 
 public class AddressSearcherImpl implements AddressSearcher {
 	
 	@Override
-	public List<Address> searchNearbyLocations(double latitude, double longitude, int start, int end, int radius) throws Exception {
+	public Address[] searchNearbyLocations(double latitude, double longitude, int start, int end, int radius) throws Exception {
 		SearchClient client = new SearchClientImpl();
 		LocationSearchCriteria rule = new LocationSearchCriteria("address", start, end, radius);
 		rule.addFieldQuery("location", new GeoPoint(latitude, longitude));
 		
 		SearchHit[] hits = client.searchLocation(rule);
-		List<Address> results = Collections.emptyList();
+		Address[] results = null;
 		if (hits.length > 0) {
-			results = Lists.newArrayListWithExpectedSize(hits.length);
+			results = new Address[hits.length];
 		}
 		
+		int index = 0;
 		for (SearchHit hit : hits) {
 			Address address = new Address();
 			Map<String, Object> source = hit.getSource();
@@ -38,7 +37,8 @@ public class AddressSearcherImpl implements AddressSearcher {
 			Map<String, Double> location = (Map<String, Double>)source.get("location");
 			address.setLongitude(String.valueOf(location.get("lon")));
 			address.setLatitude(String.valueOf(location.get("lat")));
-			results.add(address);
+			results[index] = address;
+			index++;
 		}
 		return results;
 	}

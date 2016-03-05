@@ -4,6 +4,6 @@ import java.util.Map;
 
 public interface EntityBean {
 	
-	Map<String, Object> getIndexedColumns();
-	String getId();
+	Map<String, Object> indexedColumns();
+	String id();
 }

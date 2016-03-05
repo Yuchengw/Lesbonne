@@ -41,7 +41,7 @@ public class AddressProvider {
 		this.platformAddressServiceImpl.updateAddress(address);
 	}
 	
-	public List<Address> searchNearbyLocations(double latitude, double longitude) {
+	public Address[] searchNearbyLocations(double latitude, double longitude) {
 		return this.platformAddressServiceImpl.searchNearbyLocations(latitude, longitude);
 	}
 }

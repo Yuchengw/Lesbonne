@@ -61,14 +61,14 @@ public class AddressControllerImpl implements AddressController {
 	}
 	
 	@Override
-	@RequestMapping(method=RequestMethod.GET, value=AddressRestURIConstants.SEARCH_NEARBY_LOCATION, produces = "application/json")
-	public @ResponseBody ResponseEntity<List<Address>> searchNearbyLocations(@PathVariable double latitude, @PathVariable double longitude) {
-		List<Address> nearbyLocations = new ArrayList<Address>();
+	@RequestMapping(method=RequestMethod.GET, value=AddressRestURIConstants.SEARCH_NEARBY_LOCATION)
+	public @ResponseBody ResponseEntity<Address[]> searchNearbyLocations(@PathVariable double latitude, @PathVariable double longitude) {
+		Address[] nearbyLocations = null;
 		try {
 			nearbyLocations = addressProvider.searchNearbyLocations(latitude, longitude);
 		} catch (Exception e) {
-			return new ResponseEntity<List<Address>>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<Address[]>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<List<Address>>(nearbyLocations, HttpStatus.OK);
+		return new ResponseEntity<Address[]>(nearbyLocations, HttpStatus.OK);
 	}
 }

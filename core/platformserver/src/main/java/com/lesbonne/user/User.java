@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.lesbonne.askingpost.AskingPost;
 import com.lesbonne.entity.CommonEntityInfo;
@@ -303,14 +304,14 @@ public class User extends CommonEntityInfo implements EntityBean, Serializable {
     }
 
     @Override
-    public Map<String, Object> getIndexedColumns() {
+    public Map<String, Object> indexedColumns() {
         Map<String, Object> searchableColumns = new HashMap<String, Object>();
         searchableColumns.put("email", getUserEmail());
         return searchableColumns;
     }
     
     @Override
-    public String getId() {
+    public String id() {
         return getUserId();
     }
     

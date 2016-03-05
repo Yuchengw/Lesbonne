@@ -29,24 +29,24 @@ public class IndexerClientImpl implements IndexerClient {
 	public IndexResponse createIndex(String type, EntityBean entity) throws IOException {
 		XContentBuilder builder = jsonBuilder().startObject();
 		
-		for (Entry<String, Object> entry : entity.getIndexedColumns().entrySet()) {
+		for (Entry<String, Object> entry : entity.indexedColumns().entrySet()) {
 			builder.field(entry.getKey(), entry.getValue());
 		}
         builder.endObject();
 		
-		return this.client.prepareIndex(indexName, type, entity.getId()).setSource(builder).get();
+		return this.client.prepareIndex(indexName, type, entity.id()).setSource(builder).get();
 	}
 
 	@Override
 	public UpdateResponse updateIndex(String type, EntityBean entity) throws Exception {
 		XContentBuilder builder = jsonBuilder().startObject();
 		
-		for (Entry<String, Object> entry : entity.getIndexedColumns().entrySet()) {
+		for (Entry<String, Object> entry : entity.indexedColumns().entrySet()) {
 			builder.field(entry.getKey(), entry.getValue());
 		}
         builder.endObject();
 		
-		return this.client.prepareUpdate(indexName, type, entity.getId()).setSource(builder).get();
+		return this.client.prepareUpdate(indexName, type, entity.id()).setSource(builder).get();
 	}
 
 	@Override

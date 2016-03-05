@@ -28,9 +28,9 @@ public class Address extends BeanObject implements Serializable {
 	@JsonProperty("user")
 	private User user;
 	@JsonProperty("longitude")
-	private String longitude;
+	private double longitude;
 	@JsonProperty("latitude")
-	private String latitude;
+	private double latitude;
 	
 	public User getUser() {
 		return user;
@@ -75,16 +75,16 @@ public class Address extends BeanObject implements Serializable {
 		this.zipcode = zipcode;
 	}
 	public double getLongitude() {
-		return Double.valueOf(longitude);
+		return longitude;
 	}
 	public void setLongitude(double longitude) {
-		this.longitude = String.valueOf(longitude);
+		this.longitude = longitude;
 	}
 	public double getLatitude() {
-		return Double.valueOf(latitude);
+		return latitude;
 	}
 	public void setLatitude(double latitude) {
-		this.latitude = String.valueOf(latitude);
+		this.latitude = latitude;
 	}
 	public String getCountry() {
 		return country;

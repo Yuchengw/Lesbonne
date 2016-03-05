@@ -1,7 +1,5 @@
 package com.lesbonne.address;
 
-import java.util.List;
-
 import org.elasticsearch.action.index.IndexResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,7 +44,7 @@ public class AddressServiceImpl implements AddressService {
 	}
 	
 	@Override
-	public List<Address> searchNearbyLocations(double latitude, double longitude) throws Exception {
+	public Address[] searchNearbyLocations(double latitude, double longitude) throws Exception {
 		AddressSearcher searcher = new AddressSearcherImpl();
 		return searcher.searchNearbyLocations(latitude, longitude, ElasticSearchConstants.START, ElasticSearchConstants.END, ElasticSearchConstants.RADIUS);
 	}

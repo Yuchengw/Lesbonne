@@ -28,6 +28,10 @@ public class AppRestAddressClientImpl extends RestClient<Address, Object> {
 	}
 	
 	public Address[] searchNearbyLocations(double latitude, double longitude) {
-		return (Address[]) doGet(REST_ADDRESS_PREFIX + "/search/" + latitude + "/" + longitude);
+		return (Address[]) doGet(REST_ADDRESS_PREFIX + "/searchNearby/" + latitude + "/" + longitude);
+	}
+	
+	public Address[] searchZipcode(String zipcode) {
+		return (Address[]) doGet(REST_ADDRESS_PREFIX + "/searchZipcode/" + zipcode);
 	}
 }

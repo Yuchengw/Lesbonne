@@ -48,5 +48,11 @@ public class AddressServiceImpl implements AddressService {
 		AddressSearcher searcher = new AddressSearcherImpl();
 		return searcher.searchNearbyLocations(latitude, longitude, ElasticSearchConstants.START, ElasticSearchConstants.END, ElasticSearchConstants.RADIUS);
 	}
+	
+	@Override
+	public Address[] searchZipcode(String zipcode) throws Exception {
+		AddressSearcher searcher = new AddressSearcherImpl();
+		return searcher.searchZipcode(zipcode, ElasticSearchConstants.START, ElasticSearchConstants.END);
+	}
 
 }

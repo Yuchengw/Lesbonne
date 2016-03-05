@@ -1,7 +1,5 @@
 package com.lesbonne.lib.objectProvider;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,5 +41,9 @@ public class AddressProvider {
 	
 	public Address[] searchNearbyLocations(double latitude, double longitude) {
 		return this.platformAddressServiceImpl.searchNearbyLocations(latitude, longitude);
+	}
+	
+	public Address[] searchZipcode(String zipcode) {
+		return this.platformAddressServiceImpl.searchZipcode(zipcode);
 	}
 }

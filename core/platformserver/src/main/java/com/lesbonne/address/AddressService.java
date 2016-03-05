@@ -1,7 +1,5 @@
 package com.lesbonne.address;
 
-import java.util.List;
-
 public interface AddressService {
 	
 	Address persistAddress(Address address) throws Exception;
@@ -13,4 +11,6 @@ public interface AddressService {
 	Address updateAddress(Address address);
 	
 	Address[] searchNearbyLocations(double latitude, double longitude) throws Exception;
+	
+	Address[] searchZipcode(String zipcode) throws Exception;
 }

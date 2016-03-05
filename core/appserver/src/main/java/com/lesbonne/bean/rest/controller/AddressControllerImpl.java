@@ -1,8 +1,5 @@
 package com.lesbonne.bean.rest.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -70,5 +67,17 @@ public class AddressControllerImpl implements AddressController {
 			return new ResponseEntity<Address[]>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return new ResponseEntity<Address[]>(nearbyLocations, HttpStatus.OK);
+	}
+	
+	@Override
+	@RequestMapping(method=RequestMethod.GET, value=AddressRestURIConstants.SEARCH_ZIPCODE)
+	public @ResponseBody ResponseEntity<Address[]> searchZipcode(@PathVariable String zipcode) {
+		Address[] locations = null;
+		try {
+			locations = addressProvider.searchZipcode(zipcode);
+		} catch (Exception e) {
+			return new ResponseEntity<Address[]>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<Address[]>(locations, HttpStatus.OK);
 	}
 }

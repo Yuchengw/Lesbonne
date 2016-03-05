@@ -64,4 +64,14 @@ public class PlatformAddressServiceImpl extends PlatformAddressService implement
 		}
 		return addresses;
 	}
+	
+	public Address[] searchZipcode(String zipcode) {
+		Address[] addresses = null;
+		try {
+			addresses = getAddressArrayRestClient().searchZipcode(zipcode);
+		} catch (Exception e) {
+			throw new RuntimeException("there is something wrong when search locations in zipcode " + e.getMessage());
+		}
+		return addresses;
+	}
 }

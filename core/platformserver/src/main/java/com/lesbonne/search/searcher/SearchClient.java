@@ -6,7 +6,7 @@ import org.elasticsearch.search.SearchHits;
 public interface SearchClient {
 	final String indexName = "elasticsearch";
 	
-	SearchHits search(SearchCriteria rule) throws Exception;
+	SearchHit[] search(SearchCriteria rule) throws Exception;
 	
 	SearchHit[] searchLocation(LocationSearchCriteria rule) throws Exception;
 }

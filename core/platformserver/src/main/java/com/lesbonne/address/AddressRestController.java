@@ -12,4 +12,6 @@ public interface AddressRestController {
 	ResponseEntity<Boolean> deleteAddress(@RequestBody Address address);
 	
 	ResponseEntity<Address[]> searchNearbyLocations(@PathVariable double latitude, @PathVariable double longitude);
+	
+	ResponseEntity<Address[]> searchZipcode(@PathVariable String zipcode);
 }

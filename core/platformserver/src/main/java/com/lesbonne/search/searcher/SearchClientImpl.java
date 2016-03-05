@@ -29,7 +29,7 @@ public class SearchClientImpl implements SearchClient {
 	}
 	
 	@Override
-	public SearchHits search(SearchCriteria rule) throws Exception {
+	public SearchHit[] search(SearchCriteria rule) throws Exception {
 		SearchRequestBuilder request = client.prepareSearch(indexName)
                 .setTypes(rule.getType())
                 .setSearchType(SearchType.QUERY_AND_FETCH);
@@ -42,7 +42,7 @@ public class SearchClientImpl implements SearchClient {
                 .execute()
                 .get();
 		
-        return response.getHits();
+        return response.getHits().getHits();
 	}
 
 	@Override

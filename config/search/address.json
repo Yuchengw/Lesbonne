@@ -1,0 +1,40 @@
+{  
+   "mappings": {
+      "address" : {
+         "properties":{  
+            "name":{  
+               "type":"string",  
+               "store":"yes"  
+            },  
+            "stree1":{  
+               "type":"string",  
+               "store":"yes"    
+            },  
+            "stree2":{  
+               "type":"string",
+               "store":"yes"   
+            },  
+            "city":{  
+               "type":"string",
+               "store": "yes" 
+            },  
+            "state":{  
+               "type":"string",
+               "store":"yes"  
+            },  
+            "country":{  
+               "type":"string",
+               "store":"yes"  
+            },  
+            "zipcode":{  
+               "type":"string",
+               "store":"yes"  
+            }, 
+            "location" : {
+               "type":"geo_point",
+               "store":"yes"
+            } 
+         } 
+      }
+   }     
+}  

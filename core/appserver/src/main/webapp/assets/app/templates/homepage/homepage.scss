@@ -202,19 +202,23 @@
       line-height: 40px;
       margin: 0; }
 
-// Media page
-.media {
-	background-color: rgba(0,0,0,0.25);
+// Explore button
+.explore {
 	padding: 20px 0;
-	position: absolute;
+}
+
+// Media page
+.medias {
+	background-color: rgba(0,0,0,0);
+	padding: 90px 0;
 	bottom: 0;
 	left: 0;
 	width: 100%;
 	font-size: 0;
-	.review {
+	.media {
 		display: inline-block;
 		vertical-align: top;
-		width: 100%;
+		width: 25%;
 		//@media (min-width: $screen-sm-min) {
 		//	width: 33%;
 		//}

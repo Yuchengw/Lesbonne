@@ -16,7 +16,7 @@ export default class Chef extends React.Component {
 		          <h5>It takes less than 5 minutes to apply, no credit card required</h5>
 		        </div>
 		        <div>
-		          <a className="btn" type='button'>APPLY TO BE A CHEF</a>
+		          <a className="btn-marketing" type="submit">APPLY TO BE A CHEF</a>
 		        </div>
 		      </div>
 			</section>

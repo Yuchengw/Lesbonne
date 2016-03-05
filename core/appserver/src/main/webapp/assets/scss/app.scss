@@ -563,6 +563,66 @@ input[type='button'] {
   .btn-social.btn-googleplus {
     background: #d62120; }
 
+.btn-marketing {
+  display: table-cell;
+  font-family: Helvetica, Verdana, Arial, sans-serif;
+  font-size: 16px;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: uppercase;
+  width: 100%;
+  height: 50px;
+  line-height: 1;
+  color: white;
+  background: #FFFF;
+  border: solid 2px;
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px; }
+  .btn:hover, .btn.loading,
+  button:hover,
+  button.loading,
+  input[type='reset']:hover,
+  input[type='reset'].loading,
+  input[type='submit']:hover,
+  input[type='submit'].loading,
+  input[type='button']:hover,
+  input[type='button'].loading {
+    background: #2ca354;
+    color: white; }
+  .btn:disabled, .btn.disabled,
+  button:disabled,
+  button.disabled,
+  input[type='reset']:disabled,
+  input[type='reset'].disabled,
+  input[type='submit']:disabled,
+  input[type='submit'].disabled,
+  input[type='button']:disabled,
+  input[type='button'].disabled {
+    cursor: auto;
+    background: #d2d7dc; }
+  .btn.navy-btn,
+  button.navy-btn,
+  input[type='reset'].navy-btn,
+  input[type='submit'].navy-btn,
+  input[type='button'].navy-btn {
+    background: #10123e; }
+    .btn.navy-btn:hover, .btn.navy-btn.loading,
+    button.navy-btn:hover,
+    button.navy-btn.loading,
+    input[type='reset'].navy-btn:hover,
+    input[type='reset'].navy-btn.loading,
+    input[type='submit'].navy-btn:hover,
+    input[type='submit'].navy-btn.loading,
+    input[type='button'].navy-btn:hover,
+    input[type='button'].navy-btn.loading {
+      background: #0b0c2a; }
+
 .icon-edit {
   color: #a0aab4; }
   .icon-edit:hover, .icon-edit.active {
@@ -816,3 +876,5 @@ nav {
   .responsive-padding {
     padding-right: 0;
     padding-left: 0; } }
+
+/*---------Import starts from here--------*/

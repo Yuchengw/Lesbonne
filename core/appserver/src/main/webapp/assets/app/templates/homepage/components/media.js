@@ -11,17 +11,17 @@ export default class Media extends React.Component {
 		return(
 			<section className="medias">
 				<div className="container">
-					<div className="media">
-						<img src="/app/templates/homepage/images/techcrunch.png"/>
+					<div className="col-md-3">
+						<img src="/as/app/templates/homepage/images/techcrunch.png"/>
 					</div>
-					<div className="media">
-						<img src="/app/templates/homepage/images/techcrunch.png"/>
+					<div className="col-md-3">
+						<img src="/as/app/templates/homepage/images/businessinsider.png"/>
 					</div>
-					<div className="media">
-						<img src="/app/templates/homepage/images/techcrunch.png"/>	
+					<div className="col-md-3">
+						<img src="/as/app/templates/homepage/images/producthunt.png"/>	
 					</div>
-					<div className="media">
-						<img src="/app/templates/homepage/images/techcrunch.png"/>
+					<div className="col-md-3">
+						<img src="/as/app/templates/homepage/images/wired.png"/>
 					</div>
 				</div>
 			</section>

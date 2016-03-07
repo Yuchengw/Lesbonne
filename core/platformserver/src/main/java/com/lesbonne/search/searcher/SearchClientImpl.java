@@ -1,8 +1,8 @@
 package com.lesbonne.search.searcher;
 
-import java.io.IOException;
-
 import java.util.Map.Entry;
+
+import com.lesbonne.search.ElasticSearchClient;
 
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
@@ -13,9 +13,8 @@ import org.elasticsearch.common.geo.GeoPoint;
 import org.elasticsearch.common.unit.DistanceUnit;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
-
-import com.lesbonne.search.ElasticSearchClient;
 
 public class SearchClientImpl implements SearchClient {
 	
@@ -30,7 +29,7 @@ public class SearchClientImpl implements SearchClient {
 	}
 	
 	@Override
-	public SearchHits search(SearchCriteria rule) throws IOException {
+	public SearchHit[] search(SearchCriteria rule) throws Exception {
 		SearchRequestBuilder request = client.prepareSearch(indexName)
                 .setTypes(rule.getType())
                 .setSearchType(SearchType.QUERY_AND_FETCH);
@@ -41,29 +40,31 @@ public class SearchClientImpl implements SearchClient {
         
         SearchResponse response = request.setFrom(rule.getStart()).setSize(rule.getEnd()).setExplain(true)
                 .execute()
-                .actionGet();
+                .get();
 		
-        return response.getHits();
+        return response.getHits().getHits();
 	}
 
 	@Override
-	public SearchHits searchLocation(LocationSearchCriteria rule) throws IOException {
+	public SearchHit[] searchLocation(LocationSearchCriteria rule) throws Exception {
 		SearchRequestBuilder request = client.prepareSearch(indexName)
                 .setTypes(rule.getType())
                 .setSearchType(SearchType.QUERY_AND_FETCH);
 		
 		GeoPoint pin = (GeoPoint)rule.getFieldQueries().get("location");
-		QueryBuilder qb = QueryBuilders.geoDistanceQuery("location")  
+		QueryBuilder geoQuery = QueryBuilders.geoDistanceQuery("location")  
 			    .point(pin.getLat(), pin.getLon())                                 
-			    .distance(rule.getDistance(), DistanceUnit.KILOMETERS)         
+			    .distance(rule.getDistance(), DistanceUnit.MILES)         
 			    .optimizeBbox("memory")                         
-			    .geoDistance(GeoDistance.ARC); 
+			    .geoDistance(GeoDistance.SLOPPY_ARC); 
 		
+		QueryBuilder qb = QueryBuilders.boolQuery().must(QueryBuilders.matchAllQuery()).filter(geoQuery);
+
 		request.setQuery(qb);
 		SearchResponse response = request.setFrom(rule.getStart()).setSize(rule.getEnd()).setExplain(true)
                 .execute()
-                .actionGet();
+                .get();
 		
-        return response.getHits();
+        return response.getHits().getHits();
 	}
 }

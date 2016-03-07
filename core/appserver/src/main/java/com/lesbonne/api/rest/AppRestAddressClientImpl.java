@@ -26,4 +26,12 @@ public class AppRestAddressClientImpl extends RestClient<Address, Object> {
 	public boolean deleteAddress(Address deleteAddress) {
 		return (boolean) doPost(REST_ADDRESS_PREFIX + "/delete/", deleteAddress);
 	}
+	
+	public Address[] searchNearbyLocations(double latitude, double longitude) {
+		return (Address[]) doGet(REST_ADDRESS_PREFIX + "/searchNearby/" + latitude + "/" + longitude);
+	}
+	
+	public Address[] searchZipcode(String zipcode) {
+		return (Address[]) doGet(REST_ADDRESS_PREFIX + "/searchZipcode/" + zipcode);
+	}
 }

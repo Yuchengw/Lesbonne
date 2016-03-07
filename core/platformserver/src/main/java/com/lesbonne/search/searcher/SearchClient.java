@@ -1,13 +1,12 @@
 package com.lesbonne.search.searcher;
 
-import java.io.IOException;
-
+import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 
 public interface SearchClient {
 	final String indexName = "elasticsearch";
 	
-	SearchHits search(SearchCriteria rule) throws IOException;
+	SearchHit[] search(SearchCriteria rule) throws Exception;
 	
-	SearchHits searchLocation(LocationSearchCriteria rule) throws IOException;
+	SearchHit[] searchLocation(LocationSearchCriteria rule) throws Exception;
 }

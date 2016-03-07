@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.elasticsearch.search.SearchHit;
-import org.elasticsearch.search.SearchHits;
 
 import com.google.common.collect.Lists;
 
@@ -17,8 +16,8 @@ public class UserSearcherImpl implements UserSearcher {
 		
 		SearchCriteria rule = new SearchCriteria("user",start,end);
 		rule.addFieldQuery("email", keyword);
-		SearchHits hits = client.search(rule);
-		for (SearchHit hit : hits.getHits()) {
+		SearchHit[] hits = client.search(rule);
+		for (SearchHit hit : hits) {
 			results.add(hit.getSource());
 		}
 		

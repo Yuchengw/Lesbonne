@@ -1,13 +1,13 @@
 package com.lesbonne.bean.rest.controller;
 
-import java.math.BigDecimal;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.maps.model.LatLng;
@@ -55,5 +55,29 @@ public class AddressControllerImpl implements AddressController {
 		} else {
 			return new ResponseEntity<Boolean>(false, HttpStatus.FORBIDDEN);
 		}
+	}
+	
+	@Override
+	@RequestMapping(method=RequestMethod.GET, value=AddressRestURIConstants.SEARCH_NEARBY_LOCATION)
+	public @ResponseBody ResponseEntity<Address[]> searchNearbyLocations(@PathVariable double latitude, @PathVariable double longitude) {
+		Address[] nearbyLocations = null;
+		try {
+			nearbyLocations = addressProvider.searchNearbyLocations(latitude, longitude);
+		} catch (Exception e) {
+			return new ResponseEntity<Address[]>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<Address[]>(nearbyLocations, HttpStatus.OK);
+	}
+	
+	@Override
+	@RequestMapping(method=RequestMethod.GET, value=AddressRestURIConstants.SEARCH_ZIPCODE)
+	public @ResponseBody ResponseEntity<Address[]> searchZipcode(@PathVariable String zipcode) {
+		Address[] locations = null;
+		try {
+			locations = addressProvider.searchZipcode(zipcode);
+		} catch (Exception e) {
+			return new ResponseEntity<Address[]>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<Address[]>(locations, HttpStatus.OK);
 	}
 }

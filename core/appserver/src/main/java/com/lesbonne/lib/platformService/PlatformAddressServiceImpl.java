@@ -54,4 +54,24 @@ public class PlatformAddressServiceImpl extends PlatformAddressService implement
 		} 
 		return success;
 	}
+	
+	public Address[] searchNearbyLocations(double latitude, double longitude) {
+		Address[] addresses = null;
+		try {
+			addresses = getAddressArrayRestClient().searchNearbyLocations(latitude, longitude);
+		} catch (Exception e) {
+			throw new RuntimeException("there is something wrong when search nearby locations " + e.getMessage());
+		}
+		return addresses;
+	}
+	
+	public Address[] searchZipcode(String zipcode) {
+		Address[] addresses = null;
+		try {
+			addresses = getAddressArrayRestClient().searchZipcode(zipcode);
+		} catch (Exception e) {
+			throw new RuntimeException("there is something wrong when search locations in zipcode " + e.getMessage());
+		}
+		return addresses;
+	}
 }

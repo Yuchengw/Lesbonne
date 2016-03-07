@@ -9,4 +9,8 @@ public interface AddressService {
 	Address getAddressById(String addressId);
 	
 	Address updateAddress(Address address);
+	
+	Address[] searchNearbyLocations(double latitude, double longitude) throws Exception;
+	
+	Address[] searchZipcode(String zipcode) throws Exception;
 }

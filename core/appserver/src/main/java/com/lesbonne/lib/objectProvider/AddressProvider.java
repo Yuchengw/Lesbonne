@@ -38,4 +38,12 @@ public class AddressProvider {
 	public void update(Address address) {
 		this.platformAddressServiceImpl.updateAddress(address);
 	}
+	
+	public Address[] searchNearbyLocations(double latitude, double longitude) {
+		return this.platformAddressServiceImpl.searchNearbyLocations(latitude, longitude);
+	}
+	
+	public Address[] searchZipcode(String zipcode) {
+		return this.platformAddressServiceImpl.searchZipcode(zipcode);
+	}
 }

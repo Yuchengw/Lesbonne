@@ -20,6 +20,7 @@ import org.elasticsearch.common.geo.GeoPoint;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lesbonne.entity.EntityBean;
 import com.lesbonne.user.User;
 
@@ -191,12 +192,12 @@ public class Address implements Serializable, EntityBean{
 		this.latitude = latitude;
 	}
 	
-	public GeoPoint getGeoPoint() {
+	public GeoPoint geoPoint() {
 		return new GeoPoint(getLatitude(), getLongitude());
 	}
 
 	@Override
-	public Map<String, Object> getIndexedColumns() {
+	public Map<String, Object> indexedColumns() {
 		Map<String, Object> searchableColumns = new HashMap<String, Object>();
 		searchableColumns.put("name", getName());
 		searchableColumns.put("street1", getStreet1());
@@ -205,13 +206,13 @@ public class Address implements Serializable, EntityBean{
 		searchableColumns.put("state", getState());
 		searchableColumns.put("country", getCountry());
 		searchableColumns.put("zipcode", getZipcode());
-		searchableColumns.put("location", getGeoPoint());
+		searchableColumns.put("location", geoPoint());
 		//searchableColumns.put("userId", getUserAddress().getUserId());
 		return searchableColumns;
 	}
 
 	@Override
-	public String getId() {
+	public String id() {
 		return getAddressId();
 	}
 	

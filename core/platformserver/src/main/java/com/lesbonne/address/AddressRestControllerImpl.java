@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
 /**
  * @author shuchun.yang
  * @since 1
@@ -57,5 +58,29 @@ public class AddressRestControllerImpl implements AddressRestController {
 			return new ResponseEntity<Boolean>(false, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+	}
+	
+	@Override
+	@RequestMapping(method=RequestMethod.GET, value=AddressRestURIConstants.SEARCH_NEARBY_LOCATION, produces = "application/json")
+	public @ResponseBody ResponseEntity<Address[]> searchNearbyLocations(@PathVariable double latitude, @PathVariable double longitude) {
+		Address[] nearbyLocations = null;
+		try {
+			nearbyLocations = addressService.searchNearbyLocations(latitude, longitude);
+		} catch (Exception e) {
+			return new ResponseEntity<Address[]>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<Address[]>(nearbyLocations, HttpStatus.OK);
+	}
+	
+	@Override
+	@RequestMapping(method=RequestMethod.GET, value=AddressRestURIConstants.SEARCH_ZIPCODE, produces = "application/json")
+	public @ResponseBody ResponseEntity<Address[]> searchZipcode(@PathVariable String zipcode) {
+		Address[] locations = null;
+		try {
+			locations = addressService.searchZipcode(zipcode);
+		} catch (Exception e) {
+			return new ResponseEntity<Address[]>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<Address[]>(locations, HttpStatus.OK);
 	}
 }

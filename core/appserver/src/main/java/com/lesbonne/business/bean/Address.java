@@ -101,6 +101,7 @@ public class Address extends BeanObject implements Serializable {
 	 * San Francisco, CA 94105
 	 */
 	public String toString() {
-		return String.format("%s\n%s\n%s\n%s, %s %s", getName(), getStreet1(), getStreet2(), getCity(), getState(), getZipcode());
+		String street = getStreet1() + (getStreet2() != null ? "\n" + getStreet2() : "");
+		return String.format("%s\n%s, %s %s", street, getCity(), getState(), getZipcode());
 	}
 }

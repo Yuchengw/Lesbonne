@@ -47,9 +47,9 @@ export default class Signup extends React.Component {
 			        <form role="form" className="signupForm">
 				        <div className="signup-email">
 				          <p>Or, Sign Up with Email</p>
-				          <input type="text" id="username" ref="username" placeholder="username"/>
-				          <input type="text" id='email' ref='email' placeholder="email" />
-				          <input type="password" id='password' ref='password' placeholder="password" />
+				          <input type="text" id="username" ref="username" placeholder="Your Full Name"/>
+				          <input type="text" id='email' ref='email' placeholder="Email" />
+				          <input type="password" id='password' ref='password' placeholder="Password" />
 				        </div>
 				        <input type="submit" onClick={this.signup.bind(this)} className="navy-btn" value="Sign Up"> </input>
 			        </form>

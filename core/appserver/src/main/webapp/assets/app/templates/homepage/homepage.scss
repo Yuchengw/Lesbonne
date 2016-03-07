@@ -229,4 +229,23 @@
 		}
 	}
 }
-      
+   
+// homepage-footer
+#homepage-footer {
+	margin: auto;
+	width: 60%;
+	font-size: 11px;
+	padding-bottom: 80px;
+	a {
+		color: #747474;
+	}
+	.language {
+		.dropdown-toggle {
+			font-size: 80%;
+			color: #747474;
+			padding: 1px, 1px;
+			width: 90%;
+			height: 30px;
+		}
+	}
+}   

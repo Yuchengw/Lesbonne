@@ -207,7 +207,8 @@ public class Address implements Serializable, EntityBean{
 		searchableColumns.put("country", getCountry());
 		searchableColumns.put("zipcode", getZipcode());
 		searchableColumns.put("location", geoPoint());
-		//searchableColumns.put("userId", getUserAddress().getUserId());
+		String userId = getUser()!=null ? getUser().getUserId() : null;
+		searchableColumns.put("userId", userId);
 		return searchableColumns;
 	}
 
@@ -224,6 +225,7 @@ public class Address implements Serializable, EntityBean{
 	 * San Francisco, CA 94105
 	 */
 	public String toString() {
-		return String.format("%s\n%s\n%s\n%s, %s %s", getName(), getStreet1(), getStreet2(), getCity(), getState(), getZipcode());
+		String street = getStreet1() + (getStreet2() != null ? "\n" + getStreet2() : "");
+		return String.format("%s\n%s, %s %s", street, getCity(), getState(), getZipcode());
 	}
 }

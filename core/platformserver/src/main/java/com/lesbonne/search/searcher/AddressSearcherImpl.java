@@ -9,6 +9,7 @@ import org.elasticsearch.search.SearchHits;
 
 import com.google.common.collect.Lists;
 import com.lesbonne.address.Address;
+import com.lesbonne.user.User;
 
 public class AddressSearcherImpl implements AddressSearcher {
 	
@@ -56,6 +57,9 @@ public class AddressSearcherImpl implements AddressSearcher {
 			Map<String, Double> location = (Map<String, Double>)source.get("location");
 			address.setLongitude(String.valueOf(location.get("lon")));
 			address.setLatitude(String.valueOf(location.get("lat")));
+			User user = new User();
+			user.setUserId((String)source.get("userId"));
+			address.setUser(user);
 			results[index] = address;
 			index++;
 		}

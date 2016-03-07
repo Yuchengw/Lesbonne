@@ -13,6 +13,7 @@ import Footer from './components/footer.js';
 
 require('./homepage.scss');
 
+
 export default class HomePage extends React.Component {
 	render() {
 	    return (

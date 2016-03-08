@@ -31,6 +31,7 @@ export default AuthenticatedComponent(class Header extends React.Component {
 		    <header>
 		      <nav className="container">
 		        <h1 className="site-name">
+		      	  <img className="logo-img" src="/as/app/templates/homepage/images/logo.png"/>
 		          <span></span> LesBonnes
 		        </h1>
 		        <ul>

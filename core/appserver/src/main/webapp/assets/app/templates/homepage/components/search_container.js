@@ -181,6 +181,9 @@ export default class SearchContainer extends React.Component {
 		          </div>
 		        </div>
 		      </div>
+		      <div className="explore">
+	          	<a className="btn">Explore 99+ HOME FOOD NEAR YOU</a>
+		      </div>
 		    </section>
 		);
 	}

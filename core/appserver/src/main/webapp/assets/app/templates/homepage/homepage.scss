@@ -1,0 +1,257 @@
+/*
+*@author yucheng
+*@since 1
+*/
+
+/*
+*Homepage Hero section
+*/
+.chef {
+  margin-top: 30px;
+  background-image: url(/app/templates/homepage/images/homepage-chef.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: white;
+  background-position: center center;
+  max-height: 887px;
+  min-height: 600px;
+  text-align: left;
+  overflow: hidden; 
+  .chef-slogan {
+  	margin-top: 100px;
+	width: 649px;
+	height: 130px;
+	font-family: Avenir-Medium;
+	font-size: 48px;
+	line-height: 1.2;
+	color: #ffffff;
+  }
+}
+
+.hero {
+  background-image: url(/scss/images/homepage-hero.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: white;
+  background-position: center center;
+  max-height: 887px;
+  text-align: left;
+  overflow: hidden; }
+  
+.hero h2 {
+  margin-top: 249px;
+  font-size: 54px;
+  width: 680px;
+  color: white; }
+.hero p {
+  font-size: 18px;
+  color: white; }
+  
+.signedin-block {
+  width: 370px;
+  overflow: hidden;
+  margin: 166px 0;
+  text-align: center;
+  background: white;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px; }
+
+.signup-social {
+  margin-bottom: 40px; }
+
+.value-pop {
+  padding: 90px 0 120px;
+  color: black; }
+  .value-pop .column-3 {
+    padding: 0 20px; }
+  .value-pop img {
+    height: 94px;
+    margin-bottom: 50px; }
+  .value-pop h3 {
+    font-size: 27px;
+    margin-bottom: 5px; }
+  .value-pop p {
+    font-size: 20px;
+    font-weight: 300;
+    opacity: 0.6; }
+
+/*
+* Homepage search bar
+*
+*/
+.homepage-search h2 {
+  font-size: 36px;
+  margin-bottom: 37px; }
+
+.homepage-search .search-box {
+  border-bottom: 2px solid #31b75e;
+  overflow: hidden;
+  display: inline-block;
+  min-width: 800px; }
+  .homepage-search .search-box span {
+    background-image: url(/scss/images/search-icon.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 28px 28px;
+    width: 28px;
+    height: 50px; }
+
+.homepage-search input[type="text"] {
+  border: 0; }
+
+.homepage-search input,
+.homepage-search label,
+.homepage-search span {
+  display: inline-block;
+  float: left;
+  font-size: 28px; }
+
+.homepage-search label,
+.homepage-search span {
+  line-height: 50px;
+  margin-left: 20px;
+  margin-right: 20px; }
+
+.homepage-showcase {
+  margin-top: 40px; }
+
+/*
+* Item show cases, 3x3 grid
+*
+*/
+.showcase-item {
+  background: #f1f1f1;
+  width: 30%;
+  height: 286px;
+  margin: 0 6px 22px;
+  float: left;
+  color: #4c4c4c; }
+  .showcase-item:nth-child(3n+1) {
+    margin-left: 0; }
+  .showcase-item:nth-child(3n) {
+    margin-right: 0; }
+  .showcase-item h4 {
+    font-size: 18px; }
+  .showcase-item img {
+  	width: 100%;
+    height: 184px; }
+
+.showcase-header {
+  padding: 0 13px; }
+  .showcase-header .dish-name {
+    width: 280px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left; }
+  .showcase-header .price {
+    text-align: right;
+    float: right; }
+    .showcase-header .price:before {
+      content: '$'; }
+  .showcase-header .dish-name,
+  .showcase-header .price {
+    font-size: 16px;
+    display: block;
+    line-height: 54px;
+    margin: 0; }
+
+.showcase-bottom {
+  padding: 4px 13px;
+  display: table;
+  width: 100%;
+  border-bottom: 1px solid #e1dede;
+  border-left: 1px solid #e1dede;
+  border-right: 1px solid #e1dede;
+  box-sizing: border-box; }
+  .showcase-bottom .profile-img {
+    height: 40px;
+    width: 40px;
+    display: table-cell;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%; }
+  .showcase-bottom .profile-name {
+    width: 226px; }
+    .showcase-bottom .profile-name span {
+      display: block;
+      line-height: 1; }
+    .showcase-bottom .profile-name .name {
+      font-size: 13px; }
+    .showcase-bottom .profile-name .area {
+      font-size: 9px; }
+  .showcase-bottom .profile-img,
+  .showcase-bottom .profile-name {
+    display: table-cell;
+    vertical-align: middle; }
+  .showcase-bottom .like {
+    width: 100px; }
+    .showcase-bottom .like span {
+      float: right;
+      text-align: right;
+      display: inline-block;
+      padding-left: 22px;
+      background-image: url(/scss/images/like-icon.png);
+      background-repeat: no-repeat;
+      background-size: 18px auto;
+      background-position: left center;
+      font-size: 11px;
+      line-height: 40px;
+      margin: 0; }
+
+// Explore button
+.explore {
+	padding: 20px 0;
+}
+
+// Media page
+.medias {
+	background-color: rgba(0,0,0,0);
+	padding: 90px 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	font-size: 0;
+	.media {
+		display: inline-block;
+		vertical-align: top;
+		width: 25%;
+		//@media (min-width: $screen-sm-min) {
+		//	width: 33%;
+		//}
+		p {
+			margin: 5px 0 0;
+			color: #999;
+			font-size: 13px;
+		}
+	}
+}
+   
+// homepage-footer
+#homepage-footer {
+	margin: auto;
+	width: 60%;
+	font-size: 11px;
+	padding-bottom: 80px;
+	a {
+		color: #747474;
+	}
+	.language {
+		.dropdown-toggle {
+			font-size: 80%;
+			color: #747474;
+			padding: 1px, 1px;
+			width: 90%;
+			height: 30px;
+		}
+	}
+}   
+
+// hompage header
+.logo-img {
+    height: 40px;
+    width: 40px;
+}

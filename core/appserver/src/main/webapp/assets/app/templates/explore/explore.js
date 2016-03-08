@@ -3,7 +3,7 @@
  * @since 1
  */
 import React from 'react';
-import AuthenticatedComponent from '../../global_components/AuthenticatedComponent.js'
+import AuthenticatedComponent from '../../global/components/AuthenticatedComponent.js'
 
 export default AuthenticatedComponent(class Dashboard extends React.Component {
   render() {

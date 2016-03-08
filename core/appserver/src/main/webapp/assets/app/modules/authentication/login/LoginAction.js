@@ -2,9 +2,9 @@
  * @author yucheng
  * @since 1
  */
-import AppDispatcher from '../../global_dispatcher/AppDispatcher.js';
+import AppDispatcher from '../../../global/dispatcher/AppDispatcher.js';
 import {LOGIN_USER, LOGOUT_USER} from './LoginConstants.js';
-import RouterContainer from '../../global_router/RouterContainer.js'
+import RouterContainer from '../../../global/router/RouterContainer.js'
 
 export default {
   loginUser: (login_token, login_user) => {

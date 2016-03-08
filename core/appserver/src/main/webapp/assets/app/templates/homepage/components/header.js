@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
-import AuthService from '../../../authentication/service/AuthService.js';
-import LoginStore from '../../../authentication/login/LoginStore.js';
-import Login from '../../../authentication/login/login.js';
-import AuthenticatedComponent from '../../../global_components/AuthenticatedComponent.js'
+import AuthService from '../../../modules/authentication/service/AuthService.js';
+import LoginStore from '../../../modules/authentication/login/LoginStore.js';
+import Login from '../../../modules/authentication/login/login.js';
+import AuthenticatedComponent from '../../../global/components/AuthenticatedComponent.js'
 
 
 export default AuthenticatedComponent(class Header extends React.Component {

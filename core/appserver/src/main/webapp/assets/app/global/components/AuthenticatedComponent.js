@@ -3,7 +3,7 @@
  * @since 1
  */
 import React from 'react';
-import LoginStore from '../authentication/login/LoginStore.js';
+import LoginStore from '../../authentication/login/LoginStore.js';
 
 export default (ComposedComponent) => {
   return class AuthenticatedComponent extends React.Component {

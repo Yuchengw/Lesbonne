@@ -4,7 +4,7 @@
  */
 
 import {LOGIN_USER, LOGOUT_USER} from './LoginConstants';
-import BaseStore from '../../global_store/BaseStore.js';
+import BaseStore from '../../../global/store/BaseStore.js';
 
 class LoginStore extends BaseStore {
 

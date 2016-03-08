@@ -5,10 +5,10 @@ import React from 'react';
 import Router from 'react-router';
 var { Route, DefaultRoute, NotFoundRoute} = Router;
 import App from '../app/app.js';
-import Login from '../app/authentication/login/login.js';
-import Signup from '../app/authentication/signup/signup.js';
-import LoginAction from '../app/authentication/login/LoginAction.js';
-import RouterContainer from '../app/global_router/RouterContainer.js';
+import Login from '../app/modules/authentication/login/login.js';
+import Signup from '../app/modules/authentication/signup/signup.js';
+import LoginAction from '../app/modules/authentication/login/LoginAction.js';
+import RouterContainer from '../app/global/router/RouterContainer.js';
 
 require('bootstrap-loader');
 

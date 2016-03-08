@@ -4,8 +4,8 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Signup from '../../../authentication/signup/signup.js';
-import AuthenticatedComponent from '../../../global_components/AuthenticatedComponent.js'
+import Signup from '../../../modules/authentication/signup/signup.js';
+import AuthenticatedComponent from '../../../global/components/AuthenticatedComponent.js'
 
 export default AuthenticatedComponent(class Hero extends React.Component {
 	constructor(props) {

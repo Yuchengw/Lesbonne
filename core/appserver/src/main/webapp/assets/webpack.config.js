@@ -7,7 +7,7 @@ module.exports = {
 	    getEntrySources(['./entrypoints/entry.js']),
 	output: {
     	path: path.resolve(__dirname, './build'),
-    	filename: './build/bundle.js',
+    	filename: 'bundle.js',
 	},
 	resolve: {
 		root: [

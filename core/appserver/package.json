@@ -78,5 +78,5 @@
 		"dev-pack-server": "cd src/main/webapp/assets && ../../../../node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --https --progress --port 8081 -d",
 		"prod-pack": "cd src/main/webapp/assets && NODE_ENV=production ../../../../node_modules/webpack/bin/webpack.js -d --bail -p"
 	},
-	"author": "Lesbonne Yucheng"
+	"author": "Lesbonnes Yucheng"
 }

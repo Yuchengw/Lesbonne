@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import { Link }  from 'react-router';
 
 import AuthService from '../../../modules/authentication/service/AuthService.js';
 import LoginStore from '../../../modules/authentication/login/LoginStore.js';
 import Login from '../../../modules/authentication/login/login.js';
-import AuthenticatedComponent from '../../../global/components/AuthenticatedComponent.js'
-
+import AuthenticatedComponent from '../../../global/components/AuthenticatedComponent.js';
 
 export default AuthenticatedComponent(class Header extends React.Component {
   constructor(props) {
@@ -35,7 +35,7 @@ export default AuthenticatedComponent(class Header extends React.Component {
 		          <span></span> LesBonnes
 		        </h1>
 		        <ul>
-		          <li>Explore test</li>
+		          <li><Link to="/userprofile">Tell world more about yourself</Link></li>
 		          <li>How it works</li>
 		          <li>Become a chef</li>
 		          <li>welcome {this.props.user} :)</li> 

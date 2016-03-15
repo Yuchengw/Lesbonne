@@ -2,7 +2,8 @@
 
 import ReactDom from 'react-dom';
 import React from 'react';
-import { Router, Route,  hashHistory, IndexRoute, DefaultRoute, NotFoundRoute} from 'react-router';
+import { Router, Route,  hashHistory, IndexRoute, DefaultRoute, NotFoundRoute, useRouterHistory } from 'react-router';
+import { createHashHistory } from 'history';
 import App from '../app/app.js';
 import Login from '../app/modules/authentication/login/login.js';
 import Signup from '../app/modules/authentication/signup/signup.js';
@@ -26,8 +27,10 @@ if (login_token && login_user) {
   LoginAction.loginUser(login_token, login_user);
 }
 
+const appHistory = useRouterHistory(createHashHistory)({	queryKey: false })
+
 ReactDom.render((
-		<Router history={hashHistory}>
+		<Router history={appHistory}>
 		 	<Route name="home" path="/" component={App}/>
 		 	<Route name="userprofile" path="/userprofile" component={UserProfile}/>
 		</Router>

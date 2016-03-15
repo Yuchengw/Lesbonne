@@ -1,6 +1,10 @@
 package com.lesbonne.address;
 
+import java.util.List;
+
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -30,6 +34,16 @@ public class AddressDAOImpl implements AddressDAO{
 	public Address updateAddress(Address address) {
 		sessionFactory.getCurrentSession().update(address);
 		return address;
+	}
+	
+	@Override
+	public String[] getAllZipcodes() {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Address.class);
+		criteria.setProjection(Projections.distinct(Projections.property("zipcode")));
+		List<String> zipcodes =  (List<String>)criteria.list();
+		String[] zipcodesArray = new String[zipcodes.size()];
+		zipcodes.toArray(zipcodesArray);
+		return zipcodesArray;
 	}
 
 }

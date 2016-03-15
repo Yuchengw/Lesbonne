@@ -11,6 +11,8 @@ import Button from 'react-bootstrap/lib/Button';
 import Overlay from 'react-bootstrap/lib/Overlay';
 import Popover from 'react-bootstrap/lib/Popover';
 
+require ("./login.scss");
+
 export default class Login extends React.Component {
 	
   constructor(props) {
@@ -34,32 +36,28 @@ export default class Login extends React.Component {
   }
 
 	render() {
-    return (
-      <ButtonToolbar>
-        <a onClick={e => this.setState({ target: e.target, show: !this.state.show })}>
-          Login
-        </a>
-        <Overlay
-          show={this.state.show}
-          target={()=> ReactDOM.findDOMNode(this.state.target)}
-          placement="bottom"
-          container={this}
-          containerPadding={20}>
-          <Popover title="Please Enter your username/email and password.">
-	          <form role="form" className="loginForm">
-		          <div className="form-group">
-		            <label htmlFor="email">Email</label>
-		            <input type="text" className="form-control" id="email" ref="email" placeholder="Email" />
-		          </div>
-		          <div className="form-group">
-		            <label htmlFor="password">Password</label>
-		            <input type="password" className="form-control" id="password" ref="password" placeholder="Password" />
-		          </div>
-	          <button type="submit" className="btn btn-default" onClick={this.login.bind(this)}>Submit</button>
-	          </form>
-          </Popover>
-        </Overlay>
-      </ButtonToolbar>
-    );
+	    return (
+	    	<ButtonToolbar>
+		        <a onClick={e => this.setState({ target: e.target, show: !this.state.show })}>
+		          Login
+		        </a>
+		          	<div className="login-block">
+				        <Overlay 
+				          show={this.state.show}
+				          target={()=> ReactDOM.findDOMNode(this.state.target)}
+				          placement="bottom"
+				          container={this}>
+				          <Popover placement="bottom" positionLeft={500} title="Please Enter your username/email and password.">
+					          <form role="form" className="loginForm">
+						          <div className="form-group">
+						            <input type="text" className="form-control" id="email" ref="email" placeholder="Email" />
+						            <input type="password" className="form-control" id="password" ref="password" placeholder="Password" />
+						          	<button type="submit" className="btn btn-default" onClick={this.login.bind(this)}>Submit</button>
+						          </div>
+						     </form>
+				          </Popover>
+				        </Overlay>
+			        </div>
+	        </ButtonToolbar>);
   }
 }

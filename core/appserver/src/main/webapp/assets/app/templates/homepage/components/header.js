@@ -35,7 +35,7 @@ export default AuthenticatedComponent(class Header extends React.Component {
 		          <span></span> LesBonnes
 		        </h1>
 		        <ul>
-		          <li>Explore test</li>
+		          <li>Let&#39;s know more about you</li>
 		          <li>How it works</li>
 		          <li>Become a chef</li>
 		          <li>welcome {this.props.user} :)</li> 
@@ -51,7 +51,7 @@ export default AuthenticatedComponent(class Header extends React.Component {
 		          <span></span> LesBonnes
 		        </h1>
 		        <ul>
-		          <li>Explore test</li>
+		          <li>Know more about us</li>
 		          <li>How it works</li>
 		          <li>Become a chef</li>
 		          <li className="login"><Login /></li> 

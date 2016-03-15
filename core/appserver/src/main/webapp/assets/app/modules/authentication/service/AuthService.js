@@ -39,7 +39,8 @@ class AuthService {
 	    return loginPromise
 	      .then(function(response) {
 	    	if (response.status === 200 && response.statusText == "OK") {
-		        LoginActions.loginUser(response.getResponseHeader('LOGIN-TOKEN'), response.getResponseHeader('USER-NAME'));
+		        console.log(response.getResponseHeader('USER-NAME'));
+	    		LoginActions.loginUser(response.getResponseHeader('LOGIN-TOKEN'), response.getResponseHeader('USER-NAME'));
 		        console.log("user Login Success");
 		        return true;
 	    	} 

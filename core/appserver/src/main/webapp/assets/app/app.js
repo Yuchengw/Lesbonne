@@ -4,6 +4,7 @@
  * */
 import React from 'react';
 import HomePage from './templates/homepage/homepage.js';
+import ExploreFood from './templates/explorefood/explore.js';
 
 require('../scss/app.scss');
 

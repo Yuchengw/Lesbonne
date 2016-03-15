@@ -80,4 +80,16 @@ public class AddressControllerImpl implements AddressController {
 		}
 		return new ResponseEntity<Address[]>(locations, HttpStatus.OK);
 	}
+	
+	@Override
+	@RequestMapping(method=RequestMethod.GET, value=AddressRestURIConstants.GET_ALL_ZIPCODES)
+	public @ResponseBody ResponseEntity<String[]> getAllZipcodes() {
+		String[] zipcodes = null;
+		try {
+			zipcodes = addressProvider.getAllZipcodes();
+		} catch (Exception e) {
+			return new ResponseEntity<String[]>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<String[]>(zipcodes, HttpStatus.OK);
+	}
 }

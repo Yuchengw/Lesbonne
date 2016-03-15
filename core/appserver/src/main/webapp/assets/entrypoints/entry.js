@@ -2,7 +2,7 @@
 
 import ReactDom from 'react-dom';
 import React from 'react';
-import { Router, Route,  hashHistory, IndexRoute, DefaultRoute, NotFoundRoute, useRouterHistory } from 'react-router';
+import { Router, Route, IndexRoute, DefaultRoute, NotFoundRoute, useRouterHistory } from 'react-router';
 import { createHashHistory } from 'history';
 import App from '../app/app.js';
 import Login from '../app/modules/authentication/login/login.js';

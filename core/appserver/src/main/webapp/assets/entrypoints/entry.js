@@ -23,7 +23,7 @@ require('bootstrap-loader');
 let login_token = localStorage.getItem('login_token');
 let login_user = localStorage.getItem('login_user');
 if (login_token && login_user) {
-//  LoginAction.loginUser(login_token, login_user);
+  LoginAction.loginUser(login_token, login_user);
 }
 
 ReactDom.render((

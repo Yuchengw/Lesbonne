@@ -4,7 +4,8 @@
  */
 import AppDispatcher from '../../../global/dispatcher/AppDispatcher.js';
 import {LOGIN_USER, LOGOUT_USER} from './LoginConstants.js';
-import RouterContainer from '../../../global/router/RouterContainer.js'
+//import RouterContainer from '../../../global/router/RouterContainer.js';
+import { Router } from 'react-router';
 
 export default {
   loginUser: (login_token, login_user) => {
@@ -23,7 +24,6 @@ export default {
   },
 		  
   logoutUser: () => {
-    RouterContainer.get().transitionTo('/');
     localStorage.removeItem('login_token');
     localStorage.removeItem('login_user');
     AppDispatcher.dispatch({

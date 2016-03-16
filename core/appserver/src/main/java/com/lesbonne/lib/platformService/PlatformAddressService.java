@@ -23,8 +23,4 @@ public abstract class PlatformAddressService implements PlatformService {
 	public AppRestAddressClientImpl getAddressArrayRestClient() {
 		return new AppRestAddressClientImpl(Address[].class);
 	}
-	
-	public AppRestAddressClientImpl getStringArrayRestClient() {
-		return new AppRestAddressClientImpl(String[].class);
-	}
 }

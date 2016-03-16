@@ -74,14 +74,4 @@ public class PlatformAddressServiceImpl extends PlatformAddressService implement
 		}
 		return addresses;
 	}
-	
-	public String[] getAllZipcodes() {
-		String[] zipcodes = null;
-		try {
-			zipcodes = getStringArrayRestClient().getAllZipcodes();
-		} catch (Exception e) {
-			throw new RuntimeException("there is something wrong when getting all zipcodes " + e.getMessage());
-		}
-		return zipcodes;
-	}
 }

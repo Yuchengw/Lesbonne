@@ -12,8 +12,6 @@ export default class SearchContainer extends React.Component {
 		    <section className="homepage-search">
 		      <div className="container">
 		        <SearchBox />
-		        <div className="row">
-		        <div className="col-md-12 col-md-offset-1">
 		        <div className="homepage-showcase">
 		          <div className="showcase-item">
 		            <div className="showcase-header">
@@ -182,16 +180,10 @@ export default class SearchContainer extends React.Component {
 		            </div>
 		          </div>
 		        </div>
-		        </div>
-		        </div>
-		        <div className="row">
-		        <div className="col-md-12 col-md-offset-4">
-		        <div className="explore">
-	          		<a className="btn btn-success btn-lg">Explore 99+ HOME FOOD NEAR YOU</a>
-	          	</div>
-	          	</div>
-	          	</div>
-		      </div>		      
+		      </div>
+		      <div className="explore">
+	          	<a className="btn">Explore 99+ HOME FOOD NEAR YOU</a>
+		      </div>
 		    </section>
 		);
 	}

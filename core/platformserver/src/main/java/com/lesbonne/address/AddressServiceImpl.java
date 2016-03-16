@@ -54,10 +54,5 @@ public class AddressServiceImpl implements AddressService {
 		AddressSearcher searcher = new AddressSearcherImpl();
 		return searcher.searchZipcode(zipcode, ElasticSearchConstants.START, ElasticSearchConstants.END);
 	}
-	
-	@Override 
-	public String[] getAllZipcodes() {
-		return addressDAO.getAllZipcodes();
-	}
 
 }

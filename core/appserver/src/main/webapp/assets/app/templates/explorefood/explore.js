@@ -10,8 +10,8 @@ require('./explore.scss');
 
 export default class ExploreFood extends React.Component {	
 	_setCurrentGeolocation (position) {
-		console.log('Current location: (' + position.coords.latitude + ', ' + coords.longitude + ')');
-	    SearchService.searchNearbyLocations(position.coords.latitude, coords.longitude);
+		console.log('Current location: (' + position.coords.latitude + ', ' + position.coords.longitude + ')');
+	    SearchService.searchNearbyLocations(position.coords.latitude, position.coords.longitude);
 	}
 	
 	getGeolocationFromBrowser() {

@@ -3,8 +3,6 @@
  * @since 1
  * */
 import React from 'react';
-import Header from '../common/header.js';
-import Footer from '../common/footer.js';
 import FoodFilter from './components/foodfilter.js';
 import SearchService from '../../modules/explore/service/SearchService.js'
 
@@ -34,9 +32,7 @@ export default class ExploreFood extends React.Component {
 	render() {
 	    return (
 	    		<div className='explorefood'>
-	    			<Header />
 		    		<FoodFilter />
-		    		<Footer />
 		    	</div>
 	    );
 	  }

@@ -11,31 +11,30 @@ export default class FoodMap extends React.Component {
 	
 	_getLocations() {
 		return {
+			latitude: SearchStore.getLatitude(),
+			longitude: SearchStore.getLongitude(),
 			locations: SearchStore.getLocations()
 		};
 	}
 	
 	componentDidMount() {
-      this.changeListener = this._onChange.bind(this);
-      SearchStore.addChangeListener(this.changeListener);
+        this.changeListener = this._onChange.bind(this);
+        SearchStore.addChangeListener(this.changeListener);
     }
 
     _onChange() {
-      console.log('On changes');
-      console.log(this._getLocations());
-      this.setState(this._getLocations());
+        this.setState(this._getLocations());
     }
 
     componentWillUnmount() {
-      SearchStore.removeChangeListener(this.changeListener);
+        SearchStore.removeChangeListener(this.changeListener);
     }
 	
 	render() {
-		console.log('LOCATIONS1');
-		console.log(this.state.locations);
-		return (
-	    <section style={{height: "100%"}}>
-	      <GoogleMapLoader
+		console.log(this.state);
+		var mapElement = '';
+		if (this.latitude!==null && this.state.longitude!==null) {
+			mapElement = <GoogleMapLoader
 	        containerElement={
 	          <div
 	            {...this.props}
@@ -47,11 +46,16 @@ export default class FoodMap extends React.Component {
 	        googleMapElement={
 	          <GoogleMap
 	            ref={(map) => console.log(map)}
-	            defaultZoom={3}
-	            defaultCenter={{lat: -25.363882, lng: 131.044922}}>
+	            defaultZoom={16}
+	            defaultCenter={{lat: this.state.latitude, lng: this.state.longitude}}>
 	          </GoogleMap>
 	        }
 	      />
+		}
+		
+		return (
+	    <section style={{height: "100%"}}>
+	      {mapElement}
 	    </section>
 		);
 	}

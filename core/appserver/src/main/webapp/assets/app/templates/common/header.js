@@ -4,25 +4,32 @@ import LoginStore from '../../modules/authentication/login/LoginStore.js';
 import Login from '../../modules/authentication/login/login.js';
 import AuthenticatedComponent from '../../global/components/AuthenticatedComponent.js'
 
-export default AuthenticatedComponent(class Header extends React.Component {
-	constructor(props) {
-	    super(props);
-	    this.state = this._getLoginState();
-	  }
+class Header extends React.Component {
 
-	  _getLoginState() {
-	    return {
-	      userLoggedIn: LoginStore.isLoggedIn(),
-	      userName: LoginStore.getUser()
-	    };
-	  }
-	  
-	  logout(e) {
-		  e.preventDefault();
-		  AuthService.logout();
-	  }
+	constructor(props, context) {
+	    super(props, context);
+	    this.state = this._getLoginState();
+	}
+
+    _getLoginState() {
+      return {
+        userLoggedIn: LoginStore.isLoggedIn(),
+        userName: LoginStore.getUser()
+      };
+    }
+  
+    logout(e) {
+	    e.preventDefault();
+	    AuthService.logout();
+    }
 	
 	render() {
+		var headerCss = 'header';
+		// we need to apply an additional css for homepage header
+		if (window.location.hash === '#/') {
+			headerCss = headerCss + ' homepage-header';
+		}
+		
 		if (this.props.userLoggedIn) {
 			var userProfile = 
 				<li className="profile">
@@ -39,8 +46,8 @@ export default AuthenticatedComponent(class Header extends React.Component {
 		}
 		
 	    return (
-	    		<div className="header">
-	    		<nav className="navbar navbar-default navbar-static-top">
+	    		<header className={headerCss}>
+	    		<nav className="navbar navbar-default navbar-fixed-top">
 	    	      <div className="container">
 	    	        <div className="navbar-header">
 	    	          <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -66,7 +73,13 @@ export default AuthenticatedComponent(class Header extends React.Component {
 	    	        </div>
 	    	      </div>
 	    	    </nav>
-	    	    </div>
+	    	    </header>
 	    );
 	  }
-})
+};
+
+Header.contextTypes = {
+	router: React.PropTypes.func.isRequired
+}
+
+export default AuthenticatedComponent(Header);

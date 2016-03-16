@@ -1,5 +1,6 @@
 body {
 	min-height: 2000px;
+	padding-top: 50px;
 }
 
 .header .navbar-default {
@@ -38,6 +39,11 @@ body {
 .header .profile-name {
 	margin-left: 5px;
 	vertical-align: middle;
+}
+
+.header.homepage-header .navbar {
+	margin-bottom: 0px;
+	border: none;
 }
 
 .footer {

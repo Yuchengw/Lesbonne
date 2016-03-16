@@ -35,8 +35,8 @@ export default class Login extends React.Component {
 
 	render() {
     return (
-    	<li className="profile">
-        <a href="#" onClick={e => this.setState({ target: e.target, show: !this.state.show })}>
+      <ButtonToolbar>
+        <a onClick={e => this.setState({ target: e.target, show: !this.state.show })}>
           Login
         </a>
         <Overlay
@@ -59,7 +59,7 @@ export default class Login extends React.Component {
 	          </form>
           </Popover>
         </Overlay>
-        </li>
+      </ButtonToolbar>
     );
   }
 }

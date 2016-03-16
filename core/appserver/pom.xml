@@ -321,7 +321,7 @@
               <configuration>
                   <workingDirectory>.</workingDirectory>
                   <nodeDownloadRoot>https://nodejs.org/dist/</nodeDownloadRoot>
-                  <nodeVersion>v5.4.1</nodeVersion>
+                  <nodeVersion>v4.2.1</nodeVersion>
                   <npmVersion>3.3.12</npmVersion>
               </configuration>
               <executions>

@@ -34,8 +34,4 @@ public class AppRestAddressClientImpl extends RestClient<Address, Object> {
 	public Address[] searchZipcode(String zipcode) {
 		return (Address[]) doGet(REST_ADDRESS_PREFIX + "/searchZipcode/" + zipcode);
 	}
-	
-	public String[] getAllZipcodes() {
-		return (String[]) doGet(REST_ADDRESS_PREFIX + "/getAllZipcodes/");
-	}
 }

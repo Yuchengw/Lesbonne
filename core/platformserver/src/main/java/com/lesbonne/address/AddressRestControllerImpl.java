@@ -83,16 +83,4 @@ public class AddressRestControllerImpl implements AddressRestController {
 		}
 		return new ResponseEntity<Address[]>(locations, HttpStatus.OK);
 	}
-	
-	@Override
-	@RequestMapping(method=RequestMethod.GET, value=AddressRestURIConstants.GET_ALL_ZIPCODES, produces = "application/json")
-	public @ResponseBody ResponseEntity<String[]> getAllZipcodes() {
-		String[] zipcodes = null;
-		try {
-			zipcodes = addressService.getAllZipcodes();
-		} catch (Exception e) {
-			return new ResponseEntity<String[]>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		return new ResponseEntity<String[]>(zipcodes, HttpStatus.OK);
-	}
 }

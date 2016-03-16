@@ -16,6 +16,4 @@ public interface AddressDAO {
 	Address getAddressById(String addressId);
 	
 	Address updateAddress(Address address);
-	
-	String[] getAllZipcodes();
 }

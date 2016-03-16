@@ -62,7 +62,7 @@
   margin-bottom: 40px; }
 
 .value-pop {
-  padding: 90px 0 60px;
+  padding: 90px 0 120px;
   color: black; }
   .value-pop .column-3 {
     padding: 0 20px; }
@@ -82,7 +82,8 @@
 *
 */
 .homepage-search h2 {
-  margin-bottom: 30px; }
+  font-size: 36px;
+  margin-bottom: 37px; }
 
 .homepage-search .search-box {
   border-bottom: 2px solid #31b75e;
@@ -202,7 +203,7 @@
       margin: 0; }
 
 // Explore button
-.homepage .explore {
+.explore {
 	padding: 20px 0;
 }
 
@@ -227,4 +228,31 @@
 			font-size: 13px;
 		}
 	}
+}
+   
+// homepage-footer
+#homepage-footer {
+	margin: auto;
+	width: 60%;
+	font-size: 11px;
+	padding-bottom: 80px;
+	a {
+		color: #747474;
+	}
+	.language {
+		.dropdown-toggle {
+			font-size: 80%;
+			color: #747474;
+			padding: 1px, 1px;
+			width: 90%;
+			height: 30px;
+		}
+	}
+}   
+
+// hompage header
+.logo-img {
+    height: 26px;
+    width: 26px;
+    margin-right: 10px;
 }

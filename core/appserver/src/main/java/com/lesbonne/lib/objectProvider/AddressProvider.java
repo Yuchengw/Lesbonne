@@ -46,4 +46,8 @@ public class AddressProvider {
 	public Address[] searchZipcode(String zipcode) {
 		return this.platformAddressServiceImpl.searchZipcode(zipcode);
 	}
+	
+	public String[] getAllZipcodes() {
+		return this.platformAddressServiceImpl.getAllZipcodes();
+	}
 }

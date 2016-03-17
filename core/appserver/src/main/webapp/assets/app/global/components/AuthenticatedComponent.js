@@ -7,7 +7,7 @@ import LoginStore from '../../modules/authentication/login/LoginStore.js';
 
 export default (ComposedComponent) => {
   return class AuthenticatedComponent extends React.Component {
-
+	  
     static willTransitionTo(transition) {
       if (!LoginStore.isLoggedIn()) {
         transition.redirect('/');

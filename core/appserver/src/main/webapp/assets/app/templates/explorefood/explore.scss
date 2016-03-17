@@ -1,0 +1,244 @@
+.explorefood {
+	padding-top: 20px;
+}
+
+.explorefood .input-group-addon {
+	background-color: #ffffff;
+    border: none;
+}
+
+.inner-addon { 
+    position: relative; 
+}
+
+/* style icon */
+.inner-addon .lesbonnes-icon {
+  position: absolute;
+  pointer-events: none;
+}
+
+/* align icon */
+.left-addon .marker  { 
+	left:  0;
+	top: 3;
+}
+
+.left-addon .food { 
+	left:  6;
+	top: 5;
+}
+
+.right-addon .magnify {
+	top: 7;
+}
+
+.right-addon .arrow {
+	right: 6;
+	top: 14;
+}
+
+.right-addon .arrow1 {
+	right: 6;
+	top: 6;
+}
+
+.form-control.filter {
+	padding-right: 50px;
+}
+
+/* add padding  */
+.left-addon input  { 
+	padding-left:  40px; 
+}
+.right-addon input { 
+	padding-right: 30px; 
+}
+
+.form-inline .form-group {
+    padding-right: 20px;
+}
+
+.form-inline .form-group.left-padding {
+	border-right: 1px solid #979797;
+	padding-left: 20px;
+}
+
+.marker {
+	background-image: url(/scss/images/marker.png);
+	width: 20px;
+	height: 26px;
+	z-index: 1000;
+}
+
+.square {
+	background-image: url(/scss/images/square.png);
+	width: 21px;
+	height: 23px;
+}
+
+.food {
+	background-image: url(/scss/images/food.png);
+	width: 30px;
+	height: 27px;
+	z-index: 1000;
+}
+
+.magnify {
+	background-image: url(/scss/images/magnify.png);
+	width: 20px;
+	height: 20px;
+	z-index: 1000;
+}
+
+.arrow {
+	background-image: url(/scss/images/arrow.png);
+	width: 24px;
+	height: 10px;
+	z-index: 1000;
+}
+
+.left-margin {
+	margin-left: 15px;
+}
+
+//colors
+$white: #ffffff;
+$color_celeste_approx: #cccccc;
+$black_15: rgba(0, 0, 0, 0.15);
+$black_17_5: rgba(0, 0, 0, 0.175);
+$color_mine_shaft_approx: #333333;
+$color_steel_blue_approx: #337ab7;
+
+//@extend-elements
+//original selectors
+//span.twitter-typeahead .tt-menu, span.twitter-typeahead .tt-dropdown-menu
+%extend_1 {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 1000;
+	display: none;
+	float: left;
+	min-width: 160px;
+	padding: 5px 0;
+	margin: 2px 0 0;
+	list-style: none;
+	font-size: 14px;
+	text-align: left;
+	background-color: $white;
+	border: 1px solid $color_celeste_approx;
+	border: 1px solid $black_15;
+	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+	border-radius: 4px;
+	//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	box-shadow: 0 6px 12px $black_17_5;
+	//Instead of the line below you could use @include background-clip($clip)
+	background-clip: padding-box;
+}
+
+//original selectors
+//span.twitter-typeahead .tt-suggestion.tt-cursor, span.twitter-typeahead .tt-suggestion:hover, span.twitter-typeahead .tt-suggestion:focus
+%extend_2 {
+	color: $white;
+	text-decoration: none;
+	outline: 0;
+	background-color: $color_steel_blue_approx;
+}
+
+.input-group {
+	&.input-group-lg span.twitter-typeahead {
+		height: 46px;
+		.form-control {
+			height: 46px;
+			padding: 10px 16px;
+			font-size: 18px;
+			line-height: 1.3333333;
+			//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+			border-radius: 6px;
+		}
+		.tt-menu {
+			top: 46px !important;
+		}
+		.tt-dropdown-menu {
+			top: 46px !important;
+		}
+	}
+	&.input-group-sm span.twitter-typeahead {
+		height: 30px;
+		.form-control {
+			height: 30px;
+			padding: 5px 10px;
+			font-size: 12px;
+			line-height: 1.5;
+			//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+			border-radius: 3px;
+		}
+		.tt-menu {
+			top: 30px !important;
+		}
+		.tt-dropdown-menu {
+			top: 30px !important;
+		}
+	}
+	span.twitter-typeahead {
+		display: block !important;
+		height: 34px;
+		.tt-menu {
+			top: 32px !important;
+		}
+		.tt-dropdown-menu {
+			top: 32px !important;
+		}
+		&:not(:first-child):not(:last-child) .form-control {
+			//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+			border-radius: 0;
+		}
+		&:first-child .form-control {
+			//Instead of the line below you could use @include border-top-left-radius($radius)
+			border-top-left-radius: 4px;
+			//Instead of the line below you could use @include border-bottom-left-radius($radius)
+			border-bottom-left-radius: 4px;
+			//Instead of the line below you could use @include border-top-right-radius($radius)
+			border-top-right-radius: 0;
+			//Instead of the line below you could use @include border-bottom-right-radius($radius)
+			border-bottom-right-radius: 0;
+		}
+		&:last-child .form-control {
+			//Instead of the line below you could use @include border-top-left-radius($radius)
+			border-top-left-radius: 0;
+			//Instead of the line below you could use @include border-bottom-left-radius($radius)
+			border-bottom-left-radius: 0;
+			//Instead of the line below you could use @include border-top-right-radius($radius)
+			border-top-right-radius: 4px;
+			//Instead of the line below you could use @include border-bottom-right-radius($radius)
+			border-bottom-right-radius: 4px;
+		}
+	}
+}
+span.twitter-typeahead {
+	width: 100%;
+	.tt-menu {
+		@extend %extend_1;
+	}
+	.tt-dropdown-menu {
+		@extend %extend_1;
+	}
+	.tt-suggestion {
+		display: block;
+		padding: 3px 20px;
+		clear: both;
+		font-weight: normal;
+		line-height: 1.42857143;
+		color: $color_mine_shaft_approx;
+		white-space: nowrap;
+		&.tt-cursor {
+			@extend %extend_2;
+		}
+		&:hover {
+			@extend %extend_2;
+		}
+		&:focus {
+			@extend %extend_2;
+		}
+	}
+}

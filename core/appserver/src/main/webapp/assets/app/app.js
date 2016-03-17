@@ -13,11 +13,19 @@ export default class App extends React.Component {
 		 super(props);
     }
 	
+	isHomePage() {
+		return window.location.hash === '#/';
+	}
+	
 	render() {
-	  var children = React.cloneElement(this.props.children);
-		
+	  let children = React.cloneElement(this.props.children);
+	  let appClassName = 'lesbonnes-app'
+	  if (this.isHomePage()) {
+		  appClassName += ' homepage';
+	  }
+	  
 	  return (
-	    <div className="lesbonnes-app">
+	    <div className={appClassName}>
     	<Header />
     	{children}
     	<Footer />

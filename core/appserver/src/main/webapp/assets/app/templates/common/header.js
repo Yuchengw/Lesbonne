@@ -24,12 +24,6 @@ class Header extends React.Component {
     }
 	
 	render() {
-		var headerCss = 'header';
-		// we need to apply an additional css for homepage header
-		if (window.location.hash === '#/') {
-			headerCss = headerCss + ' homepage-header';
-		}
-		
 		if (this.props.userLoggedIn) {
 			var userProfile = 
 				<li className="profile">
@@ -46,7 +40,7 @@ class Header extends React.Component {
 		}
 		
 	    return (
-	    		<header className={headerCss}>
+	    		<header className="header">
 	    		<nav className="navbar navbar-default navbar-fixed-top">
 	    	      <div className="container">
 	    	        <div className="navbar-header">

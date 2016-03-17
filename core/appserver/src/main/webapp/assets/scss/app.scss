@@ -1,6 +1,5 @@
 body {
 	min-height: 2000px;
-	padding-top: 50px;
 }
 
 .header .navbar-default {
@@ -41,9 +40,18 @@ body {
 	vertical-align: middle;
 }
 
-.header.homepage-header .navbar {
+.lesbonnes-app {
+	padding-top: 50px;
+}
+
+.lesbonnes-app.homepage {
+	padding-top: 0px;
+}
+
+.homepage .header .navbar {
 	margin-bottom: 0px;
 	border: none;
+	background-color: rgba(0, 0, 0, 0.01);
 }
 
 .footer {

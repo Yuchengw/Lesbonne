@@ -26,6 +26,16 @@ class UserAccount extends React.Component {
 					<div className='options col-md-8'>
 						<div className='Account'>
 							<h3>Account</h3>
+							<ul className='col-md-6'>
+								<li><a> </a></li>
+								<li><a> </a></li>
+								<li><a> </a></li>
+							</ul>
+							<ul className='col-md-6'>
+								<li><a> </a></li>
+								<li><a> </a></li>
+								<li><a> </a></li>
+							</ul>
 						</div>
 						<div className='Orders'>
 							<h3>Orders</h3>

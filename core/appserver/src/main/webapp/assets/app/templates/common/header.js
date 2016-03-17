@@ -2,6 +2,7 @@ import React from 'react';
 import AuthService from '../../modules/authentication/service/AuthService.js';
 import LoginStore from '../../modules/authentication/login/LoginStore.js';
 import Login from '../../modules/authentication/login/login.js';
+import { Link } from 'react-router';
 import AuthenticatedComponent from '../../global/components/AuthenticatedComponent.js'
 
 class Header extends React.Component {
@@ -27,10 +28,10 @@ class Header extends React.Component {
 		if (this.props.userLoggedIn) {
 			var userProfile = 
 				<li className="profile">
-        			<a className="media-left" href="#">
+					<Link to="/userprofile" className="media-left">
         				<img alt="Steve" className="img-circle" src="http://placehold.it/20x20"></img>
         				<span className="profile-name"> Hi {this.props.user}</span>
-        			</a>
+        			</Link>
         		</li>;
         	var logout = <li><a href="" onClick={this.logout}>Logout</a></li>;
 		} else {

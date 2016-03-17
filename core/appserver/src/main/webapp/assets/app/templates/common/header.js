@@ -28,7 +28,7 @@ class Header extends React.Component {
 		if (this.props.userLoggedIn) {
 			var userProfile = 
 				<li className="profile">
-					<Link to="/userprofile" className="media-left">
+					<Link to="/useraccount" className="media-left">
         				<img alt="Steve" className="img-circle" src="http://placehold.it/20x20"></img>
         				<span className="profile-name"> Hi {this.props.user}</span>
         			</Link>

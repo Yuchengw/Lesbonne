@@ -9,7 +9,7 @@ import Login from '../app/modules/authentication/login/login.js';
 import Signup from '../app/modules/authentication/signup/signup.js';
 import LoginAction from '../app/modules/authentication/login/LoginAction.js';
 import RouterContainer from '../app/global/router/RouterContainer.js';
-import UserProfile from '../app/templates/userprofile/userprofile.js';
+import UserAccount from '../app/templates/useraccount/useraccount.js';
 import HomePage from '../app/templates/homepage/homepage.js';
 import ExploreFood from '../app/templates/explorefood/explore.js';
 
@@ -28,7 +28,7 @@ ReactDom.render((
 			<Route path="/" component={App}>
 		 		<IndexRoute component={HomePage} />
 		 		<Route path="/explorefood" component={ExploreFood} />
-		 		<Route path="/userprofile" component={UserProfile} />
+		 		<Route path="/useraccount" component={UserAccount} />
 		 	</Route>
 	    </Router>
 		), document.getElementById('app'));

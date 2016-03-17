@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import SearchService from '..//service/SearchService.js';
+import SearchService from '../service/SearchService.js';
 
 require("typeahead.js/dist/typeahead.jquery.min.js");
 import Bloodhound from "typeahead.js/dist/bloodhound.min.js";

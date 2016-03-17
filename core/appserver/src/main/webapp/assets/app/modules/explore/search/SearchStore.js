@@ -1,4 +1,4 @@
-import {SEARCH_NEARBY, SEARCH_ZIPCODE} from './SearchConstants';
+import { SEARCH_NEARBY,SEARCH_ZIPCODE } from './SearchConstants.js';
 import BaseStore from '../../../global/store/BaseStore.js';
 
 class SearchStore extends BaseStore {
@@ -14,17 +14,21 @@ class SearchStore extends BaseStore {
 	_registerToActions(action) {
 	    switch(action.actionType) {
 	      case SEARCH_NEARBY:
-	        this._locations = action.locations;
-	        this._latitude = action.latitude;
-	        this._longitude = action.longitude;
-	        this.emitChange();
-	        break;
+	    	  this._locations = action.locations;
+	    	  this._latitude = action.latitude;
+	    	  this._longitude = action.longitude;
+	    	  this.emitChange();
+	    	  break;
 	      case SEARCH_ZIPCODE:
-	        break;
+	    	  this._locations = action.locations;
+	          this._latitude = action.latitude;
+	          this._longitude = action.longitude;
+	          this.emitChange();
+	          break;
 	      default:
 	        break;
 	    };
-	  }
+	}
 	
 	getLocations() {
 		return this._locations;

@@ -1,102 +1,12 @@
 import {GoogleMapLoader, GoogleMap, Marker} from 'react-google-maps';
 import SearchStore from '../../../modules/explore/search/SearchStore.js';
 import React from 'react';
-
-var _mapstyle = [{
-	  "featureType": "all",
-	  "elementType": "labels.text.fill",
-	  "stylers": [{
-	    "color": "#ffffff"
-	  }]
-	}, {
-	  "featureType": "all",
-	  "elementType": "labels.text.stroke",
-	  "stylers": [{
-	    "color": "#000000"
-	  }, {
-	    "lightness": 13
-	  }]
-	}, {
-	  "featureType": "administrative",
-	  "elementType": "geometry.fill",
-	  "stylers": [{
-	    "color": "#000000"
-	  }]
-	}, {
-	  "featureType": "administrative",
-	  "elementType": "geometry.stroke",
-	  "stylers": [{
-	    "color": "#144b53"
-	  }, {
-	    "lightness": 14
-	  }, {
-	    "weight": 1.4
-	  }]
-	}, {
-	  "featureType": "landscape",
-	  "elementType": "all",
-	  "stylers": [{
-	    "color": "#08304b"
-	  }]
-	}, {
-	  "featureType": "poi",
-	  "elementType": "geometry",
-	  "stylers": [{
-	    "color": "#0c4152"
-	  }, {
-	    "lightness": 5
-	  }]
-	}, {
-	  "featureType": "road.highway",
-	  "elementType": "geometry.fill",
-	  "stylers": [{
-	    "color": "#000000"
-	  }]
-	}, {
-	  "featureType": "road.highway",
-	  "elementType": "geometry.stroke",
-	  "stylers": [{
-	    "color": "#0b434f"
-	  }, {
-	    "lightness": 25
-	  }]
-	}, {
-	  "featureType": "road.arterial",
-	  "elementType": "geometry.fill",
-	  "stylers": [{
-	    "color": "#000000"
-	  }]
-	}, {
-	  "featureType": "road.arterial",
-	  "elementType": "geometry.stroke",
-	  "stylers": [{
-	    "color": "#0b3d51"
-	  }, {
-	    "lightness": 16
-	  }]
-	}, {
-	  "featureType": "road.local",
-	  "elementType": "geometry",
-	  "stylers": [{
-	    "color": "#000000"
-	  }]
-	}, {
-	  "featureType": "transit",
-	  "elementType": "all",
-	  "stylers": [{
-	    "color": "#146474"
-	  }]
-	}, {
-	  "featureType": "water",
-	  "elementType": "all",
-	  "stylers": [{
-	    "color": "#021019"
-	  }]
-	}];
+import _mapstyle from '../mapstyle.json';
 
 class FoodMap extends React.Component {
 	
 	constructor(props, context) {
+		console.log(_mapstyle);
 		super(props, context);
 	    this.state = this._getLocations();
 	}
@@ -140,8 +50,7 @@ class FoodMap extends React.Component {
 						}	
 				}
 				markers.push(foodMarker);
-			}
-			
+			}			
 		}
 			
 		return {
@@ -182,7 +91,7 @@ class FoodMap extends React.Component {
 	          <GoogleMap
 	            ref={(map) => console.log(map)}
 	            defaultZoom={16}
-	            defaultCenter={this.state.center}
+	          	center={this.state.center}
 	          defaultOptions={{
 	              styles: _mapstyle,
 	            }}>        

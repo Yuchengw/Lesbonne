@@ -6,8 +6,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Signup from '../../../modules/authentication/signup/signup.js';
 import AuthenticatedComponent from '../../../global/components/AuthenticatedComponent.js'
+import { Link }  from 'react-router';
 
-export default AuthenticatedComponent(class Hero extends React.Component {
+class Hero extends React.Component {
 	constructor(props) {
 		super(props);
 	}
@@ -20,7 +21,7 @@ export default AuthenticatedComponent(class Hero extends React.Component {
 			        <div className="float-left">
 			          <h2>Delicious Homemade Food, Delivered</h2>
 			          <p className="mb-35">Meals starts at $5 and pickup is available</p>
-			          <a className="btn">Explore Food</a>
+			          <Link to="/explorefood" className="btn btn-success btn-lg">Explore Food</Link>
 			        </div>
 			        <Signup />
 			      </div>
@@ -33,7 +34,7 @@ export default AuthenticatedComponent(class Hero extends React.Component {
 			        <div className="float-left">
 			          <h2>Hey {this.props.user.split(' ')[0]}, Explore more and have fun today!</h2>
 			          <p className="mb-35">We have some recommendations for you, check it out!</p>
-			          <a className="btn">Explore Food</a>
+			          <Link to="/explorefood" className="btn btn-success btm-lg">Explore Food</Link>
 			        </div>
 			      </div>
 			      <div className="float-right signedin-block">
@@ -43,4 +44,6 @@ export default AuthenticatedComponent(class Hero extends React.Component {
 			)
 		}
 	}
-});
+};
+
+export default AuthenticatedComponent(Hero);

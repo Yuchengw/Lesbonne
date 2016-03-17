@@ -1,12 +1,9 @@
 import AppDispatcher from '../../../global/dispatcher/AppDispatcher.js';
-import {SEARCH_NEARBY, SEARCH_ZIPCODE} from './SearchConstants.js';
-import RouterContainer from '../../../global/router/RouterContainer.js';
-
 
 export default {
-	renderGoogleMaps: (locations, latitude, longitude) => {
+	renderLocations: (locations, latitude, longitude, actionType) => {
 		AppDispatcher.dispatch({
-			actionType: SEARCH_NEARBY,
+			actionType: actionType,
 			locations: locations,
 			latitude: latitude,
 			longitude: longitude

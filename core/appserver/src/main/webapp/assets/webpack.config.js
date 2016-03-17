@@ -38,6 +38,9 @@ module.exports = {
                 	presets: ['es2015','react']
                 }
             },
+            { 	test: /\.json$/, 
+            	loader: 'json' 
+            },
             {   test: /\.css$/, 
             	loader: "style-loader!css-loader" 
             },

@@ -1,32 +1,49 @@
-
 import React from 'react';
+import ReactDOM from 'react-dom';
+
+import SearchService from '..//service/SearchService.js';
 
 require("typeahead.js/dist/typeahead.jquery.min.js");
 import Bloodhound from "typeahead.js/dist/bloodhound.min.js";
 import $ from 'jquery';
 
 var _zipcodes = {};
+var _geocoder = new google.maps.Geocoder();
 
 /**Twitter typeahead javascript**/
 export default class SearchBox extends React.Component {
 	constructor(props) {
 	    super(props);
 	    this.state = { 
-	    	zipcodes: null
+	    	selectedZipcode: null
 	    };
 	  }
 	
-	search (keyword) {
-        console.log('I am here');
+	search (event) {
+		event.preventDefault();
+		var selectedZipcode = ReactDOM.findDOMNode(this.refs.searchInput).value.trim();
+		_geocoder.geocode({'address': selectedZipcode}, function(results, status) {
+  			if (status == google.maps.GeocoderStatus.OK && results.length>0) { 		
+  				var latitude = results[0].geometry.location.lat();
+  				var longitude = results[0].geometry.location.lng();
+  				SearchService.searchZipcodeLocations(selectedZipcode, latitude, longitude);
+			} else {
+				alert("no matching zipcode!");
+			}
+		});	
     }
     
     onEnter(event) {
-        //each time the user hits enter, send a search request
-    	console.log('I am here1');
+    	if (event.keyCode===13) {
+            var zipcode = event.target.value;
+    		this.setState({selectedZipcode: zipcode});
+    		console.log('I am here1 ' + zipcode);
+    	}
     }
     
     onSelected (event, data) {
-    	console.log('I am here2');
+    	this.setState({selectedZipcode: data});
+    	console.log('I am here2 ' + data);
     }
     
     initTypeAhead () {
@@ -78,7 +95,9 @@ export default class SearchBox extends React.Component {
 		        			<input ref="searchInput" id="search-input" type="text" className="form-control" placeholder="">
 		        			</input>
 		        		<div className="input-group-addon inner-addon right-addon">
-		        			<i className="lesbonnes-icon magnify"></i>
+		        			<a href="#" className="btn btn-small" onClick={this.search.bind(this)} >
+		        				<i className="lesbonnes-icon magnify"></i>
+		        			</a>
 		        		</div>
 	        		</div>
 	        		

@@ -4,7 +4,7 @@
  * */
 import React from 'react';
 import FoodFilter from './components/foodfilter.js';
-import SearchService from '../../modules/explore/service/SearchService.js'
+import SearchService from '../../modules/explore/service/SearchService.js';
 
 require('./explore.scss');
 

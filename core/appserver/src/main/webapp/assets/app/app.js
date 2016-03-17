@@ -19,7 +19,7 @@ export default class App extends React.Component {
 	
 	render() {
 	  let children = React.cloneElement(this.props.children);
-	  let appClassName = 'lesbonnes-app'
+	  let appClassName = 'lesbonnes-app';
 	  if (this.isHomePage()) {
 		  appClassName += ' homepage';
 	  }

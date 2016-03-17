@@ -1,23 +1,20 @@
 package com.lesbonne.search.searcher;
 
-import java.util.List;
 import java.util.Map;
 
 import org.elasticsearch.common.geo.GeoPoint;
 import org.elasticsearch.search.SearchHit;
-import org.elasticsearch.search.SearchHits;
 
-import com.google.common.collect.Lists;
 import com.lesbonne.address.Address;
 import com.lesbonne.user.User;
 
 public class AddressSearcherImpl implements AddressSearcher {
 	
+	public static final Address[] emptyAddress = new Address[0];
+	
 	@Override
 	public Address[] searchZipcode(String zipcode, int start, int end) throws Exception {
 		SearchClient client = new SearchClientImpl();
-		List<Map<String, Object>> results = Lists.newArrayList();
-		
 		SearchCriteria rule = new SearchCriteria("address", start, end);
 		rule.addFieldQuery("zipcode", zipcode);
 		SearchHit[] hits = client.search(rule);
@@ -37,7 +34,7 @@ public class AddressSearcherImpl implements AddressSearcher {
 	}
 	
 	private Address[] transformSearchResults(SearchHit[] hits) {
-		Address[] results = null;
+		Address[] results = emptyAddress;
 		if (hits.length > 0) {
 			results = new Address[hits.length];
 		}

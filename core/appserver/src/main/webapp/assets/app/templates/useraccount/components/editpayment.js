@@ -14,7 +14,7 @@ class EditPayment extends React.Component {
 	render() {
 		return(
 			<section id='editprofile'>
-				<h3> edit payment </h3>
+				<h3>edit payment</h3>
 			</section>
 		);
 	}	

@@ -9,6 +9,7 @@ import Header from'../common/header.js';
 import AuthenticatedComponent from '../../global/components/AuthenticatedComponent.js';
 import Modal from 'react-bootstrap/lib/Modal';
 import EditProfile from './components/editprofile.js';
+import EditPayment from './components/editpayment.js';
 
 import { Link } from 'react-router';
 
@@ -18,16 +19,24 @@ class UserAccount extends React.Component {
 	constructor(props, context) {
 		super(props, context);
 		this.state = {
-			show: false
+			showEditProfile: false,
+			showEditPayment: false
 		};
 	}
 
-    showModal() {
-        this.setState({show: true});
+    showEditProfileModal() {
+        this.setState({showEditProfile: true});
     }
 
+    showEditPayment() {
+    	this.setState({showEditPayment: true});
+    }
+    
     hideModal() {
-        this.setState({show: false});
+        this.setState({
+	        	showEditProfile: false,
+	        	showEditPayment: false
+        	});
     }
 
 	render() {
@@ -38,10 +47,10 @@ class UserAccount extends React.Component {
 								<div className='imageprofile col-md-4'>
 									<img className="profileimage img-circle" src="http://placehold.it/20x20"/>
 									<h3>Hello { firstname }!</h3>
-									<a className='link' onClick={this.showModal.bind(this)}>Edit</a>
+									<a className='link' onClick={this.showEditProfileModal.bind(this)}>Edit</a>
 									<Modal
 							          {...this.props}
-							          show={this.state.show}
+							          show={this.state.showEditProfile}
 							          onHide={this.hideModal.bind(this)}
 							          dialogClassName="custom-modal">
 							          <Modal.Body>
@@ -56,12 +65,25 @@ class UserAccount extends React.Component {
 									<div className='Account'>
 										<h3>Account</h3>
 										<ul className='col-md-6'>
-											<li><a className='link' onClick={this.showModal.bind(this)}>Edit Profile</a></li>
+											<li><a className='link' onClick={this.showEditProfileModal.bind(this)}>Edit Profile</a></li>
 											<li><Link className='link' to='/changepassword'>Change Password</Link></li>
 											<li><Link className='link' to='/notificationpreference'>Notification Preferences</Link></li>
 										</ul>
 										<ul className='col-md-6'>
-											<li><Link className='link' to='/managepayment'>Manage Payment Methods</Link></li>
+											<li><a className='link' onClick={this.showEditPayment.bind(this)}>Manage Payment Methods</a>
+												<Modal
+										          {...this.props}
+										          show={this.state.showEditPayment}
+										          onHide={this.hideModal.bind(this)}
+										          dialogClassName="custom-modal">
+										          <Modal.Body>
+										              <EditPayment />
+										          </Modal.Body>
+										          <Modal.Footer>
+										            <a className='editprofileclose' onClick={this.hideModal.bind(this)}>Close</a>
+										          </Modal.Footer>
+										        </Modal>
+											</li>
 											<li><Link className='link' to='/manageaddress'>Manage Address Book</Link></li>
 											<li><Link className='link' to='/foodpreference'>Food Preferences</Link></li>
 										</ul>

@@ -29,10 +29,10 @@ class Header extends React.Component {
 		let logout = '';
 		if (this.props.userLoggedIn) {
 			userProfile = <li className="profile">
-							<Link to="/useraccount" className="media-left">
+							<a href="#/useraccount" className="media-left">
 		        				<img className="img-circle" src="http://placehold.it/20x20"></img>
 		        				<span className="profile-name"> Hi, {this.props.user}</span>
-		        			</Link>
+		        			</a>
 		        		  </li>;
         	logout = <li><a href="" onClick={this.logout}>Logout</a></li>;
 		}

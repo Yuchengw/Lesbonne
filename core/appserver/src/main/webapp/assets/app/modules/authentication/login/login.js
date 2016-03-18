@@ -6,8 +6,6 @@
 import React from 'react';
 import AuthService from '../service/AuthService.js';
 import ReactDOM from 'react-dom';
-import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
-import Button from 'react-bootstrap/lib/Button';
 import Overlay from 'react-bootstrap/lib/Overlay';
 import Popover from 'react-bootstrap/lib/Popover';
 

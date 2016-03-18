@@ -21,7 +21,7 @@ class Hero extends React.Component {
 			        <div className="float-left">
 			          <h2>Delicious Homemade Food, Delivered</h2>
 			          <p className="mb-35">Meals starts at $5 and pickup is available</p>
-			          <Link to="/explorefood" className="btn btn-success btn-lg">Explore Food</Link>
+			          <a href="#/explorefood" className="btn btn-success btn-lg">Explore Food</a>
 			        </div>
 			        <Signup />
 			      </div>

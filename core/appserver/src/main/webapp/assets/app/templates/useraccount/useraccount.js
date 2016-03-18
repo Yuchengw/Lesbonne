@@ -4,7 +4,7 @@
  * */
 
 import React from'react';
-import ReactDom from'react-dom';
+import ReactDOM from'react-dom';
 import Header from'../common/header.js';
 import AuthenticatedComponent from '../../global/components/AuthenticatedComponent.js';
 import Modal from 'react-bootstrap/lib/Modal';
@@ -52,11 +52,11 @@ class UserAccount extends React.Component {
 							          {...this.props}
 							          show={this.state.showEditProfile}
 							          onHide={this.hideModal.bind(this)}
-							          dialogClassName="custom-modal">
-							          <Modal.Body>
+							          dialogClassName='editprofilemodal' bsSize='large'>
+							          <Modal.Body className='editprofilemodalbody'>
 							              <EditProfile />
 							          </Modal.Body>
-							          <Modal.Footer>
+							          <Modal.Footer className='editprofilemodalfooter'>
 							            <a className='editprofileclose' onClick={this.hideModal.bind(this)}>Close</a>
 							          </Modal.Footer>
 							        </Modal>

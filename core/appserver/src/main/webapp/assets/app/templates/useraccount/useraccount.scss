@@ -49,9 +49,60 @@
 	}
 }
 
-#editprofile {
-	img {
-		width: 100%;
-		height: 60%;
+.editprofilemodal {
+	 margin-top: 180px !important;
+	.editprofilemodalbody {
+		padding: 0px 0px;
+	}
+	.editprofileclose {
+		text-align: left;
+	}
+	.editprofilemodalfooter {
+		padding: 0px 0px;
 	}
 }
+
+
+#editprofile {
+	h2, h4 {
+		font-family: HelveticaNeue-Thin;
+		padding-top: 10px;
+	}
+	.col-md-5 {
+		padding-left: 0px;
+	}
+	.leftimage {
+		width: 90%;
+	}
+	.profileimage {
+		width: 79px;
+	    height: 79px;
+	    margin-top: 23px;
+	}
+	.profileuploadimage {
+		padding-left: 25px;
+		font-family: HelveticaNeue-Thin;
+  		font-size: 18px;
+  		color: #31b75e;
+	}
+	.editprofileform {
+		font-family: HelveticaNeue-Thin;
+  		font-size: 18px;
+  		label {
+  			color: #4a4a4a;
+  			font-weight: normal;
+  		}
+	}
+	.form-group {
+		padding-top: 20px;
+		.col-md-12 {
+			padding-top: 25px;
+			padding-left: 0px;
+		}
+		input {
+			height: 5%;
+		}
+	}
+}
+
+

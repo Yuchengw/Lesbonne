@@ -25,21 +25,17 @@ class Header extends React.Component {
     }
 	
 	render() {
+		let userProfile = <Login />;
+		let logout = '';
 		if (this.props.userLoggedIn) {
-			var userProfile = 
-				<li className="profile">
-					<Link to="/useraccount" className="media-left">
-        				<img alt="Steve" className="img-circle" src="http://placehold.it/20x20"></img>
-        				<span className="profile-name"> Hi {this.props.user}</span>
-        			</Link>
-        		</li>;
-        	var logout = <li><a href="" onClick={this.logout}>Logout</a></li>;
-		} else {
-			var userProfile =
-				<Login/>;
-			var logout = '';	
+			userProfile = <li className="profile">
+							<Link to="/useraccount" className="media-left">
+		        				<img className="img-circle" src="http://placehold.it/20x20"></img>
+		        				<span className="profile-name"> Hi, {this.props.user}</span>
+		        			</Link>
+		        		  </li>;
+        	logout = <li><a href="" onClick={this.logout}>Logout</a></li>;
 		}
-		
 	    return (
 	    		<header className="header">
 	    		<nav className="navbar navbar-default navbar-fixed-top">

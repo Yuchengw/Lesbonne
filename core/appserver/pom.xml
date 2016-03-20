@@ -285,6 +285,11 @@
 			<artifactId>guava</artifactId>
 			<version>19.0</version>
 		</dependency>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk</artifactId>
+			<version>1.10.62</version>
+		</dependency>
 	</dependencies>
 
 	<build>

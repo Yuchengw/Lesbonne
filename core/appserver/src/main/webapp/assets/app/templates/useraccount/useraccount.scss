@@ -1,0 +1,111 @@
+#accountImageInfo {
+	.userAccountImage {
+		margin-top:2px;
+	}
+}
+
+#accountOptions {
+	h3 {
+		font-family: Avenir-Book;
+		font-size: 24px;
+		line-height: 1.6;
+		color: #000000;
+	}
+	.options {
+		h3 {
+			padding-bottom: 5px;
+			border-bottom: solid 1px #10123e;
+		}
+		.Account {
+		}
+		.Orders {
+			margin-top:120px;
+		}
+		.Referral {
+			margin-top:120px;
+		}
+	}
+	.link {
+		font-family: Avenir-Book;
+	  	line-height: 2.1;
+	  	color: #31b75e;
+	}
+	.imageprofile {
+		.profileimage {
+			position: absolute;
+			top: -30px;
+			left: 70px;
+			width: 89px;
+			height: 89px;
+			
+		}
+		.link {
+			margin-left: 85px;
+		}
+		h3 {
+			padding-top: 60px;
+			margin-left: 15px;
+		}
+	}
+}
+
+.editprofilemodal {
+	 margin-top: 180px !important;
+	.editprofilemodalbody {
+		padding: 0px 0px;
+	}
+	.editprofileclose {
+		text-align: left;
+	}
+	.editprofilemodalfooter {
+		padding: 0px 0px;
+	}
+}
+
+
+#editprofile {
+	h2, h4 {
+		font-family: HelveticaNeue-Thin;
+		padding-top: 10px;
+	}
+	.col-md-5 {
+		padding-left: 0px;
+	}
+	.leftimage {
+		width: 90%;
+	}
+	.profileimage {
+		width: 79px;
+	    height: 79px;
+	    margin-top: 23px;
+	}
+	.profileuploadimage {
+		padding-left: 25px;
+		font-family: HelveticaNeue-Thin;
+  		font-size: 18px;
+  		color: #31b75e;
+	}
+	.editprofileform {
+		font-family: HelveticaNeue-Thin;
+  		font-size: 18px;
+  		label {
+  			color: #4a4a4a;
+  			font-weight: normal;
+  		}
+	}
+	.form-group {
+		padding-top: 0px;
+		.col-md-12 {
+			padding-top: 15px;
+			padding-left: 0px;
+		}
+		input {
+			height: 5%;
+		}
+		.editprofilebutton {
+			color: #31b75e;
+		}
+	}
+}
+
+

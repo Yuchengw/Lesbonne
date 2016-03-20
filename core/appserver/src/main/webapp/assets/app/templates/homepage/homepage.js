@@ -21,7 +21,6 @@ export default class HomePage extends React.Component {
 	    		<Hero />
 	    		<Value />
 	    		<SearchContainer />
-	    		<Chef />
 	    		<Media />
 	    	</div>
 	    );

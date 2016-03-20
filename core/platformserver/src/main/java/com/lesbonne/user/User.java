@@ -65,7 +65,7 @@ public class User extends CommonEntityInfo implements EntityBean, Serializable {
     @Column(name = "USERNAME", columnDefinition = "VARCHAR(255) NOT NULL")
     private String userName;
     
-    @Column(name= "USERPROFILEIMAGE", columnDefinition = "VARCHAR(725) NOT NULL")
+    @Column(name= "USERPROFILEIMAGE", columnDefinition = "VARCHAR(725)")
     private String userProfileImage;
     
     @Column(name = "USERROLE", columnDefinition = "TINYINT NOT NULL")

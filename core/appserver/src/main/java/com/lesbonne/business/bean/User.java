@@ -36,6 +36,8 @@ public class User extends BeanObject implements UserDetails, Serializable {
 	private String userPassword;
 	@JsonProperty("userName")
 	private String userName;
+	@JsonProperty("userProfileImage")
+	private String userProfileImage;
 	@JsonProperty("userContactInfo")
 	private String userContactInfo;
 	@JsonProperty("userRelationId")
@@ -80,6 +82,15 @@ public class User extends BeanObject implements UserDetails, Serializable {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	
+	// This stores the s3 link 
+	public String getUserProfileImage() {
+		return userProfileImage;
+	}
+	
+	public void setUserProfileImage(String userProfileImage) {
+		this.userProfileImage = userProfileImage;
 	}
 
 	public String getUserPassword() {

@@ -57,7 +57,7 @@ class UserAccount extends React.Component {
 							              <EditProfile />
 							          </Modal.Body>
 							          <Modal.Footer className='editprofilemodalfooter'>
-							            <a className='editprofileclose' onClick={this.hideModal.bind(this)}>Close</a>
+							          	<a className='editprofileclose' onClick={this.hideModal.bind(this)}>Close</a>
 							          </Modal.Footer>
 							        </Modal>
 								</div>

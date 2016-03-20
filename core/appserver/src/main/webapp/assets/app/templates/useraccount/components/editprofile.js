@@ -11,6 +11,10 @@ class EditProfile extends React.Component {
 		super(props);
 	}
 	
+	updateprofile() {
+		
+	}
+	
 	render() {
 		return (
 				<section id='editprofile'>
@@ -44,6 +48,12 @@ class EditProfile extends React.Component {
 					              </input>
 					            </div>
 					        </div>
+				            <div className="form-group">
+				              <div className="col-md-12">
+				                <input type="submit" onClick={this.updateprofile.bind(this)} className="editprofilebutton btn btn-primary btn-lg btn-block" value="Confirm Profile">
+				                </input>
+				              </div>
+				            </div>
 				        </div>
 					</div>
 		        </section>

@@ -110,4 +110,10 @@ public class UserControllerImpl implements UserController {
 			return new ResponseEntity<Boolean>(false, HttpStatus.FORBIDDEN);
 		}
 	}
+	
+	@RequestMapping(method=RequestMethod.POST, value=UserRestURIConstants.UPDATE_USER_PROFILE) 
+	public @ResponseBody ResponseEntity<User> updateUserProfile(@RequestBody Object updateUserInfo) {
+		
+		return null;
+	}
 }

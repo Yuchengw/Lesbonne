@@ -112,8 +112,9 @@ public class UserControllerImpl implements UserController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value=UserRestURIConstants.UPDATE_USER_PROFILE) 
-	public @ResponseBody ResponseEntity<User> updateUserProfile(@RequestBody Object updateUserInfo) {
-		
-		return null;
+	public @ResponseBody ResponseEntity<User> updateUserProfile(@RequestBody User updateUserInfo) {
+		// easy update here.
+		User updatedUser = userProvider.update(updateUserInfo);
+		return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
 	}
 }

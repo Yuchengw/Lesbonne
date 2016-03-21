@@ -34,7 +34,7 @@ class Hero extends React.Component {
 			        <div className="float-left">
 			          <h2>Hey {this.props.user.split(' ')[0]}, Explore more and have fun today!</h2>
 			          <p className="mb-35">We have some recommendations for you, check it out!</p>
-			          <Link to="/explorefood" className="btn btn-success btn-lg">Explore Food</Link>
+			          <a href="#/explorefood" className="btn btn-success btn-lg">Explore Food</a>
 			        </div>
 			      </div>
 			      <div className="float-right signedin-block">

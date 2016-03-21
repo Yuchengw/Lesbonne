@@ -3,7 +3,9 @@
  * @since 1
  * */
 import React from 'react';
-import FoodFilter from './components/foodfilter.js';
+import FoodToolbar from './components/foodtoolbar.js';
+import FoodResults from './components/foodresults.js';
+import MoreFood from './components/morefood.js';
 import SearchService from '../../modules/explore/service/SearchService.js';
 
 require('./explore.scss');
@@ -29,7 +31,9 @@ export default class ExploreFood extends React.Component {
 	render() {
 	    return (
 	    		<div className='explorefood'>
-		    		<FoodFilter />
+		    		<FoodToolbar />
+		    		<FoodResults />
+		    		<MoreFood />
 		    	</div>
 	    );
 	  }

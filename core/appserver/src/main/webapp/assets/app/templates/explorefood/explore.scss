@@ -5,104 +5,87 @@
 .explorefood .input-group-addon {
 	background-color: #ffffff;
     border: none;
+    padding: 0;
 }
 
-.inner-addon { 
-    position: relative; 
-}
-
-/* style icon */
-.inner-addon .lesbonnes-icon {
-  position: absolute;
-  pointer-events: none;
-}
-
-/* align icon */
-.left-addon .marker  { 
+.marker-icon  { 
 	left:  0;
 	top: 3;
 }
 
-.left-addon .food { 
-	left:  6;
-	top: 5;
+.food-icon { 
+	left:  -31;
+	top: 3;
 }
 
-.right-addon .magnify {
+.magnify-icon {
 	top: 7;
 }
 
-.right-addon .arrow {
-	right: 6;
-	top: 14;
+.arrow-down-icon {
+	top: 12;
+	right: 12;
 }
 
-.right-addon .arrow1 {
+.arrow1-icon {
 	right: 6;
 	top: 6;
+}
+
+.square-icon {
+	top: 3;
 }
 
 .form-control.filter {
 	padding-right: 50px;
 }
 
-/* add padding  */
-.left-addon input  { 
-	padding-left:  40px; 
-}
-.right-addon input { 
-	padding-right: 30px; 
-}
-
-.form-inline .form-group {
-    padding-right: 20px;
-}
-
-.form-inline .form-group.left-padding {
+.foodfilter .form-inline .right-border {
 	border-right: 1px solid #979797;
-	padding-left: 20px;
 }
 
-.marker {
+.marker-icon {
 	background-image: url(/scss/images/marker.png);
 	width: 20px;
 	height: 26px;
-	z-index: 1000;
 }
 
-.square {
+.square-icon {
 	background-image: url(/scss/images/square.png);
 	width: 21px;
 	height: 23px;
 }
 
-.food {
+.food-icon {
+    background-repeat: no-repeat;
+    background-position: left center;
 	background-image: url(/scss/images/food.png);
 	width: 30px;
 	height: 27px;
-	z-index: 1000;
 }
 
-.magnify {
+.magnify-icon {
 	background-image: url(/scss/images/magnify.png);
 	width: 20px;
 	height: 20px;
-	z-index: 1000;
 }
 
-.arrow {
-	background-image: url(/scss/images/arrow.png);
+.arrow-down-icon {
+	background-image: url(/scss/images/arrow_down.png);
 	width: 24px;
 	height: 10px;
-	z-index: 1000;
 }
 
-.left-margin {
-	margin-left: 15px;
+.arrow-up-icon {
+	background-image: url(/scss/images/arrow_up.png);
+	width: 24px;
+	height: 10px;
 }
 
-.btn.no-padding {
-	padding: 0px;
+.map-container {
+	height: 100%;
+	clear: both;
+	padding-top: 20px;
 }
 
 //colors

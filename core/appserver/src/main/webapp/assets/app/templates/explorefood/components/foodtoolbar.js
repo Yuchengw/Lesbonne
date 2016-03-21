@@ -14,7 +14,7 @@ class FoodToolbar extends React.Component {
 					<LocationSearchBox/>
 					<TimePicker/>
 					<FoodFilter/>
-					<div className="col-md-2 pl-10">
+					<div className="col-md-2">
 						<div className="img-icon square-icon"></div>
 					</div>
 				</form>

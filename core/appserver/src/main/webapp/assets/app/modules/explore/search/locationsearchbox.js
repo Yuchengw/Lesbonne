@@ -95,7 +95,7 @@ class LocationSearchBox extends React.Component {
 		        <div className="col-md-6 right-border">
 		        	<FoodSearchBox/>
 		        	<div className="col-md-8">
-		        		<div className="input-group inner-addon">
+		        		<div className="input-group inner-addon full-width">
 		        			<div className="input-group-addon">
 		        				<span className="img-icon marker-icon"></span>
 		        				<span className="ml-25">Near</span>

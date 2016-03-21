@@ -91,6 +91,14 @@ body {
 	box-shadow: none;
 }
 
+.full-width {
+	width: 100%;
+}
+
+.form-inline .form-control.full-width {
+	width: 100%;
+}
+
 /*
  * Helpers
  * Classes not specifically related to one element

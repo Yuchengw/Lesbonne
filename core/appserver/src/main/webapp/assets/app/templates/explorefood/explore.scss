@@ -22,14 +22,9 @@
 	top: 7;
 }
 
-.arrow-down-icon {
+.arrow-icon{
 	top: 12;
 	right: 12;
-}
-
-.arrow1-icon {
-	right: 6;
-	top: 6;
 }
 
 .square-icon {
@@ -70,16 +65,14 @@
 	height: 20px;
 }
 
-.arrow-down-icon {
+.arrow-icon {
 	background-image: url(/scss/images/arrow_down.png);
 	width: 24px;
 	height: 10px;
 }
 
-.arrow-up-icon {
+.open .arrow-icon {
 	background-image: url(/scss/images/arrow_up.png);
-	width: 24px;
-	height: 10px;
 }
 
 .map-container {

@@ -36,14 +36,23 @@ public class AddressDAOImpl implements AddressDAO{
 		return address;
 	}
 	
+	private String[] getAddressInfo(String columnName) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Address.class);
+		criteria.setProjection(Projections.distinct(Projections.property(columnName)));
+		List<String> addressInfo =  (List<String>)criteria.list();
+		String[] addressInfoArray = new String[addressInfo.size()];
+		addressInfo.toArray(addressInfoArray);
+		return addressInfoArray;
+	}
+	
 	@Override
 	public String[] getAllZipcodes() {
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Address.class);
-		criteria.setProjection(Projections.distinct(Projections.property("zipcode")));
-		List<String> zipcodes =  (List<String>)criteria.list();
-		String[] zipcodesArray = new String[zipcodes.size()];
-		zipcodes.toArray(zipcodesArray);
-		return zipcodesArray;
+		return getAddressInfo("zipcode");
+	}
+	
+	@Override
+	public String[] getAllCities() {
+		return getAddressInfo("city");
 	}
 
 }

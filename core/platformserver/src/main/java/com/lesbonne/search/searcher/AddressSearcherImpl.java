@@ -13,11 +13,12 @@ public class AddressSearcherImpl implements AddressSearcher {
 	public static final Address[] emptyAddress = new Address[0];
 	
 	@Override
-	public Address[] searchZipcode(String zipcode, int start, int end) throws Exception {
+	public Address[] searchCityOrZipcode(String cityOrZipcode, int start, int end) throws Exception {
 		SearchClient client = new SearchClientImpl();
 		SearchCriteria rule = new SearchCriteria("address", start, end);
-		rule.addFieldQuery("zipcode", zipcode);
-		SearchHit[] hits = client.search(rule);
+		rule.addFieldQuery("zipcode", cityOrZipcode);
+		rule.addFieldQuery("city", cityOrZipcode);
+		SearchHit[] hits = client.searchCityOrZipcode(rule);
 		
 		return transformSearchResults(hits);
 	}
@@ -28,7 +29,7 @@ public class AddressSearcherImpl implements AddressSearcher {
 		LocationSearchCriteria rule = new LocationSearchCriteria("address", start, end, radius);
 		rule.addFieldQuery("location", new GeoPoint(latitude, longitude));
 		
-		SearchHit[] hits = client.searchLocation(rule);
+		SearchHit[] hits = client.searchNearbyLocation(rule);
 		
 		return transformSearchResults(hits);
 	}

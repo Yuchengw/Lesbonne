@@ -16,7 +16,7 @@ public class UserSearcherImpl implements UserSearcher {
 		
 		SearchCriteria rule = new SearchCriteria("user",start,end);
 		rule.addFieldQuery("email", keyword);
-		SearchHit[] hits = client.search(rule);
+		SearchHit[] hits = client.searchUserEmail(rule);
 		for (SearchHit hit : hits) {
 			results.add(hit.getSource());
 		}

@@ -65,12 +65,12 @@ public class PlatformAddressServiceImpl extends PlatformAddressService implement
 		return addresses;
 	}
 	
-	public Address[] searchZipcode(String zipcode) {
+	public Address[] searchCityOrZipcode(String cityOrZipcode) {
 		Address[] addresses = null;
 		try {
-			addresses = getAddressArrayRestClient().searchZipcode(zipcode);
+			addresses = getAddressArrayRestClient().searchCityOrZipcode(cityOrZipcode);
 		} catch (Exception e) {
-			throw new RuntimeException("there is something wrong when search locations in zipcode " + e.getMessage());
+			throw new RuntimeException("there is something wrong when search locations in city or zipcode " + e.getMessage());
 		}
 		return addresses;
 	}
@@ -83,5 +83,15 @@ public class PlatformAddressServiceImpl extends PlatformAddressService implement
 			throw new RuntimeException("there is something wrong when getting all zipcodes " + e.getMessage());
 		}
 		return zipcodes;
+	}
+	
+	public String[] getAllCities() {
+		String[] cities = null;
+		try {
+			cities = getStringArrayRestClient().getAllCities();
+		} catch (Exception e) {
+			throw new RuntimeException("there is something wrong when getting all cities " + e.getMessage());
+		}
+		return cities;
 	}
 }

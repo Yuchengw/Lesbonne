@@ -1,5 +1,7 @@
 package com.lesbonne.bean.rest.controller;
 
+import java.net.URLEncoder;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -70,11 +72,13 @@ public class AddressControllerImpl implements AddressController {
 	}
 	
 	@Override
-	@RequestMapping(method=RequestMethod.GET, value=AddressRestURIConstants.SEARCH_ZIPCODE)
-	public @ResponseBody ResponseEntity<Address[]> searchZipcode(@PathVariable String zipcode) {
+	@RequestMapping(method=RequestMethod.GET, value=AddressRestURIConstants.SEARCH_CITY_ZIPCODE)
+	public @ResponseBody ResponseEntity<Address[]> searchCityOrZipcode(@PathVariable String cityOrZipcode) {
 		Address[] locations = null;
 		try {
-			locations = addressProvider.searchZipcode(zipcode);
+			cityOrZipcode = URLEncoder.encode(cityOrZipcode, "UTF-8");
+			System.out.println(cityOrZipcode);
+			locations = addressProvider.searchCityOrZipcode(cityOrZipcode);
 		} catch (Exception e) {
 			return new ResponseEntity<Address[]>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -91,5 +95,17 @@ public class AddressControllerImpl implements AddressController {
 			return new ResponseEntity<String[]>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return new ResponseEntity<String[]>(zipcodes, HttpStatus.OK);
+	}
+	
+	@Override
+	@RequestMapping(method=RequestMethod.GET, value=AddressRestURIConstants.GET_ALL_CITIES)
+	public @ResponseBody ResponseEntity<String[]> getAllCities() {
+		String[] cities = null;
+		try {
+			cities = addressProvider.getAllCities();
+		} catch (Exception e) {
+			return new ResponseEntity<String[]>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<String[]>(cities, HttpStatus.OK);
 	}
 }

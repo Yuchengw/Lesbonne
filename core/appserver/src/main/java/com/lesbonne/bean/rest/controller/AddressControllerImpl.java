@@ -77,7 +77,6 @@ public class AddressControllerImpl implements AddressController {
 		Address[] locations = null;
 		try {
 			cityOrZipcode = URLEncoder.encode(cityOrZipcode, "UTF-8");
-			System.out.println(cityOrZipcode);
 			locations = addressProvider.searchCityOrZipcode(cityOrZipcode);
 		} catch (Exception e) {
 			return new ResponseEntity<Address[]>(HttpStatus.INTERNAL_SERVER_ERROR);

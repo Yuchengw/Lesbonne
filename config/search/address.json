@@ -16,7 +16,8 @@
             },  
             "city":{  
                "type":"string",
-               "store": "yes" 
+               "store": "yes",
+               "index": "not_analyzed" 
             },  
             "state":{  
                "type":"string",

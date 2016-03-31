@@ -7,6 +7,7 @@ import FoodToolbar from './components/foodtoolbar.js';
 import FoodResults from './components/foodresults.js';
 import MoreFood from './components/morefood.js';
 import SearchService from '../../modules/explore/service/SearchService.js';
+import FoodMap from './components/foodmap.js';
 
 require('./explore.scss');
 
@@ -31,9 +32,10 @@ export default class ExploreFood extends React.Component {
 	render() {
 	    return (
 	    		<div className='explorefood'>
-		    		<FoodToolbar />
-		    		<FoodResults />
-		    		<MoreFood />
+    			<FoodToolbar />
+				<FoodMap />
+	    		<FoodResults />
+	    		<MoreFood />
 		    	</div>
 	    );
 	  }

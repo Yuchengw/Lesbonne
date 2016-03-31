@@ -1,7 +1,7 @@
 import SearchActions from '../search/SearchActions.js';
 import when from 'when';
 import request from 'reqwest';
-import { SEARCH_NEARBY,SEARCH_ZIPCODE,SEARCH_NEARBY_URL,SEARCH_ZIPCODE_URL } from '../search/SearchConstants.js';
+import { SEARCH_NEARBY,SEARCH_CITY_ZIPCODE,SEARCH_NEARBY_URL,SEARCH_CITY_ZIPCODE_URL } from '../search/SearchConstants.js';
 
 class SearchService {
 	
@@ -16,16 +16,16 @@ class SearchService {
 	    })), latitude, longitude, requestUrl, SEARCH_NEARBY);
 	}
 	
-	searchZipcodeLocations(zipcode, latitude, longitude) {
+	searchCityOrZipcodeLocations(cityOrZipcode, latitude, longitude) {
 		console.log(latitude + ' ' + longitude);
-		var requestUrl = SEARCH_ZIPCODE_URL.replace('{zipcode}', zipcode);
+		var requestUrl = SEARCH_CITY_ZIPCODE_URL.replace('{cityOrZipcode}', cityOrZipcode);
 		console.log('SEND request to - ' + requestUrl);
 		return this.handleLocations(when(request({
 	      url: requestUrl,
 	      method: 'GET',
 	      crossOrigin: true,
 	      type: 'json'
-	    })), latitude, longitude, requestUrl, SEARCH_ZIPCODE);
+	    })), latitude, longitude, requestUrl, SEARCH_CITY_ZIPCODE);
 	}
 	
 	handleLocations(locationsPromise, latitude, longitude, requestUrl, actionType) {

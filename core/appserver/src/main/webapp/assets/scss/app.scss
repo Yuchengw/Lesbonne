@@ -26,6 +26,27 @@ body {
 	color: #747474;
 }
 
+.homepage .header.scroll-header .navbar-default{
+	background: hsla(0,0%,100%,.95);
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.header.scroll-header .navbar-default a {
+	color: #333;
+}
+
+.header.scroll-header .navbar-default a:hover {
+	color: #7f7f7f;
+}
+
+.header.scroll-header .navbar-default .navbar-nav a {
+	color: #333;
+}
+
+.header.scroll-header .navbar-default .navbar-nav a:hover {
+	color: #7f7f7f;
+}
+
 .header .brand-logo {
 	padding-right: 20px;
 	padding-top: 10px;
@@ -80,15 +101,17 @@ body {
 	background: transparent;
 }
 
-.img-icon {
-	position: absolute;
-	pointer-events: none;
-	vertical-align: middle;
-}
-
 .form-control.no-border {
 	border: 0;
 	box-shadow: none;
+}
+
+.full-width {
+	width: 100%;
+}
+
+.form-inline .form-control.full-width {
+	width: 100%;
 }
 
 /*

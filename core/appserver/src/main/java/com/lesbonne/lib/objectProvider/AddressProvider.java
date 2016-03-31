@@ -43,11 +43,15 @@ public class AddressProvider {
 		return this.platformAddressServiceImpl.searchNearbyLocations(latitude, longitude);
 	}
 	
-	public Address[] searchZipcode(String zipcode) {
-		return this.platformAddressServiceImpl.searchZipcode(zipcode);
+	public Address[] searchCityOrZipcode(String cityOrZipcode) {
+		return this.platformAddressServiceImpl.searchCityOrZipcode(cityOrZipcode);
 	}
 	
 	public String[] getAllZipcodes() {
 		return this.platformAddressServiceImpl.getAllZipcodes();
+	}
+	
+	public String[] getAllCities() {
+		return this.platformAddressServiceImpl.getAllCities();
 	}
 }

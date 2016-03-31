@@ -50,14 +50,19 @@ public class AddressServiceImpl implements AddressService {
 	}
 	
 	@Override
-	public Address[] searchZipcode(String zipcode) throws Exception {
+	public Address[] searchCityOrZipcode(String cityOrZipcode) throws Exception {
 		AddressSearcher searcher = new AddressSearcherImpl();
-		return searcher.searchZipcode(zipcode, ElasticSearchConstants.START, ElasticSearchConstants.END);
+		return searcher.searchCityOrZipcode(cityOrZipcode, ElasticSearchConstants.START, ElasticSearchConstants.END);
 	}
 	
 	@Override 
 	public String[] getAllZipcodes() {
 		return addressDAO.getAllZipcodes();
+	}
+	
+	@Override
+	public String[] getAllCities() {
+		return addressDAO.getAllCities();
 	}
 
 }

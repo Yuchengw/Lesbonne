@@ -31,11 +31,15 @@ public class AppRestAddressClientImpl extends RestClient<Address, Object> {
 		return (Address[]) doGet(REST_ADDRESS_PREFIX + "/searchNearby/" + latitude + "/" + longitude);
 	}
 	
-	public Address[] searchZipcode(String zipcode) {
-		return (Address[]) doGet(REST_ADDRESS_PREFIX + "/searchZipcode/" + zipcode);
+	public Address[] searchCityOrZipcode(String cityOrZipcode) {
+		return (Address[]) doGet(REST_ADDRESS_PREFIX + "/searchCityOrZipcode/" + cityOrZipcode);
 	}
 	
 	public String[] getAllZipcodes() {
 		return (String[]) doGet(REST_ADDRESS_PREFIX + "/getAllZipcodes/");
+	}
+	
+	public String[] getAllCities() {
+		return (String[]) doGet(REST_ADDRESS_PREFIX + "/getAllCities/");
 	}
 }

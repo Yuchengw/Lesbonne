@@ -1,12 +1,13 @@
 package com.lesbonne.search.searcher;
 
 import org.elasticsearch.search.SearchHit;
-import org.elasticsearch.search.SearchHits;
 
 public interface SearchClient {
 	final String indexName = "elasticsearch";
 	
-	SearchHit[] search(SearchCriteria rule) throws Exception;
+	SearchHit[] searchUserEmail(SearchCriteria rule) throws Exception;
 	
-	SearchHit[] searchLocation(LocationSearchCriteria rule) throws Exception;
+	SearchHit[] searchCityOrZipcode(SearchCriteria rule) throws Exception;
+	
+	SearchHit[] searchNearbyLocation(LocationSearchCriteria rule) throws Exception;
 }

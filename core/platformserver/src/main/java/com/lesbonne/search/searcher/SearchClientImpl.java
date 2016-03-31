@@ -11,10 +11,11 @@ import org.elasticsearch.client.Client;
 import org.elasticsearch.common.geo.GeoDistance;
 import org.elasticsearch.common.geo.GeoPoint;
 import org.elasticsearch.common.unit.DistanceUnit;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.FilteredQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
-import org.elasticsearch.search.SearchHits;
 
 public class SearchClientImpl implements SearchClient {
 	
@@ -28,29 +29,39 @@ public class SearchClientImpl implements SearchClient {
 		this.client = ElasticSearchClient.getInstance().getConnection();
 	}
 	
-	@Override
-	public SearchHit[] search(SearchCriteria rule) throws Exception {
+	private SearchHit[] search(SearchCriteria rule, QueryBuilder query) throws Exception {
 		SearchRequestBuilder request = client.prepareSearch(indexName)
                 .setTypes(rule.getType())
                 .setSearchType(SearchType.QUERY_AND_FETCH);
-        
-        for (Entry<String, Object> entry : rule.getFieldQueries().entrySet()) {
-        	request.setQuery(QueryBuilders.wildcardQuery(entry.getKey(), String.format("*%s*", entry.getValue())));
-        }
-        
-        SearchResponse response = request.setFrom(rule.getStart()).setSize(rule.getEnd()).setExplain(true)
+		
+		request.setQuery(query);
+		
+		SearchResponse response = request.setFrom(rule.getStart()).setSize(rule.getEnd()).setExplain(true)
                 .execute()
                 .get();
 		
-        return response.getHits().getHits();
+		return response.getHits().getHits();
+	}
+	
+	@Override
+	public SearchHit[] searchUserEmail(SearchCriteria rule) throws Exception {
+		return null;
+	}
+	
+	@Override
+	public SearchHit[] searchCityOrZipcode(SearchCriteria rule) throws Exception {
+        BoolQueryBuilder boolQuery = QueryBuilders.boolQuery();
+        for (Entry<String, Object> entry : rule.getFieldQueries().entrySet()) {
+        	boolQuery.should(QueryBuilders.termQuery(entry.getKey(), entry.getValue()));
+        }
+        
+        QueryBuilder query = QueryBuilders.boolQuery().must(QueryBuilders.matchAllQuery()).filter(boolQuery);
+        
+        return search(rule, query);
 	}
 
 	@Override
-	public SearchHit[] searchLocation(LocationSearchCriteria rule) throws Exception {
-		SearchRequestBuilder request = client.prepareSearch(indexName)
-                .setTypes(rule.getType())
-                .setSearchType(SearchType.QUERY_AND_FETCH);
-		
+	public SearchHit[] searchNearbyLocation(LocationSearchCriteria rule) throws Exception {
 		GeoPoint pin = (GeoPoint)rule.getFieldQueries().get("location");
 		QueryBuilder geoQuery = QueryBuilders.geoDistanceQuery("location")  
 			    .point(pin.getLat(), pin.getLon())                                 
@@ -58,13 +69,8 @@ public class SearchClientImpl implements SearchClient {
 			    .optimizeBbox("memory")                         
 			    .geoDistance(GeoDistance.SLOPPY_ARC); 
 		
-		QueryBuilder qb = QueryBuilders.boolQuery().must(QueryBuilders.matchAllQuery()).filter(geoQuery);
+		QueryBuilder query = QueryBuilders.boolQuery().must(QueryBuilders.matchAllQuery()).filter(geoQuery);
 
-		request.setQuery(qb);
-		SearchResponse response = request.setFrom(rule.getStart()).setSize(rule.getEnd()).setExplain(true)
-                .execute()
-                .get();
-		
-        return response.getHits().getHits();
+		return search(rule, query);
 	}
 }

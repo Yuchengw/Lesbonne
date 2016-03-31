@@ -18,4 +18,6 @@ public interface AddressDAO {
 	Address updateAddress(Address address);
 	
 	String[] getAllZipcodes();
+	
+	String[] getAllCities();
 }

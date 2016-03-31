@@ -73,11 +73,11 @@ public class AddressRestControllerImpl implements AddressRestController {
 	}
 	
 	@Override
-	@RequestMapping(method=RequestMethod.GET, value=AddressRestURIConstants.SEARCH_ZIPCODE, produces = "application/json")
-	public @ResponseBody ResponseEntity<Address[]> searchZipcode(@PathVariable String zipcode) {
+	@RequestMapping(method=RequestMethod.GET, value=AddressRestURIConstants.SEARCH_CITY_ZIPCODE, produces = "application/json")
+	public @ResponseBody ResponseEntity<Address[]> searchCityOrZipcode(@PathVariable String cityOrZipcode) {
 		Address[] locations = null;
 		try {
-			locations = addressService.searchZipcode(zipcode);
+			locations = addressService.searchCityOrZipcode(cityOrZipcode);
 		} catch (Exception e) {
 			return new ResponseEntity<Address[]>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -94,5 +94,17 @@ public class AddressRestControllerImpl implements AddressRestController {
 			return new ResponseEntity<String[]>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return new ResponseEntity<String[]>(zipcodes, HttpStatus.OK);
+	}
+	
+	@Override
+	@RequestMapping(method=RequestMethod.GET, value=AddressRestURIConstants.GET_ALL_CITIES, produces = "application/json")
+	public @ResponseBody ResponseEntity<String[]> getAllCities() {
+		String[] cities = null;
+		try {
+			cities = addressService.getAllCities();
+		} catch (Exception e) {
+			return new ResponseEntity<String[]>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<String[]>(cities, HttpStatus.OK);
 	}
 }

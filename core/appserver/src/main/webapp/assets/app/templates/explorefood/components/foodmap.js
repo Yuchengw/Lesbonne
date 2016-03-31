@@ -110,7 +110,9 @@ class FoodMap extends React.Component {
 		
 		return (
 	    <section className='map-container'>
+	    <div className="container">
 	      {mapElement}
+	     </div>
 	    </section>
 		);
 	}

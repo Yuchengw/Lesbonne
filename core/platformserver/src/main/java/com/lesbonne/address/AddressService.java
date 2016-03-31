@@ -12,7 +12,9 @@ public interface AddressService {
 	
 	Address[] searchNearbyLocations(double latitude, double longitude) throws Exception;
 	
-	Address[] searchZipcode(String zipcode) throws Exception;
+	Address[] searchCityOrZipcode(String cityOrZipcode) throws Exception;
 	
 	String[] getAllZipcodes();
+	
+	String[] getAllCities();
 }

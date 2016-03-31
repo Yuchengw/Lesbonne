@@ -19,8 +19,10 @@ public interface AddressController {
 	
 	ResponseEntity<Address[]> searchNearbyLocations(@PathVariable double latitude, @PathVariable double longitude);
 	
-	ResponseEntity<Address[]> searchZipcode(@PathVariable String zipcode);
+	ResponseEntity<Address[]> searchCityOrZipcode(@PathVariable String zipcode);
 	
 	ResponseEntity<String[]> getAllZipcodes();
+	
+	ResponseEntity<String[]> getAllCities();
 		
 }

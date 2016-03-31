@@ -21,7 +21,6 @@ export default class App extends React.Component {
 	initScrollHeader() {
 		 window.addEventListener('scroll', function(e){
 	            let distanceY = window.pageYOffset || document.documentElement.scrollTop;
-	           	console.log(distanceY);
 	            let shrinkOn = 850;
 	            let header = $('header');
 	            if (distanceY > shrinkOn) { 

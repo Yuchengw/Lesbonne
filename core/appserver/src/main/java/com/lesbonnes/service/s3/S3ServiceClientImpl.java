@@ -26,12 +26,12 @@ public class S3ServiceClientImpl extends S3ServiceClient {
 	private static final String S3_ACCESS_KEY = "pJdP06yX+uH+1bDh6Nd/AWBDs8ndftDsQx51V+Em";
 	
 	TransferManager getClient() {
-		return AmazonS3InstanceProvider.AmazonS3TranferManager;
+		return AmazonS3InstanceProvider.AmazonS3TransferManager;
 	}
 	
 	protected static class AmazonS3InstanceProvider {
 		private static AWSCredentials s3credentials = new BasicAWSCredentials(S3_ACCESS_KEY_ID , S3_ACCESS_KEY);
-		private static TransferManager AmazonS3TranferManager  = new TransferManager(s3credentials);
+		private static TransferManager AmazonS3TransferManager  = new TransferManager(s3credentials);
 	}
 	
 	public AmazonS3 getBucket(String bucketName) {
@@ -46,8 +46,20 @@ public class S3ServiceClientImpl extends S3ServiceClient {
 	public void createBucket(String bucketName) {
 		AmazonS3Client client = (AmazonS3Client) getClient().getAmazonS3Client();
 		try {
-			if (client.doesBucketExist(bucketName) == false) {
+			if (!client.doesBucketExist(bucketName)) {
 				client.createBucket(bucketName);
+			}
+		} catch (AmazonClientException ex) {
+			// TODO: add logger
+			throw new RuntimeException(ex);
+		}
+	}
+	
+	public void deleteBucket(String bucketName) {
+		AmazonS3Client client = (AmazonS3Client) getClient().getAmazonS3Client();
+		try {
+			if (client.doesBucketExist(bucketName)) {
+				client.deleteBucket(bucketName);
 			}
 		} catch (AmazonClientException ex) {
 			// TODO: add logger
@@ -101,7 +113,7 @@ public class S3ServiceClientImpl extends S3ServiceClient {
 	public File downloadFile(String bucketName, S3FileLocation location, S3FileCategory category, String fileName) {
 		try {
 			File downloadFile = new File(constructS3FileName(location, fileName, category));
-			GetObjectRequest getObjectRequest = new GetObjectRequest(bucketName, (String) category.getObjectKey());
+			GetObjectRequest getObjectRequest = new GetObjectRequest(bucketName, (String) category.getFileCategory());
 			Download download = getClient().download(getObjectRequest, downloadFile);
 			download.addProgressListener(new ProgressListener() {
 				@Override
@@ -119,6 +131,25 @@ public class S3ServiceClientImpl extends S3ServiceClient {
 			// TODO: add retry
 			throw new RuntimeException(e);
 		} 
+	}
+	
+	public void deleteFile(String bucketName, String fileName) {
+		deleteFile(bucketName, S3FileCategory.DEFAULT, fileName);
+	}
+	
+	public void deleteFile(String bucketName, S3FileCategory category, String fileName) {
+		deleteFile(bucketName, S3FileLocation.DEFAULT, category, fileName);
+	}
+	
+	public void deleteFile(String bucketName, S3FileLocation location, S3FileCategory category, String fileName) {
+		try {
+			String fileS3Name = constructS3FileName(location, fileName, category);
+			getClient().getAmazonS3Client().deleteObject(bucketName, fileS3Name);
+		} catch (AmazonClientException ex) {
+			throw new RuntimeException(ex);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 	
 	private String constructS3FileName(S3FileLocation location, String fileName, S3FileCategory category) {

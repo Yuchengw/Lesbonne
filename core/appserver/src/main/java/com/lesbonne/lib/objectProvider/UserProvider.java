@@ -44,8 +44,8 @@ public class UserProvider {
 	/**
 	 * update is expensive, think before do it
 	 * */
-	public void update(User updateUser) {
-		this.platformUserServiceImpl.updateUser(updateUser);
+	public User update(User updateUser) {
+		return this.platformUserServiceImpl.updateUser(updateUser);
 	}
 
 	/**

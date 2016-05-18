@@ -55,7 +55,7 @@ class Header extends React.Component {
 	    	        </div>
 	    	        <div id="navbar" className="navbar-collapse collapse">
 	    	          <ul className="nav navbar-nav navbar-right">
-	    	            <li><a href="../navbar/">Explore</a></li>
+	    	            <li><a href="#/explorefood">Explore</a></li>
 	    	            <li><a href="../navbar-static-top/">How it works</a></li>
 	    	            <li><a href="./">Become a chef</a></li>
 	    	            {userProfile}
